@@ -1,0 +1,715 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Namedin</title>
+<meta name="description" content="When your buyer asks an AI which tool to use, it names three. I find out whether you are one of them — then do the work to change it.">
+<meta name="color-scheme" content="dark">
+<meta property="og:title" content="Namedin">
+<meta property="og:description" content="Three names. Then it stops.">
+<meta property="og:type" content="website">
+<style>
+  :root {
+    --void:        #000000;
+    --bone:        #ffffff;
+    --ash:         #9a9a9a;
+    --silver:      #bdbdbd;
+    --iris:        #8052ff;
+    --saffron:     #ffb829;
+    --verdant:     #15846e;
+
+    --font: 'PPNeueMontreal', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+    --s6: 6px;   --s12: 12px; --s18: 18px; --s24: 24px;
+    --s30: 30px; --s36: 36px; --s60: 60px; --s96: 96px; --s120: 120px;
+
+    --max: 1280px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--void);
+    color: var(--bone);
+    font-family: var(--font);
+    font-size: 18px;
+    line-height: 1.5;
+    font-weight: 200;
+    font-feature-settings: "ss01" on;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  .wrap {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 var(--s24);
+  }
+
+  /* ---------- type ---------- */
+  .display, .h-lg, .h-md {
+    font-weight: 400;
+    color: var(--bone);
+    margin: 0;
+    text-wrap: balance;
+  }
+  .display {
+    font-size: clamp(46px, 8.4vw, 113px);
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+  }
+  .h-lg {
+    font-size: clamp(34px, 5.4vw, 78px);
+    line-height: 1.06;
+    letter-spacing: -0.04em;
+  }
+  .h-md {
+    font-size: clamp(28px, 3.6vw, 48px);
+    line-height: 1.1;
+    letter-spacing: -0.035em;
+  }
+
+  .label {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: 0.35px;
+    text-transform: uppercase;
+    color: var(--saffron);
+    margin: 0;
+  }
+
+  p { margin: 0; }
+  .body   { font-size: 18px; font-weight: 200; line-height: 1.5; color: var(--bone); max-width: 30em; }
+  .body-2 { font-size: 18px; font-weight: 200; line-height: 1.5; color: var(--silver); max-width: 32em; }
+  .caption { font-size: 12px; font-weight: 400; line-height: 1.5; color: var(--ash); letter-spacing: 0.02em; }
+
+  /* ---------- nav ---------- */
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s24);
+    padding: var(--s30) 0;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; }
+  .brand svg { display: block; }
+  .brand span {
+    font-size: 14px; font-weight: 600; letter-spacing: 0.35px;
+    text-transform: uppercase; color: var(--bone);
+  }
+
+  .pill {
+    display: inline-block;
+    background: var(--iris);
+    color: var(--bone);
+    font-family: var(--font);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.35px;
+    text-transform: uppercase;
+    text-decoration: none;
+    line-height: 1.2;
+    padding: 14.4px 22px;
+    border: 0;
+    border-radius: 24px;
+    white-space: nowrap;
+    transition: opacity .18s ease;
+  }
+  .pill:hover { opacity: .86; }
+  .pill:focus-visible, a:focus-visible {
+    outline: 2px solid var(--saffron);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* ---------- sections ---------- */
+  section { padding: clamp(60px, 9vw, 120px) 0; }
+
+  .split {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--s60);
+    align-items: center;
+  }
+  .stack   { display: flex; flex-direction: column; gap: var(--s24); }
+  .stack-l { display: flex; flex-direction: column; gap: var(--s36); }
+
+  /* ---------- hero ---------- */
+  .hero { padding-top: clamp(30px, 5vw, 60px); }
+  .hero .cta { margin-top: var(--s12); }
+
+  #field {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    max-height: 76vh;
+  }
+
+  /* ---------- the answer specimen ---------- */
+  .query {
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.35px;
+    color: var(--ash);
+  }
+  .query::before { content: "› "; color: var(--iris); }
+
+  .answer {
+    font-size: clamp(22px, 2.6vw, 36px);
+    font-weight: 200;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    color: var(--bone);
+    max-width: 20em;
+  }
+  .lit { color: var(--iris); font-weight: 400; }
+  .dark-name { color: var(--ash); text-decoration: line-through; text-decoration-thickness: 1px; }
+
+  /* ---------- source list ---------- */
+  .sources { display: flex; flex-direction: column; gap: var(--s18); margin: 0; padding: 0; list-style: none; }
+  .sources li {
+    display: grid;
+    grid-template-columns: 13.5rem minmax(0, 1fr);
+    gap: var(--s18);
+    align-items: baseline;
+  }
+  .sources .dom { color: var(--ash); font-size: 15px; font-weight: 400; letter-spacing: 0.01em; }
+  .sources .own { color: var(--bone); font-size: 15px; font-weight: 200; }
+  .sources .own b { font-weight: 400; }
+
+  /* ---------- numbered + plain lists ---------- */
+  ol.steps, ul.items { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: var(--s24); }
+  ol.steps { counter-reset: step; }
+  ol.steps li, ul.items li {
+    display: grid;
+    grid-template-columns: 2.4rem minmax(0, 1fr);
+    gap: var(--s12);
+    align-items: baseline;
+    font-size: 18px;
+    font-weight: 200;
+    line-height: 1.5;
+    max-width: 34em;
+  }
+  ol.steps li::before {
+    counter-increment: step;
+    content: counter(step, decimal-leading-zero);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.35px;
+    color: var(--iris);
+  }
+  ul.items li::before {
+    content: "";
+    width: 7px; height: 7px;
+    background: var(--iris);
+    border-radius: 50%;
+    transform: translateY(-3px);
+  }
+  .items b, .steps b { font-weight: 400; }
+
+  a.ghost { color: var(--saffron); text-decoration: none; border-bottom: 1px solid rgba(255,184,41,.35); }
+  a.ghost:hover { border-bottom-color: var(--saffron); }
+
+  footer {
+    padding: var(--s60) 0 var(--s96);
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--ash);
+    letter-spacing: 0.02em;
+  }
+
+
+  /* ---------- explorer ---------- */
+  .explorer { display: grid; grid-template-columns: minmax(0, 22rem) minmax(0, 1fr); gap: var(--s60); align-items: start; }
+  .qlist { display: flex; flex-direction: column; gap: var(--s6); margin: 0; padding: 0; list-style: none; }
+  .qbtn {
+    display: block; width: 100%; text-align: left;
+    background: none; border: 0; padding: 10px 0 10px 20px;
+    font-family: var(--font); font-size: 15px; font-weight: 200; line-height: 1.4;
+    color: var(--ash); cursor: pointer; position: relative;
+    transition: color .16s ease;
+  }
+  .qbtn::before {
+    content: ""; position: absolute; left: 0; top: 18px;
+    width: 0; height: 0;
+    border-left: 5px solid transparent; border-right: 5px solid transparent;
+    border-bottom: 8px solid transparent;
+    transition: border-bottom-color .16s ease;
+  }
+  .qbtn:hover { color: var(--silver); }
+  .qbtn[aria-selected="true"] { color: var(--bone); font-weight: 400; }
+  .qbtn[aria-selected="true"]::before { border-bottom-color: var(--iris); }
+  .qbtn:focus-visible { outline: 2px solid var(--saffron); outline-offset: 2px; border-radius: 3px; }
+
+  .pane { display: flex; flex-direction: column; gap: var(--s30); min-height: 22rem; }
+  .pane.swap { animation: fade .28s ease; }
+  @keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+  .verdict { display: flex; align-items: baseline; gap: var(--s18); flex-wrap: wrap; }
+  .verdict .num { font-size: clamp(40px, 5vw, 78px); font-weight: 400; letter-spacing: -0.04em; line-height: 1; color: var(--bone); }
+  .verdict .num.zero { color: var(--ash); }
+  .verdict .cap { font-size: 14px; font-weight: 600; letter-spacing: 0.35px; text-transform: uppercase; color: var(--ash); }
+
+  .reply { font-size: clamp(18px, 2vw, 27px); font-weight: 200; line-height: 1.38; letter-spacing: -0.01em; color: var(--bone); max-width: 26em; }
+
+  .srclist { display: flex; flex-direction: column; gap: var(--s12); margin: 0; padding: 0; list-style: none; }
+  .srclist li { display: grid; grid-template-columns: 12.5rem minmax(0, 1fr); gap: var(--s18); align-items: baseline; font-size: 14px; }
+  .srclist .d { color: var(--ash); }
+  .srclist .o { color: var(--silver); font-weight: 200; }
+  .srclist .o.rival { color: var(--saffron); }
+  .srclist .o b { color: var(--bone); font-weight: 400; }
+
+  @media (max-width: 900px) {
+    .explorer { grid-template-columns: minmax(0, 1fr); gap: var(--s36); }
+    .pane { min-height: 0; }
+    .srclist li { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  }
+
+  @media (max-width: 900px) {
+    .split { grid-template-columns: minmax(0, 1fr); gap: var(--s36); }
+    .hero .split { display: flex; flex-direction: column-reverse; }
+    #field { max-height: 52vh; }
+    .sources li { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+    .nav .pill { padding: 12px 18px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <nav class="nav">
+    <div class="brand">
+      <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
+        <defs>
+          <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#8052ff"/>
+            <stop offset="1" stop-color="#15846e"/>
+          </linearGradient>
+        </defs>
+        <path d="M9 1 L17 16 L1 16 Z" fill="url(#g)"/>
+      </svg>
+      <span>Namedin</span>
+    </div>
+    <a class="pill" href="mailto:mironovroma10@gmail.com?subject=Free%20AI%20answer%20audit">Get a free audit</a>
+  </nav>
+
+  <section class="hero">
+    <div class="split">
+      <div class="stack-l">
+        <p class="label">For B2B software and app companies</p>
+        <h1 class="display">Three names. Then it stops.</h1>
+        <p class="body">Ten blue links used to mean ten chances. When your buyer asks an AI which tool to use, it names three and stops. If you are not one of the three, they never learn you exist — they do not scroll, because there is nothing to scroll.</p>
+        <div class="cta">
+          <a class="pill" href="mailto:mironovroma10@gmail.com?subject=Free%20AI%20answer%20audit">Get a free audit</a>
+        </div>
+      </div>
+      <canvas id="field" aria-label="A field of thousands of dim particles with three lit"></canvas>
+    </div>
+  </section>
+
+  <section id="answer">
+    <div class="stack-l">
+      <p class="label">What that looks like</p>
+      <h2 class="h-lg">Four questions. One vendor with 50,000 merchants.</h2>
+      <p class="body-2">Aheadworks has sold Shopify and Magento extensions since 2001, holds 4.8 stars across 450+ reviews, and is used by fifty thousand merchants. Here is what happens when their buyers ask.</p>
+
+      <div class="explorer">
+        <ul class="qlist" role="tablist" aria-label="Buyer questions"></ul>
+        <div class="pane" id="pane" role="tabpanel"></div>
+      </div>
+
+      <p class="caption">Run August 2026. Brand names and source domains are exactly as returned; answer wording is condensed.</p>
+    </div>
+  </section>
+
+  <section id="sources">
+    <div class="split">
+      <div class="stack">
+        <p class="label">Where the names come from</p>
+        <h2 class="h-lg">The model is not choosing. It is quoting.</h2>
+        <p class="body-2">It runs a search, pulls a handful of pages and repeats what they say. So the question was never what the AI thinks of you. It is which pages it reads — and whether you are on them.</p>
+        <p class="body-2">I ran buyer questions across one Shopify category and wrote down every source that came back. Nearly all of them were written by a competing app, about itself.</p>
+      </div>
+      <ul class="sources">
+        <li><span class="dom">getwiser.ai</span><span class="own"><b>WISER</b> — an upsell app</span></li>
+        <li><span class="dom">digismoothie.com</span><span class="own"><b>Candy Rack</b> — an upsell app</span></li>
+        <li><span class="dom">aftersell.com</span><span class="own"><b>AfterSell</b> — an upsell app</span></li>
+        <li><span class="dom">zipify.com</span><span class="own"><b>Zipify OCU</b> — an upsell app</span></li>
+        <li><span class="dom">kachingappz.com</span><span class="own"><b>Kaching Bundles</b> — a bundles app</span></li>
+        <li><span class="dom">logbase.io</span><span class="own"><b>Logbase</b> — the maker of Selleasy</span></li>
+        <li><span class="dom">oxify.app</span><span class="own"><b>Oxify</b> — an upsell app</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="audit">
+    <div class="split">
+      <div class="stack">
+        <p class="label">The free audit</p>
+        <h2 class="h-lg">First I show you where you stand.</h2>
+        <p class="body-2">One page. Every number carries the question and the surface it came from, so you can reproduce any line of it in a browser tab. No charge, no pitch.</p>
+      </div>
+      <ol class="steps">
+        <li>Thirty questions your buyers actually type — priced, constrained, compared, and problem-first, never keywords.</li>
+        <li>Each one run through ChatGPT, Perplexity and Gemini, one clean session per question.</li>
+        <li>How many of the thirty name you, and which competitors take the slots instead.</li>
+        <li>The exact URLs each answer pulled from, so you can open them yourself.</li>
+        <li>The two or three gaps that close fastest, ranked by effort.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="split">
+      <ul class="items">
+        <li>Pages on your own site answering the questions you are missing — in text a model can lift, with pricing readable without running JavaScript.</li>
+        <li>Comparison pages against whoever is taking your slot, with tables that survive being quoted.</li>
+        <li>G2, Capterra and marketplace profiles filled in properly, since those get cited more than anything else in B2B.</li>
+        <li>Outreach to the people who wrote the articles the answers rely on — most are two years stale and still list products that shut down.</li>
+        <li>One set of facts everywhere. A price that reads three ways across three sources gets you left out entirely.</li>
+        <li>A monthly re-run of the same questions, so the number moves in public.</li>
+      </ul>
+      <div class="stack">
+        <p class="label">The work</p>
+        <h2 class="h-lg">Then I go and change the sources.</h2>
+        <p class="body-2">Dashboards sell you the number and leave you alone with it. Agencies do the work but price it like a department. This is the work, monthly, from one person.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="limits">
+    <div class="split">
+      <div class="stack">
+        <p class="label">Limits</p>
+        <h2 class="h-lg">What I will not do.</h2>
+        <p class="body-2">Answers that search the live web move within weeks. Answers a model gives from memory alone move far more slowly. Any report I hand you will say which of the two you are looking at.</p>
+      </div>
+      <ul class="items">
+        <li><b>Promise you a position.</b> Nobody controls the model. I can promise the work and an honest measurement of it.</li>
+        <li><b>Buy or write reviews.</b> G2 strips them and it costs you the profile doing the most work.</li>
+        <li><b>Run invented accounts in communities.</b> Reddit catches them, and a founder answering under their own name outlives the trick.</li>
+        <li><b>Mass-generate pages.</b> They get filtered, and they pull down the domain carrying everything else.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="who">
+    <div class="stack-l">
+      <p class="label">Who</p>
+      <h2 class="h-lg">It is one person. That is the point.</h2>
+      <p class="body">I am Roman. There is no team behind this page. I read the answers, trace the sources and do the work myself — which is why it costs a fraction of an agency, and why I take a small number of companies at a time.</p>
+      <p class="body-2">Send me your product and the category you sell into. You get the audit back within a few days, whether or not we ever work together.</p>
+      <p><a class="ghost" href="mailto:mironovroma10@gmail.com?subject=Free%20AI%20answer%20audit">mironovroma10@gmail.com</a></p>
+    </div>
+  </section>
+
+  <footer>Namedin · Source data checked August 2026</footer>
+
+</div>
+
+<script>
+(() => {
+  const cv = document.getElementById('field');
+  if (!cv) return;
+  const ctx = cv.getContext('2d');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // violet-dominant so it reads as one object, not confetti
+  const PALETTE = [
+    ['#8052ff', 62], ['#5b6cff', 17], ['#c04ad8', 8],
+    ['#15846e', 6], ['#ffb829', 7]
+  ];
+  function pickColor() {
+    let r = Math.random() * 100;
+    for (const [c, w] of PALETTE) { if ((r -= w) <= 0) return c; }
+    return '#8052ff';
+  }
+
+  let W = 0, H = 0, dpr = 1, pts = [], lit = [], running = false;
+
+  // radial wrinkle — this is what reads as gyri in silhouette
+  function fold(theta, phi, k) {
+    return 1
+      + 0.110 * Math.sin(6 * k * theta) * Math.sin(5 * k * phi)
+      + 0.066 * Math.sin(9 * k * phi + 1.1)
+      + 0.048 * Math.sin(11 * k * theta + 0.4);
+  }
+
+  function shellDir() {
+    const z = 2 * Math.random() - 1;
+    const theta = Math.random() * Math.PI * 2;
+    const s = Math.sqrt(1 - z * z);
+    return { x: s * Math.cos(theta), y: s * Math.sin(theta), z: z, theta: theta, phi: Math.acos(z) };
+  }
+
+  function cerebrum() {
+    const d = shellDir();
+    const t = 0.94 + Math.random() * 0.06;          // thin shell
+    const f = fold(d.theta, d.phi, 1) * t;
+    const side = Math.random() < 0.5 ? -1 : 1;
+    return {
+      x: side * (0.160 + Math.abs(d.x * 0.585 * f)),  // two lobes + longitudinal fissure
+      y: d.y * 0.585 * f + 0.055,
+      z: d.z * 0.845 * f
+    };
+  }
+
+  function cerebellum() {
+    const d = shellDir();
+    const f = fold(d.theta, d.phi, 2.1) * (0.92 + Math.random() * 0.08);
+    const side = Math.random() < 0.5 ? -1 : 1;
+    return {
+      x: side * (0.055 + Math.abs(d.x * 0.34 * f)),
+      y: d.y * 0.235 * f - 0.545,
+      z: d.z * 0.285 * f - 0.60
+    };
+  }
+
+  function stem() {
+    const u = Math.random();
+    const a = Math.random() * Math.PI * 2;
+    const rad = (0.115 - u * 0.045) * (0.85 + Math.random() * 0.15);
+    return {
+      x: Math.cos(a) * rad,
+      y: -0.30 - u * 0.66,
+      z: Math.sin(a) * rad - 0.24 + u * 0.10
+    };
+  }
+
+  function build() {
+    const n = Math.min(2800, Math.max(1200, Math.round((W * H) / 235)));
+    pts = [];
+    for (let i = 0; i < n; i++) {
+      const r = Math.random();
+      const p = r < 0.80 ? cerebrum() : r < 0.945 ? cerebellum() : stem();
+      pts.push({
+        x: p.x, y: p.y, z: p.z,
+        r: 2.5 + Math.random() * 3.1,
+        rot: Math.random() * Math.PI * 2,
+        spin: (Math.random() - 0.5) * 0.5,
+        color: pickColor(),
+        a: 0.46 + Math.random() * 0.44
+      });
+    }
+    // the three that get named — fixed on the surface, they orbit with the brain
+    lit = [
+      { x: -0.44, y: 0.30, z: 0.52, color: '#8052ff', phase: 0.0 },
+      { x:  0.52, y: 0.06, z: 0.30, color: '#ffb829', phase: 2.1 },
+      { x:  0.20, y: 0.46, z: -0.62, color: '#8052ff', phase: 4.2 }
+    ].map(l => ({ ...l, r: 9, rot: Math.random() * 6 }));
+  }
+
+  function resize() {
+    const rect = cv.getBoundingClientRect();
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = rect.width; H = rect.height;
+    if (!W || !H) return;
+    cv.width = Math.round(W * dpr);
+    cv.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    build();
+  }
+
+  function tri(x, y, r, rot, color, alpha, glow) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(rot);
+    ctx.beginPath();
+    for (let i = 0; i < 3; i++) {
+      const ang = -Math.PI / 2 + i * 2.0943951;
+      const px = Math.cos(ang) * r, py = Math.sin(ang) * r;
+      i ? ctx.lineTo(px, py) : ctx.moveTo(px, py);
+    }
+    ctx.closePath();
+    ctx.globalAlpha = alpha;
+    ctx.strokeStyle = color;
+    ctx.lineWidth = glow ? 1.6 : 1;
+    if (glow) { ctx.shadowColor = color; ctx.shadowBlur = 20; }
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  const CAM = 3.15, FOC = 2.5;
+  const buf = [];
+
+  function frame(time) {
+    if (!W || !H) return;
+    ctx.clearRect(0, 0, W, H);
+
+    const t = reduced ? 0.9 : time / 1000;
+    const yaw = 0.72 + t * 0.19;
+    const pitch = -0.20 + (reduced ? 0 : Math.sin(t * 0.23) * 0.055);
+    const cy = Math.cos(yaw), sy = Math.sin(yaw);
+    const cp = Math.cos(pitch), sp = Math.sin(pitch);
+    const ox = W / 2, oy = H / 2, S = Math.min(W, H) * 0.505;
+
+    const project = (p) => {
+      let x = p.x * cy + p.z * sy;
+      let z = -p.x * sy + p.z * cy;
+      let y = p.y * cp - z * sp;
+      z = p.y * sp + z * cp;
+      const k = FOC / (CAM - z);
+      return { sx: ox + x * S * k, sy: oy + y * S * k, k: k, z: z };
+    };
+
+    buf.length = 0;
+    for (const p of pts) { const q = project(p); q.p = p; buf.push(q); }
+    buf.sort((m, n) => m.z - n.z);                       // painter's algorithm
+
+    for (const q of buf) {
+      const depth = (q.z + 1) / 2;                       // 0 far … 1 near
+      tri(q.sx, q.sy, q.p.r * q.k * 0.80, q.p.rot + t * q.p.spin,
+          q.p.color, q.p.a * Math.pow(0.16 + depth * 0.84, 1.25), false);
+    }
+
+    for (const l of lit) {
+      const q = project(l);
+      const depth = (q.z + 1) / 2;
+      const pulse = reduced ? 1 : 0.80 + Math.sin(t * 0.95 + l.phase) * 0.20;
+      tri(q.sx, q.sy, l.r * q.k * 0.70, l.rot + t * 0.1,
+          l.color, pulse * (0.30 + depth * 0.70), true);
+    }
+
+    if (!reduced && !document.hidden) requestAnimationFrame(loop);
+    else running = false;
+  }
+
+  function loop(ts) {
+    if (document.hidden || !W) { running = false; return; }
+    frame(ts);
+  }
+  function start() { if (running || reduced) return; running = true; requestAnimationFrame(loop); }
+  function refresh() {
+    resize();
+    if (!W) return;
+    if (reduced || document.hidden) { frame(900); return; }
+    start();
+  }
+
+  new ResizeObserver(refresh).observe(cv);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) refresh(); });
+  window.addEventListener('pageshow', refresh);
+  refresh();
+})();
+</script>
+
+
+<script>
+(() => {
+  const DATA = [
+    {
+      q: "best upsell app for Shopify",
+      hit: false,
+      reply: 'For most stores the strongest options are <em>ReConvert</em> for post-purchase funnels, <em>Selleasy</em> for a genuinely free tier, and <em>Rebuy</em> for recommendations across the journey. <em>Zipify OCU</em> and <em>Honeycomb</em> cover structured funnels.',
+      sources: [
+        ["zipify.com", "Zipify OCU", "an upsell app", true],
+        ["getwiser.ai", "WISER", "an upsell app", true],
+        ["oxify.app", "Oxify", "an upsell app", true],
+        ["upsella.com", "Upsella", "an upsell app", true],
+        ["appbrew.com", null, "an app-industry blog", false]
+      ]
+    },
+    {
+      q: "best Shopify upsell app for a small store, flat pricing, no per-order fee",
+      hit: false,
+      reply: '<em>Frequently Bought Together</em> at a flat $9.99 with no revenue share, <em>Selleasy</em> for a completely flat free plan, and <em>WISER</em> because flat pricing scales without commission eroding margin.',
+      sources: [
+        ["getwiser.ai", "WISER", "an upsell app", true],
+        ["digismoothie.com", "Candy Rack", "an upsell app", true],
+        ["kachingappz.com", "Kaching Bundles", "a bundles app", true],
+        ["hellorep.ai", null, "an ecommerce blog", false],
+        ["section.store", null, "a theme shop", false]
+      ]
+    },
+    {
+      q: "best Shopify cross sell app 2026",
+      hit: false,
+      reply: 'The top cross-sell apps are <em>AfterSell</em>, <em>LimeSpot Personalizer</em> and <em>ReConvert</em>. <em>Hextom</em> suits quick widgets, <em>AiTrillion</em> replaces several tools at once, and <em>Kefi</em> excels at bundles.',
+      sources: [
+        ["aftersell.com", "AfterSell", "an upsell app", true],
+        ["digismoothie.com", "Candy Rack", "an upsell app", true],
+        ["aitrillion.com", "AiTrillion", "a marketing suite", true],
+        ["keficommerce.com", "Kefi", "a bundles app", true],
+        ["delightchat.io", null, "a support tool's blog", false]
+      ]
+    },
+    {
+      q: "Aheadworks Shopify upsell cross sell bundles app review",
+      hit: true,
+      reply: '<strong>Aheadworks</strong> offers upsell, cross-sell and bundle placements across eight locations, rated 4.8 across 450+ reviews, with a free plan available.',
+      sources: [
+        ["apps.shopify.com", null, "the marketplace listing itself", false],
+        ["logbase.io", "Logbase", "the maker of Selleasy", true],
+        ["vify.io", "Vify", "a Shopify app maker", true]
+      ]
+    }
+  ];
+
+  const list = document.querySelector('.qlist');
+  const pane = document.getElementById('pane');
+  if (!list || !pane) return;
+
+  const hits = DATA.filter(d => d.hit).length;
+
+  DATA.forEach((d, i) => {
+    const li = document.createElement('li');
+    const b = document.createElement('button');
+    b.className = 'qbtn';
+    b.type = 'button';
+    b.setAttribute('role', 'tab');
+    b.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+    b.textContent = d.q;
+    b.addEventListener('click', () => select(i));
+    li.appendChild(b);
+    list.appendChild(li);
+  });
+
+  function esc(s) { return s.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+
+  function render(d) {
+    const named = d.hit
+      ? '<span class="num">named</span><span class="cap">Aheadworks appears &mdash; only because the question already contains its name</span>'
+      : '<span class="num zero">not named</span><span class="cap">Aheadworks does not appear in this answer</span>';
+
+    const srcs = d.sources.map(([dom, own, note, rival]) => {
+      const owner = own
+        ? '<b>' + esc(own) + '</b> &mdash; ' + esc(note)
+        : esc(note);
+      return '<li><span class="d">' + esc(dom) + '</span><span class="o' + (rival ? ' rival' : '') + '">' + owner + '</span></li>';
+    }).join('');
+
+    pane.innerHTML =
+      '<div class="verdict">' + named + '</div>' +
+      '<p class="reply">' + d.reply.replace(/<em>/g, '<span class="lit">').replace(/<\/em>/g, '</span>') + '</p>' +
+      '<div><p class="label" style="margin-bottom:14px">Where that answer came from</p><ul class="srclist">' + srcs + '</ul></div>';
+
+    pane.classList.remove('swap');
+    void pane.offsetWidth;
+    pane.classList.add('swap');
+  }
+
+  function select(i) {
+    [...list.querySelectorAll('.qbtn')].forEach((b, j) => b.setAttribute('aria-selected', j === i ? 'true' : 'false'));
+    render(DATA[i]);
+  }
+
+  select(0);
+
+  const tally = document.querySelector('#answer .body-2');
+  if (tally) tally.insertAdjacentHTML('afterend',
+    '<p class="body" style="color:var(--saffron)">Named in ' + hits + ' of ' + DATA.length + ' &mdash; and that one only because the buyer already knew the name.</p>');
+})();
+</script>
+
+</body>
+</html>
