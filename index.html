@@ -4,11 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Namedin</title>
-<meta name="description" content="When your buyer asks an AI which tool to use, it names three. I find out whether you are one of them — then do the work to change it.">
+<meta name="description" content="Ваши покупатели спрашивают ИИ, какой сервис выбрать. Он называет три имени. Узнайте, есть ли среди них вы — и попадите туда.">
 <meta name="color-scheme" content="dark">
-<meta property="og:title" content="Namedin">
-<meta property="og:description" content="Three names. Then it stops.">
+<link rel="canonical" href="https://getnamedin.com/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M9 1 L17 16 L1 16 Z' fill='%238052ff'/%3E%3C/svg%3E">
+<meta property="og:site_name" content="Namedin">
+<meta property="og:title" content="Three names. Then it stops.">
+<meta property="og:description" content="Когда покупатель спрашивает ИИ, какой сервис выбрать, ответ называет три имени и замолкает. Проверяем, есть ли среди них вы.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://getnamedin.com/">
+<meta property="og:image" content="https://getnamedin.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://getnamedin.com/og.png">
 <style>
   :root {
     --void:        #000000;
@@ -254,6 +263,24 @@
     .rise { opacity: 1; transform: none; }
   }
 
+
+  /* ---------- языки ---------- */
+  [data-lang="en"] .ru, [data-lang="ru"] .en { display: none !important; }
+
+  .langs { display: inline-flex; gap: 2px; align-items: center; margin-right: 4px; }
+  .lang {
+    background: none; border: 0; cursor: pointer;
+    font-family: var(--font); font-size: 12px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ash); padding: 6px 8px; border-radius: 20px;
+    transition: color .15s ease, background .15s ease;
+  }
+  .lang:hover { color: var(--silver); }
+  .lang[aria-pressed="true"] { color: var(--bone); background: rgba(255,255,255,.07); }
+  .lang:focus-visible { outline: 2px solid var(--saffron); outline-offset: 2px; }
+
+  .contacts { display: flex; flex-wrap: wrap; gap: var(--s18) var(--s30); align-items: baseline; }
+
   /* ---------- explorer ---------- */
   .explorer { display: grid; grid-template-columns: minmax(0, 22rem) minmax(0, 1fr); gap: var(--s60); align-items: start; }
   .qlist { display: flex; flex-direction: column; gap: var(--s6); margin: 0; padding: 0; list-style: none; }
@@ -332,17 +359,24 @@
       </svg>
       <span>Namedin</span>
     </div>
-    <a class="pill" href="mailto:mironovroma10@gmail.com?subject=Free%20AI%20answer%20audit">Get a free audit</a>
+    <div style="display:flex;align-items:center;gap:var(--s12)">
+      <div class="langs" role="group" aria-label="Язык / Language">
+        <button class="lang" type="button" data-set="ru" aria-pressed="false">RU</button>
+        <button class="lang" type="button" data-set="en" aria-pressed="false">EN</button>
+      </div>
+      <a class="pill" href="https://t.me/mirrnr"><span class="en">Free audit</span><span class="ru">Бесплатный аудит</span></a>
+    </div>
   </nav>
 
   <section class="hero">
     <div class="split">
       <div class="stack-l">
-        <p class="label">For B2B software and app companies</p>
-        <h1 class="display">Three names. Then it stops.</h1>
-        <p class="body">Ten blue links used to mean ten chances. When your buyer asks an AI which tool to use, it names three and stops. If you are not one of the three, they never learn you exist — they do not scroll, because there is nothing to scroll.</p>
+        <p class="label"><span class="en">For B2B software and app companies</span><span class="ru">Для B2B-сервисов и приложений</span></p>
+        <h1 class="display"><span class="en">Three names. Then it stops.</span><span class="ru">Три имени. И тишина.</span></h1>
+        <p class="body en">Ten blue links used to mean ten chances. When your buyer asks an AI which tool to use, it names three and stops. If you are not one of the three, they never learn you exist — they do not scroll, because there is nothing to scroll.</p>
+        <p class="body ru">Раньше поиск давал десять ссылок — десять шансов. Сегодня покупатель спрашивает ИИ, какой сервис выбрать, и получает три имени. Если вас среди них нет, он о вас не узнает: прокручивать нечего.</p>
         <div class="cta">
-          <a class="pill" href="mailto:mironovroma10@gmail.com?subject=Free%20AI%20answer%20audit">Get a free audit</a>
+          <a class="pill" href="https://t.me/mirrnr"><span class="en">Get a free audit</span><span class="ru">Получить бесплатный аудит</span></a>
         </div>
       </div>
       <canvas id="field" aria-label="A field of thousands of dim particles with three lit"></canvas>
@@ -351,27 +385,31 @@
 
   <section id="answer">
     <div class="stack-l">
-      <p class="label">What that looks like</p>
-      <h2 class="h-lg">Four questions. One vendor with 50,000 merchants.</h2>
-      <p class="body-2">Aheadworks has sold Shopify and Magento extensions since 2001, holds 4.8 stars across 450+ reviews, and is used by fifty thousand merchants. Here is what happens when their buyers ask.</p>
+      <p class="label"><span class="en">What that looks like</span><span class="ru">Как это выглядит</span></p>
+      <h2 class="h-lg"><span class="en">Four questions. One vendor with 50,000 merchants.</span><span class="ru">Четыре вопроса. Вендор с 50 000 клиентов.</span></h2>
+      <p class="body-2 en">A vendor selling e-commerce extensions since 2001, rated 4.8 across 450+ reviews, used by fifty thousand merchants. Name withheld — this is client work. Here is what happens when their buyers ask.</p>
+      <p class="body-2 ru">Вендор расширений для электронной торговли с 2001 года, рейтинг 4.8 при 450+ отзывах, пятьдесят тысяч клиентов. Имя не называем — это клиентская работа. Вот что происходит, когда их покупатели спрашивают.</p>
 
       <div class="explorer">
         <ul class="qlist" role="tablist" aria-label="Buyer questions"></ul>
         <div class="pane" id="pane" role="tabpanel"></div>
       </div>
 
-      <p class="caption">Run August 2026. Brand names and source domains are exactly as returned; answer wording is condensed.</p>
+      <p class="caption"><span class="en">Run August 2026. Brand names and source domains are exactly as returned; answer wording is condensed.</span><span class="ru">Прогон в августе 2026. Названия и домены — как в ответе; формулировки сжаты.</span></p>
     </div>
   </section>
 
   <section id="sources">
     <div class="split">
       <div class="stack">
-        <p class="label">Where the names come from</p>
-        <h2 class="h-lg">The model is not choosing. It is quoting.</h2>
-        <p class="body-2">It runs a search, pulls a handful of pages and repeats what they say. So the question was never what the AI thinks of you. It is which pages it reads — and whether you are on them.</p>
-        <p class="body-2">I ran buyer questions across one Shopify category and wrote down every source that came back. Nearly all of them were written by a competing app, about itself.</p>
-        <p class="caption">The whole run is published: <a class="ghost" href="/report/shopify-upsell-apps/">15 questions, 102 citations, 58 source domains</a>.</p>
+        <p class="label"><span class="en">Where the names come from</span><span class="ru">Откуда берутся имена</span></p>
+        <h2 class="h-lg"><span class="en">The model is not choosing. It is quoting.</span><span class="ru">Модель не выбирает. Она цитирует.</span></h2>
+        <p class="body-2 en">It runs a search, pulls a handful of pages and repeats what they say. So the question was never what the AI thinks of you. It is which pages it reads — and whether you are on them.</p>
+        <p class="body-2 ru">Она ищет, забирает несколько страниц и пересказывает их. Значит вопрос не в том, что ИИ о вас думает, а в том, какие страницы он читает — и есть ли вы на них.</p>
+        <p class="body-2 en">I ran buyer questions across one Shopify category and wrote down every source that came back. Nearly all of them were written by a competing app, about itself.</p>
+        <p class="body-2 ru">Я прогнал покупательские вопросы по одной категории и выписал все источники. Почти каждый написан конкурирующим продуктом про самого себя.</p>
+        <p class="caption en">The whole run is published: <a class="ghost" href="/report/shopify-upsell-apps/">15 questions, 102 citations, 58 source domains</a>.</p>
+        <p class="caption ru">Весь прогон опубликован: <a class="ghost" href="/report/shopify-upsell-apps/">15 вопросов, 102 цитирования, 58 доменов</a>.</p>
       </div>
       <ul class="sources">
         <li><span class="dom">getwiser.ai</span><span class="own"><b>WISER</b> — an upsell app</span></li>
@@ -388,23 +426,31 @@
   <section id="audit">
     <div class="split">
       <div class="stack">
-        <p class="label">The free audit</p>
-        <h2 class="h-lg">First I show you where you stand.</h2>
-        <p class="body-2">One page. Every number carries the question and the surface it came from, so you can reproduce any line of it in a browser tab. No charge, no pitch.</p>
+        <p class="label"><span class="en">The free audit</span><span class="ru">Бесплатный аудит</span></p>
+        <h2 class="h-lg"><span class="en">First I show you where you stand.</span><span class="ru">Сначала показываю, где вы стоите.</span></h2>
+        <p class="body-2 en">One page. Every number carries the question and the surface it came from, so you can reproduce any line of it in a browser tab. No charge, no pitch.</p>
+        <p class="body-2 ru">Одна страница. У каждой цифры указан вопрос и поверхность, откуда она снята, — любую строку вы проверите сами во вкладке браузера. Бесплатно и без предложений.</p>
       </div>
-      <ol class="steps">
+      <ol class="steps en">
         <li>Thirty questions your buyers actually type — priced, constrained, compared, and problem-first, never keywords.</li>
         <li>Each one run through ChatGPT, Perplexity and Gemini, one clean session per question.</li>
         <li>How many of the thirty name you, and which competitors take the slots instead.</li>
         <li>The exact URLs each answer pulled from, so you can open them yourself.</li>
         <li>The two or three gaps that close fastest, ranked by effort.</li>
       </ol>
+      <ol class="steps ru">
+        <li>Тридцать вопросов, которые ваши покупатели правда набирают: про цену, с условием, сравнения и от проблемы. Не ключевые слова.</li>
+        <li>Каждый прогоняется через ChatGPT, Perplexity и Gemini — по одной чистой сессии на вопрос.</li>
+        <li>В скольких из тридцати называют вас и кто из конкурентов занимает места вместо вас.</li>
+        <li>Точные адреса страниц, из которых собран каждый ответ, — откроете сами.</li>
+        <li>Два-три пробела, которые закрываются быстрее всего, с оценкой усилий.</li>
+      </ol>
     </div>
   </section>
 
   <section id="work">
     <div class="split">
-      <ul class="items">
+      <ul class="items en">
         <li>Pages on your own site answering the questions you are missing — in text a model can lift, with pricing readable without running JavaScript.</li>
         <li>Comparison pages against whoever is taking your slot, with tables that survive being quoted.</li>
         <li>G2, Capterra and marketplace profiles filled in properly, since those get cited more than anything else in B2B.</li>
@@ -412,10 +458,19 @@
         <li>One set of facts everywhere. A price that reads three ways across three sources gets you left out entirely.</li>
         <li>A monthly re-run of the same questions, so the number moves in public.</li>
       </ul>
+      <ul class="items ru">
+        <li>Страницы на вашем сайте под те вопросы, где вас не называют, — в тексте, который модель может забрать, с ценой, читаемой без JavaScript.</li>
+        <li>Сравнительные страницы против того, кто занял ваше место, с таблицами, которые переживают цитирование.</li>
+        <li>Карточки в каталогах и на витринах, заполненные до конца, — в B2B их цитируют чаще всего остального.</li>
+        <li>Письма авторам статей, на которые опираются ответы. Большинство устарели на два года и до сих пор перечисляют закрывшиеся продукты.</li>
+        <li>Один набор фактов везде. Цена, которая в трёх источниках читается по-разному, выкидывает вас из ответа целиком.</li>
+        <li>Ежемесячный повтор тех же вопросов — чтобы цифра двигалась на виду.</li>
+      </ul>
       <div class="stack">
-        <p class="label">The work</p>
-        <h2 class="h-lg">Then I go and change the sources.</h2>
-        <p class="body-2">Dashboards sell you the number and leave you alone with it. Agencies do the work but price it like a department. This is the work, monthly, from one person.</p>
+        <p class="label"><span class="en">The work</span><span class="ru">Работа</span></p>
+        <h2 class="h-lg"><span class="en">Then I go and change the sources.</span><span class="ru">Дальше я иду и меняю источники.</span></h2>
+        <p class="body-2 en">Dashboards sell you the number and leave you alone with it. Agencies do the work but price it like a department. This is the work, monthly, from one person.</p>
+        <p class="body-2 ru">Дашборды продают цифру и оставляют вас с ней наедине. Агентства делают работу, но берут как за отдел. Здесь — работа, ежемесячно, от одного человека.</p>
       </div>
     </div>
   </section>
@@ -423,30 +478,42 @@
   <section id="limits">
     <div class="split">
       <div class="stack">
-        <p class="label">Limits</p>
-        <h2 class="h-lg">What I will not do.</h2>
-        <p class="body-2">Answers that search the live web move within weeks. Answers a model gives from memory alone move far more slowly. Any report I hand you will say which of the two you are looking at.</p>
+        <p class="label"><span class="en">Limits</span><span class="ru">Ограничения</span></p>
+        <h2 class="h-lg"><span class="en">What I will not do.</span><span class="ru">Чего я не делаю.</span></h2>
+        <p class="body-2 en">Answers that search the live web move within weeks. Answers a model gives from memory alone move far more slowly. Any report I hand you will say which of the two you are looking at.</p>
+        <p class="body-2 ru">Ответы с живым поиском двигаются за недели. Ответы, которые модель даёт по памяти, — куда медленнее. В любом моём отчёте написано, на что именно вы смотрите.</p>
       </div>
-      <ul class="items">
+      <ul class="items en">
         <li><b>Promise you a position.</b> Nobody controls the model. I can promise the work and an honest measurement of it.</li>
         <li><b>Buy or write reviews.</b> G2 strips them and it costs you the profile doing the most work.</li>
         <li><b>Run invented accounts in communities.</b> Reddit catches them, and a founder answering under their own name outlives the trick.</li>
         <li><b>Mass-generate pages.</b> They get filtered, and they pull down the domain carrying everything else.</li>
+      </ul>
+      <ul class="items ru">
+        <li><b>Не обещаю позицию.</b> Моделью никто не управляет. Обещаю работу и честный замер.</li>
+        <li><b>Не покупаю и не пишу отзывы.</b> Каталоги их вычищают, и вы теряете профиль, который работал лучше всего.</li>
+        <li><b>Не завожу выдуманные аккаунты в сообществах.</b> Их вычисляют, а основатель, отвечающий своим именем, переживает любую хитрость.</li>
+        <li><b>Не генерирую страницы пачками.</b> Их фильтруют, и они тянут вниз весь домен.</li>
       </ul>
     </div>
   </section>
 
   <section id="who">
     <div class="stack-l">
-      <p class="label">Who</p>
-      <h2 class="h-lg">It is one person. That is the point.</h2>
-      <p class="body">I am Roman. There is no team behind this page. I read the answers, trace the sources and do the work myself — which is why it costs a fraction of an agency, and why I take a small number of companies at a time.</p>
-      <p class="body-2">Send me your product and the category you sell into. You get the audit back within a few days, whether or not we ever work together.</p>
-      <p><a class="ghost" href="mailto:mironovroma10@gmail.com?subject=Free%20AI%20answer%20audit">mironovroma10@gmail.com</a></p>
+      <p class="label"><span class="en">Who</span><span class="ru">Кто</span></p>
+      <h2 class="h-lg"><span class="en">It is one person. That is the point.</span><span class="ru">Здесь один человек. В этом и смысл.</span></h2>
+      <p class="body en">I am Roman. There is no team behind this page. I read the answers, trace the sources and do the work myself — which is why it costs a fraction of an agency, and why I take a small number of companies at a time.</p>
+      <p class="body ru">Меня зовут Роман. За этой страницей нет команды. Я сам читаю ответы, разбираю источники и делаю работу — поэтому это стоит доли того, что берёт агентство, и поэтому я беру немного компаний одновременно.</p>
+      <p class="body-2 en">Send me your product and the category you sell into. You get the audit back within a few days, whether or not we ever work together.</p>
+      <p class="body-2 ru">Напишите, что у вас за продукт и в какой категории вы продаёте. Аудит пришлю за несколько дней — независимо от того, будем ли мы работать.</p>
+      <div class="contacts">
+        <a class="mailto" href="https://t.me/mirrnr">Telegram&nbsp;&nbsp;@mirrnr</a>
+        <a class="ghost" href="mailto:mironovroma10@gmail.com?subject=Namedin%20audit">mironovroma10@gmail.com</a>
+      </div>
     </div>
   </section>
 
-  <footer>Namedin · Source data checked August 2026</footer>
+  <footer><span class="en">Namedin · Source data checked August 2026</span><span class="ru">Namedin · Данные проверены в августе 2026</span></footer>
 
 </div>
 
@@ -658,6 +725,7 @@
       q: "best upsell app for Shopify",
       hit: false,
       reply: 'For most stores the strongest options are <em>ReConvert</em> for post-purchase funnels, <em>Selleasy</em> for a genuinely free tier, and <em>Rebuy</em> for recommendations across the journey. <em>Zipify OCU</em> and <em>Honeycomb</em> cover structured funnels.',
+      replyRu: 'Для большинства магазинов лучшие варианты — <em>ReConvert</em> для постпродажных воронок, <em>Selleasy</em> ради по-настоящему бесплатного тарифа и <em>Rebuy</em>, если нужны рекомендации по всему пути. <em>Zipify OCU</em> и <em>Honeycomb</em> закрывают структурные воронки.',
       sources: [
         ["zipify.com", "Zipify OCU", "an upsell app", true],
         ["getwiser.ai", "WISER", "an upsell app", true],
@@ -670,6 +738,7 @@
       q: "best Shopify upsell app for a small store, flat pricing, no per-order fee",
       hit: false,
       reply: '<em>Frequently Bought Together</em> at a flat $9.99 with no revenue share, <em>Selleasy</em> for a completely flat free plan, and <em>WISER</em> because flat pricing scales without commission eroding margin.',
+      replyRu: '<em>Frequently Bought Together</em> — фиксированные $9.99 без процента с оборота, <em>Selleasy</em> — полностью плоский бесплатный тариф, и <em>WISER</em>, потому что фиксированная цена растёт вместе с магазином без комиссий, съедающих маржу.',
       sources: [
         ["getwiser.ai", "WISER", "an upsell app", true],
         ["digismoothie.com", "Candy Rack", "an upsell app", true],
@@ -682,6 +751,7 @@
       q: "best Shopify cross sell app 2026",
       hit: false,
       reply: 'The top cross-sell apps are <em>AfterSell</em>, <em>LimeSpot Personalizer</em> and <em>ReConvert</em>. <em>Hextom</em> suits quick widgets, <em>AiTrillion</em> replaces several tools at once, and <em>Kefi</em> excels at bundles.',
+      replyRu: 'Лучшие приложения кросс-сейла — <em>AfterSell</em>, <em>LimeSpot Personalizer</em> и <em>ReConvert</em>. <em>Hextom</em> подойдёт для быстрых виджетов, <em>AiTrillion</em> заменяет несколько инструментов сразу, а <em>Kefi</em> силён в бандлах.',
       sources: [
         ["aftersell.com", "AfterSell", "an upsell app", true],
         ["digismoothie.com", "Candy Rack", "an upsell app", true],
@@ -691,9 +761,10 @@
       ]
     },
     {
-      q: "Aheadworks Shopify upsell cross sell bundles app review",
+      q: "<vendor name> Shopify upsell cross sell bundles app review",
       hit: true,
-      reply: '<strong>Aheadworks</strong> offers upsell, cross-sell and bundle placements across eight locations, rated 4.8 across 450+ reviews, with a free plan available.',
+      reply: '<strong>This vendor</strong> offers upsell, cross-sell and bundle placements across eight locations, rated 4.8 across 450+ reviews, with a free plan available.',
+      replyRu: '<strong>Этот вендор</strong> предлагает апсейл, кросс-сейл и бандлы в восьми местах магазина, рейтинг 4.8 при 450+ отзывах, есть бесплатный тариф.',
       sources: [
         ["apps.shopify.com", null, "the marketplace listing itself", false],
         ["logbase.io", "Logbase", "the maker of Selleasy", true],
@@ -724,9 +795,12 @@
   function esc(s) { return s.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
 
   function render(d) {
+    const ruL = document.documentElement.getAttribute('data-lang') === 'ru';
     const named = d.hit
-      ? '<span class="num">named</span><span class="cap">Aheadworks appears &mdash; only because the question already contains its name</span>'
-      : '<span class="num zero">not named</span><span class="cap">Aheadworks does not appear in this answer</span>';
+      ? (ruL ? '<span class="num">назван</span><span class="cap">и только потому, что имя уже стоит в самом вопросе</span>'
+             : '<span class="num">named</span><span class="cap">and only because the question already contains the name</span>')
+      : (ruL ? '<span class="num zero">не назван</span><span class="cap">в этом ответе вендора нет</span>'
+             : '<span class="num zero">not named</span><span class="cap">the vendor does not appear in this answer</span>');
 
     const srcs = d.sources.map(([dom, own, note, rival]) => {
       const owner = own
@@ -735,10 +809,15 @@
       return '<li><span class="d">' + esc(dom) + '</span><span class="o' + (rival ? ' rival' : '') + '">' + owner + '</span></li>';
     }).join('');
 
+    const ru = document.documentElement.getAttribute('data-lang') === 'ru';
+    const body = (ru && d.replyRu ? d.replyRu : d.reply)
+      .replace(/<em>/g, '<span class="lit">').replace(/<\/em>/g, '</span>');
     pane.innerHTML =
       '<div class="verdict">' + named + '</div>' +
-      '<p class="reply">' + d.reply.replace(/<em>/g, '<span class="lit">').replace(/<\/em>/g, '</span>') + '</p>' +
-      '<div><p class="label" style="margin-bottom:14px">Where that answer came from</p><ul class="srclist">' + srcs + '</ul></div>';
+      '<p class="reply">' + body + '</p>' +
+      '<div><p class="label" style="margin-bottom:14px">' +
+      (ru ? 'Откуда собран этот ответ' : 'Where that answer came from') +
+      '</p><ul class="srclist">' + srcs + '</ul></div>';
 
     pane.classList.remove('swap');
     void pane.offsetWidth;
@@ -754,7 +833,15 @@
 
   const tally = document.querySelector('#answer .body-2');
   if (tally) tally.insertAdjacentHTML('afterend',
-    '<p class="body" style="color:var(--saffron)">Named in ' + hits + ' of ' + DATA.length + ' &mdash; and that one only because the buyer already knew the name.</p>');
+    '<p class="body en" style="color:var(--saffron)">Named in ' + hits + ' of ' + DATA.length +
+    ' &mdash; and that one only because the buyer already knew the name.</p>' +
+    '<p class="body ru" style="color:var(--saffron)">Назван в ' + hits + ' из ' + DATA.length +
+    ' &mdash; и то лишь потому, что покупатель уже знал имя.</p>');
+
+  let current = 0;
+  document.addEventListener('langchange', () => select(current));
+  const _select = select;
+  select = function (i) { current = i; _select(i); };
 })();
 </script>
 
@@ -794,5 +881,24 @@
 })();
 </script>
 
+
+<script>
+(() => {
+  const root = document.documentElement, KEY = 'namedin-lang';
+  const btns = [...document.querySelectorAll('.lang')];
+  function apply(l, save) {
+    root.setAttribute('data-lang', l);
+    root.setAttribute('lang', l);
+    btns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.set === l)));
+    if (save) { try { localStorage.setItem(KEY, l); } catch (e) {} }
+    document.dispatchEvent(new CustomEvent('langchange', { detail: l }));
+  }
+  let saved = null;
+  try { saved = localStorage.getItem(KEY); } catch (e) {}
+  const guess = (navigator.language || '').toLowerCase().startsWith('ru') ? 'ru' : 'en';
+  apply(saved === 'ru' || saved === 'en' ? saved : guess, false);
+  btns.forEach(b => b.addEventListener('click', () => apply(b.dataset.set, true)));
+})();
+</script>
 </body>
 </html>
