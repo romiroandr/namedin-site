@@ -196,6 +196,58 @@
   .form-note { font-size: 12px; line-height: 1.5; color: var(--ash); max-width: 30em; }
   .form-err { font-size: 14px; color: var(--saffron); min-height: 1em; }
 
+
+  /* ---------- фоновое поле частиц ---------- */
+  #ambient {
+    position: fixed; inset: 0; z-index: 0;
+    pointer-events: none; opacity: 0;
+    transition: opacity 1.6s ease .3s;
+  }
+  #ambient.on { opacity: 1; }
+  .wrap { position: relative; z-index: 1; }
+
+  /* ---------- экран загрузки ---------- */
+  #loader {
+    position: fixed; inset: 0; z-index: 100;
+    background: var(--void);
+    display: flex; align-items: center; justify-content: center;
+    transition: opacity .7s ease, visibility .7s;
+  }
+  #loader.gone { opacity: 0; visibility: hidden; }
+  .load-in {
+    display: flex; align-items: baseline; gap: 14px;
+    font-size: 14px; font-weight: 600; letter-spacing: 0.35px;
+    text-transform: uppercase; color: var(--ash);
+  }
+  .load-mark {
+    width: 18px; height: 18px;
+    animation: markspin 2.4s cubic-bezier(.55,.1,.45,.9) infinite;
+    transform-origin: 50% 62%;
+  }
+  @keyframes markspin { 0%{transform:rotate(0)} 55%{transform:rotate(180deg)} 100%{transform:rotate(360deg)} }
+  .load-dots::after {
+    content: ""; animation: dots 1.4s steps(4, end) infinite;
+  }
+  @keyframes dots { 0%{content:""} 25%{content:"."} 50%{content:".."} 75%{content:"..."} 100%{content:""} }
+
+  /* появление первого экрана после загрузки */
+  .lift > * { opacity: 0; transform: translateY(18px); }
+  .ready .lift > * {
+    opacity: 1; transform: none;
+    transition: opacity .8s cubic-bezier(.22,.61,.36,1), transform .8s cubic-bezier(.22,.61,.36,1);
+  }
+  .ready .lift > *:nth-child(2) { transition-delay: .10s; }
+  .ready .lift > *:nth-child(3) { transition-delay: .20s; }
+  .ready .lift > *:nth-child(4) { transition-delay: .30s; }
+  .ready #field { animation: fieldin 1.4s cubic-bezier(.22,.61,.36,1); }
+  @keyframes fieldin { from { opacity: 0; transform: scale(.94); } to { opacity: 1; transform: none; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    #loader { display: none; }
+    .lift > * { opacity: 1; transform: none; }
+    #ambient { opacity: 1; transition: none; }
+  }
+
   /* ---------- контакты ---------- */
   .contacts { display: flex; flex-wrap: wrap; gap: var(--s18) var(--s30); align-items: center; }
   .mailto {
@@ -240,6 +292,17 @@
 </head>
 <body>
 
+<div id="loader">
+  <div class="load-in">
+    <svg class="load-mark" viewBox="0 0 18 18" aria-hidden="true">
+      <path d="M9 1 L17 16 L1 16 Z" fill="none" stroke="#8052ff" stroke-width="1.5"/>
+    </svg>
+    <span>Namedin<span class="load-dots"></span></span>
+  </div>
+</div>
+
+<canvas id="ambient" aria-hidden="true"></canvas>
+
 <div class="wrap">
 
   <nav class="nav">
@@ -266,7 +329,7 @@
 
   <section class="hero">
     <div class="split">
-      <div class="stack-l">
+      <div class="stack-l lift">
         <p class="label"><span class="en">For B2B software and app companies</span><span class="ru">Для B2B-сервисов и приложений</span></p>
         <h1 class="display"><span class="en">Three names. Then it stops.</span><span class="ru">Три имени. И тишина.</span></h1>
         <p class="body en">Ten blue links used to mean ten chances. When your buyer asks an AI which tool to use, it names three and stops. If you are not one of the three, they never learn you exist — they do not scroll, because there is nothing to scroll.</p>
@@ -857,6 +920,112 @@
 
     window.open('https://t.me/mirrnr?text=' + encodeURIComponent(msg), '_blank', 'noopener');
   });
+})();
+</script>
+
+<script>
+/* фоновое поле частиц: разрежённое, дрейфует, реагирует на прокрутку */
+(() => {
+  const cv = document.getElementById('ambient');
+  if (!cv) return;
+  const ctx = cv.getContext('2d');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const PAL = ['#8052ff','#8052ff','#8052ff','#5b6cff','#c04ad8','#15846e','#ffb829'];
+
+  let W=0, H=0, dpr=1, pts=[], running=false, scrollY=0;
+
+  function build() {
+    const n = Math.min(280, Math.max(90, Math.round((W*H)/9000)));
+    pts = [];
+    for (let i=0;i<n;i++) pts.push({
+      x: Math.random(), y: Math.random(),
+      r: 1.6 + Math.random()*2.6,
+      rot: Math.random()*6.28,
+      spin: (Math.random()-0.5)*0.4,
+      drift: 0.1 + Math.random()*0.3,
+      phase: Math.random()*6.28,
+      par: 0.15 + Math.random()*0.5,
+      c: PAL[(Math.random()*PAL.length)|0],
+      a: 0.05 + Math.random()*0.16
+    });
+  }
+  function resize() {
+    const r = cv.getBoundingClientRect();
+    dpr = Math.min(devicePixelRatio||1, 2);
+    W = r.width; H = r.height;
+    if (!W || !H) return;
+    cv.width = Math.round(W*dpr); cv.height = Math.round(H*dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    build();
+  }
+  function tri(x,y,r,rot,c,a) {
+    ctx.save(); ctx.translate(x,y); ctx.rotate(rot);
+    ctx.beginPath();
+    for (let i=0;i<3;i++){
+      const ang = -Math.PI/2 + i*2.0943951;
+      const px = Math.cos(ang)*r, py = Math.sin(ang)*r;
+      i ? ctx.lineTo(px,py) : ctx.moveTo(px,py);
+    }
+    ctx.closePath(); ctx.globalAlpha=a; ctx.strokeStyle=c; ctx.lineWidth=1; ctx.stroke(); ctx.restore();
+  }
+  function frame(t) {
+    if (!W) return;
+    ctx.clearRect(0,0,W,H);
+    const time = reduced ? 0 : t/1000;
+    for (const p of pts) {
+      const dx = Math.sin(time*p.drift + p.phase)*7;
+      const dy = Math.cos(time*p.drift*0.7 + p.phase)*7 - scrollY*p.par*0.06;
+      let y = (p.y*H + dy) % (H+80); if (y < -40) y += H+80;
+      tri(p.x*W + dx, y, p.r, p.rot + time*p.spin, p.c, p.a);
+    }
+    if (!reduced && !document.hidden) requestAnimationFrame(loop); else running = false;
+  }
+  function loop(t){ if (document.hidden || !W){ running=false; return; } frame(t); }
+  function start(){ if (running||reduced) return; running=true; requestAnimationFrame(loop); }
+  function refresh(){ resize(); if(!W) return; if(reduced||document.hidden){ frame(900); return; } start(); }
+
+  addEventListener('scroll', () => { scrollY = window.scrollY; }, { passive:true });
+  addEventListener('resize', refresh, { passive:true });
+  addEventListener('load', refresh, { once:true });
+  new ResizeObserver(refresh).observe(cv);
+  document.addEventListener('visibilitychange', () => { if(!document.hidden) refresh(); });
+  refresh();
+  cv.classList.add('on');
+})();
+
+/* экран загрузки: короткий, один раз за сессию */
+(() => {
+  const el = document.getElementById('loader');
+  if (!el) return;
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let seen = false;
+  try { seen = sessionStorage.getItem('namedin-seen') === '1'; } catch(e) {}
+
+  function reveal() {
+    el.classList.add('gone');
+    document.documentElement.classList.add('ready');
+    try { sessionStorage.setItem('namedin-seen','1'); } catch(e) {}
+    setTimeout(() => el.remove(), 800);
+  }
+  if (seen || reduced) { reveal(); return; }
+
+  const min = new Promise(r => setTimeout(r, 900));
+  const load = new Promise(r => window.addEventListener('load', r, { once:true }));
+  Promise.all([min, load]).then(reveal);
+  setTimeout(reveal, 3500);  // страховка: дольше 3.5 с не держим никогда
+
+  // вторая страховка: если переход почему-то не доехал — показать герой принудительно
+  setTimeout(() => {
+    document.querySelectorAll('.lift > *').forEach(e => {
+      if (getComputedStyle(e).opacity !== '1') {
+        e.style.transition = 'none';   // иначе страховка сама попадёт в застывший переход
+        e.style.opacity = '1';
+        e.style.transform = 'none';
+      }
+    });
+    const a = document.getElementById('ambient');
+    if (a && getComputedStyle(a).opacity === '0') { a.style.transition = 'none'; a.style.opacity = '1'; }
+  }, 5000);
 })();
 </script>
 </body>
