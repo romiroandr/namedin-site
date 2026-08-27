@@ -103,7 +103,8 @@
     background: none; border: 0; cursor: pointer;
     font-family: var(--font); font-size: 14px; font-weight: 600;
     letter-spacing: 0.35px; text-transform: uppercase; color: var(--ash);
-    padding: 6px 9px; border-radius: 9999px; transition: color .15s ease;
+    padding: 12px 11px; border-radius: 9999px; transition: color .15s ease;
+    min-height: 44px; display: inline-flex; align-items: center;
   }
   .lang:hover { color: var(--silver); }
   .lang[aria-pressed="true"] { color: var(--bone); }
@@ -199,7 +200,8 @@
 
   /* ---------- фоновое поле частиц ---------- */
   #ambient {
-    position: fixed; inset: 0; z-index: 0;
+    position: fixed; top: 0; left: 0; z-index: 0;
+    width: 100vw; height: 100vh;   /* явный размер: иначе элемент берёт его из атрибута и растёт по кругу */
     pointer-events: none; opacity: 0;
     transition: opacity 1.6s ease .3s;
   }
@@ -317,6 +319,19 @@
   .rise.in.d1 { transition-delay: .08s; }
   .rise.in.d2 { transition-delay: .16s; }
   .rise.in.d3 { transition-delay: .24s; }
+
+  /* --- узкие экраны: шапка не должна разъезжаться --- */
+  @media (max-width: 560px) {
+    .nav .pill { display: none; }          /* точно такая же кнопка стоит в герое ниже */
+    .nav { padding: var(--s18) 0; }
+    .wrap { padding: 0 var(--s18); }
+    .display { font-size: clamp(38px, 11vw, 60px); }
+    .plans, .steps-big { gap: var(--s36); }
+  }
+
+  /* запас прочности: ничто не выходит за край, что бы ни случилось */
+  img, svg, canvas, table, pre { max-width: 100%; }
+  .plan, .step, .stack, .stack-l { min-width: 0; }
 
   @media (max-width: 900px) {
     .split { grid-template-columns: minmax(0,1fr); gap: var(--s36); }
@@ -1061,11 +1076,13 @@
     });
   }
   function resize() {
-    const r = cv.getBoundingClientRect();
     dpr = Math.min(devicePixelRatio||1, 2);
-    W = r.width; H = r.height;
+    // берём размер у окна, а не у самого холста — так петля невозможна в принципе
+    W = Math.min(innerWidth, 4096); H = Math.min(innerHeight, 4096);
     if (!W || !H) return;
-    cv.width = Math.round(W*dpr); cv.height = Math.round(H*dpr);
+    const w = Math.round(W*dpr), h = Math.round(H*dpr);
+    if (cv.width === w && cv.height === h) return;   // ничего не изменилось — не трогаем
+    cv.width = w; cv.height = h;
     ctx.setTransform(dpr,0,0,dpr,0,0);
     build();
   }
@@ -1098,7 +1115,6 @@
   addEventListener('scroll', () => { scrollY = window.scrollY; }, { passive:true });
   addEventListener('resize', refresh, { passive:true });
   addEventListener('load', refresh, { once:true });
-  new ResizeObserver(refresh).observe(cv);
   document.addEventListener('visibilitychange', () => { if(!document.hidden) refresh(); });
   refresh();
   cv.classList.add('on');
