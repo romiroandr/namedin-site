@@ -248,6 +248,50 @@
     #ambient { opacity: 1; transition: none; }
   }
 
+
+  /* ---------- как это работает ---------- */
+  .steps-big { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: var(--s36); }
+  .step { display: flex; flex-direction: column; gap: var(--s12); }
+  .step .no {
+    font-size: 14px; font-weight: 600; letter-spacing: .35px; color: var(--iris);
+  }
+  .step h3 {
+    margin: 0; font-size: 24px; font-weight: 400; line-height: 1.25;
+    letter-spacing: -0.48px; color: var(--bone);
+  }
+  .step p { font-size: 15px; font-weight: 200; line-height: 1.5; color: var(--silver); }
+
+  /* ---------- тарифы: без карточек, только типографика ---------- */
+  .plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--s60); align-items: start; }
+  .plan { display: flex; flex-direction: column; gap: var(--s18); }
+  .plan .tag {
+    font-size: 14px; font-weight: 600; letter-spacing: .35px; text-transform: uppercase; color: var(--ash);
+  }
+  .plan.pick .tag { color: var(--saffron); }
+  .plan .price {
+    font-size: clamp(34px, 3.6vw, 48px); font-weight: 400; line-height: 1;
+    letter-spacing: -1.68px; color: var(--bone);
+  }
+  .plan .per { font-size: 14px; font-weight: 200; color: var(--ash); }
+  .plan ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: var(--s12); }
+  .plan li {
+    position: relative; padding-left: 20px;
+    font-size: 15px; font-weight: 200; line-height: 1.5; color: var(--silver);
+  }
+  .plan li::before {
+    content: ""; position: absolute; left: 0; top: .62em;
+    width: 5px; height: 5px; border-radius: 50%; background: var(--iris);
+  }
+  .plan .pill { align-self: flex-start; margin-top: var(--s6); }
+  .plan .ghost-btn {
+    align-self: flex-start; margin-top: var(--s6);
+    font-size: 14px; font-weight: 600; letter-spacing: .35px; text-transform: uppercase;
+    color: var(--bone); text-decoration: none; border-bottom: 1.5px solid rgba(255,255,255,.25);
+    padding-bottom: 3px;
+  }
+  .plan .ghost-btn:hover { border-bottom-color: var(--bone); }
+  .plans-note { font-size: 12px; line-height: 1.5; color: var(--ash); max-width: 34em; }
+
   /* ---------- контакты ---------- */
   .contacts { display: flex; flex-wrap: wrap; gap: var(--s18) var(--s30); align-items: center; }
   .mailto {
@@ -382,6 +426,20 @@
     </div>
   </section>
 
+  <section id="how">
+    <div class="stack-l">
+      <p class="label"><span class="en">How it works</span><span class="ru">Как это работает</span></p>
+      <h2 class="h-lg"><span class="en">Four steps, every month.</span><span class="ru">Четыре шага, каждый месяц.</span></h2>
+      <div class="steps-big">
+        <div class="step"><span class="no">01</span><h3><span class="en">The run</span><span class="ru">Прогон</span></h3><p class="en">Fifteen questions your buyers actually type, put through ChatGPT, Perplexity and Gemini — one clean session each, no context carried between them.</p><p class="ru">Пятнадцать вопросов, которые ваши покупатели правда набирают, прогоняются через ChatGPT, Perplexity и Gemini — по чистой сессии на вопрос, без переноса контекста.</p></div>
+        <div class="step"><span class="no">02</span><h3><span class="en">The trace</span><span class="ru">Разбор</span></h3><p class="en">Who was named and in what order. Which pages each answer was built from. Who owns those pages — a competitor, a directory, an agency, or nobody in the category.</p><p class="ru">Кого назвали и в каком порядке. Из каких страниц собран каждый ответ. Кому эти страницы принадлежат — конкуренту, каталогу, агентству или никому из категории.</p></div>
+        <div class="step"><span class="no">03</span><h3><span class="en">The work</span><span class="ru">Работа</span></h3><p class="en">Pages for the questions where you are absent, written so a model can lift the claim in one piece. Letters to the authors whose articles the answers rely on. One set of facts across your site, catalogues and listings.</p><p class="ru">Страницы под вопросы, где вас нет, написанные так, чтобы модель могла вырезать утверждение куском. Письма авторам статей, на которые опираются ответы. Один набор фактов на сайте, в каталогах и карточках.</p></div>
+        <div class="step"><span class="no">04</span><h3><span class="en">The proof</span><span class="ru">Замер</span></h3><p class="en">A month later the same fifteen questions run again. The report says what moved and what did not — and if nothing moved, it says that in the first line.</p><p class="ru">Через месяц те же пятнадцать вопросов прогоняются заново. В отчёте написано, что сдвинулось и что нет — а если не сдвинулось ничего, это стоит первой строкой.</p></div>
+      </div>
+      <p class="caption"><span class="en">Answers that search the live web move within weeks. A model answering from memory alone moves far more slowly. Every report says which of the two you are looking at.</span><span class="ru">Ответы с живым поиском двигаются за недели. Ответ по памяти модели — куда медленнее. В каждом отчёте написано, на что именно вы смотрите.</span></p>
+    </div>
+  </section>
+
   <section id="audit">
     <div class="split">
       <div class="stack">
@@ -454,6 +512,59 @@
         <li><b>Не завожу выдуманные аккаунты в сообществах.</b> Их вычисляют, а основатель, отвечающий своим именем, переживает любую хитрость.</li>
         <li><b>Не генерирую страницы пачками.</b> Их фильтруют, и они тянут вниз весь домен.</li>
       </ul>
+    </div>
+  </section>
+
+  <section id="plans">
+    <div class="stack-l">
+      <p class="label"><span class="en">Pricing</span><span class="ru">Тарифы</span></p>
+      <h2 class="h-lg"><span class="en">One category, one price.</span><span class="ru">Одна категория — одна цена.</span></h2>
+      <p class="body-2 en">No setup fee, no annual lock-in. Cancel with ten days' notice and the unused part comes back.</p>
+      <p class="body-2 ru">Без платы за подключение и без годовых обязательств. Отказ — за десять дней, неотработанное возвращается.</p>
+
+      <div class="plans">
+        <div class="plan">
+          <span class="tag"><span class="en">Audit</span><span class="ru">Аудит</span></span>
+          <span class="price"><span class="en">Free</span><span class="ru">0 ₽</span></span>
+          <span class="per"><span class="en">once, no strings</span><span class="ru">разово, без условий</span></span>
+          <ul>
+            <li><span class="en">Fifteen questions from your category</span><span class="ru">Пятнадцать вопросов вашей категории</span></li>
+            <li><span class="en">Who gets named instead of you</span><span class="ru">Кого называют вместо вас</span></li>
+            <li><span class="en">Every source URL, so you can check any line</span><span class="ru">Все ссылки на источники — проверите любую строку</span></li>
+            <li><span class="en">Two or three gaps that close fastest</span><span class="ru">Два-три пробела, которые закрываются быстрее всего</span></li>
+          </ul>
+          <a class="ghost-btn" href="#request"><span class="en">Request the audit</span><span class="ru">Запросить аудит</span></a>
+        </div>
+
+        <div class="plan pick">
+          <span class="tag"><span class="en">One category</span><span class="ru">Категория</span></span>
+          <span class="price"><span class="en">45 000 ₽</span><span class="ru">45 000 ₽</span></span>
+          <span class="per"><span class="en">per month</span><span class="ru">в месяц</span></span>
+          <ul>
+            <li><span class="en">Monthly run across four engines</span><span class="ru">Ежемесячный прогон по четырём движкам</span></li>
+            <li><span class="en">Two or three pages written for your site</span><span class="ru">Две-три страницы, написанные для вашего сайта</span></li>
+            <li><span class="en">Letters to the authors the answers rely on</span><span class="ru">Письма авторам статей, на которые опираются ответы</span></li>
+            <li><span class="en">Facts reconciled across site, catalogues and listings</span><span class="ru">Сверка фактов между сайтом, каталогами и карточками</span></li>
+            <li><span class="en">A report that says what moved — or that nothing did</span><span class="ru">Отчёт о том, что сдвинулось. Или что не сдвинулось</span></li>
+          </ul>
+          <a class="pill" href="https://t.me/mirrnr?text=%D0%A5%D0%BE%D1%87%D1%83%20%D1%82%D0%B0%D1%80%D0%B8%D1%84%20%C2%AB%D0%9A%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D1%8F%C2%BB%20%E2%80%94%2045%20000%20%E2%82%BD%2F%D0%BC%D0%B5%D1%81"><span class="en">Start</span><span class="ru">Начать</span></a>
+        </div>
+
+        <div class="plan">
+          <span class="tag"><span class="en">Several categories</span><span class="ru">Несколько категорий</span></span>
+          <span class="price"><span class="en">90 000 ₽</span><span class="ru">90 000 ₽</span></span>
+          <span class="per"><span class="en">per month</span><span class="ru">в месяц</span></span>
+          <ul>
+            <li><span class="en">Everything above, across two or three categories</span><span class="ru">Всё перечисленное, но по двум-трём категориям</span></li>
+            <li><span class="en">For companies with several products or markets</span><span class="ru">Для компаний с несколькими продуктами или рынками</span></li>
+            <li><span class="en">Comparison pages against each holder of your slot</span><span class="ru">Сравнительные страницы против каждого, кто занял ваше место</span></li>
+          </ul>
+          <a class="ghost-btn" href="https://t.me/mirrnr?text=%D0%A5%D0%BE%D1%87%D1%83%20%D1%82%D0%B0%D1%80%D0%B8%D1%84%20%C2%AB%D0%9D%D0%B5%D1%81%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D0%BA%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D0%B9%C2%BB%20%E2%80%94%2090%20000%20%E2%82%BD%2F%D0%BC%D0%B5%D1%81"><span class="en">Discuss</span><span class="ru">Обсудить</span></a>
+        </div>
+      </div>
+
+      <p class="plans-note en">I do not promise a position — nobody controls the model. I promise the work and an honest measurement of it. I take a small number of companies at a time, and never two that compete in the same category.</p>
+      <p class="plans-note ru">Позицию не обещаю — моделью никто не управляет. Обещаю работу и честный замер. Беру немного компаний одновременно и никогда двух конкурентов из одной категории.</p>
     </div>
   </section>
 
