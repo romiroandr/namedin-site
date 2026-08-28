@@ -416,6 +416,30 @@
   .plan .ghost-btn:hover { border-color: var(--paper); }
   .plans-note { font-size: var(--t12); line-height: 1.5; color: var(--steel); max-width: 36em; }
 
+  /* ---------- одна панель с переключением ---------- */
+  .demo { border: 1px dashed var(--rule); border-radius: var(--r-tile);
+    background: var(--carbon); overflow: hidden; }
+  .demo-top { display: flex; align-items: center; gap: 7px;
+    padding: 10px var(--s18); border-bottom: 1px dashed var(--rule-in); }
+  .tabs { display: flex; gap: 4px; margin-left: var(--s18); }
+  .tab { background: none; border: 0; cursor: pointer;
+    font-family: var(--mono); font-size: var(--t9); font-weight: 500;
+    letter-spacing: .02em; text-transform: uppercase; color: var(--steel);
+    padding: 8px 14px; border-radius: var(--r-pill); transition: .18s; }
+  .tab:hover { color: var(--ash); }
+  .tab.on { color: var(--void); background: var(--paper); }
+  .demo-pane { display: none; padding: var(--s24);
+    /* одинаковая высота: иначе страница дёргается при переключении */
+    min-height: 29rem; }
+  .demo-pane.on { display: block; animation: qaopen .22s cubic-bezier(.22,.61,.36,1); }
+  .demo-pane .chat, .demo-pane .rep-body { padding: 0; }
+  @media (max-width: 620px) {
+    .demo-top { flex-wrap: wrap; }
+    .tabs { margin-left: 0; width: 100%; }
+    .tab { flex: 1; padding: 9px 8px; }
+    .demo-pane { min-height: 0; }
+  }
+
   /* ---------- пара: что видит покупатель и что получаете вы ---------- */
   .duo { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s24); align-items: start; }
   .chatw { border: 1px dashed var(--rule); border-radius: var(--r-tile);
@@ -780,12 +804,24 @@
       </div>
     </div>
     <div class="hero-shot lift">
-      <div class="duo">
-        <div class="chatw">
-          <div class="rep-bar">
-            <span class="rep-dot"></span><span class="rep-dot"></span><span class="rep-dot"></span>
-            <span class="rep-name"><span class="en">What your buyer sees</span><span class="ru">Что видит ваш покупатель</span></span>
+      <div class="demo">
+        <div class="demo-top">
+          <span class="rep-dot"></span><span class="rep-dot"></span><span class="rep-dot"></span>
+          <div class="tabs" role="tablist">
+            <button class="tab on" role="tab" aria-selected="true" data-tab="a">
+              <span class="en">What your buyer sees</span><span class="ru">Что видит покупатель</span>
+            </button>
+            <button class="tab" role="tab" aria-selected="false" data-tab="b">
+              <span class="en">What you get</span><span class="ru">Что получаете вы</span>
+            </button>
           </div>
+          <span class="rep-chips">
+            <span class="chip">26.08.2026</span>
+            <span class="chip on">4 <span class="en">questions</span><span class="ru">вопроса</span></span>
+          </span>
+        </div>
+
+        <div class="demo-pane on" data-pane="a">
           <div class="chat">
             <div class="ask">«сервис email рассылок для бизнеса какой выбрать»</div>
             <div class="say">
@@ -799,68 +835,36 @@
           </div>
         </div>
 
-      <div class="rep">
-        <div class="rep-bar">
-          <span class="rep-dot"></span><span class="rep-dot"></span><span class="rep-dot"></span>
-          <span class="rep-name"><span class="en">Report · email services · Russia</span><span class="ru">Отчёт · сервисы рассылок · Россия</span></span>
-          <span class="rep-chips">
-            <span class="chip">26.08.2026</span>
-            <span class="chip"><span class="en">search</span><span class="ru">поиск</span></span>
-            <span class="chip on">4 <span class="en">questions</span><span class="ru">вопроса</span></span>
-          </span>
-        </div>
-
-        <div class="rep-body">
-          <div class="rep-hero">
-            <div class="tile">
-              <div class="rep-big">1<span class="rep-of"> / 4</span></div>
-              <div class="rep-cap"><span class="en">questions where you are named</span><span class="ru">вопроса, где вас называют</span></div>
-              <div class="spark"><i style="height:22%"></i><i style="height:0%"></i><i style="height:100%"></i><i style="height:0%"></i></div>
+        <div class="demo-pane" data-pane="b">
+          <div class="rep-body">
+            <div class="rep-hero">
+              <div class="tile">
+                <div class="rep-big">1<span class="rep-of"> / 4</span></div>
+                <div class="rep-cap"><span class="en">questions where you are named</span><span class="ru">вопроса, где вас называют</span></div>
+                <div class="spark"><i style="height:22%"></i><i style="height:8%"></i><i style="height:100%"></i><i style="height:8%"></i></div>
+              </div>
+              <div class="tile">
+                <div class="rep-big rep-dim">9</div>
+                <div class="rep-cap"><span class="en">competitors named instead</span><span class="ru">конкурентов названы вместо вас</span></div>
+                <div class="mini">UniSender · DashaMail · NotiSend</div>
+              </div>
+              <div class="tile">
+                <div class="rep-big rep-dim">23</div>
+                <div class="rep-cap"><span class="en">pages the answers came from</span><span class="ru">страницы, из которых собраны ответы</span></div>
+                <div class="mini"><span class="en">41% owned by competitors</span><span class="ru">41% принадлежат конкурентам</span></div>
+              </div>
             </div>
-            <div class="tile">
-              <div class="rep-big rep-dim">9</div>
-              <div class="rep-cap"><span class="en">competitors named instead</span><span class="ru">конкурентов названы вместо вас</span></div>
-              <div class="mini">UniSender · DashaMail · NotiSend</div>
-            </div>
-            <div class="tile">
-              <div class="rep-big rep-dim">23</div>
-              <div class="rep-cap"><span class="en">pages the answers came from</span><span class="ru">страницы, из которых собраны ответы</span></div>
-              <div class="mini"><span class="en">41% owned by competitors</span><span class="ru">41% принадлежат конкурентам</span></div>
-            </div>
-          </div>
 
-          <div class="rep-h"><span class="en">Question by question</span><span class="ru">Вопрос за вопросом</span></div>
-          <div class="qrow bad">
-            <span class="qm">✕</span>
-            <span class="qq">«сервис email рассылок для бизнеса какой выбрать»</span>
-            <span class="qn">UniSender · DashaMail · NotiSend</span>
-          </div>
-          <div class="qrow bad">
-            <span class="qm">✕</span>
-            <span class="qq">«SMTP сервис для транзакционных писем российский»</span>
-            <span class="qn">RuSender · NotiSend · SamoTPravil</span>
-          </div>
-          <div class="qrow good">
-            <span class="qm">✓</span>
-            <span class="qq">«сервис валидации email базы проверка адресов»</span>
-            <span class="qn"><b><span class="en">you</span><span class="ru">вы</span></b> · DashaMail · Respondo</span>
-          </div>
-          <div class="qrow bad">
-            <span class="qm">✕</span>
-            <span class="qq">«как настроить триггерные письма для SaaS сервиса»</span>
-            <span class="qn">Carrot quest · RuSender · UniSender</span>
-          </div>
+            <div class="rep-h"><span class="en">Question by question</span><span class="ru">Вопрос за вопросом</span></div>
+            <div class="qrow bad"><span class="qm">✕</span><span class="qq">«сервис email рассылок для бизнеса какой выбрать»</span><span class="qn">UniSender · DashaMail · NotiSend</span></div>
+            <div class="qrow bad"><span class="qm">✕</span><span class="qq">«SMTP сервис для транзакционных писем российский»</span><span class="qn">RuSender · NotiSend · SamoTPravil</span></div>
+            <div class="qrow good"><span class="qm">✓</span><span class="qq">«сервис валидации email базы проверка адресов»</span><span class="qn"><b><span class="en">you</span><span class="ru">вы</span></b> · DashaMail · Respondo</span></div>
+            <div class="qrow bad"><span class="qm">✕</span><span class="qq">«как настроить триггерные письма для SaaS сервиса»</span><span class="qn">Carrot quest · RuSender · UniSender</span></div>
 
-          <div class="rep-h"><span class="en">Where the answers came from</span><span class="ru">Откуда собраны ответы</span></div>
-          <div class="rep-src"><code>rusender.ru</code><span class="tag rival"><span class="en">competitor</span><span class="ru">конкурент</span></span><span class="rep-n">2</span></div>
-          <div class="rep-src"><code>unisender.com</code><span class="tag rival"><span class="en">competitor</span><span class="ru">конкурент</span></span><span class="rep-n">2</span></div>
-          <div class="rep-src"><code>jivo.ru</code><span class="tag"><span class="en">adjacent</span><span class="ru">смежный</span></span><span class="rep-n">2</span></div>
-          <div class="rep-src"><code>mailganer.com</code><span class="tag you"><span class="en">your page</span><span class="ru">ваша страница</span></span><span class="rep-n">2</span></div>
-          <div class="rep-src"><code>onreport.ru</code><span class="tag"><span class="en">review site</span><span class="ru">обзорный</span></span><span class="rep-n">1</span></div>
+          </div>
         </div>
       </div>
 
-      </div>
       <p class="shot-cap"><span class="en">A real report from a real run. Every line carries the question and the link.</span><span class="ru">Настоящий отчёт настоящего прогона. У каждой строки есть вопрос и ссылка.</span></p>
     </div>
   </section>
@@ -1281,6 +1285,27 @@
   const guess = (navigator.language || '').toLowerCase().startsWith('ru') ? 'ru' : 'en';
   apply(saved === 'ru' || saved === 'en' ? saved : guess, false);
   btns.forEach(b => b.addEventListener('click', () => apply(b.dataset.set, true)));
+})();
+</script>
+
+<script>
+/* переключение между ответом ИИ и отчётом */
+(() => {
+  const wrap = document.querySelector('.demo');
+  if (!wrap) return;
+  wrap.querySelectorAll('.tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const key = btn.dataset.tab;
+      wrap.querySelectorAll('.tab').forEach(b => {
+        const on = b === btn;
+        b.classList.toggle('on', on);
+        b.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+      wrap.querySelectorAll('.demo-pane').forEach(pane => {
+        pane.classList.toggle('on', pane.dataset.pane === key);
+      });
+    });
+  });
 })();
 </script>
 
