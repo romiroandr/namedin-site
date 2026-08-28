@@ -412,6 +412,80 @@
   .plan .ghost-btn:hover { border-color: var(--paper); }
   .plans-note { font-size: var(--t12); line-height: 1.5; color: var(--steel); max-width: 36em; }
 
+  /* первый экран: текст по центру, под ним сам отчёт — как у продуктовых сайтов */
+  .hero { position: relative; padding-top: var(--s24); padding-bottom: var(--s36);
+    min-height: 0; display: block; }
+  .hero-mid { text-align: center; align-items: center; max-width: 46rem; margin: 0 auto; }
+  .hero-mid .body { max-width: 34em; }
+  .hero-mid .cta { display: flex; gap: var(--s12); flex-wrap: wrap; justify-content: center; }
+  .pill.ghosty { border-color: var(--graphite); }
+  .pill.ghosty:hover { background: none; color: var(--paper); border-color: var(--paper); }
+  .hero-shot { margin-top: clamp(28px, 4vh, 56px); }
+  .shot-cap { margin-top: var(--s12); text-align: center;
+    font-family: var(--mono); font-size: var(--t9); letter-spacing: .02em;
+    text-transform: uppercase; color: var(--steel); }
+
+  /* ---------- кому принадлежат источники ---------- */
+  .chart { display: flex; flex-direction: column; gap: var(--s12); }
+  .ch-row { display: grid; grid-template-columns: minmax(0,13rem) 1fr 3.4rem;
+    gap: var(--s18); align-items: center; }
+  .ch-lab { font-size: var(--t14); color: var(--ash); }
+  .ch-bar { display: flex; height: 22px; background: rgba(255,255,255,.05);
+    border-radius: 3px; overflow: hidden; }
+  .ch-bar i { display: block; height: 100%; }
+  .ch-bar i.riv { background: var(--peri); }
+  .ch-bar i.ag  { background: rgba(112,137,186,.42); }
+  .ch-num { font-family: var(--mono); font-size: var(--t14); color: var(--paper); text-align: right; }
+  .ch-key { display: flex; flex-wrap: wrap; gap: var(--s18); margin-top: 6px;
+    font-family: var(--mono); font-size: var(--t9); letter-spacing: .02em;
+    text-transform: uppercase; color: var(--steel); }
+  .ch-key span { display: inline-flex; align-items: center; gap: 7px; }
+  .ch-key i { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+  .ch-key i.riv { background: var(--peri); }
+  .ch-key i.ag { background: rgba(112,137,186,.42); }
+  .ch-key i.rest { background: rgba(255,255,255,.10); }
+  @media (max-width: 700px) {
+    .ch-row { grid-template-columns: 1fr 3rem; grid-template-areas: "l l" "b n"; gap: 6px var(--s12); }
+    .ch-lab { grid-area: l; } .ch-bar { grid-area: b; } .ch-num { grid-area: n; }
+  }
+
+  /* ---------- как выглядит отчёт ---------- */
+  .rep { border: 1px dashed var(--rule); border-radius: var(--r-tile); overflow: hidden;
+    background: var(--carbon); }
+  .rep-bar { display: flex; align-items: center; gap: 7px; padding: 12px var(--s18);
+    border-bottom: 1px dashed var(--rule-in); }
+  .rep-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--graphite); flex: none; }
+  .rep-name { margin-left: var(--s12); font-family: var(--mono); font-size: var(--t9);
+    letter-spacing: .02em; text-transform: uppercase; color: var(--steel); }
+  .rep-body { padding: var(--s24); display: flex; flex-direction: column; gap: var(--s24); }
+  .rep-hero { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s18); }
+  .rep-big { font-size: var(--t62); font-weight: 1000; line-height: 1; letter-spacing: -.04em; color: var(--paper); }
+  .rep-big.rep-dim { color: var(--steel); }
+  .rep-of { color: var(--graphite); }
+  .rep-cap { margin-top: 6px; font-size: var(--t12); color: var(--steel); line-height: 1.4; }
+  .rep-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s24); }
+  .rep-h { font-family: var(--mono); font-size: var(--t9); letter-spacing: .02em;
+    text-transform: uppercase; color: var(--steel); padding-bottom: 8px;
+    border-bottom: 1px dashed var(--rule-in); margin-bottom: var(--s12); }
+  .rep-row { display: grid; grid-template-columns: minmax(0,7rem) 1fr auto; gap: var(--s12);
+    align-items: center; padding: 5px 0; font-size: var(--t14); }
+  .rep-row b { font-weight: 500; color: var(--paper); }
+  .rep-bars { height: 4px; background: rgba(255,255,255,.07); border-radius: 2px; overflow: hidden; }
+  .rep-bars i { display: block; height: 100%; background: var(--peri); }
+  .rep-n { font-family: var(--mono); font-size: var(--t12); color: var(--steel); }
+  .rep-src { display: flex; align-items: baseline; gap: var(--s12); padding: 5px 0;
+    justify-content: space-between; }
+  .rep-src code { font-family: var(--mono); font-size: var(--t12); color: var(--ash); }
+  .rep-own { font-size: var(--t12); color: var(--steel); }
+  .rep-own.rival { color: var(--peri); }
+  .rep-own.you { color: var(--paper); }
+  @media (max-width: 760px) {
+    .rep-grid { grid-template-columns: 1fr; }
+    .rep-hero { grid-template-columns: 1fr; gap: var(--s12); }
+    .rep-row { grid-template-columns: minmax(0,1fr) auto; }
+    .rep-bars { display: none; }
+  }
+
   /* сравнение двух ответов рядом */
   .ba { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s24); }
   .ba-card {
@@ -617,17 +691,59 @@
   </nav>
 
   <section class="hero">
-    <div class="split">
-      <div class="stack-l lift">
-        <p class="label"><span class="en">For B2B software and app companies</span><span class="ru">Для B2B-сервисов и приложений</span></p>
-        <h1 class="display"><span class="en">An AI names three companies. We make you one of them.</span><span class="ru">ИИ называет три компании. Делаем так, чтобы одной были вы.</span></h1>
-        <p class="body en">Your customer asks ChatGPT which tool to buy. It answers with three names and stops. If yours is not among them, that customer never hears about you — there is no second page to scroll to.</p>
-        <p class="body ru">Ваш клиент спрашивает у ChatGPT, какой сервис выбрать. Тот называет три компании и замолкает. Если вас среди них нет — клиент про вас просто не узнает. Второй страницы, чтобы прокрутить, здесь не бывает.</p>
-        <div class="cta">
-          <a class="pill" href="https://t.me/mirrnr"><span class="en">Get a free audit</span><span class="ru">Получить бесплатный аудит</span></a>
+    <div class="stack-l lift hero-mid">
+      <p class="label"><span class="en">For B2B software and app companies</span><span class="ru">Для B2B-сервисов и приложений</span></p>
+      <h1 class="display"><span class="en">An AI names three companies.<br>We make you one of them.</span><span class="ru">ИИ называет три компании.<br>Делаем так, чтобы одной были вы.</span></h1>
+      <p class="body en">Your customer asks ChatGPT which tool to buy. It answers with three names and stops. If yours is not among them, they never hear about you.</p>
+      <p class="body ru">Ваш клиент спрашивает у ChatGPT, какой сервис выбрать. Тот называет три и замолкает. Если вас среди них нет — клиент про вас не узнает.</p>
+      <div class="cta">
+        <a class="pill" href="#request"><span class="en">Get a free audit</span><span class="ru">Получить бесплатный аудит</span></a>
+        <a class="pill ghosty" href="#cited"><span class="en">See an example</span><span class="ru">Посмотреть пример</span></a>
+      </div>
+    </div>
+    <div class="hero-shot lift">
+      <div class="rep">
+        <div class="rep-bar">
+          <span class="rep-dot"></span><span class="rep-dot"></span><span class="rep-dot"></span>
+          <span class="rep-name"><span class="en">Report · email services · Russia</span><span class="ru">Отчёт · сервисы рассылок · Россия</span></span>
+        </div>
+
+        <div class="rep-body">
+          <div class="rep-hero">
+            <div>
+              <div class="rep-big">1<span class="rep-of"> / 4</span></div>
+              <div class="rep-cap"><span class="en">questions where you are named</span><span class="ru">вопроса, где вас называют</span></div>
+            </div>
+            <div>
+              <div class="rep-big rep-dim">9</div>
+              <div class="rep-cap"><span class="en">competitors named instead</span><span class="ru">конкурентов названы вместо вас</span></div>
+            </div>
+            <div>
+              <div class="rep-big rep-dim">23</div>
+              <div class="rep-cap"><span class="en">pages the answers came from</span><span class="ru">страницы, из которых собраны ответы</span></div>
+            </div>
+          </div>
+
+          <div class="rep-grid">
+            <div>
+              <div class="rep-h"><span class="en">Named instead of you</span><span class="ru">Называют вместо вас</span></div>
+              <div class="rep-row"><b>UniSender</b><span class="rep-bars"><i style="width:100%"></i></span><span class="rep-n">2 / 4</span></div>
+              <div class="rep-row"><b>DashaMail</b><span class="rep-bars"><i style="width:100%"></i></span><span class="rep-n">2 / 4</span></div>
+              <div class="rep-row"><b>NotiSend</b><span class="rep-bars"><i style="width:100%"></i></span><span class="rep-n">2 / 4</span></div>
+              <div class="rep-row"><b>RuSender</b><span class="rep-bars"><i style="width:100%"></i></span><span class="rep-n">2 / 4</span></div>
+            </div>
+            <div>
+              <div class="rep-h"><span class="en">Where the answers came from</span><span class="ru">Откуда собраны ответы</span></div>
+              <div class="rep-src"><code>rusender.ru</code><span class="rep-own rival"><span class="en">competitor</span><span class="ru">конкурент</span></span></div>
+              <div class="rep-src"><code>unisender.com</code><span class="rep-own rival"><span class="en">competitor</span><span class="ru">конкурент</span></span></div>
+              <div class="rep-src"><code>jivo.ru</code><span class="rep-own"><span class="en">adjacent service</span><span class="ru">смежный сервис</span></span></div>
+              <div class="rep-src"><code>mailganer.com</code><span class="rep-own you"><span class="en">your own page</span><span class="ru">ваша страница</span></span></div>
+              <div class="rep-src"><code>onreport.ru</code><span class="rep-own"><span class="en">review site</span><span class="ru">обзорный сайт</span></span></div>
+            </div>
+          </div>
         </div>
       </div>
-      <canvas id="field" aria-label="A field of thousands of dim particles with three lit"></canvas>
+      <p class="shot-cap"><span class="en">A real report from a real run. Every line carries the question and the link.</span><span class="ru">Настоящий отчёт настоящего прогона. У каждой строки есть вопрос и ссылка.</span></p>
     </div>
   </section>
 
@@ -636,8 +752,8 @@
       <div class="stack">
         <p class="label"><span class="en">How it actually works</span><span class="ru">Как это устроено</span></p>
         <h2 class="h-lg"><span class="en">The AI does not invent the answer. It reads pages.</span><span class="ru">ИИ не придумывает ответ. Он читает страницы.</span></h2>
-        <p class="body-2 en">Ask an AI which CRM to buy and it goes online, reads a handful of articles and retells them. So everything depends on those articles. We find out which ones it reads about your niche — and get your name onto them. Then we ask the same questions again and show you what changed.</p>
-        <p class="body-2 ru">Спросите у ИИ, какую CRM выбрать, — он пойдёт в интернет, прочитает несколько статей и перескажет их. Значит всё решают эти статьи. Мы выясняем, какие именно он читает про вашу нишу, и добиваемся, чтобы в них было ваше имя. Потом задаём те же вопросы снова и показываем, что изменилось.</p>
+        <p class="body-2 en">It goes online, reads a handful of articles and retells them.</p><p class="body-2 en">So everything depends on those articles. We find the ones it reads about your niche and get your name onto them.</p>
+        <p class="body-2 ru">Он идёт в интернет, читает несколько статей и пересказывает их.</p><p class="body-2 ru">Значит всё решают эти статьи. Мы находим те, что он читает про вашу нишу, и добиваемся, чтобы в них было ваше имя.</p>
       </div>
       <div class="stack">
         <ul class="items">
@@ -648,6 +764,7 @@
       </div>
     </div>
   </section>
+
 
   <section id="answer">
     <div class="stack-l">
@@ -672,6 +789,28 @@
         <h2 class="h-lg"><span class="en">The model is not choosing. It is quoting.</span><span class="ru">Модель не выбирает. Она цитирует.</span></h2>
         <p class="body-2 en">It runs a search, pulls a handful of pages and repeats what they say. So the question was never what the AI thinks of you. It is which pages it reads — and whether you are on them.</p>
         <p class="body-2 ru">Она ищет, забирает несколько страниц и пересказывает их. Значит вопрос не в том, что ИИ о вас думает, а в том, какие страницы он читает — и есть ли вы на них.</p>
+      <div class="chart">
+        <div class="ch-row">
+          <span class="ch-lab"><span class="en">Shopify apps, US</span><span class="ru">Приложения Shopify, США</span></span>
+          <span class="ch-bar"><i class="riv" style="width:51%"></i><i class="ag" style="width:6%"></i></span>
+          <span class="ch-num">57%</span>
+        </div>
+        <div class="ch-row">
+          <span class="ch-lab"><span class="en">CRM, Russia</span><span class="ru">CRM, Россия</span></span>
+          <span class="ch-bar"><i class="riv" style="width:33%"></i><i class="ag" style="width:18%"></i></span>
+          <span class="ch-num">51%</span>
+        </div>
+        <div class="ch-row">
+          <span class="ch-lab"><span class="en">Email services, Russia</span><span class="ru">Сервисы рассылок, Россия</span></span>
+          <span class="ch-bar"><i class="riv" style="width:41%"></i><i class="ag" style="width:4%"></i></span>
+          <span class="ch-num">44%</span>
+        </div>
+        <div class="ch-key">
+          <span><i class="riv"></i><span class="en">a competing product</span><span class="ru">конкурирующий продукт</span></span>
+          <span><i class="ag"></i><span class="en">their integrator</span><span class="ru">его интегратор</span></span>
+          <span><i class="rest"></i><span class="en">everyone else</span><span class="ru">все остальные</span></span>
+        </div>
+      </div>
         <p class="body-2 en">I ran buyer questions across one Shopify category and wrote down every source that came back. Nearly all of them were written by a competing app, about itself.</p>
         <p class="body-2 ru">Я прогнал покупательские вопросы по одной категории и выписал все источники. Почти каждый написан конкурирующим продуктом про самого себя.</p>
         <p class="caption en">Published runs: <a class="ghost" href="/report/crm-rossiya/">CRM in Russia</a>, <a class="ghost" href="/report/email-rassylki/">email services</a>, <a class="ghost" href="/report/shopify-upsell-apps/">Shopify apps</a>.</p>
@@ -865,11 +1004,11 @@
         </div>
         <div>
           <dt><span class="en">How is this different from SEO?</span><span class="ru">Чем это отличается от SEO?</span></dt>
-          <dd><span class="en">By the target. SEO aims at ranking and traffic. Here a page is written so a model can lift a claim with your name inside it. A page can rank beautifully, make the source list, and still earn you zero mentions — I have that case measured. Same tools, different job.</span><span class="ru">Целью. SEO целится в ранжирование и трафик. Здесь страница пишется так, чтобы модель могла вынуть из неё утверждение вместе с вашим именем. Страница может прекрасно ранжироваться, попасть в источники — и не дать ни одного упоминания. Этот случай у меня измерен. Инструмент похож, задача разная.</span></dd>
+          <dd><span class="en">By the target. SEO chases traffic. We chase the mention. A page can rank beautifully and still earn you zero mentions — we have that case measured.</span><span class="ru">Целью. SEO гонится за трафиком. Мы — за упоминанием. Страница может отлично ранжироваться и не дать вам ни одного упоминания: у нас такой случай измерен.</span></dd>
         </div>
         <div>
           <dt><span class="en">What if nothing moves in two months?</span><span class="ru">А если за два месяца ничего не сдвинется?</span></dt>
-          <dd><span class="en">That is possible, and I am saying it before you pay rather than after. You keep the pages, the listings and the reconciled facts — they work in ordinary search regardless. And you keep a measurement that shows exactly what did not work, which is worth more than a guess.</span><span class="ru">Это возможно, и я говорю это до оплаты, а не после. У вас остаются страницы, карточки и сверенные факты — в обычном поиске они работают в любом случае. И остаётся замер, который показывает, что именно не сработало. Это дороже догадки.</span></dd>
+          <dd><span class="en">Possible. And I say so before you pay, not after. The pages and listings stay yours — they work in ordinary search regardless.</span><span class="ru">Возможно. Говорю это до оплаты, а не после. Страницы и карточки остаются вашими — в обычном поиске они работают в любом случае.</span></dd>
         </div>
         <div>
           <dt><span class="en">Will you write under our name?</span><span class="ru">Вы будете писать от нашего имени?</span></dt>
@@ -953,8 +1092,8 @@
     <div class="stack-l">
       <p class="label"><span class="en">Who</span><span class="ru">Кто</span></p>
       <h2 class="h-lg"><span class="en">The work is done by the people who understand it.</span><span class="ru">Работу делают те, кто в ней разбирается.</span></h2>
-      <p class="body en">I am Roman. We do not resell somebody else\u2019s dashboard and we do not farm the work out: we read the answers, trace the sources and write the pages ourselves. Which is why there is no number in a report whose origin we cannot explain to you.</p>
-      <p class="body ru">Меня зовут Роман. Мы не перепродаём чужой дашборд и не отдаём работу на сторону: ответы читаем сами, источники разбираем сами, страницы пишем сами. Поэтому в отчёте нет ни одной цифры, происхождение которой мы не могли бы объяснить.</p>
+      <p class="body en">I am Roman. We read the answers, trace the sources and write the pages ourselves.</p><p class="body en">Which is why there is no number in a report we cannot explain.</p>
+      <p class="body ru">Меня зовут Роман. Ответы читаем сами, источники разбираем сами, страницы пишем сами.</p><p class="body ru">Поэтому в отчёте нет ни одной цифры, которую мы не смогли бы объяснить.</p>
       <p class="body-2 en">Send me your product and the category you sell into. You get the audit back within a few days, whether or not we ever work together.</p>
       <p class="body-2 ru">Напишите, что у вас за продукт и в какой категории вы продаёте. Аудит пришлю за несколько дней — независимо от того, будем ли мы работать.</p>
       <div class="contacts">
@@ -987,223 +1126,6 @@
 
 </div>
 
-<script>
-(() => {
-  const cv = document.getElementById('field');
-  if (!cv) return;
-  const ctx = cv.getContext('2d');
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  // Чертёж, а не конфетти: почти всё ахроматично, барвинок достаётся
-  // одной точке из двенадцати — это узлы связи, единственная его роль
-  const PALETTE = [
-    ['#ababab', 40], ['#808080', 31], ['#4d4d4d', 21], ['#7089ba', 8]
-  ];
-  function pickColor() {
-    let r = Math.random() * 100;
-    for (const [c, w] of PALETTE) { if ((r -= w) <= 0) return c; }
-    return '#808080';
-  }
-
-  let W = 0, H = 0, dpr = 1, pts = [], lit = [], linkList = [], running = false;
-  const pointer = { x: 0, y: 0 };
-  let aimYaw = 0, aimPitch = 0;
-
-  // Складки коры. Амплитуда занижена нарочно: сильная рябь читается как
-  // мятый комок, а нам нужен чертёж — силуэт должен оставаться узнаваемым.
-  function fold(theta, phi, k) {
-    return 1
-      + 0.052 * Math.sin(6 * k * theta) * Math.sin(5 * k * phi)
-      + 0.030 * Math.sin(9 * k * phi + 1.1);
-  }
-
-  // Точки раскладываются золотым углом, а не случайно. Случайная выборка по
-  // сфере неизбежно сбивается в комки и проплешины — именно от неё объект
-  // выглядел неровным. Решётка Фибоначчи даёт ровный шаг между соседями.
-  const GOLD = Math.PI * (1 + Math.sqrt(5));
-  function latticeDir(i, n) {
-    const z = 1 - 2 * (i + 0.5) / n;
-    const r = Math.sqrt(Math.max(0, 1 - z * z));
-    const theta = GOLD * i;
-    return { x: r * Math.cos(theta), y: r * Math.sin(theta), z: z,
-             theta: theta % (Math.PI * 2), phi: Math.acos(z) };
-  }
-
-  // Полушарие выбирается по знаку координаты, а не жребием. Раньше сторона
-  // бросалась случайно — половины набирали разное число точек, и объект
-  // получался кривым.
-  // Только полушария. Без мозжечка и ствола объект компактнее, поэтому
-  // размеры подняты — иначе он висел бы мелким пятном в середине кадра.
-  function cerebrum(d) {
-    const f = fold(d.theta, d.phi, 1);
-    const side = d.x >= 0 ? 1 : -1;
-    return {
-      // Зазор маленький нарочно: при 0.175 половины расходились в два
-      // отдельных тела. Борозда должна читаться щелью, а не пропастью.
-      x: side * (0.045 + Math.abs(d.x) * 0.720 * f),
-      y: d.y * 0.670 * f,
-      z: d.z * 0.960 * f
-    };
-  }
-
-  function build() {
-    const n = Math.min(2600, Math.max(1100, Math.round((W * H) / 250)));
-    pts = [];
-    for (let i = 0; i < n; i++) pts.push(cerebrum(latticeDir(i, n)));
-
-    // Соседи по решётке идут подряд, поэтому нить, связывающая i и i+1,
-    // ложится ровной спиралью по поверхности — это и читается как чертёж.
-    const links = [];
-    const LIM = 0.058;
-    for (let i = 0; i + 1 < pts.length; i++) {
-      const a = pts[i], b = pts[i + 1];
-      const dx = a.x - b.x, dy = a.y - b.y, dz = a.z - b.z;
-      if (dx * dx + dy * dy + dz * dz < LIM * LIM) links.push([i, i + 1]);
-    }
-    linkList = links;
-
-    // Размер и наклон одинаковые: разнобой читается как рассыпанное конфетти,
-    // а система просит схему
-    pts = pts.map((p, i) => ({
-      x: p.x, y: p.y, z: p.z,
-      r: 2.2,
-      rot: (i % 6) * 0.5236,
-      color: pickColor(),
-      a: 0.52 + ((i * 37) % 40) / 100
-    }));
-
-    lit = [
-      { x: -0.46, y: 0.34, z: 0.60, color: '#7089ba', phase: 0.0 },
-      { x:  0.56, y: 0.07, z: 0.35, color: '#ffffff', phase: 2.1 },
-      { x:  0.19, y: 0.52, z: -0.71, color: '#7089ba', phase: 4.2 }
-    ].map(l => ({ ...l, r: 9.5, rot: 0 }));
-  }
-
-  function resize() {
-    const rect = cv.getBoundingClientRect();
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-    W = rect.width; H = rect.height;
-    if (!W || !H) return;
-    cv.width = Math.round(W * dpr);
-    cv.height = Math.round(H * dpr);
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    build();
-  }
-
-  function tri(x, y, r, rot, color, alpha, glow) {
-    ctx.save();
-    ctx.translate(x, y);
-    ctx.rotate(rot);
-    ctx.beginPath();
-    for (let i = 0; i < 3; i++) {
-      const ang = -Math.PI / 2 + i * 2.0943951;
-      const px = Math.cos(ang) * r, py = Math.sin(ang) * r;
-      i ? ctx.lineTo(px, py) : ctx.moveTo(px, py);
-    }
-    ctx.closePath();
-    ctx.globalAlpha = alpha;
-    ctx.strokeStyle = color;
-    // Свечение системой запрещено — выделяем узел толщиной штриха
-    ctx.lineWidth = glow ? 1.8 : 1;
-    ctx.stroke();
-    ctx.restore();
-  }
-
-  const CAM = 3.15, FOC = 2.5;
-  const buf = [];
-
-  function frame(time) {
-    if (!W || !H) return;
-    ctx.clearRect(0, 0, W, H);
-
-    const t = reduced ? 0.9 : time / 1000;
-    // курсор слегка доворачивает объект — он реагирует, но не гоняется за мышью
-    aimYaw += (pointer.x * 0.34 - aimYaw) * 0.045;
-    aimPitch += (pointer.y * 0.20 - aimPitch) * 0.045;
-    // мягкий разгон в первые секунды вместо рывка
-    const spin = reduced ? 0 : t * 0.19 * Math.min(1, t / 2.2);
-    const yaw = 0.72 + spin + aimYaw;
-    const pitch = -0.20 + (reduced ? 0 : Math.sin(t * 0.23) * 0.055) + aimPitch;
-    const cy = Math.cos(yaw), sy = Math.sin(yaw);
-    const cp = Math.cos(pitch), sp = Math.sin(pitch);
-    const ox = W / 2, oy = H / 2, S = Math.min(W, H) * 0.505;
-
-    const project = (p) => {
-      let x = p.x * cy + p.z * sy;
-      let z = -p.x * sy + p.z * cy;
-      let y = p.y * cp - z * sp;
-      z = p.y * sp + z * cp;
-      const k = FOC / (CAM - z);
-      // минус: в канве ось Y растёт вниз, а модель задана «вверх — плюс».
-      // Без этого мозжечок и ствол оказывались над полушариями
-      return { sx: ox + x * S * k, sy: oy - y * S * k, k: k, z: z };
-    };
-
-    buf.length = 0;
-    for (let i = 0; i < pts.length; i++) {
-      const q = project(pts[i]); q.p = pts[i]; q.i = i; buf.push(q);
-    }
-
-    // Нить по поверхности — она и делает объект чертежом, а не россыпью.
-    // Рисуется первой, чтобы узлы легли поверх неё.
-    ctx.lineWidth = 1;
-    ctx.strokeStyle = '#4d4d4d';
-    for (const [a, b] of linkList) {
-      const qa = buf[a], qb = buf[b];
-      const depth = ((qa.z + qb.z) / 2 + 1) / 2;
-      ctx.globalAlpha = 0.10 + depth * 0.34;
-      ctx.beginPath();
-      ctx.moveTo(qa.sx, qa.sy);
-      ctx.lineTo(qb.sx, qb.sy);
-      ctx.stroke();
-    }
-    ctx.globalAlpha = 1;
-
-    buf.sort((m, n) => m.z - n.z);                       // painter's algorithm
-
-    for (const q of buf) {
-      const depth = (q.z + 1) / 2;                       // 0 far … 1 near
-      tri(q.sx, q.sy, q.p.r * q.k * 0.80, q.p.rot,
-          q.p.color, q.p.a * Math.pow(0.16 + depth * 0.84, 1.25), false);
-    }
-
-    for (const l of lit) {
-      const q = project(l);
-      const depth = (q.z + 1) / 2;
-      const pulse = reduced ? 1 : 0.80 + Math.sin(t * 0.95 + l.phase) * 0.20;
-      tri(q.sx, q.sy, l.r * q.k * 0.70, l.rot + t * 0.1,
-          l.color, pulse * (0.30 + depth * 0.70), true);
-    }
-
-    if (!reduced && !document.hidden) requestAnimationFrame(loop);
-    else running = false;
-  }
-
-  function loop(ts) {
-    if (document.hidden || !W) { running = false; return; }
-    frame(ts);
-  }
-  function start() { if (running || reduced) return; running = true; requestAnimationFrame(loop); }
-  function refresh() {
-    resize();
-    if (!W) return;
-    if (reduced || document.hidden) { frame(900); return; }
-    start();
-  }
-
-  if (!reduced && matchMedia('(hover: hover)').matches) {
-    window.addEventListener('pointermove', (e) => {
-      pointer.x = (e.clientX / window.innerWidth) * 2 - 1;
-      pointer.y = (e.clientY / window.innerHeight) * 2 - 1;
-    }, { passive: true });
-  }
-
-  new ResizeObserver(refresh).observe(cv);
-  document.addEventListener('visibilitychange', () => { if (!document.hidden) refresh(); });
-  window.addEventListener('pageshow', refresh);
-  refresh();
-})();
-</script>
 
 
 <script>
