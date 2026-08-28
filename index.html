@@ -914,8 +914,12 @@
           <input id="f-cat" name="cat" type="text" placeholder="CRM для малого бизнеса" required>
         </div>
         <div class="field">
-          <label for="f-to"><span class="en">Phone, telegram or email</span><span class="ru">Телефон, телеграм или почта</span></label>
-          <input id="f-to" name="to" type="text" autocomplete="email" placeholder="телефон, @телеграм или почта" required>
+          <label for="f-tel"><span class="en">Phone</span><span class="ru">Телефон</span></label>
+          <input id="f-tel" name="tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 900 000-00-00" required>
+        </div>
+        <div class="field">
+          <label for="f-to"><span class="en">Telegram or email, if you prefer</span><span class="ru">Телеграм или почта, если удобнее</span></label>
+          <input id="f-to" name="to" type="text" autocomplete="email" placeholder="@телеграм или почта">
         </div>
         <div class="field">
           <label for="f-comp"><span class="en">Two competitors, if you know them</span><span class="ru">Два конкурента, если знаете</span></label>
@@ -1391,12 +1395,15 @@
 
   const say = (r, e) => { err.textContent = ru() ? r : e; };
 
+  // Телефон: считаем только цифры — форма записи у всех своя
+  function phoneOk(v) {
+    return (v.match(/\d/g) || []).length >= 10;
+  }
+  // Второй контакт необязателен, но если вписан — должен быть осмысленным
   function contactOk(v) {
     v = v.trim();
-    if (/^@[\w\d_]{4,}$/.test(v)) return true;                       // телеграм
-    if (/^[^@\s]+@[^@\s.]+\.[a-z]{2,}$/i.test(v)) return true;       // почта
-    if (/^\+?\d[\d\s()-]{8,}$/.test(v)) return true;                 // телефон
-    return false;
+    if (!v) return true;
+    return /^@[\w\d_]{4,}$/.test(v) || /^[^@\s]+@[^@\s.]+\.[a-z]{2,}$/i.test(v);
   }
 
   f.addEventListener('submit', async e => {
@@ -1405,6 +1412,7 @@
 
     const name = f.name.value.trim();
     const dom = clean(f.dom.value), cat = f.cat.value.trim();
+    const tel = f.tel.value.trim();
     const to = f.to.value.trim(), comp = f.comp.value.trim();
 
     if (name.length < 2) {
@@ -1422,9 +1430,14 @@
           'Add the category — the questions depend on it.');
       f.cat.focus(); return;
     }
+    if (!phoneOk(tel)) {
+      say('Похоже, это не телефон. Нужны минимум десять цифр.',
+          'That does not look like a phone number. Ten digits at least.');
+      f.tel.focus(); return;
+    }
     if (!contactOk(to)) {
-      say('Оставьте почту или телеграм — иначе аудит будет некуда прислать.',
-          'Leave an email or a telegram handle — otherwise the audit has nowhere to go.');
+      say('Телеграм пишется как @имя, почта — как имя@домен.',
+          'Telegram looks like @name, email like name@domain.');
       f.to.focus(); return;
     }
     if (!f.ok.checked) {
@@ -1440,14 +1453,14 @@
     }
     say('', '');
 
-    const payload = { name, dom, cat, to, comp, lang: ru() ? 'ru' : 'en',
+    const payload = { name, tel, dom, cat, to, comp, lang: ru() ? 'ru' : 'en',
                       page: location.href, at: new Date().toISOString() };
 
     const text = (ru()
       ? 'Заявка на бесплатный аудит\n\nИмя: ' + name + '\nДомен: ' + dom + '\nКатегория: ' + cat +
-        '\nКонтакт: ' + to + (comp ? '\nКонкуренты: ' + comp : '')
+        '\nТелефон: ' + tel + (to ? '\nКонтакт: ' + to : '') + (comp ? '\nКонкуренты: ' + comp : '')
       : 'Free audit request\n\nName: ' + name + '\nDomain: ' + dom + '\nCategory: ' + cat +
-        '\nContact: ' + to + (comp ? '\nCompetitors: ' + comp : ''));
+        '\nPhone: ' + tel + (to ? '\nContact: ' + to : '') + (comp ? '\nCompetitors: ' + comp : ''));
 
     // Приёмник не поднят — уходим прежним путём, заявка не теряется
     if (!ENDPOINT) {
