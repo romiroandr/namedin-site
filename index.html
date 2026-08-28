@@ -59,24 +59,15 @@
 
     --s6:6px; --s10:10px; --s12:12px; --s18:18px; --s24:24px; --s30:30px;
     --s36:36px; --s60:60px; --s80:80px; --s96:96px;
-    /* на широком мониторе колонка росла не вместе с ним: при 2560 по краям
-       оставалось по 680 пустых пикселей */
-    --max: clamp(1200px, 80vw, 1560px);
+    /* Ограничения ширины нет: содержимое идёт во всю ширину окна.
+       Длину строки держит max-width у самих абзацев, а не колонка. */
+    --gutter: clamp(12px, 1.1vw, 26px);   /* отступ пунктирной обоймы от края */
+    --pad:    clamp(16px, 2.8vw, 60px);   /* воздух внутри обоймы */
     --r-nav: 6px; --r-tile: 20px; --r-pill: 100px;
   }
 
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
-
-  /* Две линии по самым краям окна: чертёж должен доходить до кромки листа,
-     иначе на широком мониторе колонка висит в пустоте. */
-  body::before, body::after {
-    content: ""; position: fixed; top: 0; bottom: 0; width: 0;
-    border-left: 1px dashed var(--rule); z-index: 0; pointer-events: none;
-  }
-  body::before { left: 12px; }
-  body::after  { right: 12px; }
-  @media (max-width: 700px) { body::before, body::after { display: none; } }
 
   body {
     margin: 0;
@@ -93,9 +84,8 @@
   /* Обойма: две вертикальные пунктирные линии по краям колонки —
      это и есть «containment», главный приём системы. */
   .wrap {
-    max-width: var(--max); margin: 0 auto;
-    /* поля растут вместе с экраном, чтобы колонка не липла к пунктиру */
-    padding: 0 clamp(var(--s18), 4vw, 56px);
+    margin: 0 var(--gutter);
+    padding: 0 var(--pad);
     position: relative; z-index: 1;
     border-left: 1px dashed var(--rule);
     border-right: 1px dashed var(--rule);
@@ -465,7 +455,7 @@
 
   @media (max-width: 560px) {
     .nav .pill { display: none; }          /* точно такая же кнопка стоит в герое ниже */
-    .wrap { padding: 0 var(--s18); }
+    .wrap { margin: 0; padding: 0 var(--s18); border-left: 0; border-right: 0; }
     .reply { font-size: var(--t16); }
     section { padding: var(--s60) 0; }
   }
