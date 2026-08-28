@@ -303,6 +303,8 @@
     border: 1px solid var(--graphite); border-radius: 3px; cursor: pointer; transition: .16s;
   }
   .agree input:checked { background: var(--paper); border-color: var(--paper); }
+  .agree a { color: var(--ash); text-decoration: none; border-bottom: 1px dashed var(--graphite); }
+  .agree a:hover { color: var(--paper); border-bottom-color: var(--paper); }
   .agree input:checked::after {
     content: ""; display: block; width: 4px; height: 8px; margin: 1px auto 0;
     border: solid #000; border-width: 0 1.6px 1.6px 0; transform: rotate(42deg);
@@ -930,8 +932,8 @@
 
         <label class="agree">
           <input id="f-ok" name="ok" type="checkbox" required>
-          <span class="en">I agree that my contact details will be used to send the audit and reply to this request — nothing else.</span>
-          <span class="ru">Согласен, что мои контакты используют, чтобы прислать аудит и ответить на эту заявку, — и ни для чего больше.</span>
+          <span class="en">I agree that my contact details will be used to send the audit and reply to this request — nothing else. <a href="/data/" target="_blank">What happens to the data</a>.</span>
+          <span class="ru">Согласен, что мои контакты используют, чтобы прислать аудит и ответить на эту заявку, — и ни для чего больше. <a href="/data/" target="_blank">Что происходит с данными</a>.</span>
         </label>
 
         <p class="form-err" id="f-err" role="alert"></p>
@@ -963,7 +965,7 @@
     </div>
   </section>
 
-  <footer><span class="en">Namedin · Source data checked August 2026</span><span class="ru">Namedin · Данные проверены в августе 2026</span></footer>
+  <footer><span class="en">Namedin · Source data checked August 2026 · <a href="/data/">Data</a></span><span class="ru">Namedin · Данные проверены в августе 2026 · <a href="/data/">О данных</a></span></footer>
 
 </div>
 
@@ -1398,6 +1400,9 @@
     if (/^[^@\s]+@[^@\s.]+\.[a-z]{2,}$/i.test(v)) return true;
     return (v.match(/\d/g) || []).length >= 10;
   }
+
+  // Ссылка живёт внутри <label>, поэтому щелчок по ней иначе переключал бы галочку
+  f.querySelectorAll('.agree a').forEach(a => a.addEventListener('click', ev => ev.stopPropagation()));
 
   f.addEventListener('submit', async e => {
     e.preventDefault();
