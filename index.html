@@ -54,8 +54,8 @@
     --t16: clamp(15px, 13.5px + 0.34vw, 21px);
     --t24: clamp(19px, 16.0px + 0.62vw, 32px);
     --t32: clamp(24px, 20.0px + 0.90vw, 44px);
-    --t70: clamp(38px, 24.0px + 3.60vw, 92px);   /* первый экран */
-    --t62: clamp(29px, 18.0px + 3.20vw, 82px);   /* заголовки секций — ниже первого экрана */
+    --t70: clamp(34px, 22.0px + 3.00vw, 76px);   /* первый экран */
+    --t62: clamp(26px, 17.0px + 2.30vw, 58px);   /* заголовки секций — ниже первого экрана */
 
     --s6:6px; --s10:10px; --s12:12px; --s18:18px; --s24:24px; --s30:30px;
     --s36:36px; --s60:60px; --s80:80px; --s96:96px;
@@ -90,7 +90,7 @@
     border-left: 1px dashed var(--rule);
     border-right: 1px dashed var(--rule);
   }
-  section { padding: clamp(48px, 7.4vh, 96px) 0; }
+  section { padding: clamp(34px, 5vh, 66px) 0; }
   section + section { border-top: 1px dashed var(--rule); }
 
   /* ---------- типографика: вес делает всю работу ---------- */
@@ -163,9 +163,9 @@
   .lang[aria-pressed="true"] { color: var(--paper); }
 
   /* ---------- сетка ---------- */
-  .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: var(--s60); align-items: center; }
+  .split { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: var(--s36); align-items: center; }
   .stack   { display: flex; flex-direction: column; gap: var(--s24); }
-  .stack-l { display: flex; flex-direction: column; gap: var(--s36); }
+  .stack-l { display: flex; flex-direction: column; gap: var(--s24); }
   .cta { margin-top: var(--s12); }
 
   /* Первый экран: настольная лампа, направленная в чертёж.
@@ -252,7 +252,7 @@
   .sources .own b { font-weight: 500; color: var(--paper); }
 
   /* ---------- списки ---------- */
-  ol.steps, ul.items { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: var(--s24); }
+  ol.steps, ul.items { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: var(--s18); }
   ol.steps { counter-reset: step; }
   ol.steps li, ul.items li {
     position: relative; padding-left: 2.4rem;
@@ -412,6 +412,33 @@
   .plan .ghost-btn:hover { border-color: var(--paper); }
   .plans-note { font-size: var(--t12); line-height: 1.5; color: var(--steel); max-width: 36em; }
 
+  /* сравнение двух ответов рядом */
+  .ba { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s24); }
+  .ba-card {
+    background: var(--carbon); border: 1px dashed var(--rule-in);
+    border-radius: var(--r-tile); padding: var(--s24);
+    display: flex; flex-direction: column; gap: var(--s12);
+  }
+  .ba-card.good { border-color: var(--graphite); }
+  .ba-top { display: flex; align-items: center; gap: var(--s10); }
+  .ba-mark {
+    width: 26px; height: 26px; flex: none; border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: var(--t14); border: 1px solid var(--graphite); color: var(--steel);
+  }
+  .ba-card.good .ba-mark { border-color: var(--peri); color: var(--peri); }
+  .ba-verdict {
+    font-family: var(--mono); font-size: var(--t9); font-weight: 500;
+    letter-spacing: .02em; text-transform: uppercase; color: var(--steel);
+  }
+  .ba-card.good .ba-verdict { color: var(--paper); }
+  .ba-q { font-family: var(--mono); font-size: var(--t12); color: var(--ash); line-height: 1.6; }
+  .ba-a { font-size: var(--t16); line-height: 1.5; color: var(--paper); }
+  .ba-a em { font-style: normal; color: var(--peri); font-weight: 500; }
+  .ba-a b { color: var(--paper); font-weight: 1000; }
+  .ba-why { font-size: var(--t12); line-height: 1.6; color: var(--steel); margin-top: auto; }
+  @media (max-width: 760px) { .ba { grid-template-columns: 1fr; } }
+
   /* вопрос-ответ: разделители пунктиром, как и всё остальное в системе */
   .qa { display: flex; flex-direction: column; }
   .qa > div { padding: var(--s24) 0; border-top: 1px dashed var(--rule); }
@@ -457,11 +484,48 @@
   .mailto:hover { border-bottom-color: var(--paper); }
 
   footer {
-    padding: var(--s60) 0 var(--s96);
+    padding: var(--s60) 0 calc(var(--s96) + 56px);   /* запас под плавающую кнопку */
     font-family: var(--mono); font-size: var(--t9); letter-spacing: 0.02em;
     text-transform: uppercase; color: var(--steel);
   }
   footer { border-top: 1px dashed var(--rule); }
+
+  /* ---------- кнопка внизу справа и окно с формой ---------- */
+  .fab {
+    position: fixed; right: clamp(16px, 2vw, 32px); bottom: clamp(16px, 2vw, 32px);
+    z-index: 60; display: inline-flex; align-items: center; gap: 9px;
+    background: var(--paper); color: var(--void);
+    font-family: var(--mono); font-size: var(--t9); font-weight: 500;
+    letter-spacing: .02em; text-transform: uppercase;
+    padding: 15px 22px; border: 0; border-radius: var(--r-pill); cursor: pointer;
+    min-height: 48px; transition: transform .2s cubic-bezier(.22,.61,.36,1), opacity .2s;
+    opacity: 0; transform: translateY(14px); pointer-events: none;
+  }
+  /* показываем не сразу: на первом экране кнопка уже есть, и вторая мешала бы */
+  .fab.on { opacity: 1; transform: none; pointer-events: auto; }
+  .fab:hover { transform: translateY(-2px); }
+  .fab svg { width: 15px; height: 15px; flex: none; }
+
+  .sheet { position: fixed; inset: 0; z-index: 80; display: grid; place-items: center;
+    padding: clamp(16px, 3vw, 40px); }
+  .sheet[hidden] { display: none; }
+  .sheet-bg { position: absolute; inset: 0; background: rgba(0,0,0,.72);
+    animation: fade .2s ease; }
+  .sheet-card {
+    position: relative; width: min(560px, 100%); max-height: 92vh; overflow-y: auto;
+    background: var(--carbon); border: 1px dashed var(--rule-in);
+    border-radius: var(--r-tile); padding: clamp(20px, 3vw, 36px);
+    display: flex; flex-direction: column; gap: var(--s12);
+    animation: sheetin .26s cubic-bezier(.22,.61,.36,1);
+  }
+  @keyframes sheetin { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+  .sheet-x {
+    position: absolute; top: 10px; right: 14px; background: none; border: 0;
+    color: var(--steel); font-size: 26px; line-height: 1; cursor: pointer;
+    width: 44px; height: 44px;
+  }
+  .sheet-x:hover { color: var(--paper); }
+  .sheet-card .form-card { background: none; border: 0; border-radius: 0; padding: 0; }
 
   [data-lang="en"] .ru, [data-lang="ru"] .en { display: none !important; }
 
@@ -540,7 +604,7 @@
       <nav class="navlinks" aria-label="Разделы">
         <a href="#what"><span class="en">What this is</span><span class="ru">Что это</span></a>
         <a href="#how"><span class="en">How</span><span class="ru">Как</span></a>
-        <a href="#keep"><span class="en">What you get</span><span class="ru">Что получаете</span></a>
+        <a href="#cited"><span class="en">Example</span><span class="ru">Пример</span></a>
         <a href="#plans"><span class="en">Pricing</span><span class="ru">Тарифы</span></a>
         <a href="#faq"><span class="en">Questions</span><span class="ru">Вопросы</span></a>
       </nav>
@@ -556,9 +620,9 @@
     <div class="split">
       <div class="stack-l lift">
         <p class="label"><span class="en">For B2B software and app companies</span><span class="ru">Для B2B-сервисов и приложений</span></p>
-        <h1 class="display"><span class="en">Three names. Then it stops.</span><span class="ru">Три имени. И тишина.</span></h1>
-        <p class="body en">Ten blue links used to mean ten chances. When your buyer asks an AI which tool to use, it names three and stops. If you are not one of the three, they never learn you exist — they do not scroll, because there is nothing to scroll.</p>
-        <p class="body ru">Раньше поиск давал десять ссылок — десять шансов. Сегодня покупатель спрашивает ИИ, какой сервис выбрать, и получает три имени. Если вас среди них нет, он о вас не узнает: прокручивать нечего.</p>
+        <h1 class="display"><span class="en">An AI names three companies. We make you one of them.</span><span class="ru">ИИ называет три компании. Делаем так, чтобы одной были вы.</span></h1>
+        <p class="body en">Your customer asks ChatGPT which tool to buy. It answers with three names and stops. If yours is not among them, that customer never hears about you — there is no second page to scroll to.</p>
+        <p class="body ru">Ваш клиент спрашивает у ChatGPT, какой сервис выбрать. Тот называет три компании и замолкает. Если вас среди них нет — клиент про вас просто не узнает. Второй страницы, чтобы прокрутить, здесь не бывает.</p>
         <div class="cta">
           <a class="pill" href="https://t.me/mirrnr"><span class="en">Get a free audit</span><span class="ru">Получить бесплатный аудит</span></a>
         </div>
@@ -570,16 +634,16 @@
   <section id="what">
     <div class="split">
       <div class="stack">
-        <p class="label"><span class="en">What this is</span><span class="ru">Что это такое</span></p>
-        <h2 class="h-lg"><span class="en">Not a dashboard. The work itself.</span><span class="ru">Не панель с цифрой. Сама работа.</span></h2>
-        <p class="body-2 en">Namedin is monthly work on the pages an AI reads before it answers a question about your category. First I show you where you stand today. Then I change the sources. A month later the same questions run again and you see whether anything moved.</p>
-        <p class="body-2 ru">Namedin — это ежемесячная работа над страницами, из которых ИИ собирает ответ о вашей категории. Сначала я показываю, где вы стоите сегодня. Потом меняю сами источники. Через месяц те же вопросы прогоняются заново, и вы видите, сдвинулось ли что-нибудь.</p>
+        <p class="label"><span class="en">How it actually works</span><span class="ru">Как это устроено</span></p>
+        <h2 class="h-lg"><span class="en">The AI does not invent the answer. It reads pages.</span><span class="ru">ИИ не придумывает ответ. Он читает страницы.</span></h2>
+        <p class="body-2 en">Ask an AI which CRM to buy and it goes online, reads a handful of articles and retells them. So everything depends on those articles. We find out which ones it reads about your niche — and get your name onto them. Then we ask the same questions again and show you what changed.</p>
+        <p class="body-2 ru">Спросите у ИИ, какую CRM выбрать, — он пойдёт в интернет, прочитает несколько статей и перескажет их. Значит всё решают эти статьи. Мы выясняем, какие именно он читает про вашу нишу, и добиваемся, чтобы в них было ваше имя. Потом задаём те же вопросы снова и показываем, что изменилось.</p>
       </div>
       <div class="stack">
         <ul class="items">
-          <li><b><span class="en">Nothing is pushed into a model.</span><span class="ru">Ничего не «проталкивается» в модель.</span></b> <span class="en">There is no ad account and no switch. A model searches, pulls pages and repeats them — so the only thing you can change is the pages.</span><span class="ru">У неё нет рекламного кабинета и нет рубильника. Модель ищет, забирает страницы и пересказывает их — значит менять можно только страницы.</span></li>
-          <li><b><span class="en">You are buying work, not access.</span><span class="ru">Вы покупаете работу, а не доступ.</span></b> <span class="en">Pages written, listings filled, authors contacted, facts reconciled — and two measurements around it.</span><span class="ru">Написанные страницы, заполненные карточки, переписка с авторами, сверенные факты — и два замера вокруг всего этого.</span></li>
-          <li><b><span class="en">Every number is reproducible.</span><span class="ru">Любую цифру вы проверите сами.</span></b> <span class="en">Each one carries the question it came from and the exact pages the answer was built from. Open them in a browser tab.</span><span class="ru">У каждой указан вопрос и точные адреса страниц, из которых собран ответ. Открываются во вкладке браузера.</span></li>
+          <li><b><span class="en">You cannot pay to be shown.</span><span class="ru">Заплатить, чтобы вас показывали, нельзя.</span></b> <span class="en">An AI has no ad account. Nobody can buy a place in the answer — not us, not your competitors. There are only the pages it reads.</span><span class="ru">У ИИ нет рекламного кабинета. Купить место в ответе не может никто — ни мы, ни ваши конкуренты. Есть только страницы, которые он читает.</span></li>
+          <li><b><span class="en">We do the work, not the charts.</span><span class="ru">Мы делаем работу, а не графики.</span></b> <span class="en">We write the pages, fill in your listings, and email the people whose articles the AI quotes. You get the pages themselves, not a login to a dashboard.</span><span class="ru">Пишем страницы, заполняем карточки в каталогах, пишем людям, чьи статьи ИИ пересказывает. Вы получаете сами страницы, а не доступ в личный кабинет.</span></li>
+          <li><b><span class="en">You can check everything yourself.</span><span class="ru">Всё можно проверить самому.</span></b> <span class="en">Next to every number we put the question we asked and the links the answer came from. Open them and see.</span><span class="ru">Рядом с каждой цифрой мы пишем, какой вопрос задали и по каким ссылкам пришёл ответ. Откройте и посмотрите.</span></li>
         </ul>
       </div>
     </div>
@@ -627,22 +691,39 @@
 
   <section id="cited">
     <div class="stack-l">
-      <p class="label"><span class="en">The distinction that matters</span><span class="ru">Различие, которое решает всё</span></p>
-      <h2 class="h-lg"><span class="en">Cited is not the same as named.</span><span class="ru">Процитирован — не значит назван.</span></h2>
-      <div class="split">
-        <div class="stack">
-          <p class="body en">This is the most common mistake. A company publishes an article, the page ranks, the model pulls it into its sources — and then names competitors.</p>
-          <p class="body ru">Это самая частая ошибка. Компания публикует статью, страница ранжируется, модель забирает её в источники — и называет конкурентов.</p>
-          <p class="body-2 en">A Russian email service, four questions in its category. On database validation its page is cited and the service is named. On triggered emails its page is cited too — and the answer names Carrot quest, RuSender and UniSender instead.</p>
-          <p class="body-2 ru">Российский сервис рассылок, четыре вопроса категории. На вопросе про валидацию базы его страница процитирована и его называют. На вопросе про триггерные письма его страница <b>тоже</b> процитирована — а названы Carrot quest, RuSender и UniSender.</p>
+      <p class="label"><span class="en">See the difference</span><span class="ru">Посмотрите на разницу</span></p>
+      <h2 class="h-lg"><span class="en">Same company. Same day. Two questions.</span><span class="ru">Одна компания. Один день. Два вопроса.</span></h2>
+      <p class="body en">A Russian email service. On one question it is invisible. On the other it gets named. The only difference: on the second one it has a page about that exact thing.</p>
+      <p class="body ru">Российский сервис рассылок. На одном вопросе его не видно. На другом — называют. Разница одна: на втором у него есть страница ровно про это.</p>
+
+      <div class="ba">
+        <div class="ba-card bad">
+          <div class="ba-top">
+            <span class="ba-mark">✕</span>
+            <span class="ba-verdict"><span class="en">Not named</span><span class="ru">Не назван</span></span>
+          </div>
+          <p class="ba-q"><span class="en">“which email service should a business choose”</span><span class="ru">«сервис email рассылок для бизнеса какой выбрать»</span></p>
+          <p class="ba-a en">The strongest options are <em>UniSender</em>, <em>DashaMail</em>, <em>NotiSend</em> and <em>MailerLite</em>…</p>
+          <p class="ba-a ru">Лучшие варианты — <em>UniSender</em>, <em>DashaMail</em>, <em>NotiSend</em> и <em>MailerLite</em>…</p>
+          <p class="ba-why"><span class="en">No page of their own about choosing a service. The AI read competitors’ pages and named competitors.</span><span class="ru">Своей страницы про выбор сервиса нет. ИИ прочитал страницы конкурентов и назвал конкурентов.</span></p>
         </div>
-        <div class="stack">
-          <p class="body en">The difference is in how the page is written. A model names a product when the text lets it lift a claim with the name inside. A page that explains the topic in general gets quoted in favour of whoever is named within it.</p>
-          <p class="body ru">Разница в том, как написана страница. Модель называет продукт, когда из текста можно вынуть утверждение вместе с именем. Страница, которая объясняет тему вообще, будет процитирована в пользу тех, кто назван внутри неё.</p>
-          <p class="caption en">An SEO agency counts the second case as a win: the page ranks, it made the source list. Here it counts as a failure — the name is not in the answer. That is the whole difference between the two jobs.</p>
-          <p class="caption ru">SEO-агентство считает второй случай успехом: страница ранжируется, попала в источники. Здесь это считается провалом — имени в ответе нет. В этом и вся разница между двумя работами.</p>
+
+        <div class="ba-card good">
+          <div class="ba-top">
+            <span class="ba-mark">✓</span>
+            <span class="ba-verdict"><span class="en">Named</span><span class="ru">Назван</span></span>
+          </div>
+          <p class="ba-q"><span class="en">“email list validation service”</span><span class="ru">«сервис валидации email базы проверка адресов»</span></p>
+          <p class="ba-a en">For cleaning a list, look at <em>DashaMail</em>, <b>this company</b> and <em>Respondo</em>…</p>
+          <p class="ba-a ru">Для чистки базы стоит посмотреть <em>DashaMail</em>, <b>этот сервис</b> и <em>Respondo</em>…</p>
+          <p class="ba-why"><span class="en">They have a page about exactly this. The AI read it and named them.</span><span class="ru">У них есть страница ровно про это. ИИ прочитал её и назвал их.</span></p>
         </div>
       </div>
+
+      <p class="caption"><span class="en">This is not a before-and-after over time — we do not have one to show yet, and we will not draw a fake. It is two questions asked on the same day. The pattern is the whole job: where the page exists, the name appears.</span><span class="ru">Это не «было и стало» во времени — такого у нас пока нет, и рисовать выдуманное мы не станем. Это два вопроса, заданные в один день. Но закономерность и есть вся работа: где страница есть, там появляется имя.</span></p>
+
+      <p class="body-2 en"><b>One warning.</b> A page alone is not enough. On a third question their page <b>was</b> among the sources — and the answer still named someone else. The page has to be written so the AI can lift a sentence with your name in it. That is what we do.</p>
+      <p class="body-2 ru"><b>Одна оговорка.</b> Страницы самой по себе мало. На третьем вопросе их страница <b>была</b> в источниках — а назвали всё равно других. Страницу надо написать так, чтобы ИИ мог вынуть из неё фразу вместе с вашим именем. Этим мы и занимаемся.</p>
     </div>
   </section>
 
@@ -656,52 +737,11 @@
         <div class="step"><span class="no">03</span><h3><span class="en">The work</span><span class="ru">Работа</span></h3><p class="en">Pages for the questions where you are absent, written so a model can lift the claim in one piece. Letters to the authors whose articles the answers rely on. One set of facts across your site, catalogues and listings.</p><p class="ru">Страницы под вопросы, где вас нет, написанные так, чтобы модель могла вырезать утверждение куском. Письма авторам статей, на которые опираются ответы. Один набор фактов на сайте, в каталогах и карточках.</p></div>
         <div class="step"><span class="no">04</span><h3><span class="en">The proof</span><span class="ru">Замер</span></h3><p class="en">A month later the same fifteen questions run again. The report says what moved and what did not — and if nothing moved, it says that in the first line.</p><p class="ru">Через месяц те же пятнадцать вопросов прогоняются заново. В отчёте написано, что сдвинулось и что нет — а если не сдвинулось ничего, это стоит первой строкой.</p></div>
       </div>
-      <p class="caption"><span class="en">Answers that search the live web move within weeks. A model answering from memory alone moves far more slowly. Every report says which of the two you are looking at.</span><span class="ru">Ответы с живым поиском двигаются за недели. Ответ по памяти модели — куда медленнее. В каждом отчёте написано, на что именно вы смотрите.</span></p>
+      <p class="caption"><span class="en"><b>How long.</b> A new page has to reach the top of ordinary search first, and that takes weeks — sometimes a couple of months. Nobody has a faster button, and anyone who says otherwise is selling you one.</span><span class="ru"><b>Сколько ждать.</b> Новая страница сначала должна попасть в верх обычного поиска, а это недели, иногда пара месяцев. Быстрой кнопки нет ни у кого, и тот, кто обещает обратное, продаёт вам её.</span></p>
     </div>
   </section>
 
-  <section id="audit">
-    <div class="split">
-      <div class="stack">
-        <p class="label"><span class="en">The free audit</span><span class="ru">Бесплатный аудит</span></p>
-        <h2 class="h-lg"><span class="en">First I show you where you stand.</span><span class="ru">Сначала показываю, где вы стоите.</span></h2>
-        <p class="body-2 en">One page. Every number carries the question and the surface it came from, so you can reproduce any line of it in a browser tab. No charge, no pitch.</p>
-        <p class="body-2 ru">Одна страница. У каждой цифры указан вопрос и поверхность, откуда она снята, — любую строку вы проверите сами во вкладке браузера. Бесплатно и без предложений.</p>
-      </div>
-      <ol class="steps en">
-        <li>Fifteen questions your buyers actually type — priced, constrained, compared, and problem-first, never keywords.</li>
-        <li>Each one asked in its own clean session, and the report says which surface every number came from.</li>
-        <li>How many of the fifteen name you, and which competitors take the slots instead.</li>
-        <li>The exact URLs each answer pulled from, so you can open them yourself.</li>
-        <li>The two or three gaps that close fastest, ranked by effort.</li>
-      </ol>
-      <ol class="steps ru">
-        <li>Пятнадцать вопросов, которые ваши покупатели правда набирают: про цену, с условием, сравнения и от проблемы. Не ключевые слова.</li>
-        <li>Каждый задаётся отдельной чистой сессией, и в отчёте указано, на какой поверхности снята каждая цифра.</li>
-        <li>В скольких из пятнадцати называют вас и кто из конкурентов занимает места вместо вас.</li>
-        <li>Точные адреса страниц, из которых собран каждый ответ, — откроете сами.</li>
-        <li>Два-три пробела, которые закрываются быстрее всего, с оценкой усилий.</li>
-      </ol>
-    </div>
-  </section>
 
-  <section id="work">
-    <div class="split">
-      <div class="stack">
-        <p class="label"><span class="en">The work</span><span class="ru">Работа</span></p>
-        <h2 class="h-lg"><span class="en">Then I go and change the sources.</span><span class="ru">Дальше я иду и меняю источники.</span></h2>
-        <p class="body-2 en">Measuring is the easy half and everyone sells it. The half that actually moves anything is rewriting the pages the answer is built from — and that is done by hand, one page and one author at a time.</p>
-        <p class="body-2 ru">Измерить — лёгкая половина, её продают все. Двигает дело вторая половина: переписать страницы, из которых собран ответ. Она делается руками, по одной странице и по одному автору.</p>
-      </div>
-      <div class="stack">
-        <div class="track">
-          <div><span class="when"><span class="en">A dashboard</span><span class="ru">Дашборд</span></span><span class="what"><span class="en">Shows you the number for $29–149 a month and leaves you alone with it. Nothing about your pages changes.</span><span class="ru">Показывает цифру за $29–149 в месяц и оставляет вас с ней наедине. На ваших страницах не меняется ничего.</span></span></div>
-          <div><span class="when"><span class="en">An agency</span><span class="ru">Агентство</span></span><span class="what"><span class="en">Does the work and prices it like a department — $2 500–25 000 a month, because that is what a team costs.</span><span class="ru">Работу делает и берёт как за отдел — $2 500–25 000 в месяц, потому что столько стоит команда.</span></span></div>
-          <div><span class="when"><span class="en">Here</span><span class="ru">Здесь</span></span><span class="what"><span class="en"><b>The work itself, every month.</b> No account managers between you and the person writing the pages — which is where the price difference comes from.</span><span class="ru"><b>Сама работа, каждый месяц.</b> Между вами и тем, кто пишет страницы, нет аккаунт-менеджера — отсюда и разница в цене.</span></span></div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <section id="keep">
     <div class="stack-l">
@@ -727,37 +767,30 @@
     </div>
   </section>
 
-  <section id="when">
-    <div class="stack-l">
-      <p class="label"><span class="en">Timing</span><span class="ru">Сроки</span></p>
-      <h2 class="h-lg"><span class="en">There is no fast button.</span><span class="ru">Быстрой кнопки нет.</span></h2>
-      <p class="body en">An answer with live search is assembled out of ordinary search results. So a new page has to reach the top of that search first — and that takes weeks, sometimes months. We do not bypass search. We do search for a different reader.</p>
-      <p class="body ru">Ответ с живым поиском собирается из обычной поисковой выдачи. Значит новая страница сначала должна попасть в верх этой выдачи — а это недели, иногда месяцы. Мы не обходим поиск. Мы делаем поиск для другого читателя.</p>
-      <div class="track">
-        <div><span class="when"><span class="en">Week one</span><span class="ru">Первая неделя</span></span><span class="what"><span class="en">The run, the trace, the plan. You see where you stand and which gaps close cheapest.</span><span class="ru">Прогон, разбор, план. Вы видите, где стоите и какие пробелы закрываются дешевле всего.</span></span></div>
-        <div><span class="when"><span class="en">Weeks two–three</span><span class="ru">Вторая–третья</span></span><span class="what"><span class="en">Pages written and published, listings filled in, letters sent to the authors.</span><span class="ru">Страницы написаны и опубликованы, карточки заполнены, письма авторам ушли.</span></span></div>
-        <div><span class="when"><span class="en">Week four</span><span class="ru">Четвёртая</span></span><span class="what"><span class="en">The same fifteen questions run again. <b>The first honest measurement</b> — including the case where nothing moved.</span><span class="ru">Те же пятнадцать вопросов прогоняются заново. <b>Первый честный замер</b> — включая случай, когда не сдвинулось ничего.</span></span></div>
-        <div><span class="when"><span class="en">Months two–three</span><span class="ru">Второй–третий месяц</span></span><span class="what"><span class="en">This is usually where movement shows up, if it is going to show up at all.</span><span class="ru">Сюда обычно приходит движение — если оно вообще будет.</span></span></div>
-      </div>
-      <p class="caption"><span class="en">Head terms — “best CRM”, “best email service” — are held by review sites with a decade of history. Those are not winnable in a month by anyone. What is winnable are the long, specific questions people ask right before they buy.</span><span class="ru">Головные запросы — «лучшая CRM», «лучший сервис рассылок» — держат обзорники с историей в десять лет. За месяц туда не влезть никому. Берутся длинные конкретные вопросы, которые задают прямо перед покупкой.</span></p>
-    </div>
-  </section>
 
   <section id="limits">
     <div class="split">
       <div class="stack">
         <p class="label"><span class="en">Limits</span><span class="ru">Ограничения</span></p>
-        <h2 class="h-lg"><span class="en">What I will not do.</span><span class="ru">Чего я не делаю.</span></h2>
+        <h2 class="h-lg"><span class="en">What I will not do — and who I turn down.</span><span class="ru">Чего я не делаю и кому откажу.</span></h2>
         <p class="body-2 en">Four things get sold in this field that work for a month and then cost you more than they gave. I do none of them, and I would rather lose the deal than explain later why your profile got wiped.</p>
         <p class="body-2 ru">В этой отрасли продают четыре вещи, которые работают месяц, а потом обходятся дороже, чем дали. Я не делаю ни одной — и скорее потеряю сделку, чем стану потом объяснять, почему вычистили ваш профиль.</p>
       </div>
       <ul class="items en">
+        <li><b>Local business.</b> When someone searches for “a gym near me”, the answer is built from maps and directories, not articles. There is nothing to change there.</li>
+        <li><b>Head terms.</b> “Best CRM” belongs to review sites with ten years of history. Nobody gets in there in a month.</li>
+        <li><b>Companies that cannot publish.</b> If a change to your own site takes three weeks through a contractor, the work will not happen at any price.</li>
+        <li><b>Two competitors.</b> If I already work with someone in your category, I turn you down — otherwise I would be working against my own client.</li>
         <li><b>Promise you a position.</b> Nobody controls the model. I can promise the work and an honest measurement of it.</li>
         <li><b>Buy or write reviews.</b> G2 strips them and it costs you the profile doing the most work.</li>
         <li><b>Run invented accounts in communities.</b> Reddit catches them, and a founder answering under their own name outlives the trick.</li>
         <li><b>Mass-generate pages.</b> They get filtered, and they pull down the domain carrying everything else.</li>
       </ul>
       <ul class="items ru">
+        <li><b>Не берусь за локальный бизнес.</b> Когда ищут «зал рядом со мной», ответ собирается из карт и справочников, а не из статей. Там нечего менять.</li>
+        <li><b>Не обещаю вывести по общему запросу.</b> «Лучшая CRM» держат обзорники с историей в десять лет. За месяц туда не попадёт никто.</li>
+        <li><b>Не берусь, если вы не можете публиковать.</b> Если правка на своём сайте идёт три недели через подрядчика, работа не сделается ни за какие деньги.</li>
+        <li><b>Не беру двух конкурентов.</b> Если я уже работаю с кем-то из вашей категории, вам откажу — иначе работал бы против своего же клиента.</li>
         <li><b>Не обещаю позицию.</b> Моделью никто не управляет. Обещаю работу и честный замер.</li>
         <li><b>Не покупаю и не пишу отзывы.</b> Каталоги их вычищают, и вы теряете профиль, который работал лучше всего.</li>
         <li><b>Не завожу выдуманные аккаунты в сообществах.</b> Их вычисляют, а основатель, отвечающий своим именем, переживает любую хитрость.</li>
@@ -766,24 +799,6 @@
     </div>
   </section>
 
-  <section id="notfor">
-    <div class="split">
-      <div class="stack">
-        <p class="label"><span class="en">Not for everyone</span><span class="ru">Кому не подходит</span></p>
-        <h2 class="h-lg"><span class="en">Four cases where I say no.</span><span class="ru">Четыре случая, когда я откажу.</span></h2>
-        <p class="body-2 en">Saying this before you pay is cheaper for both of us than finding it out in month two.</p>
-        <p class="body-2 ru">Сказать это до оплаты дешевле для нас обоих, чем выяснить на втором месяце.</p>
-      </div>
-      <div class="stack">
-        <ul class="items">
-          <li><b><span class="en">Local business.</span><span class="ru">Локальный бизнес.</span></b> <span class="en">“A gym near me” goes to maps, and the answer is assembled from directory listings rather than articles. There is nobody to take a slot from.</span><span class="ru">Спрос на «зал рядом со мной» уходит в карты, и ответ собирается из справочников, а не из статей. Отбирать там место не у кого.</span></li>
-          <li><b><span class="en">Anyone who wants the head term.</span><span class="ru">Тем, кто хочет головной запрос.</span></b> <span class="en">“Best CRM” belongs to review sites with ten years of history. Nobody gets in there in a month, and I will not pretend otherwise.</span><span class="ru">«Лучшая CRM» принадлежит обзорникам с десятилетней историей. За месяц туда не влезает никто, и притворяться я не стану.</span></li>
-          <li><b><span class="en">Anyone who cannot publish.</span><span class="ru">Тем, кто не может публиковать.</span></b> <span class="en">If a change to your own site takes three weeks through a contractor, the work will not happen at any price.</span><span class="ru">Если правка на своём же сайте идёт три недели через подрядчика, работа не сделается ни за какие деньги.</span></li>
-          <li><b><span class="en">The second company in a category.</span><span class="ru">Второй компании из одной категории.</span></b> <span class="en">If I already work with one, I turn the next one down — even at a higher price. Otherwise I would be working against my own client.</span><span class="ru">Если я уже работаю с одной, следующей откажу — даже за большие деньги. Иначе я работал бы против собственного клиента.</span></li>
-        </ul>
-      </div>
-    </div>
-  </section>
 
   <section id="plans">
     <div class="stack-l">
@@ -838,19 +853,6 @@
     </div>
   </section>
 
-  <section id="first">
-    <div class="stack-l">
-      <p class="label"><span class="en">The first week</span><span class="ru">Первая неделя</span></p>
-      <h2 class="h-lg"><span class="en">What happens once you say yes.</span><span class="ru">Что происходит, когда вы согласились.</span></h2>
-      <div class="steps-big">
-        <div class="step"><span class="no">01</span><h3><span class="en">Day one</span><span class="ru">День первый</span></h3><p class="en">Eight questions about your product. One of them is “who is your product wrong for” — the most valuable answer of the eight, and the one I will not invent for you.</p><p class="ru">Восемь вопросов о продукте. Среди них — «кому ваш продукт не подходит». Это самый ценный ответ из восьми, и выдумывать его за вас я не стану.</p></div>
-        <div class="step"><span class="no">02</span><h3><span class="en">Days two–three</span><span class="ru">День второй–третий</span></h3><p class="en">The run and the trace. You get the same page as the free audit, but across all fifteen questions and with a plan of work attached.</p><p class="ru">Прогон и разбор. Вы получаете ту же страницу, что и в бесплатном аудите, но по всем пятнадцати вопросам и с планом работ.</p></div>
-        <div class="step"><span class="no">03</span><h3><span class="en">Days four–seven</span><span class="ru">День четвёртый–седьмой</span></h3><p class="en">First pages as drafts, with you for approval. You publish them — on your domain, with your own hands.</p><p class="ru">Первые страницы черновиками, у вас на согласовании. Публикуете вы — на своём домене, своими руками.</p></div>
-        <div class="step"><span class="no">04</span><h3><span class="en">Then</span><span class="ru">Дальше</span></h3><p class="en">Letters to authors, listings, fact reconciliation. At the end of the month the questions run again.</p><p class="ru">Письма авторам, карточки, сверка фактов. В конце месяца вопросы прогоняются заново.</p></div>
-      </div>
-      <p class="caption"><span class="en">I do not ask for access to your site and I publish nothing under your name. Drafts go to you; the decision to publish is yours.</span><span class="ru">Я не прошу доступ к вашему сайту и ничего не публикую от вашего имени. Черновики уходят к вам, решение публиковать — ваше.</span></p>
-    </div>
-  </section>
 
   <section id="faq">
     <div class="stack-l">
@@ -866,14 +868,6 @@
           <dd><span class="en">By the target. SEO aims at ranking and traffic. Here a page is written so a model can lift a claim with your name inside it. A page can rank beautifully, make the source list, and still earn you zero mentions — I have that case measured. Same tools, different job.</span><span class="ru">Целью. SEO целится в ранжирование и трафик. Здесь страница пишется так, чтобы модель могла вынуть из неё утверждение вместе с вашим именем. Страница может прекрасно ранжироваться, попасть в источники — и не дать ни одного упоминания. Этот случай у меня измерен. Инструмент похож, задача разная.</span></dd>
         </div>
         <div>
-          <dt><span class="en">We already have an SEO contractor.</span><span class="ru">У нас уже есть подрядчик по SEO.</span></dt>
-          <dd><span class="en">Good. Ask them what they do about AI answers. If they do classic search work, the difference will be obvious without me explaining it. If they handle this too — you do not need me, and I will tell you so.</span><span class="ru">Хорошо. Спросите его, что он делает с ответами ИИ. Если он делает классическое SEO под поиск, разница будет видна без моих объяснений. Если он занимается и этим тоже — я вам не нужен, и я скажу это прямо.</span></dd>
-        </div>
-        <div>
-          <dt><span class="en">Why so cheap compared with an agency?</span><span class="ru">Почему дешевле агентства?</span></dt>
-          <dd><span class="en">In an agency you pay for an account manager, a sales team and an office — the person you talk to is not the person doing the work. Here the money goes into the work itself: the same people who read the answers write the pages. That is where the difference comes from.</span><span class="ru">В агентстве вы платите за аккаунт-менеджера, отдел продаж и офис — работу делает не тот, кто с вами говорит. Здесь деньги идут в саму работу: ответы разбирают и страницы пишут одни и те же люди. Отсюда и разница в цене.</span></dd>
-        </div>
-        <div>
           <dt><span class="en">What if nothing moves in two months?</span><span class="ru">А если за два месяца ничего не сдвинется?</span></dt>
           <dd><span class="en">That is possible, and I am saying it before you pay rather than after. You keep the pages, the listings and the reconciled facts — they work in ordinary search regardless. And you keep a measurement that shows exactly what did not work, which is worth more than a guess.</span><span class="ru">Это возможно, и я говорю это до оплаты, а не после. У вас остаются страницы, карточки и сверенные факты — в обычном поиске они работают в любом случае. И остаётся замер, который показывает, что именно не сработало. Это дороже догадки.</span></dd>
         </div>
@@ -885,10 +879,6 @@
           <dt><span class="en">Do you work with our competitors?</span><span class="ru">Вы работаете с нашими конкурентами?</span></dt>
           <dd><span class="en">No. We never take two companies competing in the same category — we would be working against our own client. If your category is already taken, you hear that in the first reply, not after you have paid.</span><span class="ru">Нет. Двух компаний из одной категории мы не берём — иначе работали бы против собственного клиента. Если ваша категория уже занята, вы узнаете это в первом же ответе, а не после оплаты.</span></dd>
         </div>
-        <div>
-          <dt><span class="en">Which models do you measure?</span><span class="ru">Какие модели вы меряете?</span></dt>
-          <dd><span class="en">Every report names the surface each number came from, and I only report on surfaces I actually ran. Two things move at different speeds: an answer built with live search shifts in weeks, an answer a model gives from memory alone takes far longer. Confusing the two is how this field usually oversells itself.</span><span class="ru">В каждом отчёте указано, на какой поверхности снята каждая цифра, и я отчитываюсь только о тех, которые правда прогонял. Двигаются они по-разному: ответ с живым поиском сдвигается за недели, ответ по памяти модели — куда дольше. Смешивать их — обычный способ этой отрасли себя перепродать.</span></dd>
-        </div>
       </dl>
     </div>
   </section>
@@ -896,12 +886,21 @@
   <section id="request">
     <div class="split">
       <div class="stack">
-        <p class="label"><span class="en">Start here</span><span class="ru">С чего начать</span></p>
+        <p class="label"><span class="en">Free audit</span><span class="ru">Бесплатный аудит</span></p>
         <h2 class="h-lg"><span class="en">Check your category.</span><span class="ru">Проверьте свою категорию.</span></h2>
         <p class="body-2 en">Give me a domain and the category you sell into. I run the questions your buyers ask, and send back who gets named and where those names come from. No charge, no pitch, no call required.</p>
         <p class="body-2 ru">Оставьте домен и категорию, в которой продаёте. Я прогоню вопросы, которые задают ваши покупатели, и пришлю, кого называют и откуда берут эти имена. Бесплатно, без предложений и без созвона.</p>
       </div>
 
+      <div class="stack">
+        
+      </div>
+    </div>
+    <div class="split" style="margin-top:var(--s36)">
+      <div class="stack">
+        <p class="body-2 en">No calls, no newsletter. If you never reply, you never hear from me again.</p>
+        <p class="body-2 ru">Без созвонов и рассылок. Не ответите — второго письма от меня не будет.</p>
+      </div>
       <form class="form-card" id="req" novalidate>
         <div class="field">
           <label for="f-name"><span class="en">Your name</span><span class="ru">Как вас зовут</span></label>
@@ -965,7 +964,26 @@
     </div>
   </section>
 
-  <footer><span class="en">Namedin · Source data checked August 2026 · <a href="/data/">Data</a></span><span class="ru">Namedin · Данные проверены в августе 2026 · <a href="/data/">О данных</a></span></footer>
+  <button class="fab" id="fab" aria-haspopup="dialog" aria-expanded="false">
+  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path d="M4 5h16v11H8l-4 4V5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+  </svg>
+  <span class="en">Free audit</span><span class="ru">Бесплатный аудит</span>
+</button>
+
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-h" hidden>
+  <div class="sheet-bg" id="sheet-bg"></div>
+  <div class="sheet-card">
+    <button class="sheet-x" id="sheet-x" aria-label="Закрыть">×</button>
+    <p class="label"><span class="en">Free audit</span><span class="ru">Бесплатный аудит</span></p>
+    <h2 class="h-md" id="sheet-h"><span class="en">We check your niche and send it over.</span><span class="ru">Проверим вашу нишу и пришлём.</span></h2>
+    <p class="form-note en">Leave a domain and what you sell. We ask an AI the questions your customers ask, and send back who it names and where those names come from. Free, and nobody will call you.</p>
+    <p class="form-note ru">Оставьте домен и что продаёте. Зададим ИИ те вопросы, которые задают ваши покупатели, и пришлём, кого он называет и откуда берёт эти имена. Бесплатно, и вам никто не позвонит.</p>
+    <div id="sheet-slot"></div>
+  </div>
+</div>
+
+<footer><span class="en">Namedin · Source data checked August 2026 · <a href="/data/">Data</a></span><span class="ru">Namedin · Данные проверены в августе 2026 · <a href="/data/">О данных</a></span></footer>
 
 </div>
 
@@ -1368,6 +1386,65 @@
   const guess = (navigator.language || '').toLowerCase().startsWith('ru') ? 'ru' : 'en';
   apply(saved === 'ru' || saved === 'en' ? saved : guess, false);
   btns.forEach(b => b.addEventListener('click', () => apply(b.dataset.set, true)));
+})();
+</script>
+
+<script>
+/* кнопка внизу справа: открывает ту же самую форму, а не её копию */
+(() => {
+  const fab   = document.getElementById('fab');
+  const sheet = document.getElementById('sheet');
+  const slot  = document.getElementById('sheet-slot');
+  const form  = document.getElementById('req');
+  if (!fab || !sheet || !form) return;
+
+  const home = form.parentNode;          // куда вернуть форму при закрытии
+  const next = form.nextSibling;
+  let open = false, lastFocus = null;
+
+  function show() {
+    if (open) return;
+    open = true; lastFocus = document.activeElement;
+    slot.append(form);                   // переносим, а не копируем: проверки и отправка одни
+    sheet.hidden = false;
+    fab.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+    const first = form.querySelector('input');
+    if (first) setTimeout(() => first.focus(), 60);
+  }
+
+  function hide() {
+    if (!open) return;
+    open = false;
+    sheet.hidden = true;
+    home.insertBefore(form, next);       // возвращаем на место в разделе «с чего начать»
+    fab.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+    if (lastFocus) lastFocus.focus();
+  }
+
+  fab.addEventListener('click', show);
+  document.getElementById('sheet-x').addEventListener('click', hide);
+  document.getElementById('sheet-bg').addEventListener('click', hide);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') hide(); });
+
+  // Не показываем кнопку на первом экране: там уже есть точно такая же,
+  // и две одинаковые рядом сбивают с толку
+  const anchor = document.getElementById('answer');
+  if ('IntersectionObserver' in window && anchor) {
+    new IntersectionObserver(es => {
+      es.forEach(x => fab.classList.toggle('on', x.boundingClientRect.top < 0 || x.isIntersecting));
+    }, { rootMargin: '-10% 0px 0px 0px' }).observe(anchor);
+  } else {
+    fab.classList.add('on');
+  }
+
+  // Отправилась — закрываем окно через пару секунд, чтобы человек успел
+  // прочитать «заявка принята»
+  new MutationObserver(() => {
+    const sent = document.getElementById('f-sent');
+    if (open && sent && !sent.hidden) setTimeout(hide, 2600);
+  }).observe(form, { attributes: true, subtree: true, attributeFilter: ['hidden'] });
 })();
 </script>
 
