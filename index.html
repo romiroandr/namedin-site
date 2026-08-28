@@ -292,6 +292,25 @@
   .form-note { font-size: var(--t12); line-height: 1.5; color: var(--steel); max-width: 34em; }
   .form-err { font-size: var(--t12); color: var(--paper); min-height: 1em; }
 
+  /* ловушка для роботов: уводим за пределы экрана, а не display:none —
+     часть заполняющих скриптов скрытые поля пропускает */
+  .trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+  .agree { display: flex; align-items: flex-start; gap: var(--s10); cursor: pointer;
+    font-size: var(--t12); line-height: 1.5; color: var(--steel); }
+  .agree input {
+    appearance: none; width: 15px; height: 15px; flex: none; margin-top: 2px;
+    border: 1px solid var(--graphite); border-radius: 3px; cursor: pointer; transition: .16s;
+  }
+  .agree input:checked { background: var(--paper); border-color: var(--paper); }
+  .agree input:checked::after {
+    content: ""; display: block; width: 4px; height: 8px; margin: 1px auto 0;
+    border: solid #000; border-width: 0 1.6px 1.6px 0; transform: rotate(42deg);
+  }
+  .pill[disabled] { opacity: .45; cursor: default; }
+  .pill[disabled]:hover { background: none; color: var(--paper); }
+  .sent { display: flex; flex-direction: column; gap: var(--s10); }
+
   /* ---------- фоновое поле ---------- */
   #ambient {
     position: fixed; top: 0; left: 0; z-index: 0;
@@ -676,7 +695,7 @@
         <div class="track">
           <div><span class="when"><span class="en">A dashboard</span><span class="ru">Дашборд</span></span><span class="what"><span class="en">Shows you the number for $29–149 a month and leaves you alone with it. Nothing about your pages changes.</span><span class="ru">Показывает цифру за $29–149 в месяц и оставляет вас с ней наедине. На ваших страницах не меняется ничего.</span></span></div>
           <div><span class="when"><span class="en">An agency</span><span class="ru">Агентство</span></span><span class="what"><span class="en">Does the work and prices it like a department — $2 500–25 000 a month, because that is what a team costs.</span><span class="ru">Работу делает и берёт как за отдел — $2 500–25 000 в месяц, потому что столько стоит команда.</span></span></div>
-          <div><span class="when"><span class="en">Here</span><span class="ru">Здесь</span></span><span class="what"><span class="en"><b>The work, monthly, from one person.</b> Which is why it costs a fraction of an agency, and why I take only a few companies at a time.</span><span class="ru"><b>Работа, ежемесячно, от одного человека.</b> Поэтому это стоит доли агентства — и поэтому компаний я беру немного.</span></span></div>
+          <div><span class="when"><span class="en">Here</span><span class="ru">Здесь</span></span><span class="what"><span class="en"><b>The work itself, every month.</b> No account managers between you and the person writing the pages — which is where the price difference comes from.</span><span class="ru"><b>Сама работа, каждый месяц.</b> Между вами и тем, кто пишет страницы, нет аккаунт-менеджера — отсюда и разница в цене.</span></span></div>
         </div>
       </div>
     </div>
@@ -812,8 +831,8 @@
         </div>
       </div>
 
-      <p class="plans-note en">I do not promise a position — nobody controls the model. I promise the work and an honest measurement of it. I take a small number of companies at a time, and never two that compete in the same category.</p>
-      <p class="plans-note ru">Позицию не обещаю — моделью никто не управляет. Обещаю работу и честный замер. Беру немного компаний одновременно и никогда двух конкурентов из одной категории.</p>
+      <p class="plans-note en">I do not promise a position — nobody controls the model. I promise the work and an honest measurement of it. And we never take two companies that compete in the same category.</p>
+      <p class="plans-note ru">Позицию не обещаю — моделью никто не управляет. Обещаю работу и честный замер. И никогда не берём двух конкурентов из одной категории.</p>
     </div>
   </section>
 
@@ -850,7 +869,7 @@
         </div>
         <div>
           <dt><span class="en">Why so cheap compared with an agency?</span><span class="ru">Почему дешевле агентства?</span></dt>
-          <dd><span class="en">Because this is one person, not a department. The same reason I take only a small number of companies at once: more than that I could not do by hand.</span><span class="ru">Потому что здесь один человек, а не отдел. По той же причине я беру немного компаний одновременно — больше руками не сделаю.</span></dd>
+          <dd><span class="en">In an agency you pay for an account manager, a sales team and an office — the person you talk to is not the person doing the work. Here the money goes into the work itself: the same people who read the answers write the pages. That is where the difference comes from.</span><span class="ru">В агентстве вы платите за аккаунт-менеджера, отдел продаж и офис — работу делает не тот, кто с вами говорит. Здесь деньги идут в саму работу: ответы разбирают и страницы пишут одни и те же люди. Отсюда и разница в цене.</span></dd>
         </div>
         <div>
           <dt><span class="en">What if nothing moves in two months?</span><span class="ru">А если за два месяца ничего не сдвинется?</span></dt>
@@ -861,8 +880,8 @@
           <dd><span class="en">No. Drafts come to you and you publish them. I do not need access to your site, and I never post as you anywhere.</span><span class="ru">Нет. Черновики приходят к вам, публикуете их вы. Доступ к вашему сайту мне не нужен, и нигде я не выступаю от вашего лица.</span></dd>
         </div>
         <div>
-          <dt><span class="en">How many companies do you run at once?</span><span class="ru">Сколько компаний вы ведёте одновременно?</span></dt>
-          <dd><span class="en">Few — that is a limit on my hours, not a sales device. I give you the exact number on the first call, and I never take two companies competing in the same category.</span><span class="ru">Немного — это ограничение по моему времени, а не приём продаж. Точное число называю на первом разговоре. Двух конкурентов из одной категории не беру никогда.</span></dd>
+          <dt><span class="en">Do you work with our competitors?</span><span class="ru">Вы работаете с нашими конкурентами?</span></dt>
+          <dd><span class="en">No. We never take two companies competing in the same category — we would be working against our own client. If your category is already taken, you hear that in the first reply, not after you have paid.</span><span class="ru">Нет. Двух компаний из одной категории мы не берём — иначе работали бы против собственного клиента. Если ваша категория уже занята, вы узнаете это в первом же ответе, а не после оплаты.</span></dd>
         </div>
         <div>
           <dt><span class="en">Which models do you measure?</span><span class="ru">Какие модели вы меряете?</span></dt>
@@ -884,20 +903,43 @@
       <form class="form-card" id="req" novalidate>
         <div class="field">
           <label for="f-dom"><span class="en">Your domain</span><span class="ru">Ваш домен</span></label>
-          <input id="f-dom" name="dom" type="text" inputmode="url" autocomplete="url" placeholder="example.com">
+          <input id="f-dom" name="dom" type="text" inputmode="url" autocomplete="url" placeholder="example.com" required>
         </div>
         <div class="field">
           <label for="f-cat"><span class="en">Category you sell into</span><span class="ru">Категория, в которой продаёте</span></label>
-          <input id="f-cat" name="cat" type="text" placeholder="CRM для малого бизнеса">
+          <input id="f-cat" name="cat" type="text" placeholder="CRM для малого бизнеса" required>
+        </div>
+        <div class="field">
+          <label for="f-to"><span class="en">Where to send the audit</span><span class="ru">Куда прислать аудит</span></label>
+          <input id="f-to" name="to" type="text" autocomplete="email" placeholder="почта или @телеграм" required>
         </div>
         <div class="field">
           <label for="f-comp"><span class="en">Two competitors, if you know them</span><span class="ru">Два конкурента, если знаете</span></label>
           <input id="f-comp" name="comp" type="text" placeholder="—">
         </div>
+
+        <!-- ловушка для роботов: человек этого поля не видит и не заполнит -->
+        <div class="trap" aria-hidden="true">
+          <label for="f-site">Site</label>
+          <input id="f-site" name="site" type="text" tabindex="-1" autocomplete="off">
+        </div>
+
+        <label class="agree">
+          <input id="f-ok" name="ok" type="checkbox" required>
+          <span class="en">I agree that my contact details will be used to send the audit and reply to this request — nothing else.</span>
+          <span class="ru">Согласен, что мои контакты используют, чтобы прислать аудит и ответить на эту заявку, — и ни для чего больше.</span>
+        </label>
+
         <p class="form-err" id="f-err" role="alert"></p>
-        <button class="pill" type="submit"><span class="en">Send the request</span><span class="ru">Отправить заявку</span></button>
-        <p class="form-note en">Opens Telegram with the request filled in — you only press send. Nothing is stored on this page.</p>
-        <p class="form-note ru">Откроется телеграм с уже готовым текстом — вам останется нажать «отправить». На странице ничего не сохраняется.</p>
+        <button class="pill" type="submit" id="f-btn"><span class="en">Send the request</span><span class="ru">Отправить заявку</span></button>
+
+        <p class="form-note en">The audit comes back within a few days. No calls, no newsletter, and your details go nowhere else.</p>
+        <p class="form-note ru">Аудит придёт за несколько дней. Без созвонов, без рассылок, и никому ваши данные не уходят.</p>
+
+        <div class="sent" id="f-sent" hidden>
+          <p class="body"><b><span class="en">Request received.</span><span class="ru">Заявка принята.</span></b></p>
+          <p class="form-note"><span class="en">I will reply to the contact you left. If nothing arrives within three days, write to me directly — the link is just below.</span><span class="ru">Отвечу на оставленный контакт. Если за три дня ничего не придёт — напишите напрямую, ссылка чуть ниже.</span></p>
+        </div>
       </form>
     </div>
   </section>
@@ -905,9 +947,9 @@
   <section id="who">
     <div class="stack-l">
       <p class="label"><span class="en">Who</span><span class="ru">Кто</span></p>
-      <h2 class="h-lg"><span class="en">It is one person. That is the point.</span><span class="ru">Здесь один человек. В этом и смысл.</span></h2>
-      <p class="body en">I am Roman. There is no team behind this page. I read the answers, trace the sources and do the work myself — which is why it costs a fraction of an agency, and why I take a small number of companies at a time.</p>
-      <p class="body ru">Меня зовут Роман. За этой страницей нет команды. Я сам читаю ответы, разбираю источники и делаю работу — поэтому это стоит доли того, что берёт агентство, и поэтому я беру немного компаний одновременно.</p>
+      <h2 class="h-lg"><span class="en">The work is done by the people who understand it.</span><span class="ru">Работу делают те, кто в ней разбирается.</span></h2>
+      <p class="body en">I am Roman. We do not resell somebody else\u2019s dashboard and we do not farm the work out: we read the answers, trace the sources and write the pages ourselves. Which is why there is no number in a report whose origin we cannot explain to you.</p>
+      <p class="body ru">Меня зовут Роман. Мы не перепродаём чужой дашборд и не отдаём работу на сторону: ответы читаем сами, источники разбираем сами, страницы пишем сами. Поэтому в отчёте нет ни одной цифры, происхождение которой мы не могли бы объяснить.</p>
       <p class="body-2 en">Send me your product and the category you sell into. You get the audit back within a few days, whether or not we ever work together.</p>
       <p class="body-2 ru">Напишите, что у вас за продукт и в какой категории вы продаёте. Аудит пришлю за несколько дней — независимо от того, будем ли мы работать.</p>
       <div class="contacts">
@@ -972,7 +1014,9 @@
     const f = fold(d.theta, d.phi, 1);
     const side = d.x >= 0 ? 1 : -1;
     return {
-      x: side * (0.175 + Math.abs(d.x) * 0.650 * f),   // два полушария и борозда между ними
+      // Зазор маленький нарочно: при 0.175 половины расходились в два
+      // отдельных тела. Борозда должна читаться щелью, а не пропастью.
+      x: side * (0.045 + Math.abs(d.x) * 0.720 * f),
       y: d.y * 0.670 * f,
       z: d.z * 0.960 * f
     };
@@ -1005,9 +1049,9 @@
     }));
 
     lit = [
-      { x: -0.50, y: 0.34, z: 0.60, color: '#7089ba', phase: 0.0 },
-      { x:  0.60, y: 0.07, z: 0.35, color: '#ffffff', phase: 2.1 },
-      { x:  0.23, y: 0.52, z: -0.71, color: '#7089ba', phase: 4.2 }
+      { x: -0.46, y: 0.34, z: 0.60, color: '#7089ba', phase: 0.0 },
+      { x:  0.56, y: 0.07, z: 0.35, color: '#ffffff', phase: 2.1 },
+      { x:  0.19, y: 0.52, z: -0.71, color: '#7089ba', phase: 4.2 }
     ].map(l => ({ ...l, r: 9.5, rot: 0 }));
   }
 
@@ -1325,31 +1369,105 @@
 (() => {
   const f = document.getElementById('req');
   if (!f) return;
-  const err = document.getElementById('f-err');
+
+  // Куда уходит заявка. Пока адрес пуст, форма работает через телеграм —
+  // так ничего не ломается до того, как приёмник поднят.
+  const ENDPOINT = '';
+
+  const TG = 'https://t.me/mirrnr';
+  const err  = document.getElementById('f-err');
+  const btn  = document.getElementById('f-btn');
+  const sent = document.getElementById('f-sent');
   const ru = () => document.documentElement.getAttribute('data-lang') === 'ru';
+  const born = Date.now();
+  let busy = false;
 
   const clean = d => d.trim().toLowerCase()
     .replace(/^https?:\/\//, '').replace(/^www\./, '').replace(/\/.*$/, '');
 
-  f.addEventListener('submit', e => {
+  const say = (r, e) => { err.textContent = ru() ? r : e; };
+
+  function contactOk(v) {
+    v = v.trim();
+    if (/^@[\w\d_]{4,}$/.test(v)) return true;                       // телеграм
+    if (/^[^@\s]+@[^@\s.]+\.[a-z]{2,}$/i.test(v)) return true;       // почта
+    if (/^\+?\d[\d\s()-]{8,}$/.test(v)) return true;                 // телефон
+    return false;
+  }
+
+  f.addEventListener('submit', async e => {
     e.preventDefault();
-    const dom = clean(f.dom.value), cat = f.cat.value.trim(), comp = f.comp.value.trim();
+    if (busy) return;
+
+    const dom = clean(f.dom.value), cat = f.cat.value.trim();
+    const to = f.to.value.trim(), comp = f.comp.value.trim();
 
     if (!dom || !/^[a-z0-9-]+(\.[a-z0-9-]+)+$/.test(dom)) {
-      err.textContent = ru() ? 'Похоже, это не домен. Например: example.com' : 'That does not look like a domain. Try example.com';
+      say('Похоже, это не домен. Например: example.com',
+          'That does not look like a domain. Try example.com');
       f.dom.focus(); return;
     }
     if (!cat) {
-      err.textContent = ru() ? 'Напишите категорию — без неё вопросы не составить.' : 'Add the category — the questions depend on it.';
+      say('Напишите категорию — без неё вопросы не составить.',
+          'Add the category — the questions depend on it.');
       f.cat.focus(); return;
     }
-    err.textContent = '';
+    if (!contactOk(to)) {
+      say('Оставьте почту или телеграм — иначе аудит будет некуда прислать.',
+          'Leave an email or a telegram handle — otherwise the audit has nowhere to go.');
+      f.to.focus(); return;
+    }
+    if (!f.ok.checked) {
+      say('Отметьте согласие — без него отправить не смогу.',
+          'Tick the consent box — I cannot send it otherwise.');
+      f.ok.focus(); return;
+    }
+    // Робот заполняет всё подряд и отправляет мгновенно. Человек — нет.
+    if (f.site.value || Date.now() - born < 2500) {
+      say('Не удалось отправить. Напишите напрямую в телеграм.',
+          'Could not send. Please write directly on Telegram.');
+      return;
+    }
+    say('', '');
 
-    const msg = ru()
-      ? `Заявка на бесплатный аудит\n\nДомен: ${dom}\nКатегория: ${cat}` + (comp ? `\nКонкуренты: ${comp}` : '')
-      : `Free audit request\n\nDomain: ${dom}\nCategory: ${cat}` + (comp ? `\nCompetitors: ${comp}` : '');
+    const payload = { dom, cat, to, comp, lang: ru() ? 'ru' : 'en',
+                      page: location.href, at: new Date().toISOString() };
 
-    window.open('https://t.me/mirrnr?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+    const text = (ru()
+      ? 'Заявка на бесплатный аудит\n\nДомен: ' + dom + '\nКатегория: ' + cat +
+        '\nКонтакт: ' + to + (comp ? '\nКонкуренты: ' + comp : '')
+      : 'Free audit request\n\nDomain: ' + dom + '\nCategory: ' + cat +
+        '\nContact: ' + to + (comp ? '\nCompetitors: ' + comp : ''));
+
+    // Приёмник не поднят — уходим прежним путём, заявка не теряется
+    if (!ENDPOINT) {
+      window.open(TG + '?text=' + encodeURIComponent(text), '_blank', 'noopener');
+      return;
+    }
+
+    busy = true;
+    btn.disabled = true;
+    btn.textContent = ru() ? 'Отправляю…' : 'Sending…';
+
+    try {
+      const r = await fetch(ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      f.querySelectorAll('.field, .agree, .form-note, #f-btn').forEach(el => el.hidden = true);
+      sent.hidden = false;
+      sent.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    } catch (_) {
+      // Ни одна заявка не должна пропасть из-за упавшего приёмника
+      busy = false;
+      btn.disabled = false;
+      btn.textContent = ru() ? 'Отправить заявку' : 'Send the request';
+      say('Не дошло. Открываю телеграм — там текст уже готов.',
+          'It did not go through. Opening Telegram with the text ready.');
+      window.open(TG + '?text=' + encodeURIComponent(text), '_blank', 'noopener');
+    }
   });
 })();
 </script>
