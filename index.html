@@ -413,6 +413,26 @@
   .plan .ghost-btn:hover { border-color: var(--paper); }
   .plans-note { font-size: var(--t12); line-height: 1.5; color: var(--steel); max-width: 36em; }
 
+  /* ---------- пара: что видит покупатель и что получаете вы ---------- */
+  .duo { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s24); align-items: start; }
+  .chatw { border: 1px dashed var(--rule); border-radius: var(--r-tile);
+    overflow: hidden; background: var(--carbon); }
+  .chat { padding: var(--s24); display: flex; flex-direction: column; gap: var(--s18); }
+  .ask { font-family: var(--mono); font-size: var(--t12); color: var(--ash);
+    background: rgba(255,255,255,.05); border-radius: var(--r-tile) var(--r-tile) 6px var(--r-tile);
+    padding: 12px 14px; align-self: flex-end; max-width: 92%; }
+  .say { font-size: var(--t14); line-height: 1.55; color: var(--paper);
+    display: flex; flex-direction: column; gap: 10px; }
+  .say em { font-style: normal; color: var(--peri); font-weight: 500; }
+  .miss { display: flex; align-items: center; gap: var(--s10);
+    border-top: 1px dashed var(--rule-in); padding-top: var(--s12);
+    font-family: var(--mono); font-size: var(--t9); letter-spacing: .02em;
+    text-transform: uppercase; color: var(--steel); }
+  .miss-x { width: 22px; height: 22px; flex: none; border-radius: 50%;
+    border: 1px solid var(--graphite); display: inline-flex;
+    align-items: center; justify-content: center; font-size: var(--t12); }
+  @media (max-width: 900px) { .duo { grid-template-columns: 1fr; } }
+
   /* первый экран: текст по центру, под ним сам отчёт — как у продуктовых сайтов */
   .hero { position: relative; padding-top: var(--s24); padding-bottom: var(--s36);
     min-height: 0; display: block; }
@@ -727,15 +747,34 @@
   <section class="hero">
     <div class="stack-l lift hero-mid">
       <p class="label"><span class="en">For B2B software and app companies</span><span class="ru">Для B2B-сервисов и приложений</span></p>
-      <h1 class="display"><span class="en">An AI names three companies.<br>We make you one of them.</span><span class="ru">ИИ называет три компании.<br>Делаем так, чтобы одной были вы.</span></h1>
-      <p class="body en">Your customer asks ChatGPT which tool to buy. It answers with three names and stops. If yours is not among them, they never hear about you.</p>
-      <p class="body ru">Ваш клиент спрашивает у ChatGPT, какой сервис выбрать. Тот называет три и замолкает. Если вас среди них нет — клиент про вас не узнает.</p>
+      <h1 class="display"><span class="en">Your buyer asked an AI.<br>It named someone else.</span><span class="ru">Покупатель спросил ИИ.<br>Назвали не вас.</span></h1>
+      <p class="body en">An AI recommends two or three services and stops there. Our job is to get you into that short list.</p>
+      <p class="body ru">ИИ советует два-три сервиса и на этом останавливается. Наша работа — попасть в этот короткий список.</p>
       <div class="cta">
         <a class="pill" href="#request"><span class="en">Get a free audit</span><span class="ru">Получить бесплатный аудит</span></a>
         <a class="pill ghosty" href="#cited"><span class="en">See an example</span><span class="ru">Посмотреть пример</span></a>
       </div>
     </div>
     <div class="hero-shot lift">
+      <div class="duo">
+        <div class="chatw">
+          <div class="rep-bar">
+            <span class="rep-dot"></span><span class="rep-dot"></span><span class="rep-dot"></span>
+            <span class="rep-name"><span class="en">What your buyer sees</span><span class="ru">Что видит ваш покупатель</span></span>
+          </div>
+          <div class="chat">
+            <div class="ask">«сервис email рассылок для бизнеса какой выбрать»</div>
+            <div class="say">
+              <p>Для бизнеса чаще всего советуют <em>UniSender</em> — он самый известный и с простым редактором. <em>DashaMail</em> берут ради поддержки и сегментации, а <em>NotiSend</em> — когда нужны ещё и SMS.</p>
+              <p>Если база небольшая, посмотрите <em>MailerLite</em> с бесплатным тарифом.</p>
+            </div>
+            <div class="miss">
+              <span class="miss-x">✕</span>
+              <span><span class="en">Your company is not in this answer</span><span class="ru">Вашей компании в этом ответе нет</span></span>
+            </div>
+          </div>
+        </div>
+
       <div class="rep">
         <div class="rep-bar">
           <span class="rep-dot"></span><span class="rep-dot"></span><span class="rep-dot"></span>
@@ -797,6 +836,7 @@
         </div>
       </div>
 
+      </div>
       <p class="shot-cap"><span class="en">A real report from a real run. Every line carries the question and the link.</span><span class="ru">Настоящий отчёт настоящего прогона. У каждой строки есть вопрос и ссылка.</span></p>
     </div>
   </section>
