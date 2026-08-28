@@ -368,6 +368,7 @@
     background: var(--carbon); border: 1px dashed var(--rule-in);
     border-radius: var(--r-tile); padding: var(--s24);
   }
+  .si { width: 22px; height: 22px; color: var(--peri); }
   .step .no {
     font-family: var(--mono); font-size: var(--t9); font-weight: 500;
     letter-spacing: .02em; color: var(--steel);
@@ -424,6 +425,39 @@
   .shot-cap { margin-top: var(--s12); text-align: center;
     font-family: var(--mono); font-size: var(--t9); letter-spacing: .02em;
     text-transform: uppercase; color: var(--steel); }
+
+  .rep-chips { margin-left: auto; display: flex; gap: 6px; }
+  .chip { font-family: var(--mono); font-size: var(--t9); letter-spacing: .02em;
+    text-transform: uppercase; color: var(--steel);
+    border: 1px solid var(--rule); border-radius: var(--r-pill); padding: 4px 10px; }
+  .chip.on { color: var(--paper); border-color: var(--graphite); }
+  .tile { display: flex; flex-direction: column; }
+  .spark { display: flex; align-items: flex-end; gap: 4px; height: 26px; margin-top: var(--s10); }
+  .spark i { width: 12px; background: rgba(255,255,255,.09); border-radius: 2px 2px 0 0; min-height: 3px; }
+  .spark i:nth-child(3) { background: var(--peri); }
+  .mini { margin-top: var(--s10); font-family: var(--mono); font-size: var(--t9);
+    letter-spacing: .02em; color: var(--graphite); text-transform: uppercase; }
+  .qrow { display: grid; grid-template-columns: 22px minmax(0,1fr) minmax(0,15rem);
+    gap: var(--s12); align-items: center; padding: 9px 0;
+    border-bottom: 1px dashed var(--rule-in); }
+  .qm { font-size: var(--t12); color: var(--steel); }
+  .qrow.good .qm { color: var(--peri); }
+  .qq { font-family: var(--mono); font-size: var(--t12); color: var(--ash); }
+  .qn { font-size: var(--t12); color: var(--steel); text-align: right; }
+  .qn b { color: var(--paper); font-weight: 500; }
+  .tag { font-family: var(--mono); font-size: var(--t9); letter-spacing: .02em;
+    text-transform: uppercase; color: var(--steel);
+    background: rgba(255,255,255,.05); border-radius: 3px; padding: 3px 8px; }
+  .tag.rival { color: var(--peri); background: rgba(112,137,186,.13); }
+  .tag.you { color: var(--void); background: var(--paper); }
+  .rep-src { display: grid; grid-template-columns: minmax(0,1fr) auto 2rem;
+    gap: var(--s12); align-items: center; padding: 7px 0; }
+  .rep-n { font-family: var(--mono); font-size: var(--t12); color: var(--graphite); text-align: right; }
+  @media (max-width: 760px) {
+    .qrow { grid-template-columns: 22px minmax(0,1fr); }
+    .qn { display: none; }
+    .rep-chips { display: none; }
+  }
 
   /* ---------- кому принадлежат источники ---------- */
   .chart { display: flex; flex-direction: column; gap: var(--s12); }
@@ -706,43 +740,63 @@
         <div class="rep-bar">
           <span class="rep-dot"></span><span class="rep-dot"></span><span class="rep-dot"></span>
           <span class="rep-name"><span class="en">Report · email services · Russia</span><span class="ru">Отчёт · сервисы рассылок · Россия</span></span>
+          <span class="rep-chips">
+            <span class="chip">26.08.2026</span>
+            <span class="chip"><span class="en">search</span><span class="ru">поиск</span></span>
+            <span class="chip on">4 <span class="en">questions</span><span class="ru">вопроса</span></span>
+          </span>
         </div>
 
         <div class="rep-body">
           <div class="rep-hero">
-            <div>
+            <div class="tile">
               <div class="rep-big">1<span class="rep-of"> / 4</span></div>
               <div class="rep-cap"><span class="en">questions where you are named</span><span class="ru">вопроса, где вас называют</span></div>
+              <div class="spark"><i style="height:22%"></i><i style="height:0%"></i><i style="height:100%"></i><i style="height:0%"></i></div>
             </div>
-            <div>
+            <div class="tile">
               <div class="rep-big rep-dim">9</div>
               <div class="rep-cap"><span class="en">competitors named instead</span><span class="ru">конкурентов названы вместо вас</span></div>
+              <div class="mini">UniSender · DashaMail · NotiSend</div>
             </div>
-            <div>
+            <div class="tile">
               <div class="rep-big rep-dim">23</div>
               <div class="rep-cap"><span class="en">pages the answers came from</span><span class="ru">страницы, из которых собраны ответы</span></div>
+              <div class="mini"><span class="en">41% owned by competitors</span><span class="ru">41% принадлежат конкурентам</span></div>
             </div>
           </div>
 
-          <div class="rep-grid">
-            <div>
-              <div class="rep-h"><span class="en">Named instead of you</span><span class="ru">Называют вместо вас</span></div>
-              <div class="rep-row"><b>UniSender</b><span class="rep-bars"><i style="width:100%"></i></span><span class="rep-n">2 / 4</span></div>
-              <div class="rep-row"><b>DashaMail</b><span class="rep-bars"><i style="width:100%"></i></span><span class="rep-n">2 / 4</span></div>
-              <div class="rep-row"><b>NotiSend</b><span class="rep-bars"><i style="width:100%"></i></span><span class="rep-n">2 / 4</span></div>
-              <div class="rep-row"><b>RuSender</b><span class="rep-bars"><i style="width:100%"></i></span><span class="rep-n">2 / 4</span></div>
-            </div>
-            <div>
-              <div class="rep-h"><span class="en">Where the answers came from</span><span class="ru">Откуда собраны ответы</span></div>
-              <div class="rep-src"><code>rusender.ru</code><span class="rep-own rival"><span class="en">competitor</span><span class="ru">конкурент</span></span></div>
-              <div class="rep-src"><code>unisender.com</code><span class="rep-own rival"><span class="en">competitor</span><span class="ru">конкурент</span></span></div>
-              <div class="rep-src"><code>jivo.ru</code><span class="rep-own"><span class="en">adjacent service</span><span class="ru">смежный сервис</span></span></div>
-              <div class="rep-src"><code>mailganer.com</code><span class="rep-own you"><span class="en">your own page</span><span class="ru">ваша страница</span></span></div>
-              <div class="rep-src"><code>onreport.ru</code><span class="rep-own"><span class="en">review site</span><span class="ru">обзорный сайт</span></span></div>
-            </div>
+          <div class="rep-h"><span class="en">Question by question</span><span class="ru">Вопрос за вопросом</span></div>
+          <div class="qrow bad">
+            <span class="qm">✕</span>
+            <span class="qq">«сервис email рассылок для бизнеса какой выбрать»</span>
+            <span class="qn">UniSender · DashaMail · NotiSend</span>
           </div>
+          <div class="qrow bad">
+            <span class="qm">✕</span>
+            <span class="qq">«SMTP сервис для транзакционных писем российский»</span>
+            <span class="qn">RuSender · NotiSend · SamoTPravil</span>
+          </div>
+          <div class="qrow good">
+            <span class="qm">✓</span>
+            <span class="qq">«сервис валидации email базы проверка адресов»</span>
+            <span class="qn"><b><span class="en">you</span><span class="ru">вы</span></b> · DashaMail · Respondo</span>
+          </div>
+          <div class="qrow bad">
+            <span class="qm">✕</span>
+            <span class="qq">«как настроить триггерные письма для SaaS сервиса»</span>
+            <span class="qn">Carrot quest · RuSender · UniSender</span>
+          </div>
+
+          <div class="rep-h"><span class="en">Where the answers came from</span><span class="ru">Откуда собраны ответы</span></div>
+          <div class="rep-src"><code>rusender.ru</code><span class="tag rival"><span class="en">competitor</span><span class="ru">конкурент</span></span><span class="rep-n">2</span></div>
+          <div class="rep-src"><code>unisender.com</code><span class="tag rival"><span class="en">competitor</span><span class="ru">конкурент</span></span><span class="rep-n">2</span></div>
+          <div class="rep-src"><code>jivo.ru</code><span class="tag"><span class="en">adjacent</span><span class="ru">смежный</span></span><span class="rep-n">2</span></div>
+          <div class="rep-src"><code>mailganer.com</code><span class="tag you"><span class="en">your page</span><span class="ru">ваша страница</span></span><span class="rep-n">2</span></div>
+          <div class="rep-src"><code>onreport.ru</code><span class="tag"><span class="en">review site</span><span class="ru">обзорный</span></span><span class="rep-n">1</span></div>
         </div>
       </div>
+
       <p class="shot-cap"><span class="en">A real report from a real run. Every line carries the question and the link.</span><span class="ru">Настоящий отчёт настоящего прогона. У каждой строки есть вопрос и ссылка.</span></p>
     </div>
   </section>
@@ -871,10 +925,10 @@
       <p class="label"><span class="en">How it works</span><span class="ru">Как это работает</span></p>
       <h2 class="h-lg"><span class="en">Four steps, every month.</span><span class="ru">Четыре шага, каждый месяц.</span></h2>
       <div class="steps-big">
-        <div class="step"><span class="no">01</span><h3><span class="en">The run</span><span class="ru">Прогон</span></h3><p class="en">Fifteen questions your buyers actually type, each put to the model as its own clean session — no system prompt, no context carried between them.</p><p class="ru">Пятнадцать вопросов, которые ваши покупатели правда набирают. Каждый уходит отдельной чистой сессией — без системного промпта и без переноса контекста между вопросами.</p></div>
-        <div class="step"><span class="no">02</span><h3><span class="en">The trace</span><span class="ru">Разбор</span></h3><p class="en">Who was named and in what order. Which pages each answer was built from. Who owns those pages — a competitor, a directory, an agency, or nobody in the category.</p><p class="ru">Кого назвали и в каком порядке. Из каких страниц собран каждый ответ. Кому эти страницы принадлежат — конкуренту, каталогу, агентству или никому из категории.</p></div>
-        <div class="step"><span class="no">03</span><h3><span class="en">The work</span><span class="ru">Работа</span></h3><p class="en">Pages for the questions where you are absent, written so a model can lift the claim in one piece. Letters to the authors whose articles the answers rely on. One set of facts across your site, catalogues and listings.</p><p class="ru">Страницы под вопросы, где вас нет, написанные так, чтобы модель могла вырезать утверждение куском. Письма авторам статей, на которые опираются ответы. Один набор фактов на сайте, в каталогах и карточках.</p></div>
-        <div class="step"><span class="no">04</span><h3><span class="en">The proof</span><span class="ru">Замер</span></h3><p class="en">A month later the same fifteen questions run again. The report says what moved and what did not — and if nothing moved, it says that in the first line.</p><p class="ru">Через месяц те же пятнадцать вопросов прогоняются заново. В отчёте написано, что сдвинулось и что нет — а если не сдвинулось ничего, это стоит первой строкой.</p></div>
+        <div class="step"><svg class="si" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 7h13M3 7l3-3M3 7l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 17H8m13 0-3-3m3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="no">01</span><h3><span class="en">The run</span><span class="ru">Прогон</span></h3><p class="en">Fifteen questions your buyers actually type.</p><p class="ru">Пятнадцать вопросов, которые правда набирают ваши покупатели.</p></div>
+        <div class="step"><svg class="si" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="8" height="6" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="13" y="14" width="8" height="6" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 7h4a2 2 0 0 1 2 2v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span class="no">02</span><h3><span class="en">The trace</span><span class="ru">Разбор</span></h3><p class="en">Who got named, in what order, and whose pages are behind it.</p><p class="ru">Кого назвали, в каком порядке и чьи страницы за этим стоят.</p></div>
+        <div class="step"><svg class="si" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 20h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M15.5 4.5 19 8 9 18l-4 1 1-4 9.5-10.5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg><span class="no">03</span><h3><span class="en">The work</span><span class="ru">Работа</span></h3><p class="en">We write the pages, fill the listings, email the authors.</p><p class="ru">Пишем страницы, заполняем карточки, пишем авторам чужих статей.</p></div>
+        <div class="step"><svg class="si" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20V13M10 20V8M16 20v-5M22 20V4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span class="no">04</span><h3><span class="en">The proof</span><span class="ru">Замер</span></h3><p class="en">A month later, the same questions. If nothing moved, we say so.</p><p class="ru">Через месяц те же вопросы заново. Не сдвинулось — так и напишем.</p></div>
       </div>
       <p class="caption"><span class="en"><b>How long.</b> A new page has to reach the top of ordinary search first, and that takes weeks — sometimes a couple of months. Nobody has a faster button, and anyone who says otherwise is selling you one.</span><span class="ru"><b>Сколько ждать.</b> Новая страница сначала должна попасть в верх обычного поиска, а это недели, иногда пара месяцев. Быстрой кнопки нет ни у кого, и тот, кто обещает обратное, продаёт вам её.</span></p>
     </div>
@@ -889,16 +943,14 @@
       <div class="split">
         <div class="stack">
           <ul class="items">
-            <li><b><span class="en">Two or three pages</span><span class="ru">Две-три страницы</span></b> <span class="en">written for the buyer questions where you are absent, handed to you. Yours permanently — and they work in ordinary search too.</span><span class="ru">под покупательские вопросы, где вас нет, написанные и переданные вам. Ваши навсегда — и в обычном поиске они тоже работают.</span></li>
-            <li><b><span class="en">Comparison pages</span><span class="ru">Сравнительные страницы</span></b> <span class="en">against whoever holds your slot, with tables that survive being quoted.</span><span class="ru">против тех, кто занял ваше место, с таблицами, которые переживают цитирование.</span></li>
-            <li><b><span class="en">Directory and marketplace cards</span><span class="ru">Карточки в каталогах и на витринах</span></b> <span class="en">filled in to the end — in B2B these get cited more than anything else.</span><span class="ru">заполненные до конца — в B2B их цитируют чаще всего остального.</span></li>
+            <li><b><span class="en">Two or three pages</span><span class="ru">Две-три страницы</span></b> <span class="en">written for the questions where you are missing. Yours to keep.</span><span class="ru">под вопросы, где вас нет. Остаются вашими.</span></li>
+            <li><b><span class="en">Filled-in listings</span><span class="ru">Заполненные карточки</span></b> <span class="en">in the directories that get cited most in B2B.</span><span class="ru">в каталогах, которые в B2B цитируют чаще всего.</span></li>
           </ul>
         </div>
         <div class="stack">
           <ul class="items">
-            <li><b><span class="en">The author correspondence</span><span class="ru">Переписка с авторами</span></b> <span class="en">with the people whose articles the answers rely on — including how it ended, when it ended badly.</span><span class="ru">статей, на которые опираются ответы, — включая то, чем она кончилась, если кончилась ничем.</span></li>
-            <li><b><span class="en">One set of facts everywhere</span><span class="ru">Один набор фактов везде</span></b> <span class="en">— price, plans, integrations, limits — reconciled across your site, catalogues and listings.</span><span class="ru">— цена, тарифы, интеграции, ограничения — сверенные между сайтом, каталогами и карточками.</span></li>
-            <li><b><span class="en">Two measurements</span><span class="ru">Два замера</span></b> <span class="en">with the exact source URLs: before the work and a month after it.</span><span class="ru">с точными адресами источников: до работы и через месяц после.</span></li>
+            <li><b><span class="en">The author correspondence</span><span class="ru">Переписка с авторами</span></b> <span class="en">— including how it ended.</span><span class="ru">чужих статей — включая то, чем она кончилась.</span></li>
+            <li><b><span class="en">Two measurements</span><span class="ru">Два замера</span></b> <span class="en">with the exact links: before and a month after.</span><span class="ru">с точными ссылками: до работы и через месяц.</span></li>
           </ul>
         </div>
       </div>
@@ -912,27 +964,27 @@
       <div class="stack">
         <p class="label"><span class="en">Limits</span><span class="ru">Ограничения</span></p>
         <h2 class="h-lg"><span class="en">What I will not do — and who I turn down.</span><span class="ru">Чего я не делаю и кому откажу.</span></h2>
-        <p class="body-2 en">Four things get sold in this field that work for a month and then cost you more than they gave. I do none of them, and I would rather lose the deal than explain later why your profile got wiped.</p>
-        <p class="body-2 ru">В этой отрасли продают четыре вещи, которые работают месяц, а потом обходятся дороже, чем дали. Я не делаю ни одной — и скорее потеряю сделку, чем стану потом объяснять, почему вычистили ваш профиль.</p>
+        <p class="body-2 en">Eight things you will not get from us.</p>
+        <p class="body-2 ru">Восемь вещей, которых вы от нас не получите.</p>
       </div>
       <ul class="items en">
-        <li><b>Local business.</b> When someone searches for “a gym near me”, the answer is built from maps and directories, not articles. There is nothing to change there.</li>
-        <li><b>Head terms.</b> “Best CRM” belongs to review sites with ten years of history. Nobody gets in there in a month.</li>
-        <li><b>Companies that cannot publish.</b> If a change to your own site takes three weeks through a contractor, the work will not happen at any price.</li>
-        <li><b>Two competitors.</b> If I already work with someone in your category, I turn you down — otherwise I would be working against my own client.</li>
-        <li><b>Promise you a position.</b> Nobody controls the model. I can promise the work and an honest measurement of it.</li>
-        <li><b>Buy or write reviews.</b> G2 strips them and it costs you the profile doing the most work.</li>
-        <li><b>Run invented accounts in communities.</b> Reddit catches them, and a founder answering under their own name outlives the trick.</li>
-        <li><b>Mass-generate pages.</b> They get filtered, and they pull down the domain carrying everything else.</li>
+        <li><b>Local business.</b> There the answer comes from maps, not articles.</li>
+        <li><b>Head terms like “best CRM”.</b> Review sites with ten years of history hold those.</li>
+        <li><b>If you cannot publish.</b> Three weeks through a contractor and the work never happens.</li>
+        <li><b>Two competitors in one niche.</b> The second one gets turned down.</li>
+        <li><b>No promised position.</b> Nobody controls the model.</li>
+        <li><b>No bought reviews.</b> Directories strip them and you lose the profile.</li>
+        <li><b>No fake accounts.</b> They get caught.</li>
+        <li><b>No mass-generated pages.</b> They get filtered and drag the domain down.</li>
       </ul>
       <ul class="items ru">
-        <li><b>Не берусь за локальный бизнес.</b> Когда ищут «зал рядом со мной», ответ собирается из карт и справочников, а не из статей. Там нечего менять.</li>
-        <li><b>Не обещаю вывести по общему запросу.</b> «Лучшая CRM» держат обзорники с историей в десять лет. За месяц туда не попадёт никто.</li>
-        <li><b>Не берусь, если вы не можете публиковать.</b> Если правка на своём сайте идёт три недели через подрядчика, работа не сделается ни за какие деньги.</li>
-        <li><b>Не беру двух конкурентов.</b> Если я уже работаю с кем-то из вашей категории, вам откажу — иначе работал бы против своего же клиента.</li>
-        <li><b>Не обещаю позицию.</b> Моделью никто не управляет. Обещаю работу и честный замер.</li>
-        <li><b>Не покупаю и не пишу отзывы.</b> Каталоги их вычищают, и вы теряете профиль, который работал лучше всего.</li>
-        <li><b>Не завожу выдуманные аккаунты в сообществах.</b> Их вычисляют, а основатель, отвечающий своим именем, переживает любую хитрость.</li>
+        <li><b>Локальный бизнес.</b> Там ответ собирается из карт, а не из статей.</li>
+        <li><b>Общие запросы вроде «лучшая CRM».</b> Их держат обзорники с историей в десять лет.</li>
+        <li><b>Если вы не можете публиковать.</b> Правка через подрядчика три недели — работа не сделается.</li>
+        <li><b>Двух конкурентов из одной ниши.</b> Второму откажу.</li>
+        <li><b>Не обещаю позицию.</b> Моделью никто не управляет.</li>
+        <li><b>Не покупаю отзывы.</b> Каталоги их вычищают, и вы теряете профиль.</li>
+        <li><b>Не завожу фейковые аккаунты.</b> Их вычисляют.</li>
         <li><b>Не генерирую страницы пачками.</b> Их фильтруют, и они тянут вниз весь домен.</li>
       </ul>
     </div>
