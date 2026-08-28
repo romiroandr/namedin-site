@@ -67,6 +67,9 @@
   }
 
   * { box-sizing: border-box; }
+  /* Свой display перебивает атрибут hidden — так «Заявка принята» показывалась
+     при каждой загрузке. Правило общее, чтобы это не повторилось нигде. */
+  [hidden] { display: none !important; }
   html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 
   body {
@@ -567,12 +570,35 @@
   .ba-why { font-size: var(--t12); line-height: 1.6; color: var(--steel); margin-top: auto; }
   @media (max-width: 760px) { .ba { grid-template-columns: 1fr; } }
 
-  /* вопрос-ответ: разделители пунктиром, как и всё остальное в системе */
+  /* вопрос-ответ: раскрывается по нажатию */
   .qa { display: flex; flex-direction: column; }
-  .qa > div { padding: var(--s24) 0; border-top: 1px dashed var(--rule); }
-  .qa > div:first-child { border-top: 0; padding-top: 0; }
-  .qa dt { font-size: var(--t16); font-weight: 1000; letter-spacing: -0.01em; color: var(--paper); margin: 0; }
-  .qa dd { margin: var(--s10) 0 0; font-size: var(--t14); line-height: 1.7; color: var(--steel); max-width: 46em; }
+  .qa details { border-top: 1px dashed var(--rule); }
+  .qa details:first-child { border-top: 0; }
+  .qa summary {
+    list-style: none; cursor: pointer; padding: var(--s18) 0;
+    display: flex; align-items: center; gap: var(--s18);
+    font-size: var(--t16); font-weight: 1000; letter-spacing: -.01em; color: var(--paper);
+    transition: color .16s ease;
+  }
+  .qa summary::-webkit-details-marker { display: none; }
+  .qa summary:hover { color: var(--ash); }
+  .qa .qa-t { flex: 1; min-width: 0; }
+  /* плюс, который на раскрытом вопросе становится минусом */
+  .qa .qa-i { position: relative; width: 14px; height: 14px; flex: none; }
+  .qa .qa-i::before, .qa .qa-i::after {
+    content: ""; position: absolute; left: 0; top: 6px; width: 14px; height: 1.5px;
+    background: var(--steel); transition: transform .22s cubic-bezier(.22,.61,.36,1);
+  }
+  .qa .qa-i::after { transform: rotate(90deg); }
+  .qa details[open] .qa-i::after { transform: rotate(0); }
+  .qa details[open] .qa-i::before,
+  .qa details[open] .qa-i::after { background: var(--paper); }
+  .qa-a {
+    font-size: var(--t14); line-height: 1.7; color: var(--steel);
+    max-width: 46em; padding-bottom: var(--s24);
+    animation: qaopen .24s cubic-bezier(.22,.61,.36,1);
+  }
+  @keyframes qaopen { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
 
   /* срок: подпись слева, событие справа */
   .track { display: flex; flex-direction: column; gap: 0; }
@@ -1089,28 +1115,28 @@
     <div class="stack-l">
       <p class="label"><span class="en">Questions</span><span class="ru">Вопросы</span></p>
       <h2 class="h-lg"><span class="en">What gets asked first.</span><span class="ru">То, что спрашивают первым.</span></h2>
-      <dl class="qa">
-        <div>
-          <dt><span class="en">Do you guarantee a result?</span><span class="ru">Вы гарантируете результат?</span></dt>
-          <dd><span class="en">No. Nobody controls the model, and anyone who guarantees you a position either does not understand the mechanism or is lying to you. I guarantee the work and an honest measurement of it. If two months in the number has not moved, I will say so first.</span><span class="ru">Нет. Моделью никто не управляет, и всякий, кто гарантирует вам позицию, либо не понимает механику, либо врёт. Я гарантирую работу и честный замер. Если через два месяца цифра не сдвинулась, я скажу об этом первым.</span></dd>
-        </div>
-        <div>
-          <dt><span class="en">How is this different from SEO?</span><span class="ru">Чем это отличается от SEO?</span></dt>
-          <dd><span class="en">By the target. SEO chases traffic. We chase the mention. A page can rank beautifully and still earn you zero mentions — we have that case measured.</span><span class="ru">Целью. SEO гонится за трафиком. Мы — за упоминанием. Страница может отлично ранжироваться и не дать вам ни одного упоминания: у нас такой случай измерен.</span></dd>
-        </div>
-        <div>
-          <dt><span class="en">What if nothing moves in two months?</span><span class="ru">А если за два месяца ничего не сдвинется?</span></dt>
-          <dd><span class="en">Possible. And I say so before you pay, not after. The pages and listings stay yours — they work in ordinary search regardless.</span><span class="ru">Возможно. Говорю это до оплаты, а не после. Страницы и карточки остаются вашими — в обычном поиске они работают в любом случае.</span></dd>
-        </div>
-        <div>
-          <dt><span class="en">Will you write under our name?</span><span class="ru">Вы будете писать от нашего имени?</span></dt>
-          <dd><span class="en">No. Drafts come to you and you publish them. I do not need access to your site, and I never post as you anywhere.</span><span class="ru">Нет. Черновики приходят к вам, публикуете их вы. Доступ к вашему сайту мне не нужен, и нигде я не выступаю от вашего лица.</span></dd>
-        </div>
-        <div>
-          <dt><span class="en">Do you work with our competitors?</span><span class="ru">Вы работаете с нашими конкурентами?</span></dt>
-          <dd><span class="en">No. We never take two companies competing in the same category — we would be working against our own client. If your category is already taken, you hear that in the first reply, not after you have paid.</span><span class="ru">Нет. Двух компаний из одной категории мы не берём — иначе работали бы против собственного клиента. Если ваша категория уже занята, вы узнаете это в первом же ответе, а не после оплаты.</span></dd>
-        </div>
-      </dl>
+      <div class="qa">
+        <details>
+          <summary><span class="qa-t"><span class="en">Do you guarantee a result?</span><span class="ru">Вы гарантируете результат?</span></span><span class="qa-i" aria-hidden="true"></span></summary>
+          <div class="qa-a"><span class="en">No. Nobody controls the model, and anyone who guarantees you a position either does not understand the mechanism or is lying to you. I guarantee the work and an honest measurement of it. If two months in the number has not moved, I will say so first.</span><span class="ru">Нет. Моделью никто не управляет, и всякий, кто гарантирует вам позицию, либо не понимает механику, либо врёт. Я гарантирую работу и честный замер. Если через два месяца цифра не сдвинулась, я скажу об этом первым.</span></div>
+        </details>
+        <details>
+          <summary><span class="qa-t"><span class="en">How is this different from SEO?</span><span class="ru">Чем это отличается от SEO?</span></span><span class="qa-i" aria-hidden="true"></span></summary>
+          <div class="qa-a"><span class="en">By the target. SEO chases traffic. We chase the mention. A page can rank beautifully and still earn you zero mentions — we have that case measured.</span><span class="ru">Целью. SEO гонится за трафиком. Мы — за упоминанием. Страница может отлично ранжироваться и не дать вам ни одного упоминания: у нас такой случай измерен.</span></div>
+        </details>
+        <details>
+          <summary><span class="qa-t"><span class="en">What if nothing moves in two months?</span><span class="ru">А если за два месяца ничего не сдвинется?</span></span><span class="qa-i" aria-hidden="true"></span></summary>
+          <div class="qa-a"><span class="en">Possible. And I say so before you pay, not after. The pages and listings stay yours — they work in ordinary search regardless.</span><span class="ru">Возможно. Говорю это до оплаты, а не после. Страницы и карточки остаются вашими — в обычном поиске они работают в любом случае.</span></div>
+        </details>
+        <details>
+          <summary><span class="qa-t"><span class="en">Will you write under our name?</span><span class="ru">Вы будете писать от нашего имени?</span></span><span class="qa-i" aria-hidden="true"></span></summary>
+          <div class="qa-a"><span class="en">No. Drafts come to you and you publish them. I do not need access to your site, and I never post as you anywhere.</span><span class="ru">Нет. Черновики приходят к вам, публикуете их вы. Доступ к вашему сайту мне не нужен, и нигде я не выступаю от вашего лица.</span></div>
+        </details>
+        <details>
+          <summary><span class="qa-t"><span class="en">Do you work with our competitors?</span><span class="ru">Вы работаете с нашими конкурентами?</span></span><span class="qa-i" aria-hidden="true"></span></summary>
+          <div class="qa-a"><span class="en">No. We never take two companies competing in the same category — we would be working against our own client. If your category is already taken, you hear that in the first reply, not after you have paid.</span><span class="ru">Нет. Двух компаний из одной категории мы не берём — иначе работали бы против собственного клиента. Если ваша категория уже занята, вы узнаете это в первом же ответе, а не после оплаты.</span></div>
+        </details>
+      </div>
     </div>
   </section>
 
