@@ -770,54 +770,31 @@
   // Полушарие выбирается по знаку координаты, а не жребием. Раньше сторона
   // бросалась случайно — половины набирали разное число точек, и объект
   // получался кривым.
+  // Только полушария. Без мозжечка и ствола объект компактнее, поэтому
+  // размеры подняты — иначе он висел бы мелким пятном в середине кадра.
   function cerebrum(d) {
     const f = fold(d.theta, d.phi, 1);
     const side = d.x >= 0 ? 1 : -1;
     return {
-      x: side * (0.150 + Math.abs(d.x) * 0.560 * f),   // два полушария и борозда между ними
-      y: d.y * 0.575 * f + 0.055,
-      z: d.z * 0.830 * f
+      x: side * (0.175 + Math.abs(d.x) * 0.650 * f),   // два полушария и борозда между ними
+      y: d.y * 0.670 * f,
+      z: d.z * 0.960 * f
     };
-  }
-
-  function cerebellum(d) {
-    const f = fold(d.theta, d.phi, 2.1);
-    const side = d.x >= 0 ? 1 : -1;
-    return {
-      x: side * (0.050 + Math.abs(d.x) * 0.330 * f),
-      y: d.y * 0.230 * f - 0.545,
-      z: d.z * 0.280 * f - 0.60
-    };
-  }
-
-  function stem(i, n) {
-    const u = (i + 0.5) / n;
-    const a = GOLD * i;
-    const rad = 0.112 - u * 0.044;
-    return { x: Math.cos(a) * rad, y: -0.30 - u * 0.66, z: Math.sin(a) * rad - 0.24 + u * 0.10 };
   }
 
   function build() {
     const n = Math.min(2600, Math.max(1100, Math.round((W * H) / 250)));
-    const nC = Math.round(n * 0.80), nB = Math.round(n * 0.145), nS = n - nC - nB;
     pts = [];
-
-    for (let i = 0; i < nC; i++) pts.push(cerebrum(latticeDir(i, nC)));
-    const iB = pts.length;
-    for (let i = 0; i < nB; i++) pts.push(cerebellum(latticeDir(i, nB)));
-    const iS = pts.length;
-    for (let i = 0; i < nS; i++) pts.push(stem(i, nS));
+    for (let i = 0; i < n; i++) pts.push(cerebrum(latticeDir(i, n)));
 
     // Соседи по решётке идут подряд, поэтому нить, связывающая i и i+1,
     // ложится ровной спиралью по поверхности — это и читается как чертёж.
     const links = [];
-    const LIM = 0.052;
-    for (const [from, to] of [[0, iB], [iB, iS], [iS, pts.length]]) {
-      for (let i = from; i + 1 < to; i++) {
-        const a = pts[i], b = pts[i + 1];
-        const dx = a.x - b.x, dy = a.y - b.y, dz = a.z - b.z;
-        if (dx * dx + dy * dy + dz * dz < LIM * LIM) links.push([i, i + 1]);
-      }
+    const LIM = 0.058;
+    for (let i = 0; i + 1 < pts.length; i++) {
+      const a = pts[i], b = pts[i + 1];
+      const dx = a.x - b.x, dy = a.y - b.y, dz = a.z - b.z;
+      if (dx * dx + dy * dy + dz * dz < LIM * LIM) links.push([i, i + 1]);
     }
     linkList = links;
 
@@ -832,9 +809,9 @@
     }));
 
     lit = [
-      { x: -0.44, y: 0.30, z: 0.52, color: '#7089ba', phase: 0.0 },
-      { x:  0.52, y: 0.06, z: 0.30, color: '#ffffff', phase: 2.1 },
-      { x:  0.20, y: 0.46, z: -0.62, color: '#7089ba', phase: 4.2 }
+      { x: -0.50, y: 0.34, z: 0.60, color: '#7089ba', phase: 0.0 },
+      { x:  0.60, y: 0.07, z: 0.35, color: '#ffffff', phase: 2.1 },
+      { x:  0.23, y: 0.52, z: -0.71, color: '#7089ba', phase: 4.2 }
     ].map(l => ({ ...l, r: 9.5, rot: 0 }));
   }
 
