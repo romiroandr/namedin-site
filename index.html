@@ -55,6 +55,16 @@
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 
+  /* Две линии по самым краям окна: чертёж должен доходить до кромки листа,
+     иначе на широком мониторе колонка висит в пустоте. */
+  body::before, body::after {
+    content: ""; position: fixed; top: 0; bottom: 0; width: 0;
+    border-left: 1px dashed var(--rule); z-index: 0; pointer-events: none;
+  }
+  body::before { left: 12px; }
+  body::after  { right: 12px; }
+  @media (max-width: 700px) { body::before, body::after { display: none; } }
+
   body {
     margin: 0;
     background: var(--void);
@@ -70,12 +80,14 @@
   /* Обойма: две вертикальные пунктирные линии по краям колонки —
      это и есть «containment», главный приём системы. */
   .wrap {
-    max-width: var(--max); margin: 0 auto; padding: 0 var(--s24);
+    max-width: var(--max); margin: 0 auto;
+    /* поля растут вместе с экраном, чтобы колонка не липла к пунктиру */
+    padding: 0 clamp(var(--s18), 4vw, 56px);
     position: relative; z-index: 1;
     border-left: 1px dashed var(--rule);
     border-right: 1px dashed var(--rule);
   }
-  section { padding: var(--s80) 0; }
+  section { padding: clamp(48px, 7.4vh, 96px) 0; }
   section + section > .wrap { border-top: 1px dashed var(--rule); }
 
   /* ---------- типографика: вес делает всю работу ---------- */
@@ -155,7 +167,13 @@
 
   /* Первый экран: настольная лампа, направленная в чертёж.
      Единственная мягкость во всей системе. */
-  .hero { padding-top: var(--s36); position: relative; }
+  .hero {
+    position: relative; padding-top: 0; padding-bottom: var(--s60);
+    /* svh, а не vh: на телефоне адресная строка съезжает и vh врёт на её высоту */
+    min-height: calc(100svh - 84px);
+    display: flex; align-items: center;
+  }
+  .hero > .wrap { width: 100%; }
   .hero::before {
     content: ""; position: absolute; inset: -10% -20% auto -20%; height: 90%;
     background: radial-gradient(60% 70% at 50% 30%,
@@ -164,7 +182,11 @@
   }
   .hero > .wrap { position: relative; z-index: 1; }
 
-  #field { display: block; width: 100%; aspect-ratio: 1/1; max-height: 76vh; }
+  #field {
+    display: block; width: 100%;
+    /* высота от окна: квадрат любой ценой оставлял пустоту снизу на широких экранах */
+    height: clamp(280px, 62svh, 620px);
+  }
 
   /* ---------- разбор ответа ---------- */
   .explorer { display: grid; grid-template-columns: minmax(0,22rem) minmax(0,1fr); gap: var(--s60); align-items: start; }
@@ -721,80 +743,99 @@
     return '#808080';
   }
 
-  let W = 0, H = 0, dpr = 1, pts = [], lit = [], running = false;
+  let W = 0, H = 0, dpr = 1, pts = [], lit = [], linkList = [], running = false;
   const pointer = { x: 0, y: 0 };
   let aimYaw = 0, aimPitch = 0;
 
-  // radial wrinkle — this is what reads as gyri in silhouette
+  // Складки коры. Амплитуда занижена нарочно: сильная рябь читается как
+  // мятый комок, а нам нужен чертёж — силуэт должен оставаться узнаваемым.
   function fold(theta, phi, k) {
     return 1
-      + 0.110 * Math.sin(6 * k * theta) * Math.sin(5 * k * phi)
-      + 0.066 * Math.sin(9 * k * phi + 1.1)
-      + 0.048 * Math.sin(11 * k * theta + 0.4);
+      + 0.052 * Math.sin(6 * k * theta) * Math.sin(5 * k * phi)
+      + 0.030 * Math.sin(9 * k * phi + 1.1);
   }
 
-  function shellDir() {
-    const z = 2 * Math.random() - 1;
-    const theta = Math.random() * Math.PI * 2;
-    const s = Math.sqrt(1 - z * z);
-    return { x: s * Math.cos(theta), y: s * Math.sin(theta), z: z, theta: theta, phi: Math.acos(z) };
+  // Точки раскладываются золотым углом, а не случайно. Случайная выборка по
+  // сфере неизбежно сбивается в комки и проплешины — именно от неё объект
+  // выглядел неровным. Решётка Фибоначчи даёт ровный шаг между соседями.
+  const GOLD = Math.PI * (1 + Math.sqrt(5));
+  function latticeDir(i, n) {
+    const z = 1 - 2 * (i + 0.5) / n;
+    const r = Math.sqrt(Math.max(0, 1 - z * z));
+    const theta = GOLD * i;
+    return { x: r * Math.cos(theta), y: r * Math.sin(theta), z: z,
+             theta: theta % (Math.PI * 2), phi: Math.acos(z) };
   }
 
-  function cerebrum() {
-    const d = shellDir();
-    const t = 0.94 + Math.random() * 0.06;          // thin shell
-    const f = fold(d.theta, d.phi, 1) * t;
-    const side = Math.random() < 0.5 ? -1 : 1;
+  // Полушарие выбирается по знаку координаты, а не жребием. Раньше сторона
+  // бросалась случайно — половины набирали разное число точек, и объект
+  // получался кривым.
+  function cerebrum(d) {
+    const f = fold(d.theta, d.phi, 1);
+    const side = d.x >= 0 ? 1 : -1;
     return {
-      x: side * (0.160 + Math.abs(d.x * 0.585 * f)),  // two lobes + longitudinal fissure
-      y: d.y * 0.585 * f + 0.055,
-      z: d.z * 0.845 * f
+      x: side * (0.150 + Math.abs(d.x) * 0.560 * f),   // два полушария и борозда между ними
+      y: d.y * 0.575 * f + 0.055,
+      z: d.z * 0.830 * f
     };
   }
 
-  function cerebellum() {
-    const d = shellDir();
-    const f = fold(d.theta, d.phi, 2.1) * (0.92 + Math.random() * 0.08);
-    const side = Math.random() < 0.5 ? -1 : 1;
+  function cerebellum(d) {
+    const f = fold(d.theta, d.phi, 2.1);
+    const side = d.x >= 0 ? 1 : -1;
     return {
-      x: side * (0.055 + Math.abs(d.x * 0.34 * f)),
-      y: d.y * 0.235 * f - 0.545,
-      z: d.z * 0.285 * f - 0.60
+      x: side * (0.050 + Math.abs(d.x) * 0.330 * f),
+      y: d.y * 0.230 * f - 0.545,
+      z: d.z * 0.280 * f - 0.60
     };
   }
 
-  function stem() {
-    const u = Math.random();
-    const a = Math.random() * Math.PI * 2;
-    const rad = (0.115 - u * 0.045) * (0.85 + Math.random() * 0.15);
-    return {
-      x: Math.cos(a) * rad,
-      y: -0.30 - u * 0.66,
-      z: Math.sin(a) * rad - 0.24 + u * 0.10
-    };
+  function stem(i, n) {
+    const u = (i + 0.5) / n;
+    const a = GOLD * i;
+    const rad = 0.112 - u * 0.044;
+    return { x: Math.cos(a) * rad, y: -0.30 - u * 0.66, z: Math.sin(a) * rad - 0.24 + u * 0.10 };
   }
 
   function build() {
-    const n = Math.min(2800, Math.max(1200, Math.round((W * H) / 235)));
+    const n = Math.min(2600, Math.max(1100, Math.round((W * H) / 250)));
+    const nC = Math.round(n * 0.80), nB = Math.round(n * 0.145), nS = n - nC - nB;
     pts = [];
-    for (let i = 0; i < n; i++) {
-      const r = Math.random();
-      const p = r < 0.80 ? cerebrum() : r < 0.945 ? cerebellum() : stem();
-      pts.push({
-        x: p.x, y: p.y, z: p.z,
-        r: 2.5 + Math.random() * 3.1,
-        rot: Math.random() * Math.PI * 2,
-        spin: (Math.random() - 0.5) * 0.5,
-        color: pickColor(),
-        a: 0.46 + Math.random() * 0.44
-      });
+
+    for (let i = 0; i < nC; i++) pts.push(cerebrum(latticeDir(i, nC)));
+    const iB = pts.length;
+    for (let i = 0; i < nB; i++) pts.push(cerebellum(latticeDir(i, nB)));
+    const iS = pts.length;
+    for (let i = 0; i < nS; i++) pts.push(stem(i, nS));
+
+    // Соседи по решётке идут подряд, поэтому нить, связывающая i и i+1,
+    // ложится ровной спиралью по поверхности — это и читается как чертёж.
+    const links = [];
+    const LIM = 0.052;
+    for (const [from, to] of [[0, iB], [iB, iS], [iS, pts.length]]) {
+      for (let i = from; i + 1 < to; i++) {
+        const a = pts[i], b = pts[i + 1];
+        const dx = a.x - b.x, dy = a.y - b.y, dz = a.z - b.z;
+        if (dx * dx + dy * dy + dz * dz < LIM * LIM) links.push([i, i + 1]);
+      }
     }
-    // the three that get named — fixed on the surface, they orbit with the brain
+    linkList = links;
+
+    // Размер и наклон одинаковые: разнобой читается как рассыпанное конфетти,
+    // а система просит схему
+    pts = pts.map((p, i) => ({
+      x: p.x, y: p.y, z: p.z,
+      r: 2.2,
+      rot: (i % 6) * 0.5236,
+      color: pickColor(),
+      a: 0.52 + ((i * 37) % 40) / 100
+    }));
+
     lit = [
       { x: -0.44, y: 0.30, z: 0.52, color: '#7089ba', phase: 0.0 },
       { x:  0.52, y: 0.06, z: 0.30, color: '#ffffff', phase: 2.1 },
       { x:  0.20, y: 0.46, z: -0.62, color: '#7089ba', phase: 4.2 }
-    ].map(l => ({ ...l, r: 9.5, rot: Math.random() * 6 }));
+    ].map(l => ({ ...l, r: 9.5, rot: 0 }));
   }
 
   function resize() {
@@ -852,16 +893,36 @@
       let y = p.y * cp - z * sp;
       z = p.y * sp + z * cp;
       const k = FOC / (CAM - z);
-      return { sx: ox + x * S * k, sy: oy + y * S * k, k: k, z: z };
+      // минус: в канве ось Y растёт вниз, а модель задана «вверх — плюс».
+      // Без этого мозжечок и ствол оказывались над полушариями
+      return { sx: ox + x * S * k, sy: oy - y * S * k, k: k, z: z };
     };
 
     buf.length = 0;
-    for (const p of pts) { const q = project(p); q.p = p; buf.push(q); }
+    for (let i = 0; i < pts.length; i++) {
+      const q = project(pts[i]); q.p = pts[i]; q.i = i; buf.push(q);
+    }
+
+    // Нить по поверхности — она и делает объект чертежом, а не россыпью.
+    // Рисуется первой, чтобы узлы легли поверх неё.
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = '#4d4d4d';
+    for (const [a, b] of linkList) {
+      const qa = buf[a], qb = buf[b];
+      const depth = ((qa.z + qb.z) / 2 + 1) / 2;
+      ctx.globalAlpha = 0.10 + depth * 0.34;
+      ctx.beginPath();
+      ctx.moveTo(qa.sx, qa.sy);
+      ctx.lineTo(qb.sx, qb.sy);
+      ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+
     buf.sort((m, n) => m.z - n.z);                       // painter's algorithm
 
     for (const q of buf) {
       const depth = (q.z + 1) / 2;                       // 0 far … 1 near
-      tri(q.sx, q.sy, q.p.r * q.k * 0.80, q.p.rot + t * q.p.spin,
+      tri(q.sx, q.sy, q.p.r * q.k * 0.80, q.p.rot,
           q.p.color, q.p.a * Math.pow(0.16 + depth * 0.84, 1.25), false);
     }
 
