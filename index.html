@@ -46,9 +46,22 @@
             "Segoe UI", Roboto, Arial, sans-serif;
     --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace;
 
+    /* Ряд 9 · 12 · 14 · 16 · 24 · 32 · 70 сохранён по отношениям, но каждая
+       ступень тянется с окном: раньше тело было 16px и на 320, и на 2560. */
+    --t9:  clamp(9px,  8.0px + 0.16vw, 12px);
+    --t12: clamp(11px, 10.0px + 0.22vw, 15px);
+    --t14: clamp(13px, 12.0px + 0.28vw, 18px);
+    --t16: clamp(15px, 13.5px + 0.34vw, 21px);
+    --t24: clamp(19px, 16.0px + 0.62vw, 32px);
+    --t32: clamp(24px, 20.0px + 0.90vw, 44px);
+    --t70: clamp(38px, 24.0px + 3.60vw, 92px);   /* первый экран */
+    --t62: clamp(29px, 18.0px + 3.20vw, 82px);   /* заголовки секций — ниже первого экрана */
+
     --s6:6px; --s10:10px; --s12:12px; --s18:18px; --s24:24px; --s30:30px;
     --s36:36px; --s60:60px; --s80:80px; --s96:96px;
-    --max: 1200px;
+    /* на широком мониторе колонка росла не вместе с ним: при 2560 по краям
+       оставалось по 680 пустых пикселей */
+    --max: clamp(1200px, 80vw, 1560px);
     --r-nav: 6px; --r-tile: 20px; --r-pill: 100px;
   }
 
@@ -70,7 +83,7 @@
     background: var(--void);
     color: var(--paper);
     font-family: var(--font);
-    font-size: 16px;
+    font-size: var(--t16);
     line-height: 1.5;
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
@@ -95,23 +108,23 @@
   .display, .h-lg, .h-md {
     color: var(--paper); margin: 0; font-weight: 1000; text-wrap: balance;
   }
-  .display { font-size: clamp(32px, 7.6vw, 70px); line-height: 1.10; letter-spacing: -0.04em; }
-  .h-lg    { font-size: clamp(32px, 6.4vw, 70px); line-height: 1.10; letter-spacing: -0.04em; }
-  .h-md    { font-size: 32px; line-height: 1.20; letter-spacing: -0.01em; }
+  .display { font-size: var(--t70); line-height: 1.10; letter-spacing: -0.04em; }
+  .h-lg    { font-size: var(--t62); line-height: 1.10; letter-spacing: -0.04em; }
+  .h-md    { font-size: var(--t32); line-height: 1.20; letter-spacing: -0.01em; }
 
   /* надстрочные метки — единственный моноширинный момент */
   .label {
-    margin: 0; font-family: var(--mono); font-size: 9px; font-weight: 500;
+    margin: 0; font-family: var(--mono); font-size: var(--t9); font-weight: 500;
     line-height: 1.6; letter-spacing: 0.02em; text-transform: uppercase;
     color: var(--steel);
   }
   p { margin: 0; }
-  .body    { font-size: 16px; font-weight: 400; line-height: 1.5; color: var(--paper); max-width: 34em; }
-  .body-2  { font-size: 16px; font-weight: 400; line-height: 1.5; color: var(--steel); max-width: 36em; }
-  .caption { font-size: 12px; font-weight: 400; line-height: 1.2; color: var(--ash); }
+  .body    { font-size: var(--t16); font-weight: 400; line-height: 1.5; color: var(--paper); max-width: 34em; }
+  .body-2  { font-size: var(--t16); font-weight: 400; line-height: 1.5; color: var(--steel); max-width: 36em; }
+  .caption { font-size: var(--t12); font-weight: 400; line-height: 1.2; color: var(--ash); }
   /* сводка «назван в N из M» — метка, а не абзац: моноширинная, как все метки */
   .tally {
-    font-family: var(--mono); font-size: 9px; font-weight: 500; line-height: 1.6;
+    font-family: var(--mono); font-size: var(--t9); font-weight: 500; line-height: 1.6;
     letter-spacing: 0.02em; text-transform: uppercase; color: var(--steel); max-width: 40em;
   }
 
@@ -132,7 +145,7 @@
   }
   .brand { display: flex; align-items: center; gap: var(--s10); }
   .brand span {
-    font-family: var(--mono); font-size: 9px; font-weight: 500;
+    font-family: var(--mono); font-size: var(--t9); font-weight: 500;
     letter-spacing: 0.02em; text-transform: uppercase; color: var(--paper);
   }
 
@@ -140,7 +153,7 @@
   .pill {
     display: inline-flex; align-items: center; justify-content: center;
     background: none; color: var(--paper);
-    font-family: var(--mono); font-size: 9px; font-weight: 500;
+    font-family: var(--mono); font-size: var(--t9); font-weight: 500;
     letter-spacing: 0.02em; text-transform: uppercase; text-decoration: none; line-height: 1.6;
     padding: 13px 22px; border: 1px solid var(--paper); border-radius: var(--r-pill);
     white-space: nowrap; cursor: pointer; min-height: 44px;
@@ -151,7 +164,7 @@
   .langs { display: inline-flex; gap: 2px; align-items: center; }
   .lang {
     background: none; border: 0; cursor: pointer;
-    font-family: var(--mono); font-size: 9px; font-weight: 500;
+    font-family: var(--mono); font-size: var(--t9); font-weight: 500;
     letter-spacing: 0.02em; text-transform: uppercase; color: var(--steel);
     padding: 12px 11px; border-radius: var(--r-pill); transition: color .15s ease;
     min-height: 44px; display: inline-flex; align-items: center;
@@ -187,7 +200,7 @@
   #field {
     display: block; width: 100%;
     /* высота от окна: квадрат любой ценой оставлял пустоту снизу на широких экранах */
-    height: clamp(280px, 62svh, 620px);
+    height: clamp(260px, 60svh, 760px);
   }
 
   /* ---------- разбор ответа ---------- */
@@ -196,7 +209,7 @@
   .qbtn {
     display: block; width: 100%; text-align: left; cursor: pointer;
     background: none; border: 0; padding: var(--s10) 0 var(--s10) 20px; position: relative;
-    font-family: var(--font); font-size: 14px; font-weight: 400; line-height: 1.7;
+    font-family: var(--font); font-size: var(--t14); font-weight: 400; line-height: 1.7;
     color: var(--steel); transition: color .16s ease;
   }
   .qbtn::before {
@@ -218,16 +231,16 @@
   @keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 
   .verdict { display: flex; align-items: baseline; gap: var(--s18); flex-wrap: wrap; }
-  .verdict .num { font-size: 32px; font-weight: 1000; letter-spacing: -0.01em; line-height: 1.2; color: var(--paper); }
+  .verdict .num { font-size: var(--t32); font-weight: 1000; letter-spacing: -0.01em; line-height: 1.2; color: var(--paper); }
   .verdict .num.zero { color: var(--steel); }
   .verdict .cap {
-    font-family: var(--mono); font-size: 9px; font-weight: 500;
+    font-family: var(--mono); font-size: var(--t9); font-weight: 500;
     letter-spacing: 0.02em; text-transform: uppercase; color: var(--steel);
   }
   .pane.swap .verdict .num { animation: numin .42s cubic-bezier(.22,.61,.36,1); }
   @keyframes numin { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 
-  .reply { font-size: 24px; font-weight: 400; line-height: 1.4; letter-spacing: -0.01em; color: var(--paper); max-width: 26em; }
+  .reply { font-size: var(--t24); font-weight: 400; line-height: 1.4; letter-spacing: -0.01em; color: var(--paper); max-width: 26em; }
   /* пометка карандашом по чужим именам — ровно та роль, для которой цвет и есть */
   .lit { color: var(--peri); font-weight: 500; }
   .dark-name { color: var(--steel); text-decoration: line-through; text-decoration-thickness: 1px; }
@@ -235,17 +248,17 @@
   .srclist { display: flex; flex-direction: column; gap: var(--s12); margin: 0; padding: 0; list-style: none; }
   .srclist li {
     display: grid; grid-template-columns: minmax(0,12.5rem) minmax(0,1fr);
-    gap: var(--s18); align-items: baseline; font-size: 14px; line-height: 1.7;
+    gap: var(--s18); align-items: baseline; font-size: var(--t14); line-height: 1.7;
   }
-  .srclist .d { color: var(--steel); font-family: var(--mono); font-size: 12px; }
+  .srclist .d { color: var(--steel); font-family: var(--mono); font-size: var(--t12); }
   .srclist .o { color: var(--ash); font-weight: 400; }
   .srclist .o.rival { color: var(--peri); }
   .srclist .o b { color: var(--paper); font-weight: 500; }
 
   .sources { display: flex; flex-direction: column; gap: var(--s18); margin: 0; padding: 0; list-style: none; }
   .sources li { display: grid; grid-template-columns: minmax(0,13.5rem) minmax(0,1fr); gap: var(--s18); align-items: baseline; }
-  .sources .dom { color: var(--steel); font-family: var(--mono); font-size: 12px; }
-  .sources .own { color: var(--ash); font-size: 14px; font-weight: 400; }
+  .sources .dom { color: var(--steel); font-family: var(--mono); font-size: var(--t12); }
+  .sources .own { color: var(--ash); font-size: var(--t14); font-weight: 400; }
   .sources .own b { font-weight: 500; color: var(--paper); }
 
   /* ---------- списки ---------- */
@@ -253,12 +266,12 @@
   ol.steps { counter-reset: step; }
   ol.steps li, ul.items li {
     position: relative; padding-left: 2.4rem;
-    font-size: 16px; font-weight: 400; line-height: 1.5; max-width: 36em;
+    font-size: var(--t16); font-weight: 400; line-height: 1.5; max-width: 36em;
   }
   ol.steps li::before {
     counter-increment: step; content: counter(step, decimal-leading-zero);
     position: absolute; left: 0; top: 0.16em;
-    font-family: var(--mono); font-size: 9px; font-weight: 500;
+    font-family: var(--mono); font-size: var(--t9); font-weight: 500;
     letter-spacing: 0.02em; color: var(--steel);
   }
   ul.items li::before {
@@ -275,19 +288,19 @@
   }
   .field { display: flex; flex-direction: column; gap: var(--s6); }
   .field label {
-    font-family: var(--mono); font-size: 9px; font-weight: 500;
+    font-family: var(--mono); font-size: var(--t9); font-weight: 500;
     letter-spacing: 0.02em; text-transform: uppercase; color: var(--steel);
   }
   .field input {
-    font-family: var(--font); font-size: 16px; font-weight: 400; color: var(--paper);
+    font-family: var(--font); font-size: var(--t16); font-weight: 400; color: var(--paper);
     background: none; border: 0; border-bottom: 1px dashed var(--graphite);
     padding: 8px 0; width: 100%; transition: border-color .16s ease;
   }
   .field input::placeholder { color: var(--steel); font-weight: 400; }
   .field input:focus { outline: none; border-bottom: 1px solid var(--paper); }
   .form-card .pill { align-self: flex-start; }
-  .form-note { font-size: 12px; line-height: 1.5; color: var(--steel); max-width: 34em; }
-  .form-err { font-size: 12px; color: var(--paper); min-height: 1em; }
+  .form-note { font-size: var(--t12); line-height: 1.5; color: var(--steel); max-width: 34em; }
+  .form-err { font-size: var(--t12); color: var(--paper); min-height: 1em; }
 
   /* ---------- фоновое поле ---------- */
   #ambient {
@@ -308,7 +321,7 @@
   #loader.gone { opacity: 0; visibility: hidden; }
   .load-in {
     display: flex; align-items: baseline; gap: 14px;
-    font-family: var(--mono); font-size: 9px; font-weight: 500;
+    font-family: var(--mono); font-size: var(--t9); font-weight: 500;
     letter-spacing: 0.02em; text-transform: uppercase; color: var(--steel);
   }
   .load-mark {
@@ -338,18 +351,18 @@
   }
 
   /* ---------- как это работает ---------- */
-  .steps-big { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: var(--s24); }
+  .steps-big { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--s24); }
   .step {
     display: flex; flex-direction: column; gap: var(--s12);
     background: var(--carbon); border: 1px dashed var(--rule-in);
     border-radius: var(--r-tile); padding: var(--s24);
   }
   .step .no {
-    font-family: var(--mono); font-size: 9px; font-weight: 500;
+    font-family: var(--mono); font-size: var(--t9); font-weight: 500;
     letter-spacing: .02em; color: var(--steel);
   }
-  .step h3 { margin: 0; font-size: 24px; font-weight: 1000; line-height: 1.4; letter-spacing: -0.01em; color: var(--paper); }
-  .step p { font-size: 14px; font-weight: 400; line-height: 1.7; color: var(--steel); }
+  .step h3 { margin: 0; font-size: var(--t24); font-weight: 1000; line-height: 1.4; letter-spacing: -0.01em; color: var(--paper); }
+  .step p { font-size: var(--t14); font-weight: 400; line-height: 1.7; color: var(--steel); }
 
   /* ---------- тарифы ---------- */
   .plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--s24); align-items: stretch; }
@@ -359,17 +372,17 @@
     border-radius: var(--r-tile); padding: var(--s24);
   }
   .plan .tag {
-    font-family: var(--mono); font-size: 9px; font-weight: 500;
+    font-family: var(--mono); font-size: var(--t9); font-weight: 500;
     letter-spacing: .02em; text-transform: uppercase; color: var(--steel);
   }
   .plan.pick { border-color: var(--graphite); }
   .plan.pick .tag { color: var(--paper); }
-  .plan .price { font-size: 32px; font-weight: 1000; line-height: 1.2; letter-spacing: -0.01em; color: var(--paper); }
-  .plan .per { font-size: 12px; font-weight: 400; color: var(--steel); }
+  .plan .price { font-size: var(--t32); font-weight: 1000; line-height: 1.2; letter-spacing: -0.01em; color: var(--paper); }
+  .plan .per { font-size: var(--t12); font-weight: 400; color: var(--steel); }
   .plan ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: var(--s12); }
   .plan li {
     position: relative; padding-left: 20px;
-    font-size: 14px; font-weight: 400; line-height: 1.7; color: var(--ash);
+    font-size: var(--t14); font-weight: 400; line-height: 1.7; color: var(--ash);
   }
   .plan li::before {
     content: ""; position: absolute; left: 0; top: .74em;
@@ -378,7 +391,7 @@
   .plan .pill { align-self: flex-start; margin-top: auto; }
   .plan .ghost-btn {
     align-self: flex-start; margin-top: auto;
-    font-family: var(--mono); font-size: 9px; font-weight: 500;
+    font-family: var(--mono); font-size: var(--t9); font-weight: 500;
     letter-spacing: .02em; text-transform: uppercase;
     color: var(--paper); text-decoration: none;
     border: 1px solid var(--graphite); border-radius: var(--r-pill);
@@ -386,14 +399,14 @@
     transition: border-color .18s ease;
   }
   .plan .ghost-btn:hover { border-color: var(--paper); }
-  .plans-note { font-size: 12px; line-height: 1.5; color: var(--steel); max-width: 36em; }
+  .plans-note { font-size: var(--t12); line-height: 1.5; color: var(--steel); max-width: 36em; }
 
   /* вопрос-ответ: разделители пунктиром, как и всё остальное в системе */
   .qa { display: flex; flex-direction: column; }
   .qa > div { padding: var(--s24) 0; border-top: 1px dashed var(--rule); }
   .qa > div:first-child { border-top: 0; padding-top: 0; }
-  .qa dt { font-size: 16px; font-weight: 1000; letter-spacing: -0.01em; color: var(--paper); margin: 0; }
-  .qa dd { margin: var(--s10) 0 0; font-size: 14px; line-height: 1.7; color: var(--steel); max-width: 46em; }
+  .qa dt { font-size: var(--t16); font-weight: 1000; letter-spacing: -0.01em; color: var(--paper); margin: 0; }
+  .qa dd { margin: var(--s10) 0 0; font-size: var(--t14); line-height: 1.7; color: var(--steel); max-width: 46em; }
 
   /* срок: подпись слева, событие справа */
   .track { display: flex; flex-direction: column; gap: 0; }
@@ -403,10 +416,10 @@
   }
   .track > div:first-child { border-top: 0; }
   .track .when {
-    font-family: var(--mono); font-size: 9px; font-weight: 500; letter-spacing: .02em;
+    font-family: var(--mono); font-size: var(--t9); font-weight: 500; letter-spacing: .02em;
     text-transform: uppercase; color: var(--steel);
   }
-  .track .what { font-size: 14px; line-height: 1.7; color: var(--ash); }
+  .track .what { font-size: var(--t14); line-height: 1.7; color: var(--ash); }
   .track .what b { color: var(--paper); font-weight: 500; }
   @media (max-width: 700px) {
     .track > div { grid-template-columns: minmax(0,1fr); gap: 4px; }
@@ -415,7 +428,7 @@
   /* ссылки в шапке */
   .navlinks { display: flex; gap: var(--s18); align-items: center; }
   .navlinks a {
-    font-family: var(--mono); font-size: 9px; font-weight: 500; letter-spacing: .02em;
+    font-family: var(--mono); font-size: var(--t9); font-weight: 500; letter-spacing: .02em;
     text-transform: uppercase; color: var(--steel); text-decoration: none;
     transition: color .15s ease;
   }
@@ -426,7 +439,7 @@
   .contacts { display: flex; flex-wrap: wrap; gap: var(--s18) var(--s30); align-items: center; }
   .mailto {
     display: inline-flex; align-items: center;
-    font-family: var(--font); font-size: 14px; font-weight: 400;
+    font-family: var(--font); font-size: var(--t14); font-weight: 400;
     color: var(--paper); border-bottom: 1px dashed var(--graphite);
     text-decoration: none; padding-bottom: 2px;
   }
@@ -434,7 +447,7 @@
 
   footer {
     padding: var(--s60) 0 var(--s96);
-    font-family: var(--mono); font-size: 9px; letter-spacing: 0.02em;
+    font-family: var(--mono); font-size: var(--t9); letter-spacing: 0.02em;
     text-transform: uppercase; color: var(--steel);
   }
   footer { border-top: 1px dashed var(--rule); }
@@ -453,14 +466,20 @@
   @media (max-width: 560px) {
     .nav .pill { display: none; }          /* точно такая же кнопка стоит в герое ниже */
     .wrap { padding: 0 var(--s18); }
-    .h-md, .plan .price, .verdict .num { font-size: 24px; }
-    .reply { font-size: 16px; }
+    .reply { font-size: var(--t16); }
     section { padding: var(--s60) 0; }
   }
 
   /* запас прочности: ничто не выходит за край, что бы ни случилось */
   img, svg, canvas, table, pre { max-width: 100%; }
   .plan, .step, .stack, .stack-l { min-width: 0; }
+
+  /* Планшет: авторасчёт колонок оставлял сироту в конце ряда — три карточки
+     в две колонки и четыре в три. Раскладываем ровными рядами. */
+  @media (min-width: 701px) and (max-width: 1023px) {
+    .steps-big { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .plans     { grid-template-columns: repeat(1, minmax(0,1fr)); }
+  }
 
   @media (max-width: 900px) {
     .split { grid-template-columns: minmax(0,1fr); gap: var(--s36); }
