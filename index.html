@@ -902,6 +902,10 @@
 
       <form class="form-card" id="req" novalidate>
         <div class="field">
+          <label for="f-name"><span class="en">Your name</span><span class="ru">Как вас зовут</span></label>
+          <input id="f-name" name="name" type="text" autocomplete="given-name" placeholder="Роман" required>
+        </div>
+        <div class="field">
           <label for="f-dom"><span class="en">Your domain</span><span class="ru">Ваш домен</span></label>
           <input id="f-dom" name="dom" type="text" inputmode="url" autocomplete="url" placeholder="example.com" required>
         </div>
@@ -910,8 +914,8 @@
           <input id="f-cat" name="cat" type="text" placeholder="CRM для малого бизнеса" required>
         </div>
         <div class="field">
-          <label for="f-to"><span class="en">Where to send the audit</span><span class="ru">Куда прислать аудит</span></label>
-          <input id="f-to" name="to" type="text" autocomplete="email" placeholder="почта или @телеграм" required>
+          <label for="f-to"><span class="en">Phone, telegram or email</span><span class="ru">Телефон, телеграм или почта</span></label>
+          <input id="f-to" name="to" type="text" autocomplete="email" placeholder="телефон, @телеграм или почта" required>
         </div>
         <div class="field">
           <label for="f-comp"><span class="en">Two competitors, if you know them</span><span class="ru">Два конкурента, если знаете</span></label>
@@ -1399,8 +1403,14 @@
     e.preventDefault();
     if (busy) return;
 
+    const name = f.name.value.trim();
     const dom = clean(f.dom.value), cat = f.cat.value.trim();
     const to = f.to.value.trim(), comp = f.comp.value.trim();
+
+    if (name.length < 2) {
+      say('Напишите, как к вам обращаться.', 'Tell me what to call you.');
+      f.name.focus(); return;
+    }
 
     if (!dom || !/^[a-z0-9-]+(\.[a-z0-9-]+)+$/.test(dom)) {
       say('Похоже, это не домен. Например: example.com',
@@ -1430,13 +1440,13 @@
     }
     say('', '');
 
-    const payload = { dom, cat, to, comp, lang: ru() ? 'ru' : 'en',
+    const payload = { name, dom, cat, to, comp, lang: ru() ? 'ru' : 'en',
                       page: location.href, at: new Date().toISOString() };
 
     const text = (ru()
-      ? 'Заявка на бесплатный аудит\n\nДомен: ' + dom + '\nКатегория: ' + cat +
+      ? 'Заявка на бесплатный аудит\n\nИмя: ' + name + '\nДомен: ' + dom + '\nКатегория: ' + cat +
         '\nКонтакт: ' + to + (comp ? '\nКонкуренты: ' + comp : '')
-      : 'Free audit request\n\nDomain: ' + dom + '\nCategory: ' + cat +
+      : 'Free audit request\n\nName: ' + name + '\nDomain: ' + dom + '\nCategory: ' + cat +
         '\nContact: ' + to + (comp ? '\nCompetitors: ' + comp : ''));
 
     // Приёмник не поднят — уходим прежним путём, заявка не теряется
