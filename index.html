@@ -653,6 +653,10 @@
 
   /* ---------- контакты ---------- */
   .contacts { display: flex; flex-wrap: wrap; gap: var(--s18) var(--s30); align-items: center; }
+  /* Кнопка вместо ника: ник читается как контакт «на всякий случай»,
+     кнопка — как действие. Плюс сам ник тогда нигде не выставлен. */
+  .pill.tg { gap: 9px; }
+  .pill.tg svg { width: 15px; height: 15px; flex: none; }
   .mailto {
     display: inline-flex; align-items: center;
     font-family: var(--font); font-size: var(--t14); font-weight: 400;
@@ -1071,7 +1075,10 @@
       <p class="body-2 en">Leave a request and we will prepare an audit of your category and send it to you.</p>
       <p class="body-2 ru">Оставьте заявку — подготовим аудит вашей категории и пришлём в течение 48 часов.</p>
       <div class="contacts">
-        <a class="mailto" href="https://t.me/mirrnr">Telegram&nbsp;&nbsp;@mirrnr</a>
+        <a class="pill tg" href="https://t.me/mirrnr" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.7.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8 8.8-8c.4-.3-.1-.5-.6-.2L6.7 13.1 2 11.6c-1-.3-1-1 .2-1.5l18.4-7.1c.9-.3 1.6.2 1.3 1.3z"/></svg>
+          <span class="en">Message on Telegram</span><span class="ru">Написать в телеграм</span>
+        </a>
       </div>
     </div>
   </section>
