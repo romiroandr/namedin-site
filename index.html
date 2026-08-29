@@ -416,6 +416,27 @@
   .plan .ghost-btn:hover { border-color: var(--paper); }
   .plans-note { font-size: var(--t12); line-height: 1.5; color: var(--steel); max-width: 36em; }
 
+  /* ---------- образец страницы ---------- */
+  .doc { border: 1px dashed var(--rule); border-radius: var(--r-tile);
+    background: var(--carbon); overflow: hidden; }
+  .doc-body { padding: var(--s24); display: flex; flex-direction: column; gap: var(--s12); }
+  .doc-body h4 { margin: 0; font-size: var(--t24); font-weight: 1000;
+    letter-spacing: -.01em; color: var(--paper); }
+  .doc-h { font-family: var(--mono); font-size: var(--t9); letter-spacing: .02em;
+    text-transform: uppercase; color: var(--steel); margin-top: var(--s10); }
+  .doc-body p { font-size: var(--t14); line-height: 1.7; color: var(--ash); max-width: 46em; }
+  .doc-t { border-collapse: collapse; width: 100%; font-size: var(--t12); }
+  .doc-t th { text-align: left; font-family: var(--mono); font-size: var(--t9);
+    letter-spacing: .02em; text-transform: uppercase; color: var(--steel);
+    font-weight: 500; padding: 8px 12px 8px 0; border-bottom: 1px dashed var(--rule-in); }
+  .doc-t td { padding: 9px 12px 9px 0; color: var(--ash);
+    border-bottom: 1px dashed var(--rule-in); }
+  .doc-t td b { color: var(--paper); font-weight: 500; }
+  .doc-t td.need { color: var(--peri); font-family: var(--mono); font-size: var(--t9);
+    letter-spacing: .02em; text-transform: uppercase; }
+  .doc-note { color: var(--steel) !important; font-size: var(--t12) !important; }
+  @media (max-width: 620px) { .doc-t { font-size: var(--t9); } }
+
   /* ---------- одна панель с переключением ---------- */
   .demo { border: 1px dashed var(--rule); border-radius: var(--r-tile);
     background: var(--carbon); overflow: hidden; }
@@ -895,26 +916,8 @@
 
 
 
-  <section id="limits">
-    <div class="split">
-      <div class="stack">
-        <p class="label"><span class="en">Limits</span><span class="ru">Ограничения</span></p>
-        <h2 class="h-lg"><span class="en">Terms of work.</span><span class="ru">Условия работы.</span></h2>
-        <p class="body-2 en">Stated before the work begins, so neither side wastes time.</p>
-        <p class="body-2 ru">Чтобы не тратить ваше и наше время, эти условия названы до начала работы.</p>
-      </div>
-      <ul class="items en">
-        <li><b>No guaranteed position.</b> Nobody controls the model. We commit to the work and an honest measurement of it.</li>
-        <li><b>We do not work with a client’s direct competitors.</b> If your category is taken, we say so immediately.</li>
-        <li><b>Not for local business or head terms.</b> There the answer comes from maps and review publications.</li>
-      </ul>
-      <ul class="items ru">
-        <li><b>Позиция в ответе не гарантируется.</b> Работой модели никто не управляет. Мы обязуемся выполнить работу и предоставить честный замер.</li>
-        <li><b>Мы не работаем с прямыми конкурентами наших клиентов.</b> Если ваша категория занята, скажем сразу.</li>
-        <li><b>Не подходит локальному бизнесу и общим запросам.</b> Там ответ формируется из карт и обзорных изданий.</li>
-      </ul>
-    </div>
-  </section>
+
+
 
 
   <section id="plans">
@@ -969,8 +972,57 @@
       <p class="plans-note ru">Позицию не обещаю — моделью никто не управляет. Обещаю работу и честный замер. И никогда не берём двух конкурентов из одной категории.</p>
     </div>
   </section>
+  <section id="sample">
+    <div class="stack-l">
+      <p class="label"><span class="en">What the work looks like</span><span class="ru">Как выглядит работа</span></p>
+      <h2 class="h-lg"><span class="en">A page written to be quoted.</span><span class="ru">Страница, написанная под цитирование.</span></h2>
+      <p class="body-2 en">Not an article for readers — a page an AI can lift a sentence from, with your name inside it. Here is a real brief from a client plan.</p>
+      <p class="body-2 ru">Не статья для читателя, а страница, из которой ИИ может вынуть фразу вместе с вашим названием. Ниже — настоящий бриф из плана работ.</p>
 
+      <div class="doc">
+        <div class="rep-bar">
+          <span class="rep-dot"></span><span class="rep-dot"></span><span class="rep-dot"></span>
+          <span class="rep-name"><span class="en">Page brief · marketplace services</span><span class="ru">Бриф страницы · сервисы для маркетплейсов</span></span>
+        </div>
+        <div class="doc-body">
+          <h4>Как считать прибыль от продаж на маркетплейсах?</h4>
+          <div class="doc-h"><span class="en">Short answer</span><span class="ru">Короткий ответ</span></div>
+          <p><span class="en">Two to four sentences. The first answers the question literally, in the buyer’s own words — this is the block a model lifts whole.</span><span class="ru">Два–четыре предложения. Первое отвечает на вопрос буквально, теми же словами, которыми спросил покупатель, — этот блок модель забирает целиком.</span></p>
+          <div class="doc-h"><span class="en">Comparison</span><span class="ru">Сравнение</span></div>
+          <table class="doc-t">
+            <tr><th><span class="en">Product</span><span class="ru">Продукт</span></th><th><span class="en">Price as text</span><span class="ru">Цена текстом</span></th><th><span class="en">Free tier</span><span class="ru">Бесплатный тариф</span></th></tr>
+            <tr><td><b><span class="en">Your product</span><span class="ru">Ваш продукт</span></b></td><td class="need">нужно от клиента</td><td class="need">нужно от клиента</td></tr>
+            <tr><td>RDV Маркет</td><td class="need">с сайта вендора</td><td class="need">с сайта вендора</td></tr>
+            <tr><td>МойСклад</td><td class="need">с сайта вендора</td><td class="need">с сайта вендора</td></tr>
+          </table>
+          <p class="doc-note"><span class="en">Price as text, never inside an image or a pricing widget — a model cannot read those.</span><span class="ru">Цена текстом, не картинкой и не внутри виджета тарифов: их модель не прочитает.</span></p>
+        </div>
+      </div>
 
+      <p class="caption"><span class="en">Marked fields are facts about your product. We ask you for them and never invent them — an invented price is what gets a page thrown out of an answer.</span><span class="ru">Помеченные поля — факты о вашем продукте. Мы спрашиваем их у вас и не выдумываем: выдуманная цена как раз и выкидывает страницу из ответа.</span></p>
+    </div>
+  </section>
+
+  <section id="limits">
+    <div class="split">
+      <div class="stack">
+        <p class="label"><span class="en">Limits</span><span class="ru">Ограничения</span></p>
+        <h2 class="h-lg"><span class="en">Terms of work.</span><span class="ru">Условия работы.</span></h2>
+        <p class="body-2 en">Stated before the work begins, so neither side wastes time.</p>
+        <p class="body-2 ru">Чтобы не тратить ваше и наше время, эти условия названы до начала работы.</p>
+      </div>
+      <ul class="items en">
+        <li><b>No guaranteed position.</b> Nobody controls the model. We commit to the work and an honest measurement of it.</li>
+        <li><b>We do not work with a client’s direct competitors.</b> If your category is taken, we say so immediately.</li>
+        <li><b>Not for local business or head terms.</b> There the answer comes from maps and review publications.</li>
+      </ul>
+      <ul class="items ru">
+        <li><b>Позиция в ответе не гарантируется.</b> Работой модели никто не управляет. Мы обязуемся выполнить работу и предоставить честный замер.</li>
+        <li><b>Мы не работаем с прямыми конкурентами наших клиентов.</b> Если ваша категория занята, скажем сразу.</li>
+        <li><b>Не подходит локальному бизнесу и общим запросам.</b> Там ответ формируется из карт и обзорных изданий.</li>
+      </ul>
+    </div>
+  </section>
   <section id="faq">
     <div class="stack-l">
       <p class="label"><span class="en">Questions</span><span class="ru">Вопросы</span></p>
