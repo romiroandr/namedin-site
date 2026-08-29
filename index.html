@@ -416,6 +416,98 @@
   .plan .ghost-btn:hover { border-color: var(--paper); }
   .plans-note { font-size: var(--t12); line-height: 1.5; color: var(--steel); max-width: 36em; }
 
+  /* ---------- два экрана рядом ---------- */
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s18); align-items: stretch; }
+  .scr { display: flex; flex-direction: column; background: var(--carbon);
+    border: 1px dashed var(--rule-in); border-radius: var(--r-tile); overflow: hidden; }
+  .scr.good { border-color: var(--graphite); }
+  .scr-top { display: flex; align-items: center; gap: 7px;
+    padding: 11px var(--s18); border-bottom: 1px dashed var(--rule-in); }
+  .scr-tag { margin-left: var(--s12); font-family: var(--mono); font-size: var(--t9);
+    letter-spacing: .02em; text-transform: uppercase; color: var(--steel); }
+  .scr.good .scr-tag { color: var(--paper); }
+  .scr-body { padding: var(--s18); display: flex; flex-direction: column;
+    gap: var(--s12); flex: 1; }
+  .scr-foot { display: flex; align-items: center; gap: var(--s10);
+    padding: var(--s12) var(--s18); border-top: 1px dashed var(--rule-in);
+    font-family: var(--mono); font-size: var(--t9); letter-spacing: .02em;
+    text-transform: uppercase; color: var(--steel); }
+  .scr-foot.ok { color: var(--paper); }
+  .scr-x { width: 22px; height: 22px; flex: none; border-radius: 50%;
+    border: 1px solid var(--graphite); display: inline-flex;
+    align-items: center; justify-content: center; font-size: var(--t12); }
+  .scr-foot.ok .scr-x { border-color: var(--peri); color: var(--peri); }
+  @media (max-width: 820px) { .two { grid-template-columns: 1fr; } }
+
+  /* ---------- панель отчёта: боковое меню, фильтры, карточки ---------- */
+  .app { display: grid; grid-template-columns: minmax(0,10.5rem) minmax(0,1fr);
+    border: 1px dashed var(--rule); border-radius: var(--r-tile);
+    background: var(--carbon); overflow: hidden; }
+  .app-side { border-right: 1px dashed var(--rule-in); padding: var(--s18) var(--s12);
+    display: flex; flex-direction: column; gap: var(--s18); }
+  .app-brand { display: flex; align-items: center; gap: 8px;
+    font-family: var(--mono); font-size: var(--t9); letter-spacing: .02em;
+    text-transform: uppercase; color: var(--paper); }
+  .app-brand svg { width: 12px; height: 12px; flex: none; }
+  .app-nav { display: flex; flex-direction: column; gap: 2px; }
+  .an { background: none; border: 0; cursor: pointer; text-align: left;
+    padding: 8px 10px; border-radius: 7px; font-size: var(--t12);
+    color: var(--steel); transition: .16s; }
+  .an:hover { color: var(--ash); background: rgba(255,255,255,.035); }
+  .an.on { color: var(--paper); background: rgba(112,137,186,.16); }
+  .app-foot { margin-top: auto; font-family: var(--mono); font-size: var(--t9);
+    letter-spacing: .02em; text-transform: uppercase; color: var(--graphite); }
+
+  .app-main { display: flex; flex-direction: column; min-width: 0; }
+  .app-top { display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+    padding: 11px var(--s18); border-bottom: 1px dashed var(--rule-in); }
+  .app-hint { margin-left: auto; font-family: var(--mono); font-size: var(--t9);
+    letter-spacing: .02em; text-transform: uppercase; color: var(--steel); }
+  .app-pane { display: none; padding: var(--s18);
+    /* одна высота на все разделы: иначе панель прыгает при переключении */
+    min-height: 30rem; }
+  .app-pane.on { display: block; animation: qaopen .22s cubic-bezier(.22,.61,.36,1); }
+  .app-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s18); }
+  .card { border: 1px dashed var(--rule-in); border-radius: 12px; padding: var(--s18);
+    display: flex; flex-direction: column; gap: var(--s12); background: rgba(255,255,255,.015); }
+  .card-h { font-family: var(--mono); font-size: var(--t9); letter-spacing: .02em;
+    text-transform: uppercase; color: var(--steel); }
+  .big-row { display: grid; grid-template-columns: repeat(3,1fr); gap: var(--s12); }
+  .big-row .rep-big { font-size: var(--t32); }
+
+  .qbars { display: flex; flex-direction: column; gap: 7px; margin-top: 4px; }
+  .qb { display: grid; grid-template-columns: minmax(0,1fr) 44px 14px; gap: 10px;
+    align-items: center; }
+  .qbl { font-size: var(--t12); color: var(--ash); overflow: hidden;
+    text-overflow: ellipsis; white-space: nowrap; }
+  .qb i { display: block; height: 5px; border-radius: 3px;
+    background: rgba(255,255,255,.07); min-width: 44px; position: relative; }
+  .qb i.ok { background: var(--peri); }
+  .qb b { font-size: var(--t12); color: var(--steel); font-weight: 400; text-align: right; }
+  .qb:has(i.ok) b { color: var(--peri); }
+
+  .app-t { width: 100%; border-collapse: collapse; font-size: var(--t12); }
+  .app-t th { text-align: left; font-family: var(--mono); font-size: var(--t9);
+    letter-spacing: .02em; text-transform: uppercase; color: var(--steel);
+    font-weight: 500; padding: 0 10px 8px 0; border-bottom: 1px dashed var(--rule-in); }
+  .app-t td { padding: 8px 10px 8px 0; color: var(--ash);
+    border-bottom: 1px dashed var(--rule-in); }
+  .app-t td b { color: var(--paper); font-weight: 500; }
+  .app-t td.num { text-align: right; font-family: var(--mono); color: var(--steel); padding-right: 0; }
+  .app-t tr.you td { background: rgba(112,137,186,.10); }
+  .app-t code { font-family: var(--mono); font-size: var(--t9); color: var(--ash); }
+
+  @media (max-width: 820px) {
+    .app { grid-template-columns: minmax(0,1fr); }
+    .app-side { border-right: 0; border-bottom: 1px dashed var(--rule-in);
+      flex-direction: row; align-items: center; gap: var(--s12); }
+    .app-nav { flex-direction: row; margin-left: auto; }
+    .app-foot { display: none; }
+    .app-grid { grid-template-columns: 1fr; }
+    .app-pane { min-height: 0; }
+    .app-hint { display: none; }
+  }
+
   /* ---------- образец страницы ---------- */
   .doc { border: 1px dashed var(--rule); border-radius: var(--r-tile);
     background: var(--carbon); overflow: hidden; }
@@ -437,29 +529,6 @@
   .doc-note { color: var(--steel) !important; font-size: var(--t12) !important; }
   @media (max-width: 620px) { .doc-t { font-size: var(--t9); } }
 
-  /* ---------- одна панель с переключением ---------- */
-  .demo { border: 1px dashed var(--rule); border-radius: var(--r-tile);
-    background: var(--carbon); overflow: hidden; }
-  .demo-top { display: flex; align-items: center; gap: 7px;
-    padding: 10px var(--s18); border-bottom: 1px dashed var(--rule-in); }
-  .tabs { display: flex; gap: 4px; margin-left: var(--s18); }
-  .tab { background: none; border: 0; cursor: pointer;
-    font-family: var(--mono); font-size: var(--t9); font-weight: 500;
-    letter-spacing: .02em; text-transform: uppercase; color: var(--steel);
-    padding: 8px 14px; border-radius: var(--r-pill); transition: .18s; }
-  .tab:hover { color: var(--ash); }
-  .tab.on { color: var(--void); background: var(--paper); }
-  .demo-pane { display: none; padding: var(--s24);
-    /* одинаковая высота: иначе страница дёргается при переключении */
-    min-height: 29rem; }
-  .demo-pane.on { display: block; animation: qaopen .22s cubic-bezier(.22,.61,.36,1); }
-  .demo-pane .chat, .demo-pane .rep-body { padding: 0; }
-  @media (max-width: 620px) {
-    .demo-top { flex-wrap: wrap; }
-    .tabs { margin-left: 0; width: 100%; }
-    .tab { flex: 1; padding: 9px 8px; }
-    .demo-pane { min-height: 0; }
-  }
 
   /* ---------- пара: что видит покупатель и что получаете вы ---------- */
   .duo { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s24); align-items: start; }
@@ -476,6 +545,9 @@
     border-top: 1px dashed var(--rule-in); padding-top: var(--s12);
     font-family: var(--mono); font-size: var(--t9); letter-spacing: .02em;
     text-transform: uppercase; color: var(--steel); }
+  .miss.ok { color: var(--paper); }
+  .miss.ok .miss-x { border-color: var(--peri); color: var(--peri); }
+  .card-note { font-size: var(--t12); color: var(--steel); margin-top: 4px; }
   .miss-x { width: 22px; height: 22px; flex: none; border-radius: 50%;
     border: 1px solid var(--graphite); display: inline-flex;
     align-items: center; justify-content: center; font-size: var(--t12); }
@@ -828,68 +900,44 @@
       </div>
     </div>
     <div class="hero-shot lift">
-      <div class="demo">
-        <div class="demo-top">
-          <span class="rep-dot"></span><span class="rep-dot"></span><span class="rep-dot"></span>
-          <div class="tabs" role="tablist">
-            <button class="tab on" role="tab" aria-selected="true" data-tab="a">
-              <span class="en">What your buyer sees</span><span class="ru">Что видит покупатель</span>
-            </button>
-            <button class="tab" role="tab" aria-selected="false" data-tab="b">
-              <span class="en">What you get</span><span class="ru">Что получаете вы</span>
-            </button>
+      <div class="two">
+        <div class="scr">
+          <div class="scr-top">
+            <span class="rep-dot"></span><span class="rep-dot"></span><span class="rep-dot"></span>
+            <span class="scr-tag"><span class="en">No page of their own</span><span class="ru">Своей страницы нет</span></span>
           </div>
-          <span class="rep-chips">
-            <span class="chip">26.08.2026</span>
-            <span class="chip on">4 <span class="en">questions</span><span class="ru">вопроса</span></span>
-          </span>
-        </div>
-
-        <div class="demo-pane on" data-pane="a">
-          <div class="chat">
+          <div class="scr-body">
             <div class="ask">«сервис email рассылок для бизнеса какой выбрать»</div>
             <div class="say">
-              <p>Для бизнеса чаще всего советуют <em>UniSender</em> — он самый известный и с простым редактором. <em>DashaMail</em> берут ради поддержки и сегментации, а <em>NotiSend</em> — когда нужны ещё и SMS.</p>
+              <p>Для бизнеса чаще всего советуют <em>UniSender</em> — он самый известный. <em>DashaMail</em> берут ради поддержки и сегментации, а <em>NotiSend</em> — когда нужны ещё и SMS.</p>
               <p>Если база небольшая, посмотрите <em>MailerLite</em> с бесплатным тарифом.</p>
             </div>
-            <div class="miss">
-              <span class="miss-x">✕</span>
-              <span><span class="en">Your company is not in this answer</span><span class="ru">Вашей компании в этом ответе нет</span></span>
-            </div>
+          </div>
+          <div class="scr-foot bad">
+            <span class="scr-x">✕</span>
+            <span><span class="en">The company is not in the answer</span><span class="ru">Компании в ответе нет</span></span>
           </div>
         </div>
 
-        <div class="demo-pane" data-pane="b">
-          <div class="rep-body">
-            <div class="rep-hero">
-              <div class="tile">
-                <div class="rep-big">1<span class="rep-of"> / 4</span></div>
-                <div class="rep-cap"><span class="en">questions where you are named</span><span class="ru">вопроса, где вас называют</span></div>
-                <div class="spark"><i style="height:22%"></i><i style="height:8%"></i><i style="height:100%"></i><i style="height:8%"></i></div>
-              </div>
-              <div class="tile">
-                <div class="rep-big rep-dim">9</div>
-                <div class="rep-cap"><span class="en">competitors named instead</span><span class="ru">конкурентов названы вместо вас</span></div>
-                <div class="mini">UniSender · DashaMail · NotiSend</div>
-              </div>
-              <div class="tile">
-                <div class="rep-big rep-dim">23</div>
-                <div class="rep-cap"><span class="en">pages the answers came from</span><span class="ru">страницы, из которых собраны ответы</span></div>
-                <div class="mini"><span class="en">41% owned by competitors</span><span class="ru">41% принадлежат конкурентам</span></div>
-              </div>
+        <div class="scr good">
+          <div class="scr-top">
+            <span class="rep-dot"></span><span class="rep-dot"></span><span class="rep-dot"></span>
+            <span class="scr-tag"><span class="en">Has a page about exactly this</span><span class="ru">Есть страница ровно про это</span></span>
+          </div>
+          <div class="scr-body">
+            <div class="ask">«сервис валидации email базы проверка адресов»</div>
+            <div class="say">
+              <p>Для чистки базы стоит посмотреть <em>DashaMail</em>, <b><span class="en">this company</span><span class="ru">эту компанию</span></b> и <em>Respondo</em>. У всех трёх есть проверка адресов перед отправкой.</p>
             </div>
-
-            <div class="rep-h"><span class="en">Question by question</span><span class="ru">Вопрос за вопросом</span></div>
-            <div class="qrow bad"><span class="qm">✕</span><span class="qq">«сервис email рассылок для бизнеса какой выбрать»</span><span class="qn">UniSender · DashaMail · NotiSend</span></div>
-            <div class="qrow bad"><span class="qm">✕</span><span class="qq">«SMTP сервис для транзакционных писем российский»</span><span class="qn">RuSender · NotiSend · SamoTPravil</span></div>
-            <div class="qrow good"><span class="qm">✓</span><span class="qq">«сервис валидации email базы проверка адресов»</span><span class="qn"><b><span class="en">you</span><span class="ru">вы</span></b> · DashaMail · Respondo</span></div>
-            <div class="qrow bad"><span class="qm">✕</span><span class="qq">«как настроить триггерные письма для SaaS сервиса»</span><span class="qn">Carrot quest · RuSender · UniSender</span></div>
-
+          </div>
+          <div class="scr-foot ok">
+            <span class="scr-x">✓</span>
+            <span><span class="en">Named — the model read their page</span><span class="ru">Названа — модель прочитала их страницу</span></span>
           </div>
         </div>
       </div>
 
-      <p class="shot-cap"><span class="en">A real report from a real run. Every line carries the question and the link.</span><span class="ru">Настоящий отчёт настоящего прогона. У каждой строки есть вопрос и ссылка.</span></p>
+      <p class="shot-cap"><span class="en">One company, one day, two questions. The only difference is whether a page about that question exists.</span><span class="ru">Одна компания, один день, два вопроса. Разница только в том, есть ли страница ровно про этот вопрос.</span></p>
     </div>
   </section>
 
@@ -1320,21 +1368,16 @@
 </script>
 
 <script>
-/* переключение между ответом ИИ и отчётом */
+/* переключение разделов отчёта в панели */
 (() => {
-  const wrap = document.querySelector('.demo');
+  const wrap = document.querySelector('.app');
   if (!wrap) return;
-  wrap.querySelectorAll('.tab').forEach(btn => {
+  wrap.querySelectorAll('.an').forEach(btn => {
     btn.addEventListener('click', () => {
-      const key = btn.dataset.tab;
-      wrap.querySelectorAll('.tab').forEach(b => {
-        const on = b === btn;
-        b.classList.toggle('on', on);
-        b.setAttribute('aria-selected', on ? 'true' : 'false');
-      });
-      wrap.querySelectorAll('.demo-pane').forEach(pane => {
-        pane.classList.toggle('on', pane.dataset.pane === key);
-      });
+      const key = btn.dataset.pane;
+      wrap.querySelectorAll('.an').forEach(b => b.classList.toggle('on', b === btn));
+      wrap.querySelectorAll('.app-pane').forEach(p =>
+        p.classList.toggle('on', p.dataset.pane === key));
     });
   });
 })();
