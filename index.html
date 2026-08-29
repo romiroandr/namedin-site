@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Namedin</title>
-<meta name="description" content="Ваши покупатели спрашивают ИИ, какой сервис выбрать. Он называет три имени. Узнайте, есть ли среди них вы — и попадите туда.">
+<title>Namedin — рекомендует ли ИИ вашу компанию</title>
+<meta name="description" content="Клиенты спрашивают ИИ, какой сервис выбрать. Проверяем, называет ли он вашу компанию, кого рекомендует вместо вас и что можно изменить. Бесплатный аудит за 48 часов.">
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#000000">
 <link rel="canonical" href="https://getnamedin.com/">
@@ -601,6 +601,7 @@
 
   /* ---------- кому принадлежат источники ---------- */
   .chart { display: flex; flex-direction: column; gap: var(--s12); }
+  .ch { display: flex; flex-direction: column; gap: var(--s6); }
   .ch-row { display: grid; grid-template-columns: minmax(0,13rem) 1fr 3.4rem;
     gap: var(--s18); align-items: center; }
   .ch-lab { font-size: var(--t14); color: var(--ash); }
@@ -845,270 +846,592 @@
     .rise { opacity: 1; transform: none; }
     html { scroll-behavior: auto; }
   }
+
+  /* ---------- добавлено при переделке под продажу ---------- */
+  .brand .mark { width: 16px; height: 16px; flex: none; }
+
+  .pill.big { padding: 15px 26px; }
+  .cta { display: flex; gap: var(--s12); flex-wrap: wrap; align-items: center; }
+  .under-cta { margin-top: var(--s12); font-size: var(--t12); line-height: 1.6; color: var(--steel); }
+
+  /* карточка ответа ИИ, где клиента нет */
+  .rec-h { font-family: var(--mono); font-size: var(--t9); letter-spacing: .02em;
+    text-transform: uppercase; color: var(--steel); margin-bottom: var(--s12); }
+  .rec { display: flex; align-items: center; gap: var(--s12); padding: 7px 0;
+    font-size: var(--t14); color: var(--paper); }
+  .rec .pos { width: 22px; height: 22px; flex: none; border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    border: 1px solid var(--graphite); font-family: var(--mono);
+    font-size: var(--t9); color: var(--steel); }
+  .rec-n { min-width: 0; }
+  .scr-foot.bad { color: var(--steel); }
+
+  /* SEO против ИИ: две цепочки рядом */
+  .flows { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s24); }
+  .flow { background: var(--carbon); border: 1px dashed var(--rule-in);
+    border-radius: var(--r-tile); padding: var(--s24);
+    display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .flow.good { border-color: var(--graphite); }
+  .flow-h { font-family: var(--mono); font-size: var(--t9); letter-spacing: .02em;
+    text-transform: uppercase; color: var(--steel); margin-bottom: var(--s12); }
+  .flow.good .flow-h { color: var(--paper); }
+  .fs { font-size: var(--t14); color: var(--ash); text-align: center; }
+  .fs.last { color: var(--paper); font-weight: 500; }
+  .fa { font-size: var(--t12); color: var(--graphite); line-height: 1; }
+  @media (max-width: 700px) { .flows { grid-template-columns: 1fr; } }
+
+  /* пример отчёта: доля упоминаний */
+  .score { display: flex; align-items: center; gap: var(--s24); flex-wrap: wrap; }
+  .score-n { font-size: var(--t62); font-weight: 1000; line-height: 1;
+    letter-spacing: -.04em; color: var(--paper); }
+  .score-n .pct { font-size: var(--t24); font-weight: 1000; color: var(--steel);
+    margin-left: 2px; letter-spacing: 0; }
+  .score-bar { flex: 1; min-width: 140px; height: 6px; border-radius: 3px;
+    background: rgba(255,255,255,.07); overflow: hidden; }
+  .score-bar i { display: block; height: 100%; background: var(--paper); }
+  .rep-row.you b { font-weight: 1000; }
+  .rep-bars i.me { background: var(--paper); }
+  .rep-why { font-size: var(--t14); line-height: 1.7; color: var(--ash); max-width: 46em; }
+  .todo { display: flex; align-items: flex-start; gap: var(--s12); padding: 6px 0;
+    font-size: var(--t14); line-height: 1.6; color: var(--ash); }
+  .todo .pri { width: 7px; height: 7px; flex: none; border-radius: 50%; margin-top: .55em; }
+  .todo .pri.hi  { background: var(--peri); }
+  .todo .pri.mid { background: var(--graphite); }
+
+  /* список с галочками */
+  .items.check li { padding-left: 1.6em; position: relative; }
+  .items.check li::before { content: "✓"; position: absolute; left: 0; top: 0;
+    color: var(--peri); font-size: var(--t14); }
+
+  /* где проверяем */
+  .engines { display: flex; flex-wrap: wrap; gap: var(--s10); }
+  .eng { display: inline-flex; align-items: center; gap: var(--s10); padding: 10px 18px;
+    border: 1px dashed var(--rule); border-radius: var(--r-pill);
+    font-family: var(--mono); font-size: var(--t9); font-weight: 500;
+    letter-spacing: .02em; text-transform: uppercase; color: var(--steel); }
+  .eng.on { border-style: solid; border-color: var(--graphite); color: var(--paper); }
+  .eng-l { width: 18px; height: 18px; flex: none; color: var(--graphite); }
+  .eng.on .eng-l { color: var(--peri); }
+
+  /* сколько стоит потерянный клиент */
+  .worth { border: 1px dashed var(--rule); border-radius: var(--r-tile);
+    padding: var(--s24); display: flex; flex-direction: column; gap: var(--s12); }
 </style>
 </head>
 <body>
+<canvas id="ambient" aria-hidden="true"></canvas>
 
-<div id="loader">
+<div id="loader" aria-hidden="true">
   <div class="load-in">
-    <svg class="load-mark" viewBox="0 0 18 18" aria-hidden="true">
-      <path d="M9 1 L17 16 L1 16 Z" fill="none" stroke="#ffffff" stroke-width="1.5"/>
-    </svg>
-    <span>Namedin<span class="load-dots"></span></span>
+    <svg class="load-mark" viewBox="0 0 24 24" fill="none"><path d="M12 2 2 21h20L12 2z" fill="#7089ba"/></svg>
+    <span>NAMEDIN<span class="load-dots"></span></span>
   </div>
 </div>
 
-<canvas id="ambient" aria-hidden="true"></canvas>
-
 <div class="wrap">
 
-  <nav class="nav">
-    <div class="brand">
-      <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
-        <defs>
-          <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#7089ba"/>
-            <stop offset="1" stop-color="#4d4d4d"/>
-          </linearGradient>
-        </defs>
-        <path d="M9 1 L17 16 L1 16 Z" fill="url(#g)"/>
-      </svg>
-      <span>Namedin</span>
+  <header class="nav">
+    <a class="brand" href="#top">
+      <svg class="mark" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2 2 21h20L12 2z" fill="#7089ba"/></svg>
+      <span>NAMEDIN</span>
+    </a>
+    <nav class="navlinks" aria-label="Разделы">
+      <a href="#how"><span class="en">How it works</span><span class="ru">Как работает</span></a>
+      <a href="#report"><span class="en">Sample report</span><span class="ru">Пример отчёта</span></a>
+      <a href="#who-for"><span class="en">Who it is for</span><span class="ru">Для кого</span></a>
+      <a href="#plans"><span class="en">Pricing</span><span class="ru">Цены</span></a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="langs" role="group" aria-label="Язык / Language">
+      <button class="lang" data-set="ru" aria-pressed="true">RU</button>
+      <button class="lang" data-set="en" aria-pressed="false">EN</button>
     </div>
-    <div style="display:flex;align-items:center;gap:var(--s12)">
-      <nav class="navlinks" aria-label="Разделы">
-        <a href="#how"><span class="en">How</span><span class="ru">Как</span></a>
-        <a href="#plans"><span class="en">Pricing</span><span class="ru">Тарифы</span></a>
-        <a href="#faq"><span class="en">Questions</span><span class="ru">Вопросы</span></a>
-      </nav>
-      <div class="langs" role="group" aria-label="Язык / Language">
-        <button class="lang" type="button" data-set="ru" aria-pressed="false">RU</button>
-        <button class="lang" type="button" data-set="en" aria-pressed="false">EN</button>
-      </div>
-      <a class="pill" href="https://t.me/mirrnr"><span class="en">Free audit</span><span class="ru">Бесплатный аудит</span></a>
-    </div>
-  </nav>
+    <a class="pill" href="#request"><span class="en">Check my company</span><span class="ru">Проверить бесплатно</span></a>
+  </header>
 
-  <section class="hero">
+  <!-- 1. HERO -->
+  <section class="hero" id="top">
     <div class="stack-l lift hero-mid">
-      <p class="label"><span class="en">For B2B software and app companies</span><span class="ru">Для B2B-сервисов и приложений</span></p>
-      <h1 class="display"><span class="en">ChatGPT recommends your competitors.<br>Not you.</span><span class="ru">Ваших конкурентов рекомендует ChatGPT.<br>А вашу компанию — нет.</span></h1>
-      <p class="body en">We show you which answers you are losing customers in — and get you into the recommendations.</p>
-      <p class="body ru">Покажем, в каких ответах вы теряете клиентов, и поможем попасть в рекомендации ИИ.</p>
+      <h1 class="display"><span class="en">When a customer asks an AI which service to choose — does it recommend you?</span><span class="ru">Когда клиент спрашивает ИИ, какой сервис выбрать, — рекомендует ли он вашу компанию?</span></h1>
+      <p class="body en">We check ChatGPT and other AI services and show how often they mention your company, who gets recommended instead of you, and what can be changed.</p>
+      <p class="body ru">Проверяем ChatGPT и другие ИИ-сервисы и показываем, как часто они упоминают вашу компанию, кого рекомендуют вместо вас и что можно изменить.</p>
       <div class="cta">
-        <a class="pill" href="#request"><span class="en">Get a free audit in 48 hours</span><span class="ru">Получить бесплатный аудит за 48 часов</span></a>
+        <a class="pill big" href="#request"><span class="en">Check my company for free</span><span class="ru">Проверить мою компанию бесплатно</span></a>
+        <a class="pill ghosty" href="#report"><span class="en">See a sample report</span><span class="ru">Посмотреть пример отчёта</span></a>
+      </div>
+      <p class="under-cta"><span class="en">Free audit. No card. No mandatory call.</span><span class="ru">Бесплатный аудит. Без банковской карты. Без обязательного звонка.</span></p>
+    </div>
+  </section>
+
+  <!-- 2. ПРОБЛЕМА -->
+
+  <!-- 2. БЕСПЛАТНАЯ ПРОВЕРКА -->
+  <section id="free">
+    <div class="split">
+      <div class="stack">
+        <p class="label"><span class="en">Free check</span><span class="ru">Бесплатная проверка</span></p>
+        <h2 class="h-lg"><span class="en">Start with a free audit.</span><span class="ru">Начните с бесплатного аудита.</span></h2>
+        <p class="body en">Tell us your site and your category. We ask AI 15 questions your buyers really ask and send you the answer.</p>
+        <p class="body ru">Скажите адрес сайта и категорию. Мы зададим ИИ 15 вопросов, которые действительно задают ваши покупатели, и пришлём ответ.</p>
+        <div class="cta"><a class="pill big" href="#request"><span class="en">Check my company for free</span><span class="ru">Проверить мою компанию бесплатно</span></a></div>
+      </div>
+      <div class="stack">
+        <ul class="items check">
+          <li><span class="en">15 questions from real buying scenarios</span><span class="ru">15 вопросов из реальных сценариев выбора</span></li>
+          <li><span class="en">How often the AI names your company</span><span class="ru">Как часто ИИ называет вашу компанию</span></li>
+          <li><span class="en">Who is recommended instead of you</span><span class="ru">Кого рекомендуют вместо вас</span></li>
+          <li><span class="en">Ready within 48 hours</span><span class="ru">Готово за 48 часов</span></li>
+          <li><span class="en">No card, no mandatory call</span><span class="ru">Без карты и без обязательного звонка</span></li>
+        </ul>
       </div>
     </div>
-    <div class="hero-shot lift">
-      <div class="two">
+  </section>
+
+  <!-- 3. РЕАЛЬНЫЙ ПРИМЕР ОТВЕТА ИИ -->
+  <section id="example">
+    <div class="stack-l">
+      <p class="label"><span class="en">A real AI answer</span><span class="ru">Реальный ответ ИИ</span></p>
+      <h2 class="h-lg"><span class="en">The same question. Before and after.</span><span class="ru">Один и тот же вопрос. До и после.</span></h2>
+      <div class="ba">
+        <div class="ba-card">
+          <div class="ba-top">
+            <span class="ba-mark">—</span>
+            <span class="ba-verdict"><span class="en">Before</span><span class="ru">До работы</span></span>
+          </div>
+          <p class="ba-q">«<span class="en">Which service should I choose for this task?</span><span class="ru">Какой сервис выбрать под эту задачу?</span>»</p>
+          <p class="ba-a"><span class="en">The AI names three companies. <b>Yours is not among them.</b></span><span class="ru">ИИ называет три компании. <b>Вашей среди них нет.</b></span></p>
+          <p class="ba-why"><span class="en">The answer is built from sources that say nothing about you.</span><span class="ru">Ответ собран из источников, в которых о вас ничего не сказано.</span></p>
+        </div>
+        <div class="ba-card good">
+          <div class="ba-top">
+            <span class="ba-mark">✓</span>
+            <span class="ba-verdict"><span class="en">After</span><span class="ru">После работы</span></span>
+          </div>
+          <p class="ba-q">«<span class="en">Which service should I choose for this task?</span><span class="ru">Какой сервис выбрать под эту задачу?</span>»</p>
+          <p class="ba-a"><span class="en">The AI names four companies. <em>Yours is one of them</em> — with the reason it fits.</span><span class="ru">ИИ называет четыре компании. <em>Ваша — одна из них</em>, с объяснением, кому она подходит.</span></p>
+          <p class="ba-why"><span class="en">The sources now contain the facts the model needs to name you.</span><span class="ru">В источниках появились факты, которых модели не хватало, чтобы вас назвать.</span></p>
+        </div>
+      </div>
+      <p class="shot-cap"><span class="en">Illustration of how an answer changes. Every client report shows their own real answers.</span><span class="ru">Иллюстрация того, как меняется ответ. В отчёте клиента — его собственные реальные ответы.</span></p>
+    </div>
+  </section>
+
+  <section id="problem">
+    <div class="stack-l">
+      <h2 class="h-lg"><span class="en">You can rank first in Google and still be missing from AI answers.</span><span class="ru">Ваш сайт может быть первым в Google — и при этом отсутствовать в ответах ИИ.</span></h2>
+      <div class="split">
+        <div class="stack">
+          <p class="body en">Today a potential customer increasingly does not compare dozens of sites. They simply ask: “Which CRM is best for a small business?”</p>
+          <p class="body ru">Сегодня потенциальный клиент всё чаще не сравнивает десятки сайтов. Он просто спрашивает: «Какой CRM лучше для малого бизнеса?»</p>
+          <p class="body-2 en">The AI picks a few companies. If yours is not among them, you are not part of that choice at all.</p>
+          <p class="body-2 ru">ИИ выбирает несколько компаний. Если вашей среди них нет — вы не участвуете в этом выборе.</p>
+        </div>
+
         <div class="scr">
           <div class="scr-top">
             <span class="rep-dot"></span><span class="rep-dot"></span><span class="rep-dot"></span>
-            <span class="scr-tag"><span class="en">No page for this question</span><span class="ru">Страницы под этот вопрос нет</span></span>
+            <span class="scr-tag"><span class="en">Request</span><span class="ru">Запрос</span></span>
           </div>
           <div class="scr-body">
-            <div class="ask">«сервис email рассылок для бизнеса какой выбрать»</div>
-            <div class="say">
-              <p>Для бизнеса чаще всего советуют <em>первый сервис</em> — он самый известный. <em>Второй</em> берут ради поддержки и сегментации, а <em>третий</em> — когда нужны ещё и SMS.</p>
-              <p>Если база небольшая, посмотрите <em>четвёртый</em> — у него есть бесплатный тариф.</p>
-            </div>
+            <div class="ask"><span class="en">“Which email service should a business choose?”</span><span class="ru">«Сервис email-рассылок для бизнеса — какой выбрать?»</span></div>
+            <div class="rec-h"><span class="en">The AI recommends</span><span class="ru">ИИ рекомендует</span></div>
+            <div class="rec"><span class="pos">1</span><span class="rec-n"><span class="en">First service</span><span class="ru">Первый сервис</span></span></div>
+            <div class="rec"><span class="pos">2</span><span class="rec-n"><span class="en">Second service</span><span class="ru">Второй сервис</span></span></div>
+            <div class="rec"><span class="pos">3</span><span class="rec-n"><span class="en">Third service</span><span class="ru">Третий сервис</span></span></div>
           </div>
           <div class="scr-foot bad">
             <span class="scr-x">✕</span>
-            <span><span class="en">You are not in the answer</span><span class="ru">Вас в ответе нет</span></span>
-          </div>
-        </div>
-
-        <div class="scr good">
-          <div class="scr-top">
-            <span class="rep-dot"></span><span class="rep-dot"></span><span class="rep-dot"></span>
-            <span class="scr-tag"><span class="en">There is a page for this question</span><span class="ru">Страница под этот вопрос есть</span></span>
-          </div>
-          <div class="scr-body">
-            <div class="ask">«сервис валидации email базы проверка адресов»</div>
-            <div class="say">
-              <p>Для чистки базы стоит посмотреть <em>первый сервис</em>, <b><span class="en">you</span><span class="ru">вас</span></b> и <em>третий</em>. У всех трёх есть проверка адресов перед отправкой.</p>
-            </div>
-          </div>
-          <div class="scr-foot ok">
-            <span class="scr-x">✓</span>
-            <span><span class="en">You are named — the model read your page</span><span class="ru">Вас называют — модель прочитала вашу страницу</span></span>
+            <span><span class="en">Your company — not mentioned</span><span class="ru">Ваша компания — не упоминается</span></span>
           </div>
         </div>
       </div>
-
-      <p class="shot-cap"><span class="en">Same company, same day. The only difference is whether a page for that question exists.</span><span class="ru">Одна компания, один день. Разница только в том, есть ли страница под этот вопрос.</span></p>
+      <p class="caption"><span class="en">We show why this happens and what can be done about it.</span><span class="ru">Namedin покажет, почему это происходит и что с этим можно сделать.</span></p>
     </div>
   </section>
 
+  <!-- 3. ЧТО ДЕЛАЕТ -->
+  <section id="what">
+    <div class="stack-l">
+      <p class="label"><span class="en">What we do</span><span class="ru">Что делает Namedin</span></p>
+      <h2 class="h-lg"><span class="en">Find out how AI sees your company.</span><span class="ru">Узнайте, как ИИ видит вашу компанию.</span></h2>
+      <p class="body-2 en">We ask AI the real questions your potential customers ask, then compare your company with competitors in the answers.</p>
+      <p class="body-2 ru">Мы задаём ИИ реальные вопросы, которые задают ваши потенциальные клиенты, и сравниваем вашу компанию с конкурентами в ответах.</p>
+      <div class="steps-big">
+        <div class="step"><span class="no">01</span>
+          <h3><span class="en">Visibility</span><span class="ru">Видимость</span></h3>
+          <p class="en">How often does AI mention you? We show which questions you appear in and which you do not.</p>
+          <p class="ru">Как часто ИИ упоминает вашу компанию. Показываем, в каких запросах вы появляетесь, а в каких нет.</p></div>
+        <div class="step"><span class="no">02</span>
+          <h3><span class="en">Competitors</span><span class="ru">Конкуренты</span></h3>
+          <p class="en">Who gets recommended instead of you — the companies taking the attention of your buyers.</p>
+          <p class="ru">Кого ИИ рекомендует вместо вас — компании, которые получают внимание ваших покупателей.</p></div>
+        <div class="step"><span class="no">03</span>
+          <h3><span class="en">Sources</span><span class="ru">Источники</span></h3>
+          <p class="en">Why the AI picks them. We show the pages, articles and catalogues that shape the recommendation.</p>
+          <p class="ru">Почему ИИ выбирает именно их. Показываем страницы, статьи и каталоги, которые влияют на рекомендацию.</p></div>
+        <div class="step"><span class="no">04</span>
+          <h3><span class="en">Opportunities</span><span class="ru">Возможности</span></h3>
+          <p class="en">What to change. Concrete growth points, ordered by what to do first.</p>
+          <p class="ru">Что нужно изменить. Конкретные точки роста в порядке приоритета.</p></div>
+      </div>
+    </div>
+  </section>
 
+  <!-- 4. SEO vs AI -->
+  <section id="vs">
+    <div class="stack-l">
+      <h2 class="h-lg"><span class="en">SEO brings a customer to Google. We help you into the AI answer.</span><span class="ru">SEO приводит клиента в Google. Namedin помогает попасть в ответ ИИ.</span></h2>
+      <div class="flows">
+        <div class="flow">
+          <div class="flow-h">SEO</div>
+          <div class="fs"><span class="en">Query</span><span class="ru">Запрос</span></div>
+          <div class="fa">↓</div>
+          <div class="fs">Google</div>
+          <div class="fa">↓</div>
+          <div class="fs"><span class="en">Results page</span><span class="ru">Поисковая выдача</span></div>
+          <div class="fa">↓</div>
+          <div class="fs"><span class="en">A click</span><span class="ru">Клик</span></div>
+          <div class="fa">↓</div>
+          <div class="fs last"><span class="en">Your site</span><span class="ru">Ваш сайт</span></div>
+        </div>
+        <div class="flow good">
+          <div class="flow-h">AI</div>
+          <div class="fs"><span class="en">Query</span><span class="ru">Запрос</span></div>
+          <div class="fa">↓</div>
+          <div class="fs">ChatGPT</div>
+          <div class="fa">↓</div>
+          <div class="fs"><span class="en">A recommendation</span><span class="ru">Рекомендация</span></div>
+          <div class="fa">↓</div>
+          <div class="fs last"><span class="en">Your company</span><span class="ru">Ваша компания</span></div>
+        </div>
+      </div>
+      <p class="caption"><span class="en">The user may never open the results page at all — they can get a finished shortlist straight from the AI. So it matters not only where you rank, but what the AI says about your brand.</span><span class="ru">Пользователь может вообще не открыть поисковую выдачу — готовый список компаний он получает прямо в ИИ. Поэтому важно не только занимать позицию в Google, но и понимать, что ИИ говорит о вашем бренде.</span></p>
+    </div>
+  </section>
 
-
-
-
+  <!-- 5. ЧЕТЫРЕ ШАГА -->
   <section id="how">
     <div class="stack-l">
-      <p class="label"><span class="en">How it works</span><span class="ru">Как это работает</span></p>
-      <h2 class="h-lg"><span class="en">Four steps, every month.</span><span class="ru">Четыре шага, каждый месяц.</span></h2>
+      <p class="label"><span class="en">Four steps</span><span class="ru">Четыре шага</span></p>
+      <h2 class="h-lg"><span class="en">From the first audit to a measurable result.</span><span class="ru">От первого аудита до измеримого результата.</span></h2>
       <div class="steps-big">
-        <div class="step"><svg class="si" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 7h13M3 7l3-3M3 7l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 17H8m13 0-3-3m3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="no">01</span><h3><span class="en">The run</span><span class="ru">Прогон</span></h3><p class="en">Fifteen questions your buyers actually type.</p><p class="ru">Пятнадцать вопросов, которые правда набирают ваши покупатели.</p></div>
-        <div class="step"><svg class="si" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="8" height="6" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="13" y="14" width="8" height="6" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 7h4a2 2 0 0 1 2 2v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span class="no">02</span><h3><span class="en">The trace</span><span class="ru">Разбор</span></h3><p class="en">Who got named, in what order, and whose pages are behind it.</p><p class="ru">Кого назвали, в каком порядке и чьи страницы за этим стоят.</p></div>
-        <div class="step"><svg class="si" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 20h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M15.5 4.5 19 8 9 18l-4 1 1-4 9.5-10.5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg><span class="no">03</span><h3><span class="en">The work</span><span class="ru">Работа</span></h3><p class="en">We write the pages, fill the listings, email the authors.</p><p class="ru">Пишем страницы, заполняем карточки, пишем авторам чужих статей.</p></div>
-        <div class="step"><svg class="si" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20V13M10 20V8M16 20v-5M22 20V4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span class="no">04</span><h3><span class="en">The proof</span><span class="ru">Замер</span></h3><p class="en">A month later, the same questions. If nothing moved, we say so.</p><p class="ru">Через месяц те же вопросы заново. Не сдвинулось — так и напишем.</p></div>
+        <div class="step"><span class="no">01</span>
+          <h3><span class="en">We check</span><span class="ru">Проверяем</span></h3>
+          <p class="en">We ask the AI the questions that match how your product actually gets chosen.</p>
+          <p class="ru">Задаём ИИ вопросы, которые соответствуют реальным сценариям выбора вашего продукта.</p></div>
+        <div class="step"><span class="no">02</span>
+          <h3><span class="en">We compare</span><span class="ru">Сравниваем</span></h3>
+          <p class="en">How often you appear, which competitors appear more often, and where you lose.</p>
+          <p class="ru">Как часто появляется ваша компания, какие конкуренты появляются чаще и в каких запросах вы проигрываете.</p></div>
+        <div class="step"><span class="no">03</span>
+          <h3><span class="en">We find the cause</span><span class="ru">Находим причины</span></h3>
+          <p class="en">Which sources shape the answer: missing information, weak pages, sources that reinforce competitors.</p>
+          <p class="ru">Какие источники формируют ответ: недостающая информация, слабые страницы, источники, усиливающие конкурентов.</p></div>
+        <div class="step"><span class="no">04</span>
+          <h3><span class="en">We fix and re-check</span><span class="ru">Улучшаем и проверяем снова</span></h3>
+          <p class="en">We prepare the materials, then ask the same questions again — and you see the difference.</p>
+          <p class="ru">Готовим материалы, потом задаём те же вопросы заново — и вы видите разницу.</p></div>
       </div>
-      <p class="caption"><span class="en"><b>Timing.</b> A new page first has to reach the top of ordinary search, which takes weeks and sometimes up to two months.</span><span class="ru"><b>Сроки.</b> Новая страница должна сначала попасть в верх обычного поиска — это занимает недели, иногда до двух месяцев.</span></p>
     </div>
   </section>
 
+  <!-- 6. ЧТО ПОЛУЧИТЕ -->
+  <section id="get">
+    <div class="split">
+      <div class="stack">
+        <p class="label"><span class="en">What you get</span><span class="ru">Что вы получите</span></p>
+        <h2 class="h-lg"><span class="en">Not just a report. A clear plan.</span><span class="ru">Не просто отчёт. Понятный план действий.</span></h2>
+        <p class="body-2 en">After the audit you will know exactly where you stand and what to do first.</p>
+        <p class="body-2 ru">После аудита вы будете точно знать, где стоите и с чего начинать.</p>
+      </div>
+      <div class="stack">
+        <ul class="items check">
+          <li><span class="en">Which questions the AI already recommends you in</span><span class="ru">По каким запросам ИИ рекомендует вашу компанию</span></li>
+          <li><span class="en">Which questions you are missing from</span><span class="ru">По каким запросам вас нет</span></li>
+          <li><span class="en">Which competitors are chosen instead of you</span><span class="ru">Каких конкурентов ИИ выбирает вместо вас</span></li>
+          <li><span class="en">Which sources shape those answers</span><span class="ru">Какие источники влияют на ответы</span></li>
+          <li><span class="en">Which pages and materials are worth creating or changing</span><span class="ru">Какие страницы и материалы стоит создать или изменить</span></li>
+          <li><span class="en">What to do first</span><span class="ru">Что делать в первую очередь</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
+  <!-- 7. ПРИМЕР ОТЧЁТА -->
+  <section id="report">
+    <div class="stack-l">
+      <p class="label"><span class="en">Sample report</span><span class="ru">Пример отчёта</span></p>
+      <h2 class="h-lg"><span class="en">See what the result looks like.</span><span class="ru">Посмотрите, как выглядит результат.</span></h2>
 
+      <div class="rep">
+        <div class="rep-bar">
+          <span class="rep-dot"></span><span class="rep-dot"></span><span class="rep-dot"></span>
+          <span class="rep-name"><span class="en">Sample · 15 questions</span><span class="ru">Пример · 15 вопросов</span></span>
+        </div>
+        <div class="rep-body">
+          <div class="score">
+            <div>
+              <div class="score-n">37<span class="pct">%</span></div>
+              <div class="rep-cap"><span class="en">how often the AI names you</span><span class="ru">как часто ИИ называет вас</span></div>
+            </div>
+            <div class="score-bar"><i style="width:37%"></i></div>
+          </div>
 
+          <div class="rep-h"><span class="en">Mentions</span><span class="ru">Упоминания</span></div>
+          <div class="rep-row"><b><span class="en">Competitor A</span><span class="ru">Конкурент А</span></b><span class="rep-bars"><i style="width:100%"></i></span><span class="rep-n">11 / 15</span></div>
+          <div class="rep-row"><b><span class="en">Competitor B</span><span class="ru">Конкурент Б</span></b><span class="rep-bars"><i style="width:82%"></i></span><span class="rep-n">9 / 15</span></div>
+          <div class="rep-row"><b><span class="en">Competitor C</span><span class="ru">Конкурент В</span></b><span class="rep-bars"><i style="width:73%"></i></span><span class="rep-n">8 / 15</span></div>
+          <div class="rep-row you"><b><span class="en">Your company</span><span class="ru">Ваша компания</span></b><span class="rep-bars"><i class="me" style="width:64%"></i></span><span class="rep-n">7 / 15</span></div>
 
+          <div class="rep-h"><span class="en">Main reason</span><span class="ru">Основная причина</span></div>
+          <p class="rep-why"><span class="en">The AI picks competitors more often because they appear in a larger number of independent sources.</span><span class="ru">ИИ чаще выбирает конкурентов, потому что они представлены в большем количестве независимых источников.</span></p>
 
+          <div class="rep-h"><span class="en">What to do first</span><span class="ru">Что делать в первую очередь</span></div>
+          <div class="todo"><span class="pri hi"></span><span><span class="en">Create a comparison page against the leader</span><span class="ru">Создать страницу сравнения с лидером категории</span></span></div>
+          <div class="todo"><span class="pri mid"></span><span><span class="en">Add concrete product advantages, in extractable text</span><span class="ru">Добавить конкретные преимущества продукта в извлекаемом виде</span></span></div>
+          <div class="todo"><span class="pri mid"></span><span><span class="en">Get mentioned in industry sources</span><span class="ru">Получить упоминания в отраслевых источниках</span></span></div>
+        </div>
+      </div>
+      <p class="shot-cap"><span class="en">Sample figures — this is the shape of the report, not a client result.</span><span class="ru">Цифры для примера — так выглядит форма отчёта, это не результат клиента.</span></p>
+      <div class="cta"><a class="pill big" href="#request"><span class="en">Check my company for free</span><span class="ru">Проверить мою компанию бесплатно</span></a></div>
+    </div>
+  </section>
 
+  <!-- 8. ПОЧЕМУ ПРОИГРЫВАЕТЕ -->
+  <section id="why">
+    <div class="split">
+      <div class="stack">
+        <p class="label"><span class="en">Why competitors win</span><span class="ru">Почему вы проигрываете</span></p>
+        <h2 class="h-lg"><span class="en">AI does not always pick the best product.</span><span class="ru">ИИ не всегда выбирает лучший продукт.</span></h2>
+        <p class="body-2 en">It picks the company it has enough information about — the one its sources confirm.</p>
+        <p class="body-2 ru">Он выбирает компанию, о которой у него достаточно информации и которую подтверждают его источники.</p>
+      </div>
+      <div class="stack">
+        <ul class="items">
+          <li><b><span class="en">Too few mentions.</span><span class="ru">Мало упоминаний.</span></b> <span class="en">The model gets too few signals about the brand.</span><span class="ru">Модель получает слишком мало сигналов о бренде.</span></li>
+          <li><b><span class="en">Weak positioning.</span><span class="ru">Слабое позиционирование.</span></b> <span class="en">It does not understand what makes you better.</span><span class="ru">Модель не понимает, чем вы лучше альтернатив.</span></li>
+          <li><b><span class="en">Competitors are better represented.</span><span class="ru">Конкуренты лучше представлены.</span></b> <span class="en">More is written about them on third-party sites.</span><span class="ru">О них больше говорят на сторонних ресурсах.</span></li>
+          <li><b><span class="en">Not enough proof.</span><span class="ru">Не хватает доказательств.</span></b> <span class="en">No comparisons, reviews or cases to confirm the claims.</span><span class="ru">Нет сравнений, обзоров и кейсов, подтверждающих заявленное.</span></li>
+          <li><b><span class="en">The site is hard to read.</span><span class="ru">Сайт трудно прочитать.</span></b> <span class="en">Key facts are buried where a model cannot extract them.</span><span class="ru">Важное спрятано так, что модель не может это извлечь.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
+  <!-- 9. ЧТО НЕ ОБЕЩАЕМ -->
+  <section id="honest">
+    <div class="stack-l">
+      <p class="label"><span class="en">Straight talk</span><span class="ru">Честно</span></p>
+      <h2 class="h-lg"><span class="en">We do not promise first place in AI.</span><span class="ru">Мы не обещаем первое место в ИИ.</span></h2>
+      <p class="body en">Nobody can guarantee that an AI will always recommend a particular company. We do not control the answers.</p>
+      <p class="body ru">Никто не может гарантировать, что ИИ всегда будет рекомендовать конкретную компанию. Мы не контролируем ответы.</p>
+      <p class="body-2 en">We control something else: measurement → analysis → recommendations → work → measurement again.</p>
+      <p class="body-2 ru">Мы контролируем другое: измерение → анализ → рекомендации → работа → повторное измерение.</p>
+      <p class="caption"><span class="en">You will always know what changed and why.</span><span class="ru">Вы всегда будете знать, что изменилось и почему.</span></p>
+    </div>
+  </section>
+
+  <!-- 10. КАКИЕ ИИ -->
+
+  <!-- 11. ЧТО МЫ УЖЕ ИЗМЕРИЛИ -->
+  <section id="cases">
+    <div class="stack-l">
+      <p class="label"><span class="en">What we have measured</span><span class="ru">Что мы уже измерили</span></p>
+      <h2 class="h-lg"><span class="en">Half of what AI quotes is written by your competitors.</span><span class="ru">Половину того, что цитирует ИИ, пишут ваши конкуренты.</span></h2>
+      <p class="body-2 en">We ran the questions ourselves and counted who owns the sources behind the answers. Categories are shown without company names.</p>
+      <p class="body-2 ru">Мы сами прогнали вопросы и посчитали, кому принадлежат источники под ответами. Категории — без названий компаний.</p>
+      <div class="ch">
+        <div class="ch-row"><span class="ch-lab"><span class="en">Sellers on marketplaces</span><span class="ru">Продавцы на маркетплейсах</span></span><span class="ch-bar"><i style="width:68%"></i></span><span class="ch-num">68%</span></div>
+        <div class="ch-row"><span class="ch-lab"><span class="en">Online stores</span><span class="ru">Интернет-магазины</span></span><span class="ch-bar"><i style="width:51%"></i></span><span class="ch-num">51%</span></div>
+        <div class="ch-row"><span class="ch-lab"><span class="en">Email delivery</span><span class="ru">Email-рассылки</span></span><span class="ch-bar"><i style="width:41%"></i></span><span class="ch-num">41%</span></div>
+        <div class="ch-row"><span class="ch-lab"><span class="en">CRM systems</span><span class="ru">CRM-системы</span></span><span class="ch-bar"><i style="width:33%"></i></span><span class="ch-num">33%</span></div>
+      </div>
+      <p class="caption"><span class="en">Share of sources in the answer that belong to companies competing in the same category. Our own measurements, 2026.</span><span class="ru">Доля источников в ответе, принадлежащих компаниям-конкурентам из той же категории. Наши собственные замеры, 2026 год.</span></p>
+    </div>
+  </section>
+
+  <section id="engines">
+    <div class="stack-l">
+      <p class="label"><span class="en">Where we check</span><span class="ru">Где проверяем</span></p>
+      <h2 class="h-md"><span class="en">The surfaces your buyers actually use.</span><span class="ru">Поверхности, куда ваши покупатели правда ходят.</span></h2>
+      <div class="engines">
+        <span class="eng on">
+          <svg class="eng-l" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6 20.1 7v10L12 21.4 3.9 17V7L12 2.6z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 7v10M7.7 9.5l8.6 5M16.3 9.5l-8.6 5" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>
+          ChatGPT
+        </span>
+        <span class="eng on">
+          <svg class="eng-l" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2c.4 4.4 4.4 8.4 8.8 8.8-4.4.4-8.4 4.4-8.8 8.8-.4-4.4-4.4-8.4-8.8-8.8 4.4-.4 8.4-4.4 8.8-8.8z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          <span class="en">Google AI Overviews</span><span class="ru">Google AI Overviews</span>
+        </span>
+        <span class="eng on">
+          <svg class="eng-l" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.6 3.4h-2.4c-3 0-5.4 2.4-5.4 5.4 0 2.6 1.8 4.8 4.3 5.3L7 20.6M14.6 3.4v17.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="en">Yandex</span><span class="ru">Яндекс Нейро</span>
+        </span>
+        <span class="eng">
+          <svg class="eng-l" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M12 8.4 5.2 3.6v7.1M12 8.4l6.8-4.8v7.1M12 15.6l-6.8 4.8v-7.1M12 15.6l6.8 4.8v-7.1M3.6 8.4h16.8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Perplexity
+        </span>
+        <span class="eng">
+          <svg class="eng-l" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.4c.35 4 3.25 6.9 7.25 7.25-4 .35-6.9 3.25-7.25 7.25-.35-4-3.25-6.9-7.25-7.25 4-.35 6.9-3.25 7.25-7.25z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M18.4 15.1c.16 1.9 1.5 3.24 3.4 3.4-1.9.16-3.24 1.5-3.4 3.4-.16-1.9-1.5-3.24-3.4-3.4 1.9-.16 3.24-1.5 3.4-3.4z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+          Gemini
+        </span>
+        <span class="eng">
+          <svg class="eng-l" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 3.2v6"/><path d="M12 14.8v6"/><path d="M3.2 12h6"/><path d="M14.8 12h6"/><path d="M5.8 5.8 10 10"/><path d="M14 14l4.2 4.2"/><path d="M18.2 5.8 14 10"/><path d="M10 14l-4.2 4.2"/></g></svg>
+          Claude
+        </span>
+      </div>
+      <p class="caption"><span class="en">Highlighted surfaces are included in every audit. The rest are added on request — the list grows as AI search does.</span><span class="ru">Выделенные входят в каждый аудит. Остальные добавляем по запросу — список расширяется по мере развития ИИ-поиска.</span></p>
+    </div>
+  </section>
+
+  <!-- 11. ДЛЯ КОГО -->
+  <section id="who-for">
+    <div class="stack-l">
+      <p class="label"><span class="en">Who it is for</span><span class="ru">Для кого</span></p>
+      <h2 class="h-lg"><span class="en">For companies that want customers from AI.</span><span class="ru">Для компаний, которые хотят получать клиентов из ИИ.</span></h2>
+      <div class="steps-big">
+        <div class="step"><h3>SaaS</h3><p class="en">Find out which products the AI recommends to your potential customers.</p><p class="ru">Узнайте, какие продукты ИИ рекомендует вашим потенциальным клиентам.</p></div>
+        <div class="step"><h3>B2B</h3><p class="en">See which companies the AI treats as the leaders of your category.</p><p class="ru">Поймите, какие компании ИИ считает лидерами вашей категории.</p></div>
+        <div class="step"><h3>E-commerce</h3><p class="en">Check whether your brand makes it into AI recommendations.</p><p class="ru">Проверьте, попадает ли ваш бренд в рекомендации ИИ.</p></div>
+        <div class="step"><h3><span class="en">Agencies</span><span class="ru">Агентства</span></h3><p class="en">Add AI visibility to what you already do for clients — as a separate layer of analytics.</p><p class="ru">Добавьте видимость в ИИ к тому, что вы уже делаете для клиентов, — отдельным слоем аналитики.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12. ТАРИФЫ -->
+
+  <!-- 14. ДЛЯ АГЕНТСТВ -->
+  <section id="agency">
+    <div class="split">
+      <div class="stack">
+        <p class="label"><span class="en">For agencies</span><span class="ru">Для агентств</span></p>
+        <h2 class="h-lg"><span class="en">Add AI visibility to what you already sell.</span><span class="ru">Добавьте видимость в ИИ к тому, что вы уже продаёте.</span></h2>
+        <p class="body en">Your clients are starting to ask why they are missing from AI answers. We do the measurement and the analysis; you keep the relationship.</p>
+        <p class="body ru">Клиенты уже начинают спрашивать, почему их нет в ответах ИИ. Замеры и анализ делаем мы, отношения с клиентом остаются вашими.</p>
+        <div class="cta"><a class="pill" href="#request"><span class="en">Discuss terms</span><span class="ru">Обсудить условия</span></a></div>
+      </div>
+      <div class="stack">
+        <ul class="items">
+          <li><b><span class="en">Report under your name.</span><span class="ru">Отчёт под вашим именем.</span></b> <span class="en">We hand over the data and the plan; the client sees your brand.</span><span class="ru">Мы передаём данные и план, клиент видит ваш бренд.</span></li>
+          <li><b><span class="en">A new line in the estimate.</span><span class="ru">Новая строка в смете.</span></b> <span class="en">A service you can sell on top of the current contract.</span><span class="ru">Услуга, которую можно продать поверх текущего договора.</span></li>
+          <li><b><span class="en">No hiring.</span><span class="ru">Без найма.</span></b> <span class="en">No need to build the measurement stack in-house.</span><span class="ru">Не нужно строить систему замеров внутри агентства.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
   <section id="plans">
     <div class="stack-l">
       <p class="label"><span class="en">Pricing</span><span class="ru">Тарифы</span></p>
-      <h2 class="h-lg"><span class="en">One category, one price.</span><span class="ru">Одна категория — одна цена.</span></h2>
-      <p class="body-2 en">No setup fee, no annual lock-in. Cancel with ten days' notice and the unused part comes back.</p>
-      <p class="body-2 ru">Без платы за подключение и без годовых обязательств. Отказ — за десять дней, неотработанное возвращается.</p>
+      <h2 class="h-lg"><span class="en">Start free.</span><span class="ru">Начните бесплатно.</span></h2>
 
       <div class="plans">
         <div class="plan">
-          <span class="tag"><span class="en">Audit</span><span class="ru">Аудит</span></span>
-          <span class="price"><span class="en">Free</span><span class="ru">0 ₽</span></span>
-          <span class="per"><span class="en">once, no strings</span><span class="ru">разово, без условий</span></span>
+          <span class="tag"><span class="en">Free audit</span><span class="ru">Бесплатный аудит</span></span>
+          <span class="price">0 ₽</span>
+          <span class="per"><span class="en">for a first look</span><span class="ru">для первого знакомства</span></span>
           <ul>
-            <li><span class="en">Fifteen questions from your category</span><span class="ru">Пятнадцать вопросов вашей категории</span></li>
-            <li><span class="en">Who gets named instead of you</span><span class="ru">Кого называют вместо вас</span></li>
-            <li><span class="en">Every source URL, so you can check any line</span><span class="ru">Все ссылки на источники — проверите любую строку</span></li>
-            <li><span class="en">Two or three gaps that close fastest</span><span class="ru">Два-три пробела, которые закрываются быстрее всего</span></li>
+            <li><span class="en">15 questions your buyers ask</span><span class="ru">15 вопросов ваших покупателей</span></li>
+            <li><span class="en">Who is named instead of you</span><span class="ru">Кого называют вместо вас</span></li>
+            <li><span class="en">The sources behind the answers</span><span class="ru">Источники, из которых собран ответ</span></li>
+            <li><span class="en">The first things to fix</span><span class="ru">С чего начинать</span></li>
           </ul>
-          <a class="ghost-btn" href="#request"><span class="en">Request the audit</span><span class="ru">Запросить аудит</span></a>
+          <a class="pill" href="#request"><span class="en">Get the free audit</span><span class="ru">Получить бесплатно</span></a>
         </div>
 
         <div class="plan pick">
-          <span class="tag"><span class="en">One category</span><span class="ru">Категория</span></span>
-          <span class="price"><span class="en">45 000 ₽</span><span class="ru">45 000 ₽</span></span>
+          <span class="tag"><span class="en">Done for you</span><span class="ru">Работа под ключ</span></span>
+          <span class="price">45 000 ₽</span>
           <span class="per"><span class="en">per month</span><span class="ru">в месяц</span></span>
           <ul>
-            <li><span class="en">15 questions, run monthly on the surfaces your buyers use</span><span class="ru">15 вопросов, ежемесячно, на тех поверхностях, куда ходят ваши покупатели</span></li>
-            <li><span class="en">2–3 finished pages for your site — yours to keep</span><span class="ru">2–3 готовые страницы для вашего сайта — остаются вашими навсегда</span></li>
-            <li><span class="en">5–10 letters to the authors whose articles get quoted</span><span class="ru">5–10 писем авторам статей, которые цитируются в ответах</span></li>
-            <li><span class="en">Directory listings filled in, facts reconciled across all of them</span><span class="ru">Карточки в каталогах и сверка фактов между всеми площадками</span></li>
-            <li><span class="en">A report with two measurements: before the work and a month later</span><span class="ru">Отчёт с двумя замерами: до работы и через месяц</span></li>
+            <li><span class="en">Monthly re-check of the same questions</span><span class="ru">Ежемесячная перепроверка тех же вопросов</span></li>
+            <li><span class="en">2–3 finished pages for your site — yours to keep</span><span class="ru">2–3 готовые страницы для вашего сайта — остаются вашими</span></li>
+            <li><span class="en">Directory listings filled in, facts reconciled</span><span class="ru">Карточки в каталогах и сверка фактов</span></li>
+            <li><span class="en">Outreach to the authors whose articles get quoted</span><span class="ru">Письма авторам статей, которые цитируются в ответах</span></li>
+            <li><span class="en">A report with two measurements</span><span class="ru">Отчёт с двумя замерами</span></li>
           </ul>
-          <a class="pill" href="https://t.me/mirrnr?text=%D0%A5%D0%BE%D1%87%D1%83%20%D1%82%D0%B0%D1%80%D0%B8%D1%84%20%C2%AB%D0%9A%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D1%8F%C2%BB%20%E2%80%94%2045%20000%20%E2%82%BD%2F%D0%BC%D0%B5%D1%81"><span class="en">Start</span><span class="ru">Начать</span></a>
+          <a class="pill" href="#request"><span class="en">Start</span><span class="ru">Начать</span></a>
         </div>
 
         <div class="plan">
-          <span class="tag"><span class="en">Several categories</span><span class="ru">Несколько категорий</span></span>
-          <span class="price"><span class="en">90 000 ₽</span><span class="ru">90 000 ₽</span></span>
-          <span class="per"><span class="en">per month</span><span class="ru">в месяц</span></span>
+          <span class="tag">Enterprise</span>
+          <span class="price"><span class="en">Custom</span><span class="ru">Индивидуально</span></span>
+          <span class="per"><span class="en">several products or markets</span><span class="ru">несколько продуктов или рынков</span></span>
           <ul>
-            <li><span class="en">Everything above, across two or three categories</span><span class="ru">Всё перечисленное, но по двум-трём категориям</span></li>
-            <li><span class="en">For companies with several products or markets</span><span class="ru">Для компаний с несколькими продуктами или рынками</span></li>
+            <li><span class="en">Everything above, across categories</span><span class="ru">Всё перечисленное, по нескольким категориям</span></li>
+            <li><span class="en">Russian and English markets</span><span class="ru">Русский и английский рынки</span></li>
             <li><span class="en">Comparison pages against each holder of your slot</span><span class="ru">Сравнительные страницы против каждого, кто занял ваше место</span></li>
           </ul>
-          <a class="ghost-btn" href="https://t.me/mirrnr?text=%D0%A5%D0%BE%D1%87%D1%83%20%D1%82%D0%B0%D1%80%D0%B8%D1%84%20%C2%AB%D0%9D%D0%B5%D1%81%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D0%BA%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D0%B9%C2%BB%20%E2%80%94%2090%20000%20%E2%82%BD%2F%D0%BC%D0%B5%D1%81"><span class="en">Discuss</span><span class="ru">Обсудить</span></a>
+          <a class="ghost-btn" href="#request"><span class="en">Talk to us</span><span class="ru">Обсудить</span></a>
         </div>
       </div>
 
-      <p class="plans-note en">We work with one company per category — never with two that compete.</p>
-      <p class="plans-note ru">В одной категории работаем только с одной компанией — двух конкурентов не берём.</p>
-    </div>
-  </section>
-  <section id="sample">
-    <div class="stack-l">
-      <p class="label"><span class="en">What the work looks like</span><span class="ru">Как выглядит работа</span></p>
-      <h2 class="h-lg"><span class="en">A page written to be quoted.</span><span class="ru">Страница, написанная под цитирование.</span></h2>
-      <p class="body-2 en">Not an article for readers — a page an AI can lift a sentence from, with your name inside it. Here is a real brief from a client plan.</p>
-      <p class="body-2 ru">Не статья для читателя, а страница, из которой ИИ может вынуть фразу вместе с вашим названием. Ниже — настоящий бриф из плана работ.</p>
+      <p class="plans-note"><span class="en">One company per category — we never work with two that compete.</span><span class="ru">В одной категории работаем только с одной компанией — двух конкурентов не берём.</span></p>
 
-      <div class="doc">
-        <div class="rep-bar">
-          <span class="rep-dot"></span><span class="rep-dot"></span><span class="rep-dot"></span>
-          <span class="rep-name"><span class="en">Page brief · marketplace services</span><span class="ru">Бриф страницы · сервисы для маркетплейсов</span></span>
-        </div>
-        <div class="doc-body">
-          <h4>Как считать прибыль от продаж на маркетплейсах?</h4>
-          <div class="doc-h"><span class="en">Short answer</span><span class="ru">Короткий ответ</span></div>
-          <p><span class="en">Two to four sentences. The first answers the question literally, in the buyer’s own words — this is the block a model lifts whole.</span><span class="ru">Два–четыре предложения. Первое отвечает на вопрос буквально, теми же словами, которыми спросил покупатель, — этот блок модель забирает целиком.</span></p>
-          <div class="doc-h"><span class="en">Comparison</span><span class="ru">Сравнение</span></div>
-          <table class="doc-t">
-            <tr><th><span class="en">Product</span><span class="ru">Продукт</span></th><th><span class="en">Price as text</span><span class="ru">Цена текстом</span></th><th><span class="en">Free tier</span><span class="ru">Бесплатный тариф</span></th></tr>
-            <tr><td><b><span class="en">Your product</span><span class="ru">Ваш продукт</span></b></td><td class="need">нужно от клиента</td><td class="need">нужно от клиента</td></tr>
-            <tr><td><span class="en">Competitor 1</span><span class="ru">Конкурент 1</span></td><td class="need">с сайта вендора</td><td class="need">с сайта вендора</td></tr>
-            <tr><td><span class="en">Competitor 2</span><span class="ru">Конкурент 2</span></td><td class="need">с сайта вендора</td><td class="need">с сайта вендора</td></tr>
-          </table>
-          <p class="doc-note"><span class="en">Price as text, never inside an image or a pricing widget — a model cannot read those.</span><span class="ru">Цена текстом, не картинкой и не внутри виджета тарифов: их модель не прочитает.</span></p>
-        </div>
+      <div class="worth">
+        <p class="body"><b><span class="en">What does one lost customer cost you?</span><span class="ru">Сколько стоит один потерянный клиент?</span></b></p>
+        <p class="body-2 en">If an average customer is worth 100 000 ₽ to you, losing a couple a month makes absence from AI answers more expensive than the work itself.</p>
+        <p class="body-2 ru">Если средний клиент приносит вам 100 000 ₽, достаточно потерять пару в месяц, чтобы отсутствие в ответах ИИ обошлось дороже самой работы.</p>
       </div>
-
-      <p class="caption"><span class="en">Marked fields are facts about your product. We ask you for them and never invent them — an invented price is what gets a page thrown out of an answer.</span><span class="ru">Помеченные поля — факты о вашем продукте. Мы спрашиваем их у вас и не выдумываем: выдуманная цена как раз и выкидывает страницу из ответа.</span></p>
     </div>
   </section>
 
+  <!-- 13. FAQ -->
   <section id="faq">
     <div class="stack-l">
-      <p class="label"><span class="en">Questions</span><span class="ru">Вопросы</span></p>
-      <h2 class="h-lg"><span class="en">What gets asked first.</span><span class="ru">То, что спрашивают первым.</span></h2>
+      <p class="label">FAQ</p>
+      <h2 class="h-lg"><span class="en">Questions we get first.</span><span class="ru">То, что спрашивают первым.</span></h2>
       <div class="qa">
-                <details>
-          <summary><span class="qa-t"><span class="en">How is this different from SEO?</span><span class="ru">Чем это отличается от SEO?</span></span><span class="qa-i" aria-hidden="true"></span></summary>
-          <div class="qa-a"><span class="en">By the target. SEO chases traffic. We chase the mention. A page can rank beautifully and still earn you zero mentions — we have that case measured.</span><span class="ru">Целью. SEO гонится за трафиком. Мы — за упоминанием. Страница может отлично ранжироваться и не дать вам ни одного упоминания: у нас такой случай измерен.</span></div>
+        <details>
+          <summary><span class="qa-t"><span class="en">Do you guarantee the AI will start recommending us?</span><span class="ru">Гарантируете, что ИИ начнёт нас рекомендовать?</span></span><span class="qa-i" aria-hidden="true"></span></summary>
+          <div class="qa-a"><span class="en">No. Answers change and nobody can guarantee a position. We show the movement and work on the factors that can actually be changed.</span><span class="ru">Нет. Ответы меняются, и никто не может гарантировать конкретную позицию. Мы показываем динамику и работаем над тем, на что действительно можно повлиять.</span></div>
         </details>
         <details>
-          <summary><span class="qa-t"><span class="en">What do I own after the first month?</span><span class="ru">Что остаётся у меня после первого месяца?</span></span><span class="qa-i" aria-hidden="true"></span></summary>
-          <div class="qa-a"><span class="en">Two or three finished pages on your own site, filled-in directory listings, facts reconciled across all of them, the author correspondence, and two measurements with exact links. All of it stays yours and works in ordinary search too.</span><span class="ru">Две-три готовые страницы на вашем сайте, заполненные карточки в каталогах, сверенные между собой факты, переписка с авторами и два замера с точными ссылками. Всё это остаётся вашим и работает в обычном поиске тоже.</span></div>
+          <summary><span class="qa-t"><span class="en">Is this SEO?</span><span class="ru">Это SEO?</span></span><span class="qa-i" aria-hidden="true"></span></summary>
+          <div class="qa-a"><span class="en">It does not replace SEO. SEO gets you visibility in the results page. We show how your company is represented inside the AI answer itself.</span><span class="ru">Namedin не заменяет SEO. SEO помогает получать видимость в поисковой выдаче. Мы показываем, как ваша компания представлена непосредственно в ответе ИИ.</span></div>
         </details>
         <details>
-          <summary><span class="qa-t"><span class="en">Will you write under our name?</span><span class="ru">Вы будете писать от нашего имени?</span></span><span class="qa-i" aria-hidden="true"></span></summary>
-          <div class="qa-a"><span class="en">No. Materials are handed to you and you publish them. We do not need access to your site.</span><span class="ru">Нет. Материалы передаются вам, публикацию выполняете вы. Доступ к вашему сайту не требуется.</span></div>
+          <summary><span class="qa-t"><span class="en">Do we need to give you access to our site?</span><span class="ru">Нужно ли давать доступ к сайту?</span></span><span class="qa-i" aria-hidden="true"></span></summary>
+          <div class="qa-a"><span class="en">No. The audit needs only your URL and a description of the product. Materials are handed to you and you publish them yourself.</span><span class="ru">Нет. Для аудита достаточно адреса сайта и описания продукта. Материалы передаём вам, публикуете вы сами.</span></div>
         </details>
         <details>
-          <summary><span class="qa-t"><span class="en">Do you work with our competitors?</span><span class="ru">Вы работаете с нашими конкурентами?</span></span><span class="qa-i" aria-hidden="true"></span></summary>
-          <div class="qa-a"><span class="en">No. We do not work with two companies from the same category. If yours is taken, we say so in our first reply.</span><span class="ru">Нет. Мы не работаем одновременно с двумя компаниями из одной категории. Если ваша категория занята, мы сообщим об этом в первом ответе.</span></div>
+          <summary><span class="qa-t"><span class="en">How fast do we get the result?</span><span class="ru">Как быстро я получу результат?</span></span><span class="qa-i" aria-hidden="true"></span></summary>
+          <div class="qa-a"><span class="en">The free audit comes within 48 hours. Paid work runs monthly and shows movement over time.</span><span class="ru">Бесплатный аудит — в течение 48 часов. Платная работа идёт ежемесячно и показывает динамику во времени.</span></div>
+        </details>
+        <details>
+          <summary><span class="qa-t"><span class="en">Can you track competitors?</span><span class="ru">Можно ли отслеживать конкурентов?</span></span><span class="qa-i" aria-hidden="true"></span></summary>
+          <div class="qa-a"><span class="en">Yes — competitors are a core part of the analysis. We never work with two companies from the same category, though.</span><span class="ru">Да, конкуренты — ключевая часть анализа. При этом с двумя компаниями из одной категории мы не работаем.</span></div>
         </details>
       </div>
     </div>
   </section>
 
+  <!-- 14. ФИНАЛЬНЫЙ CTA -->
   <section id="request">
     <div class="split">
       <div class="stack">
-        <p class="label"><span class="en">Free audit</span><span class="ru">Бесплатный аудит</span></p>
-        <h2 class="h-lg"><span class="en">A free audit of your category.</span><span class="ru">Аудит вашей категории — бесплатно.</span></h2>
-        <p class="body-2 en">Give us your domain and the category you work in. We will ask an AI the questions your buyers ask and send you a report: which companies it names and which sources it relies on.</p>
-        <p class="body-2 ru">Укажите домен и категорию, в которой работаете. Мы зададим ИИ вопросы, которые задают ваши покупатели, и направим отчёт: какие компании он называет и на какие источники опирается.</p>
+        <h2 class="h-lg"><span class="en">Find out whether AI recommends your company.</span><span class="ru">Узнайте, рекомендует ли ИИ вашу компанию.</span></h2>
+        <p class="body en">Your potential customers are already asking AI about your category. Check whether you appear in those answers.</p>
+        <p class="body ru">Потенциальные клиенты уже задают ИИ вопросы о вашей категории. Проверьте, появляется ли в этих ответах ваша компания.</p>
+        <p class="body-2 en">No card. No mandatory call. The report arrives within 48 hours whether or not we end up working together.</p>
+        <p class="body-2 ru">Без карты и без обязательного звонка. Отчёт придёт за 48 часов независимо от того, будем ли мы работать.</p>
       </div>
 
-      <div class="stack">
-        
-      </div>
-    </div>
-    <div class="split" style="margin-top:var(--s36)">
-      <div class="stack">
-        <p class="body-2 en">No calls, no newsletter. The report is sent whether or not we end up working together.</p>
-        <p class="body-2 ru">Без звонков и рассылок. Отчёт направляется независимо от того, будем ли мы работать.</p>
-      </div>
       <form class="form-card" id="req" novalidate>
         <div class="field">
           <label for="f-name"><span class="en">Your name</span><span class="ru">Как вас зовут</span></label>
           <input id="f-name" name="name" type="text" autocomplete="given-name" placeholder="Роман" required>
         </div>
         <div class="field">
-          <label for="f-dom"><span class="en">Your domain</span><span class="ru">Ваш домен</span></label>
+          <label for="f-dom"><span class="en">Your site</span><span class="ru">Ваш сайт</span></label>
           <input id="f-dom" name="dom" type="text" inputmode="url" autocomplete="url" placeholder="example.com" required>
         </div>
         <div class="field">
-          <label for="f-cat"><span class="en">Category you sell into</span><span class="ru">Категория, в которой продаёте</span></label>
-          <input id="f-cat" name="cat" type="text" placeholder="CRM для малого бизнеса" required>
+          <label for="f-cat"><span class="en">Category or product</span><span class="ru">Категория или продукт</span></label>
+          <input id="f-cat" name="cat" type="text" placeholder="Например: CRM для малого бизнеса" required>
         </div>
         <div class="field">
-          <label for="f-to"><span class="en">Where to reach you</span><span class="ru">Как с вами связаться</span></label>
+          <label for="f-to"><span class="en">How to reach you</span><span class="ru">Как с вами связаться</span></label>
           <input id="f-to" name="to" type="text" autocomplete="email" placeholder="телефон, @телеграм или почта" required>
         </div>
         <div class="field">
@@ -1116,7 +1439,6 @@
           <input id="f-comp" name="comp" type="text" placeholder="—">
         </div>
 
-        <!-- ловушка для роботов: человек этого поля не видит и не заполнит -->
         <div class="trap" aria-hidden="true">
           <label for="f-site">Site</label>
           <input id="f-site" name="site" type="text" tabindex="-1" autocomplete="off">
@@ -1124,19 +1446,16 @@
 
         <label class="agree">
           <input id="f-ok" name="ok" type="checkbox" required>
-          <span class="en">I agree that my contact details will be used to send the audit and reply to this request — nothing else. <a href="/data/" target="_blank">What happens to the data</a>.</span>
-          <span class="ru">Согласен, что мои контакты используют, чтобы прислать аудит и ответить на эту заявку, — и ни для чего больше. <a href="/data/" target="_blank">Что происходит с данными</a>.</span>
+          <span class="en">I agree my contact details will be used to send the audit and reply — nothing else. <a href="/data/" target="_blank">What happens to the data</a>.</span>
+          <span class="ru">Согласен, что мои контакты используют, чтобы прислать аудит и ответить, — и ни для чего больше. <a href="/data/" target="_blank">Что происходит с данными</a>.</span>
         </label>
 
         <p class="form-err" id="f-err" role="alert"></p>
-        <button class="pill" type="submit" id="f-btn"><span class="en">Send the request</span><span class="ru">Отправить заявку</span></button>
-
-        <p class="form-note en">The report is sent within 48 hours.</p>
-        <p class="form-note ru">Отчёт направим в течение 48 часов.</p>
+        <button class="pill big" type="submit" id="f-btn"><span class="en">Get the free audit</span><span class="ru">Получить бесплатный аудит</span></button>
 
         <div class="sent" id="f-sent" hidden>
           <p class="body"><b><span class="en">Request received.</span><span class="ru">Заявка принята.</span></b></p>
-          <p class="form-note"><span class="en">We will reply within 48 hours.</span><span class="ru">Ответим на указанный контакт в течение 48 часов.</span></p>
+          <p class="form-note"><span class="en">We will reply within 48 hours.</span><span class="ru">Ответим в течение 48 часов.</span></p>
         </div>
       </form>
     </div>
@@ -1144,12 +1463,10 @@
 
   <section id="who">
     <div class="stack-l">
-      <p class="label"><span class="en">Who</span><span class="ru">Кто</span></p>
-      <h2 class="h-lg"><span class="en">About us.</span><span class="ru">О компании.</span></h2>
-      <p class="body en">Namedin helps B2B companies appear in AI answers. Analysis, content and measurement are done in-house.</p><p class="body en">Every figure in a report carries its source, so any claim can be verified.</p>
-      <p class="body ru">Namedin — сервис по обеспечению присутствия B2B-компаний в ответах ИИ. Анализ, подготовку материалов и замеры мы выполняем самостоятельно, без подрядчиков.</p><p class="body ru">В каждом отчёте указан источник каждой цифры, поэтому любое утверждение можно проверить.</p>
-      <p class="body-2 en">Leave a request and we will prepare an audit of your category and send it to you.</p>
-      <p class="body-2 ru">Оставьте заявку — подготовим аудит вашей категории и пришлём в течение 48 часов.</p>
+      <p class="label"><span class="en">About</span><span class="ru">О компании</span></p>
+      <h2 class="h-md"><span class="en">The work is done in-house.</span><span class="ru">Работу делаем сами.</span></h2>
+      <p class="body-2 en">Namedin helps B2B companies appear in AI answers. Analysis, materials and measurement are done by us, not outsourced. Every figure in a report carries its source, so any claim can be verified.</p>
+      <p class="body-2 ru">Namedin помогает B2B-компаниям попадать в ответы ИИ. Анализ, материалы и замеры выполняем сами, без подрядчиков. В каждом отчёте указан источник каждой цифры, поэтому любое утверждение можно проверить.</p>
       <div class="contacts">
         <a class="pill tg" href="https://t.me/mirrnr" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.3 18.8 19c-.2 1-.9 1.3-1.7.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8 8.8-8c.4-.3-.1-.5-.6-.2L6.7 13.1 2 11.6c-1-.3-1-1 .2-1.5l18.4-7.1c.9-.3 1.6.2 1.3 1.3z"/></svg>
@@ -1159,7 +1476,11 @@
     </div>
   </section>
 
-  <button class="fab" id="fab" aria-haspopup="dialog" aria-expanded="false">
+  <footer><span class="en">Namedin · <a href="/data/">Data</a></span><span class="ru">Namedin · <a href="/data/">О данных</a></span></footer>
+
+</div>
+
+<button class="fab" id="fab" aria-haspopup="dialog" aria-expanded="false">
   <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
     <path d="M4 5h16v11H8l-4 4V5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
   </svg>
@@ -1424,7 +1745,7 @@
 
   // Не показываем кнопку на первом экране: там уже есть точно такая же,
   // и две одинаковые рядом сбивают с толку
-  const anchor = document.getElementById('answer');
+  const anchor = document.getElementById('problem');
   if ('IntersectionObserver' in window && anchor) {
     new IntersectionObserver(es => {
       es.forEach(x => fab.classList.toggle('on', x.boundingClientRect.top < 0 || x.isIntersecting));
