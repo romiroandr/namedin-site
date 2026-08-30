@@ -51,6 +51,10 @@ SaaS, B2B-сервисы, интернет-магазины, агентства.
 ## Страницы
 
 - Главная: https://getnamedin.com/
+- Как попасть в ответы ИИ: https://getnamedin.com/kak-popast-v-otvety-ii/
+- Чем это отличается от SEO: https://getnamedin.com/chem-otlichaetsya-ot-seo/
+- Как проверить упоминания: https://getnamedin.com/kak-proverit-upominaniya/
+- Две поверхности ответа: https://getnamedin.com/poverhnosti-otveta/
 - Разбор нашей собственной категории: https://getnamedin.com/report/vidimost-v-ii/
 - Разбор категории CRM: https://getnamedin.com/report/crm-rossiya/
 - Разбор категории email-рассылок: https://getnamedin.com/report/email-rassylki/
