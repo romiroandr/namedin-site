@@ -917,6 +917,127 @@
   .worth { border: 1px dashed var(--rule); border-radius: var(--r-tile);
     padding: var(--s24); display: flex; flex-direction: column; gap: var(--s12); }
 </style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Organization",
+   "@id": "https://getnamedin.com/#org",
+   "name": "Namedin",
+   "url": "https://getnamedin.com/",
+   "description": "Измеряем, называет ли ИИ компанию в ответах на вопросы её покупателей, и делаем работу, чтобы называл.",
+   "areaServed": {
+    "@type": "Country",
+    "name": "Россия"
+   },
+   "knowsLanguage": [
+    "ru",
+    "en"
+   ],
+   "sameAs": [
+    "https://t.me/mirrnr"
+   ]
+  },
+  {
+   "@type": "WebSite",
+   "@id": "https://getnamedin.com/#site",
+   "url": "https://getnamedin.com/",
+   "name": "Namedin",
+   "inLanguage": "ru",
+   "publisher": {
+    "@id": "https://getnamedin.com/#org"
+   }
+  },
+  {
+   "@type": "Service",
+   "@id": "https://getnamedin.com/#service",
+   "name": "Видимость компании в ответах ИИ",
+   "serviceType": "Измерение и повышение видимости бренда в ответах ИИ",
+   "provider": {
+    "@id": "https://getnamedin.com/#org"
+   },
+   "areaServed": {
+    "@type": "Country",
+    "name": "Россия"
+   },
+   "audience": {
+    "@type": "BusinessAudience",
+    "name": "SaaS, B2B-сервисы, интернет-магазины, агентства"
+   },
+   "description": "Задаём ИИ вопросы из реальных сценариев выбора, считаем, как часто называют компанию и её конкурентов, разбираем источники ответа и готовим материалы. Повторный замер показывает изменение.",
+   "offers": [
+    {
+     "@type": "Offer",
+     "name": "Бесплатный аудит",
+     "price": "0",
+     "priceCurrency": "RUB",
+     "description": "15 вопросов, разбор источников, первые шаги. Срок 48 часов, без карты и без обязательного звонка."
+    },
+    {
+     "@type": "Offer",
+     "name": "Работа под ключ",
+     "price": "45000",
+     "priceCurrency": "RUB",
+     "description": "Ежемесячная перепроверка тех же вопросов, 2–3 готовые страницы, карточки в каталогах, письма авторам цитируемых статей, отчёт с двумя замерами.",
+     "eligibleDuration": {
+      "@type": "QuantitativeValue",
+      "value": 1,
+      "unitCode": "MON"
+     }
+    }
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://getnamedin.com/#faq",
+   "inLanguage": "ru",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Гарантируете, что ИИ начнёт нас рекомендовать?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Нет. Ответы меняются, и никто не может гарантировать конкретную позицию. Мы показываем динамику и работаем над тем, на что действительно можно повлиять."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Это SEO?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Namedin не заменяет SEO. SEO помогает получать видимость в поисковой выдаче. Мы показываем, как компания представлена непосредственно в ответе ИИ."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Нужно ли давать доступ к сайту?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Нет. Для аудита достаточно адреса сайта и описания продукта. Материалы передаём вам, публикуете вы сами."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Как быстро я получу результат?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Бесплатный аудит — в течение 48 часов. Платная работа идёт ежемесячно и показывает динамику во времени."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Можно ли отслеживать конкурентов?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Да, конкуренты — ключевая часть анализа. При этом с двумя компаниями из одной категории мы не работаем."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
 </head>
 <body>
 <canvas id="ambient" aria-hidden="true"></canvas>
@@ -1241,7 +1362,7 @@
       <p class="body-2 en">We ran the questions ourselves and counted who owns the sources behind the answers. Categories are shown without company names.</p>
       <p class="body-2 ru">Мы сами прогнали вопросы и посчитали, кому принадлежат источники под ответами. Категории — без названий компаний.</p>
       <div class="ch">
-        <div class="ch-row"><span class="ch-lab"><span class="en">Sellers on marketplaces</span><span class="ru">Продавцы на маркетплейсах</span></span><span class="ch-bar"><i style="width:68%"></i></span><span class="ch-num">68%</span></div>
+        <div class="ch-row"><span class="ch-lab"><span class="en">Sellers on marketplaces</span><span class="ru">Продавцы на маркетплейсах</span></span><span class="ch-bar"><i style="width:56%"></i></span><span class="ch-num">56%</span></div>
         <div class="ch-row"><span class="ch-lab"><span class="en">Online stores</span><span class="ru">Интернет-магазины</span></span><span class="ch-bar"><i style="width:51%"></i></span><span class="ch-num">51%</span></div>
         <div class="ch-row"><span class="ch-lab"><span class="en">Email delivery</span><span class="ru">Email-рассылки</span></span><span class="ch-bar"><i style="width:41%"></i></span><span class="ch-num">41%</span></div>
         <div class="ch-row"><span class="ch-lab"><span class="en">CRM systems</span><span class="ru">CRM-системы</span></span><span class="ch-bar"><i style="width:33%"></i></span><span class="ch-num">33%</span></div>
