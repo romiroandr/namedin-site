@@ -1,0 +1,193 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Как проверить, упоминают ли вашу компанию нейросети · Namedin</title>
+<meta name="description" content="Один вопрос модели ничего не измеряет. Методика замера: набор вопросов, чистая история, неизменная формула. Плюс формула, по которой считаем мы.">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#000000">
+<link rel="canonical" href="https://getnamedin.com/kak-proverit-upominaniya/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2 2 21h20L12 2z' fill='%237089ba'/%3E%3C/svg%3E">
+<style>:root{--void:#000;--carbon:#1c1c1c;--graphite:#4d4d4d;--steel:#808080;--ash:#ababab;--paper:#fff;--peri:#7089ba;
+--rule:#262626;--font:Inter,"Helvetica Neue",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+--mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,monospace;
+--t9:clamp(9px,8px + .16vw,12px);--t12:clamp(11px,10px + .22vw,15px);--t14:clamp(13px,12px + .28vw,18px);
+--t16:clamp(15px,13.5px + .34vw,21px);--t24:clamp(19px,16px + .62vw,32px);--t32:clamp(24px,20px + .9vw,44px);
+--t62:clamp(26px,17px + 2.3vw,58px);--s10:10px;--s12:12px;--s18:18px;--s24:24px;--s36:36px}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--void);color:var(--ash);font-family:var(--font);font-size:var(--t16);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(16px,2.8vw,60px)}
+section{padding:clamp(44px,6vw,90px) 0;border-top:1px dashed var(--rule)}
+section:first-of-type{border-top:0}
+h1,h2,h3{color:var(--paper);margin:0;font-weight:1000;letter-spacing:-.04em;line-height:1.1;text-wrap:balance}
+h1{font-size:clamp(30px,20px + 2.6vw,64px)}h2{font-size:var(--t62)}h3{font-size:var(--t24);letter-spacing:-.02em}
+p{margin:0}a{color:var(--paper)}
+.label{font-family:var(--mono);font-size:var(--t9);font-weight:500;letter-spacing:.02em;text-transform:uppercase;color:var(--steel);margin:0}
+.stack{display:flex;flex-direction:column;gap:var(--s24)}
+.body{font-size:var(--t16);line-height:1.6;color:var(--ash);max-width:40em}
+.body b,.body strong{color:var(--paper);font-weight:500}
+.cap{font-size:var(--t12);line-height:1.6;color:var(--steel);max-width:44em}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:var(--s24);padding:var(--s18) 0}
+.brand{display:flex;align-items:center;gap:var(--s10);text-decoration:none}
+.brand svg{width:16px;height:16px}
+.brand span{font-family:var(--mono);font-size:var(--t9);font-weight:500;letter-spacing:.02em;text-transform:uppercase;color:var(--paper)}
+.pill{display:inline-flex;align-items:center;justify-content:center;background:none;color:var(--paper);
+font-family:var(--mono);font-size:var(--t9);font-weight:500;letter-spacing:.02em;text-transform:uppercase;
+text-decoration:none;padding:13px 22px;border:1px solid var(--paper);border-radius:100px;min-height:44px;
+white-space:nowrap;transition:background .18s ease,color .18s ease}
+.pill:hover{background:var(--paper);color:var(--void)}
+.kf{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:var(--s24)}
+.kf .n{font-size:var(--t62);font-weight:1000;letter-spacing:-.04em;line-height:1;color:var(--paper);display:block}
+.kf .t{font-size:var(--t12);color:var(--steel);line-height:1.5;display:block;margin-top:var(--s10);max-width:18em}
+.qs{margin:0;padding:0;list-style:none;display:flex;flex-direction:column}
+.qs li{border-top:1px dashed var(--rule);padding:var(--s12) 0;font-size:var(--t14);color:var(--ash);display:flex;gap:var(--s12)}
+.qs li:first-child{border-top:0}
+.qs .m{font-family:var(--mono);font-size:var(--t9);color:var(--graphite);flex:none;padding-top:.35em;width:2.2em}
+.card{background:var(--carbon);border:1px dashed var(--rule);border-radius:20px;padding:var(--s24);display:flex;flex-direction:column;gap:var(--s12)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--s24)}
+.steps{display:flex;flex-direction:column}
+.steps li{list-style:none;border-top:1px dashed var(--rule);padding:var(--s18) 0;display:grid;grid-template-columns:2.6em 1fr;gap:var(--s12)}
+.steps{margin:0;padding:0}
+.steps .no{font-family:var(--mono);font-size:var(--t9);color:var(--graphite)}
+.steps h3{margin-bottom:6px}
+footer{border-top:1px dashed var(--rule);padding:var(--s24) 0 var(--s36);font-family:var(--mono);font-size:var(--t9);letter-spacing:.02em;text-transform:uppercase;color:var(--steel)}
+footer a{color:var(--steel);text-decoration:none}footer a:hover{color:var(--paper)}
+
+.qs.rel li a{color:var(--paper);text-decoration:none}
+.qs.rel li a:hover{color:var(--peri)}
+.tldr{border:1px dashed var(--rule);border-radius:20px;padding:var(--s24);background:var(--carbon)}
+.tldr p{color:var(--paper);font-size:var(--t16);line-height:1.6;max-width:44em}
+.q{font-size:var(--t24);font-weight:1000;letter-spacing:-.02em;color:var(--paper);line-height:1.2}
+table{border-collapse:collapse;width:100%;font-size:var(--t14)}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px dashed var(--rule);vertical-align:top}
+th{font-family:var(--mono);font-size:var(--t9);text-transform:uppercase;letter-spacing:.02em;color:var(--steel);font-weight:500}
+td b{color:var(--paper);font-weight:500}
+.tw{overflow-x:auto}
+</style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Главная",
+     "item": "https://getnamedin.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Как проверить, упоминают ли вашу компанию нейросети",
+     "item": "https://getnamedin.com/kak-proverit-upominaniya/"
+    }
+   ]
+  },
+  {
+   "@type": "Article",
+   "headline": "Как проверить, упоминают ли вашу компанию нейросети",
+   "description": "Один вопрос модели ничего не измеряет. Методика замера: набор вопросов, чистая история, неизменная формула. Плюс формула, по которой считаем мы.",
+   "inLanguage": "ru",
+   "url": "https://getnamedin.com/kak-proverit-upominaniya/",
+   "dateModified": "2026-08-30",
+   "datePublished": "2026-08-30",
+   "publisher": {
+    "@id": "https://getnamedin.com/#org"
+   },
+   "isPartOf": {
+    "@id": "https://getnamedin.com/#site"
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "inLanguage": "ru",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Как проверить, упоминают ли нас нейросети?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Собрать минимум пятнадцать вопросов словами покупателя, задать каждый в новом чате без упоминания названия компании, записать названных, их порядок и источники, затем посчитать долю ответов с вашим упоминанием. Через месяц повторить теми же вопросами и той же формулой."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Почему ответы нейросети каждый раз разные?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Модель генерирует ответ вероятностно, поэтому единичный запрос ничего не измеряет. Достоверность даёт набор вопросов и повторяемость методики, а не один удачный или неудачный ответ."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Можно ли спросить модель напрямую, знает ли она компанию?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Это плохая проверка. Название в вопросе подсказывает ответ. Измерять видимость нужно вопросами человека, который вашу компанию ещё не знает."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Сколько запросов нужно для достоверного замера?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Пятнадцати вопросов достаточно, чтобы увидеть картину по одной категории. Для сравнения между месяцами важнее не количество, а неизменность набора и формулы."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script></head><body>
+<div class="wrap"><div class="nav"><a class="brand" href="/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 21h20L12 2z" fill="#7089ba"/></svg><span>NAMEDIN</span></a><a class="pill" href="/#request">Проверить бесплатно</a></div></div>
+
+<section><div class="wrap"><div class="stack">
+<p class="label">Методика · обновлено 30 августа 2026</p>
+<h1>Как проверить, упоминают ли вашу компанию нейросети</h1>
+<div class="tldr"><p>Коротко: спросить один раз и посмотреть — не проверка. Ответы модели различаются от запроса к запросу, поэтому нужен набор вопросов, чистая история в каждом и подсчёт по неизменным правилам. Ниже — способ, которым можно сделать это самому за вечер.</p></div>
+</div></div></section>
+
+<section><div class="wrap"><div class="stack">
+<h2>Четыре ошибки, из-за которых замер бесполезен</h2>
+<ul class="steps">
+<li><span class="no">01</span><div><h3>Спрашивать в одном чате подряд</h3><p class="body">Модель помнит предыдущие сообщения. Назвав компанию один раз, она будет называть её и дальше — не потому, что так думает, а потому, что это уже прозвучало. Каждый вопрос задают в новом чате.</p></div></li>
+<li><span class="no">02</span><div><h3>Называть компанию в самом вопросе</h3><p class="body">«Что лучше — наш продукт или конкурент?» гарантированно вернёт ваше название. Это не измерение видимости, а подсказка. Вопросы формулируются так, как их задаёт человек, который вас ещё не знает.</p></div></li>
+<li><span class="no">03</span><div><h3>Ограничиться одним вопросом</h3><p class="body">Ответ на один запрос ничего не говорит. Нужен набор: минимум пятнадцать вопросов, покрывающих разные сценарии выбора — от проблемы, от сравнения, от цены, от конкретного применения.</p></div></li>
+<li><span class="no">04</span><div><h3>Смешивать поверхности</h3><p class="body">Ответ с источниками и ответ без источников — разные вещи. Их нельзя складывать в одно число, иначе непонятно, что именно вы измерили.</p></div></li>
+</ul>
+</div></div></section>
+
+<section><div class="wrap"><div class="stack">
+<h2>Как сделать самому</h2>
+<ul class="steps">
+<li><span class="no">01</span><div><h3>Соберите вопросы</h3><p class="body">Пятнадцать формулировок, которыми ваш покупатель описывает свою задачу. Не термины из вашего маркетинга, а его слова. Хороший источник — переписка с клиентами и вопросы в поддержку.</p></div></li>
+<li><span class="no">02</span><div><h3>Задайте каждый в чистом чате</h3><p class="body">Новый диалог на каждый вопрос. Никаких уточнений и продолжений: одно сообщение, один ответ.</p></div></li>
+<li><span class="no">03</span><div><h3>Запишите четыре вещи</h3><p class="body">Какие компании названы и в каком порядке; названы ли вы; какие источники приведены; показала ли модель источники вообще.</p></div></li>
+<li><span class="no">04</span><div><h3>Посчитайте</h3><p class="body">Доля ответов, где вас назвали. Доля, где вы в первой тройке. Кого называют чаще всего вместо вас. Какая доля источников принадлежит конкурентам.</p></div></li>
+<li><span class="no">05</span><div><h3>Повторите через месяц</h3><p class="body">Теми же вопросами и той же формулой. Изменившаяся методика делает сравнение бессмысленным — это главный признак недобросовестного отчёта.</p></div></li>
+</ul>
+</div></div></section>
+
+<section><div class="wrap"><div class="stack">
+<h2>Как считаем мы</h2>
+<p class="body">Мы сводим замер в одно число от 0 до 100, чтобы два замера можно было сравнить. Формула зафиксирована и не меняется между замерами:</p>
+<div class="tw"><table>
+<tr><th>составляющая</th><th>вес</th><th>что считает</th></tr>
+<tr><td><b>Названность</b></td><td>40</td><td>доля ответов, где компания вообще названа</td></tr>
+<tr><td><b>В первых трёх</b></td><td>20</td><td>доля ответов, где она попала в тройку</td></tr>
+<tr><td><b>Средняя позиция</b></td><td>15</td><td>первое место — полный балл, пятое и ниже — ноль</td></tr>
+<tr><td><b>Доля голоса</b></td><td>15</td><td>её доля среди всех названных имён</td></tr>
+<tr><td><b>Свои источники</b></td><td>10</td><td>доля ответов, где её сайт попал в цитирования</td></tr>
+</table></div>
+<p class="cap">Если формула когда-нибудь изменится, у неё вырастет номер версии, и замеры разных версий сравнивать нельзя. Мы считаем это обязательным условием честного отчёта.</p>
+</div></div></section>
+
+<section><div class="wrap"><div class="stack">
+<h2>Мы применили это к себе</h2>
+<p class="body">Свой собственный замер мы опубликовали целиком, включая результат — ноль из ста на первом замере. Там же видно, как выглядит категория, в которой у моделей ещё нет устоявшегося ответа.</p>
+<div><a class="pill" href="/report/vidimost-v-ii/">Посмотреть наш разбор</a></div>
+</div></div></section>
+
+<section><div class="wrap"><div class="stack"><p class="label">Читать дальше</p><ul class="qs rel"><li><a href="/chem-otlichaetsya-ot-seo/">Чем это отличается от SEO</a></li><li><a href="/kak-popast-v-otvety-ii/">Как попасть в ответы ИИ</a></li><li><a href="/poverhnosti-otveta/">Две поверхности ответа: поиск и память</a></li><li><a href="/report/vidimost-v-ii/">Разбор нашей собственной категории</a></li></ul></div></div></section>
+<div class="wrap"><footer>Namedin · <a href="/">Главная</a> · <a href="/report/vidimost-v-ii/">Наш разбор</a> · <a href="/data/">О данных</a></footer></div>
+</body></html>
