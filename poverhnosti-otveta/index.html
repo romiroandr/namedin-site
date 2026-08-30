@@ -1,0 +1,170 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Две поверхности ответа ИИ: поиск и память · Namedin</title>
+<meta name="description" content="Один и тот же ИИ отвечает двумя способами: с обращением к поиску и по памяти. Разница определяет скорость результата и возможность вообще объяснить причину ответа.">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#000000">
+<link rel="canonical" href="https://getnamedin.com/poverhnosti-otveta/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2 2 21h20L12 2z' fill='%237089ba'/%3E%3C/svg%3E">
+<style>:root{--void:#000;--carbon:#1c1c1c;--graphite:#4d4d4d;--steel:#808080;--ash:#ababab;--paper:#fff;--peri:#7089ba;
+--rule:#262626;--font:Inter,"Helvetica Neue",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+--mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,monospace;
+--t9:clamp(9px,8px + .16vw,12px);--t12:clamp(11px,10px + .22vw,15px);--t14:clamp(13px,12px + .28vw,18px);
+--t16:clamp(15px,13.5px + .34vw,21px);--t24:clamp(19px,16px + .62vw,32px);--t32:clamp(24px,20px + .9vw,44px);
+--t62:clamp(26px,17px + 2.3vw,58px);--s10:10px;--s12:12px;--s18:18px;--s24:24px;--s36:36px}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--void);color:var(--ash);font-family:var(--font);font-size:var(--t16);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(16px,2.8vw,60px)}
+section{padding:clamp(44px,6vw,90px) 0;border-top:1px dashed var(--rule)}
+section:first-of-type{border-top:0}
+h1,h2,h3{color:var(--paper);margin:0;font-weight:1000;letter-spacing:-.04em;line-height:1.1;text-wrap:balance}
+h1{font-size:clamp(30px,20px + 2.6vw,64px)}h2{font-size:var(--t62)}h3{font-size:var(--t24);letter-spacing:-.02em}
+p{margin:0}a{color:var(--paper)}
+.label{font-family:var(--mono);font-size:var(--t9);font-weight:500;letter-spacing:.02em;text-transform:uppercase;color:var(--steel);margin:0}
+.stack{display:flex;flex-direction:column;gap:var(--s24)}
+.body{font-size:var(--t16);line-height:1.6;color:var(--ash);max-width:40em}
+.body b,.body strong{color:var(--paper);font-weight:500}
+.cap{font-size:var(--t12);line-height:1.6;color:var(--steel);max-width:44em}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:var(--s24);padding:var(--s18) 0}
+.brand{display:flex;align-items:center;gap:var(--s10);text-decoration:none}
+.brand svg{width:16px;height:16px}
+.brand span{font-family:var(--mono);font-size:var(--t9);font-weight:500;letter-spacing:.02em;text-transform:uppercase;color:var(--paper)}
+.pill{display:inline-flex;align-items:center;justify-content:center;background:none;color:var(--paper);
+font-family:var(--mono);font-size:var(--t9);font-weight:500;letter-spacing:.02em;text-transform:uppercase;
+text-decoration:none;padding:13px 22px;border:1px solid var(--paper);border-radius:100px;min-height:44px;
+white-space:nowrap;transition:background .18s ease,color .18s ease}
+.pill:hover{background:var(--paper);color:var(--void)}
+.kf{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:var(--s24)}
+.kf .n{font-size:var(--t62);font-weight:1000;letter-spacing:-.04em;line-height:1;color:var(--paper);display:block}
+.kf .t{font-size:var(--t12);color:var(--steel);line-height:1.5;display:block;margin-top:var(--s10);max-width:18em}
+.qs{margin:0;padding:0;list-style:none;display:flex;flex-direction:column}
+.qs li{border-top:1px dashed var(--rule);padding:var(--s12) 0;font-size:var(--t14);color:var(--ash);display:flex;gap:var(--s12)}
+.qs li:first-child{border-top:0}
+.qs .m{font-family:var(--mono);font-size:var(--t9);color:var(--graphite);flex:none;padding-top:.35em;width:2.2em}
+.card{background:var(--carbon);border:1px dashed var(--rule);border-radius:20px;padding:var(--s24);display:flex;flex-direction:column;gap:var(--s12)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--s24)}
+.steps{display:flex;flex-direction:column}
+.steps li{list-style:none;border-top:1px dashed var(--rule);padding:var(--s18) 0;display:grid;grid-template-columns:2.6em 1fr;gap:var(--s12)}
+.steps{margin:0;padding:0}
+.steps .no{font-family:var(--mono);font-size:var(--t9);color:var(--graphite)}
+.steps h3{margin-bottom:6px}
+footer{border-top:1px dashed var(--rule);padding:var(--s24) 0 var(--s36);font-family:var(--mono);font-size:var(--t9);letter-spacing:.02em;text-transform:uppercase;color:var(--steel)}
+footer a{color:var(--steel);text-decoration:none}footer a:hover{color:var(--paper)}
+
+.qs.rel li a{color:var(--paper);text-decoration:none}
+.qs.rel li a:hover{color:var(--peri)}
+.tldr{border:1px dashed var(--rule);border-radius:20px;padding:var(--s24);background:var(--carbon)}
+.tldr p{color:var(--paper);font-size:var(--t16);line-height:1.6;max-width:44em}
+.q{font-size:var(--t24);font-weight:1000;letter-spacing:-.02em;color:var(--paper);line-height:1.2}
+table{border-collapse:collapse;width:100%;font-size:var(--t14)}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px dashed var(--rule);vertical-align:top}
+th{font-family:var(--mono);font-size:var(--t9);text-transform:uppercase;letter-spacing:.02em;color:var(--steel);font-weight:500}
+td b{color:var(--paper);font-weight:500}
+.tw{overflow-x:auto}
+</style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Главная",
+     "item": "https://getnamedin.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Две поверхности ответа ИИ: поиск и память",
+     "item": "https://getnamedin.com/poverhnosti-otveta/"
+    }
+   ]
+  },
+  {
+   "@type": "Article",
+   "headline": "Две поверхности ответа ИИ: поиск и память",
+   "description": "Один и тот же ИИ отвечает двумя способами: с обращением к поиску и по памяти. Разница определяет скорость результата и возможность вообще объяснить причину ответа.",
+   "inLanguage": "ru",
+   "url": "https://getnamedin.com/poverhnosti-otveta/",
+   "dateModified": "2026-08-30",
+   "datePublished": "2026-08-30",
+   "publisher": {
+    "@id": "https://getnamedin.com/#org"
+   },
+   "isPartOf": {
+    "@id": "https://getnamedin.com/#site"
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "inLanguage": "ru",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Чем отличается ответ из поиска от ответа из памяти модели?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "В первом случае модель обращается к поиску во время ответа и показывает источники, поэтому ответ меняется за недели и причина видна. Во втором она отвечает тем, что запомнила при обучении, источников нет, а изменения занимают месяцы."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Почему в отчёте важно указывать поверхность ответа?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Без источников невозможно объяснить, почему модель назвала именно эти компании, а значит нельзя доказать, что работа что-то изменила. Отчёт без указания поверхности непроверяем."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Можно ли быстро изменить то, что модель помнит о компании?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Нет. Память модели меняется только через накопление независимых упоминаний и измеряется месяцами. Обещание быстро изменить её — признак недобросовестного подрядчика."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script></head><body>
+<div class="wrap"><div class="nav"><a class="brand" href="/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 21h20L12 2z" fill="#7089ba"/></svg><span>NAMEDIN</span></a><a class="pill" href="/#request">Проверить бесплатно</a></div></div>
+
+<section><div class="wrap"><div class="stack">
+<p class="label">Матчасть · обновлено 30 августа 2026</p>
+<h1>Две поверхности ответа: поиск и память</h1>
+<div class="tldr"><p>Коротко: один и тот же ИИ отвечает двумя разными способами. В одном он ищет прямо сейчас и показывает источники, в другом отвечает по памяти без источников. Это меняет и скорость результата, и то, что вообще можно сделать.</p></div>
+</div></div></section>
+
+<section><div class="wrap"><div class="stack">
+<h2>В чём разница</h2>
+<div class="tw"><table>
+<tr><th></th><th>Ответ из поиска</th><th>Ответ из памяти</th></tr>
+<tr><td><b>Откуда берёт</b></td><td>ищет в интернете во время ответа</td><td>из того, что запомнил при обучении</td></tr>
+<tr><td><b>Показывает источники</b></td><td>да, со ссылками</td><td>нет</td></tr>
+<tr><td><b>Скорость изменений</b></td><td>недели</td><td>месяцы</td></tr>
+<tr><td><b>Что влияет</b></td><td>содержание цитируемых страниц</td><td>накопленный объём упоминаний в сети</td></tr>
+<tr><td><b>Можно ли понять причину</b></td><td>да, видно, что цитировалось</td><td>нет, причина не видна</td></tr>
+</table></div>
+</div></div></section>
+
+<section><div class="wrap"><div class="stack">
+<h2>Почему это принципиально для отчёта</h2>
+<p class="body">Отчёт, в котором не указано, какая была поверхность, невозможно проверить. Если источников нет, никто не может сказать, почему модель назвала именно эти компании — значит, и утверждать, что работа что-то изменила, нельзя.</p>
+<p class="body">Поэтому в каждом нашем отчёте поверхность указана прямо. Если замер сделан на памяти модели, мы так и пишем и не выдаём за него быстрый результат.</p>
+</div></div></section>
+
+<section><div class="wrap"><div class="stack">
+<h2>Что это значит на практике</h2>
+<p class="body"><b>Если вам нужен результат за недели</b> — работать надо с поисковой поверхностью: разобрать цитируемые источники и добиться, чтобы нужные факты появились именно там.</p>
+<p class="body"><b>Если модель отвечает по памяти</b> — быстрого пути нет. Здесь работает только накопление независимых упоминаний, и честный срок измеряется месяцами. Любой, кто обещает изменить память модели за неделю, либо не понимает, о чём говорит, либо рассчитывает, что вы не проверите.</p>
+<p class="body">Одна и та же система может отвечать по-разному на разные вопросы: на что-то пойдёт искать, на что-то ответит по памяти. Поэтому поверхность фиксируется по каждому вопросу отдельно, а не по системе целиком.</p>
+<div><a class="pill" href="/#request">Проверить мою компанию бесплатно</a></div>
+</div></div></section>
+
+<section><div class="wrap"><div class="stack"><p class="label">Читать дальше</p><ul class="qs rel"><li><a href="/chem-otlichaetsya-ot-seo/">Чем это отличается от SEO</a></li><li><a href="/kak-popast-v-otvety-ii/">Как попасть в ответы ИИ</a></li><li><a href="/kak-proverit-upominaniya/">Как проверить, упоминают ли вас нейросети</a></li><li><a href="/report/vidimost-v-ii/">Разбор нашей собственной категории</a></li></ul></div></div></section>
+<div class="wrap"><footer>Namedin · <a href="/">Главная</a> · <a href="/report/vidimost-v-ii/">Наш разбор</a> · <a href="/data/">О данных</a></footer></div>
+</body></html>
