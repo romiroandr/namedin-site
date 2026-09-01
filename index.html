@@ -152,6 +152,31 @@ footer{border-top:1px solid var(--rule);padding:var(--s24) 0 var(--s36);font-fam
   display:flex;flex-wrap:wrap;gap:var(--s12) var(--s18)}
 footer a{color:var(--steel);text-decoration:none}
 footer a:hover{color:var(--ink)}
+
+/* плотный терминальный слой */
+.grid-kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.grid-kpi>div{background:var(--paper);padding:var(--s18)}
+.grid-kpi .n{display:block;font-family:var(--mono);font-size:var(--t40);font-weight:600;letter-spacing:-.03em;
+  line-height:1;color:var(--ink)}
+.grid-kpi .n.bad{color:var(--down)}
+.grid-kpi .n.good{color:var(--up)}
+.grid-kpi .t{display:block;margin-top:8px;font-size:var(--t12);color:var(--steel)}
+.state{font-family:var(--mono);font-size:var(--t9);letter-spacing:.04em;padding:3px 8px;border-radius:4px;white-space:nowrap}
+.state.bad{background:#fdeceb;color:var(--down)}
+.state.good{background:#e9f5ee;color:var(--up)}
+.state.flat{background:var(--mist);color:var(--steel)}
+tr.us td{background:#fdeceb}
+tr.us td b{color:var(--down)}
+table.dense th,table.dense td{padding:8px 10px;font-size:var(--t14)}
+table.dense td.num{text-align:right}
+.minibar{display:block;height:6px;background:var(--mist);border-radius:2px;overflow:hidden;min-width:60px}
+.minibar i{display:block;height:100%;background:var(--ink)}
+.minibar i.us{background:var(--down)}
+.srcline{font-family:var(--mono);font-size:var(--t12);color:var(--steel);word-break:break-all;line-height:1.9}
+.srcline b{color:var(--ink);font-weight:600}
+.legend{display:flex;gap:var(--s18);flex-wrap:wrap;font-family:var(--mono);font-size:var(--t9);
+  letter-spacing:.04em;text-transform:uppercase;color:var(--steel)}
 </style>
 <script type="application/ld+json">
 {
@@ -212,81 +237,147 @@ footer a:hover{color:var(--ink)}
  ]
 }
 </script></head><body>
-
 <div class="wrap"><div class="nav">
   <a class="brand" href="/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 21h20L12 2z" fill="#3a5ba0"/></svg><span>Namedin</span></a>
   <div class="navlinks">
-    <a href="#how">Как это работает</a>
+    <a href="#answer">Замер</a>
     <a href="#sources">Данные</a>
+    <a href="#score">Метрика</a>
     <a href="#price">Цена</a>
     <a class="pill" href="#request">Проверить компанию</a>
   </div>
 </div></div>
 
 <section class="hero"><div class="wrap"><div class="stack">
-  <p class="label">Видимость в ответах ИИ</p>
+  <p class="label">Видимость в ответах ИИ · разведка по вашей категории</p>
   <h1>ИИ советует ваших конкурентов вместо вас?</h1>
-  <p class="lead">Покупатель спрашивает нейросеть, что выбрать, получает два-три названия и на этом заканчивает выбор. Мы показываем, есть ли среди них вы, кого рекомендуют вместо вас и с каких сайтов собран ответ.</p>
+  <p class="lead">Покупатель спрашивает нейросеть, что выбрать, получает два-три названия и на этом заканчивает выбор. Мы показываем, есть ли среди них вы, кого назвали вместо вас и с каких сайтов собран ответ.</p>
   <form class="checkbar" id="quick" novalidate>
     <input id="q-dom" type="text" inputmode="url" autocomplete="url" placeholder="ваш-сайт.ru" aria-label="Ваш сайт">
     <button class="pill" type="submit">Проверить бесплатно</button>
   </form>
-  <p class="cap">Бесплатно · без карты и без обязательного звонка · отчёт за 48 часов с реальными ответами ИИ и списком источников</p>
+  <p class="cap">Без карты и без обязательного звонка · отчёт за 48 часов · реальные ответы ИИ и список источников</p>
+
+  <div class="grid-kpi">
+    <div><span class="n">1&nbsp;127</span><span class="t">строк в базе замеров</span></div>
+    <div><span class="n">173</span><span class="t">вопроса покупателей прогнано</span></div>
+    <div><span class="n">603</span><span class="t">цитирования разобрано</span></div>
+    <div><span class="n">207</span><span class="t">доменов размечено по владельцу</span></div>
+    <div><span class="n">6</span><span class="t">категорий рынка</span></div>
+  </div>
+  <p class="cap">База на 2 сентября 2026 года. Любая цифра ниже пересчитывается из неё, и любую строку клиент может воспроизвести сам.</p>
 </div></div></section>
 
-<section id="example"><div class="wrap"><div class="stack">
-  <p class="label">Так это выглядит</p>
+<section id="answer"><div class="wrap"><div class="stack">
+  <p class="label">Замер · сырые данные</p>
   <h2>Настоящий ответ, а не картинка дашборда.</h2>
-  <p class="body">Ниже — наш собственный замер. Мы задали поисковой нейросети вопрос из нашей же категории и записали, кого она назвала и на какие сайты сослалась.</p>
+  <p class="body">Наш собственный прогон по нашей же категории. Вопрос задан поисковой нейросети, записано кого назвали и на какие сайты она сослалась.</p>
 
   <div class="term">
-    <div class="term-h"><span>Алиса AI · поисковая поверхность</span><span>1 сентября 2026</span></div>
+    <div class="term-h"><span>Алиса AI · поверхность: поиск</span><span>01.09.2026</span></div>
     <div class="term-b">
       <p class="q-line">«Кто занимается продвижением в ответах ИИ в России?»</p>
-      <p class="a-line">Ответ называет одиннадцать исполнителей и одного эксперта:</p>
-      <div class="chips">
-        <span class="chip">Ашманов и партнёры</span><span class="chip">Head Promo</span><span class="chip">NeuroReach</span>
-        <span class="chip">Vverh Digital</span><span class="chip">Пиксель Плюс</span><span class="chip">Digital Geeks</span>
-        <span class="chip">Geoaist</span><span class="chip">Prompter</span><span class="chip">Sidorin Lab</span>
-        <span class="chip">Darvin Digital</span><span class="chip">ShexPR</span>
-        <span class="chip no">Namedin — не назван</span>
-      </div>
-      <p class="a-line">Источники, из которых собран этот ответ:</p>
-      <div class="chips">
-        <span class="chip src">computerra.ru</span><span class="chip src">vc.ru</span><span class="chip src">sostav.ru</span>
-        <span class="chip src">head-promo.ru</span><span class="chip src">neuroreach.ru</span><span class="chip src">geoaist.ru</span>
-        <span class="chip src">prompter-ai.ru</span><span class="chip src">netmindmarketing.ru</span><span class="chip src">relianta.agency</span>
-      </div>
+      <div class="tw"><table class="dense">
+        <tr><th>#</th><th>названы в ответе</th><th>тип</th></tr>
+        <tr><td class="num">01</td><td><b>Ашманов и партнёры</b></td><td>агентство</td></tr>
+        <tr><td class="num">02</td><td><b>Head Promo</b></td><td>агентство</td></tr>
+        <tr><td class="num">03</td><td><b>NeuroReach</b></td><td>конкурент</td></tr>
+        <tr><td class="num">04</td><td><b>Vverh Digital</b></td><td>агентство</td></tr>
+        <tr><td class="num">05</td><td><b>Пиксель Плюс</b></td><td>конкурент</td></tr>
+        <tr><td class="num">06</td><td><b>Digital Geeks</b></td><td>конкурент</td></tr>
+        <tr><td class="num">07</td><td><b>Geoaist</b></td><td>конкурент</td></tr>
+        <tr><td class="num">08</td><td><b>Prompter</b></td><td>конкурент</td></tr>
+        <tr><td class="num">09</td><td><b>Sidorin Lab</b></td><td>конкурент</td></tr>
+        <tr><td class="num">10</td><td><b>Darvin Digital</b></td><td>агентство</td></tr>
+        <tr><td class="num">11</td><td><b>ShexPR</b></td><td>агентство</td></tr>
+        <tr class="us"><td class="num">—</td><td><b>Namedin</b></td><td><span class="state bad">не назван</span></td></tr>
+      </table></div>
+      <p class="a-line">Источники, из которых собран ответ:</p>
+      <p class="srcline">computerra.ru · vc.ru · sostav.ru · <b>head-promo.ru</b> · <b>neuroreach.ru</b> · <b>geoaist.ru</b> · <b>prompter-ai.ru</b> · netmindmarketing.ru · relianta.agency</p>
+      <p class="cap">Жирным — сайты тех, кого в этом же ответе и назвали. Ответ собран из страниц самих участников рынка.</p>
     </div>
   </div>
 
-  <p class="cap">Да, в этом замере не названы мы сами. Мы публикуем свой результат таким, какой он есть, и повторим замер той же методикой 30 сентября — с любым исходом. Именно так выглядит отчёт, который получает клиент.</p>
+  <div class="grid-kpi">
+    <div><span class="n bad">0 / 6</span><span class="t">вопросов, где назван Namedin</span></div>
+    <div><span class="n">45</span><span class="t">цитирований в шести ответах</span></div>
+    <div><span class="n bad">76%</span><span class="t">источников — конкуренты и агентства</span></div>
+    <div><span class="n bad">0 / 100</span><span class="t">AI Visibility Score</span></div>
+  </div>
+  <p class="cap">Мы публикуем свой результат таким, какой он есть. Повторный замер той же методикой — 30 сентября, с любым исходом.</p>
+</div></div></section>
+
+<section id="share"><div class="wrap"><div class="stack">
+  <p class="label">Доля голоса · наша категория</p>
+  <h2>Кого называют вместо нас.</h2>
+  <div class="tw"><table class="dense">
+    <tr><th>компания</th><th>вопросов из 6</th><th></th><th>доля</th></tr>
+    <tr><td><b>Keys.so</b></td><td class="num">2</td><td><span class="minibar"><i style="width:33%"></i></span></td><td class="num">33%</td></tr>
+    <tr><td><b>NeuroReach</b></td><td class="num">1</td><td><span class="minibar"><i style="width:17%"></i></span></td><td class="num">17%</td></tr>
+    <tr><td><b>Ашманов и партнёры</b></td><td class="num">1</td><td><span class="minibar"><i style="width:17%"></i></span></td><td class="num">17%</td></tr>
+    <tr><td><b>Head Promo</b></td><td class="num">1</td><td><span class="minibar"><i style="width:17%"></i></span></td><td class="num">17%</td></tr>
+    <tr><td><b>Topvisor</b></td><td class="num">1</td><td><span class="minibar"><i style="width:17%"></i></span></td><td class="num">17%</td></tr>
+    <tr><td>ещё 10 названных</td><td class="num">1</td><td><span class="minibar"><i style="width:17%"></i></span></td><td class="num">17%</td></tr>
+    <tr class="us"><td><b>Namedin</b></td><td class="num">0</td><td><span class="minibar"><i class="us" style="width:1%"></i></span></td><td class="num">0%</td></tr>
+  </table></div>
+  <p class="cap">Так выглядит доля голоса. В отчёте клиента на этом месте стоит его собственная строка и строки его конкурентов.</p>
+</div></div></section>
+
+<section id="sources"><div class="wrap"><div class="stack">
+  <p class="label">Кому принадлежат источники</p>
+  <h2>Половину того, что читает ИИ, пишут ваши конкуренты.</h2>
+  <div class="tw"><table class="dense">
+    <tr><th>категория</th><th></th><th>доля</th><th>база</th><th>поверхность</th></tr>
+    <tr class="us"><td><b>Видимость в ИИ — наша</b></td><td><span class="minibar"><i class="us" style="width:76%"></i></span></td><td class="num">76%</td><td class="num">34 / 45</td><td>поиск</td></tr>
+    <tr><td><b>Продавцы на маркетплейсах</b></td><td><span class="minibar"><i style="width:56%"></i></span></td><td class="num">56%</td><td class="num">14 / 25</td><td>поиск</td></tr>
+    <tr><td><b>Интернет-магазины</b></td><td><span class="minibar"><i style="width:51%"></i></span></td><td class="num">51%</td><td class="num">52 / 102</td><td>поиск</td></tr>
+    <tr><td><b>Email-рассылки</b></td><td><span class="minibar"><i style="width:41%"></i></span></td><td class="num">41%</td><td class="num">11 / 27</td><td>поиск</td></tr>
+    <tr><td><b>CRM-системы</b></td><td><span class="minibar"><i style="width:36%"></i></span></td><td class="num">36%</td><td class="num">35 / 98</td><td>поиск</td></tr>
+  </table></div>
+  <p class="cap">Доля цитирований, приходящихся на сайты компаний и агентств, которые продают то же самое. База на 2 сентября 2026 года. Красная строка — наша собственная категория: в ней доля выше, чем у любого клиента.</p>
+
+  <h3>Разбор одной категории целиком</h3>
+  <div class="tw"><table class="dense">
+    <tr><th>кому принадлежит источник</th><th>цитирований</th><th></th><th>доля</th></tr>
+    <tr><td><b>прямой конкурент</b></td><td class="num">52</td><td><span class="minibar"><i style="width:51%"></i></span></td><td class="num">51%</td></tr>
+    <tr><td>смежный сервис</td><td class="num">14</td><td><span class="minibar"><i style="width:14%"></i></span></td><td class="num">14%</td></tr>
+    <tr><td>официальная страница платформы</td><td class="num">9</td><td><span class="minibar"><i style="width:9%"></i></span></td><td class="num">9%</td></tr>
+    <tr><td>независимый блог</td><td class="num">6</td><td><span class="minibar"><i style="width:6%"></i></span></td><td class="num">6%</td></tr>
+    <tr><td>агентство</td><td class="num">6</td><td><span class="minibar"><i style="width:6%"></i></span></td><td class="num">6%</td></tr>
+    <tr><td>каталог</td><td class="num">4</td><td><span class="minibar"><i style="width:4%"></i></span></td><td class="num">4%</td></tr>
+    <tr><td>форум</td><td class="num">3</td><td><span class="minibar"><i style="width:3%"></i></span></td><td class="num">3%</td></tr>
+    <tr><td>обзорный сайт</td><td class="num">3</td><td><span class="minibar"><i style="width:3%"></i></span></td><td class="num">3%</td></tr>
+    <tr><td>прочее</td><td class="num">5</td><td><span class="minibar"><i style="width:5%"></i></span></td><td class="num">5%</td></tr>
+  </table></div>
+  <p class="cap">Приложения для интернет-магазинов: 15 вопросов, 102 цитирования, 58 доменов. Официальных страниц самой платформы — девять из ста двух.</p>
+  <p class="body"><a href="/kakie-istochniki-citiruet-ii/">Как посмотреть это по своей категории →</a></p>
 </div></div></section>
 
 <section id="gap"><div class="wrap"><div class="stack">
   <p class="label">Слепая зона</p>
   <h2>Ваша SEO-панель этого не показывает.</h2>
-  <p class="body">Можно быть первым в поиске и не быть названным ни разу. Модель читает вашу страницу, пересказывает её смысл и рекомендует конкурента — потому что имя взять было неоткуда.</p>
-  <div class="three">
-    <div class="card mistbg"><p class="label">Поиск</p><p class="body"><b>Позиция есть.</b> Сайт находится, трафик идёт, отчёт зелёный.</p></div>
-    <div class="card mistbg"><p class="label">Аналитика</p><p class="body"><b>Визиты видно.</b> Но не видно ответа, после которого человек к вам не пришёл.</p></div>
-    <div class="card"><p class="label">Ответ ИИ</p><p class="body"><b>Вас не назвали.</b> Выбор закончился до того, как человек открыл поиск.</p></div>
-  </div>
+  <div class="tw"><table class="dense">
+    <tr><th>что вы смотрите</th><th>что видно</th><th>состояние</th></tr>
+    <tr><td>Позиция в поиске</td><td>сайт находится, растёт</td><td><span class="state good">норма</span></td></tr>
+    <tr><td>Трафик и визиты</td><td>заходы идут, отчёт зелёный</td><td><span class="state good">норма</span></td></tr>
+    <tr><td>Ответ нейросети</td><td>вас не назвали, назвали конкурента</td><td><span class="state bad">не видно нигде</span></td></tr>
+  </table></div>
+  <p class="body">Можно быть первым в поиске и не быть названным ни разу: модель читает вашу страницу, пересказывает её смысл и рекомендует другого — потому что имя взять было неоткуда.</p>
 </div></div></section>
 
 <section id="score"><div class="wrap"><div class="two">
   <div class="stack">
     <p class="label">Метрика</p>
     <h2>AI Visibility Score</h2>
-    <p class="body">Одно число от 0 до 100, собранное из пяти измеримых частей. Формула открыта: пока она не меняется, замеры сравнимы между собой. Меняется — растёт номер версии, и замеры разных версий сравнивать нельзя.</p>
-    <p class="cap">Методика v1.0. Считается отдельно по каждой поверхности ответа: ответ из поиска и ответ из памяти модели складывать нельзя.</p>
+    <p class="body">Одно число от 0 до 100 из пяти измеримых частей. Формула открыта: пока она не меняется, замеры сравнимы. Меняется — растёт номер версии, и замеры разных версий сравнивать нельзя.</p>
+    <p class="cap">Методика v1.0. Считается отдельно по каждой поверхности: ответ из поиска и ответ из памяти модели складывать нельзя.</p>
   </div>
-  <div class="tw"><table>
-    <tr><th>из чего складывается</th><th>вес</th></tr>
-    <tr><td><b>Названность</b> — доля ответов, где прозвучало имя</td><td class="num">40</td></tr>
-    <tr><td><b>Первая тройка</b> — как часто имя попадает в начало списка</td><td class="num">20</td></tr>
+  <div class="tw"><table class="dense">
+    <tr><th>компонент</th><th>вес</th></tr>
+    <tr><td><b>Названность</b> — доля ответов с вашим именем</td><td class="num">40</td></tr>
+    <tr><td><b>Первая тройка</b> — как часто имя в начале списка</td><td class="num">20</td></tr>
     <tr><td><b>Средняя позиция</b> в перечислении</td><td class="num">15</td></tr>
-    <tr><td><b>Доля голоса</b> среди названных конкурентов</td><td class="num">15</td></tr>
+    <tr><td><b>Доля голоса</b> среди конкурентов</td><td class="num">15</td></tr>
     <tr><td><b>Свои источники</b> — цитируется ли ваш сайт</td><td class="num">10</td></tr>
   </table></div>
 </div></div></section>
@@ -296,33 +387,18 @@ footer a:hover{color:var(--ink)}
   <h2>Спросить → найти разрыв → закрыть.</h2>
   <ol class="steps">
     <li><span class="no">01</span><div class="stack-s"><h3>Спрашиваем то, что спрашивают ваши покупатели</h3>
-      <p class="body">Пятнадцать вопросов из реальных сценариев выбора: широкие, с условием, про деньги, сравнения, от проблемы, скептические. Каждый — отдельным чистым запросом, иначе предыдущий вопрос влияет на следующий и замер испорчен.</p></div></li>
+      <p class="body">15 вопросов из реальных сценариев выбора: широкие, с условием, про деньги, сравнения, от проблемы, скептические. Каждый — отдельным чистым запросом, иначе предыдущий вопрос влияет на следующий и замер испорчен.</p></div></li>
     <li><span class="no">02</span><div class="stack-s"><h3>Находим разрыв</h3>
-      <p class="body">По каждому ответу записываем две колонки: кого назвали и с каких сайтов ответ собран. У каждого домена определяем владельца — конкурент, смежный сервис, агентство, каталог, форум, официальная страница платформы. Без этой разметки список доменов ничего не объясняет.</p></div></li>
+      <p class="body">Две колонки по каждому ответу: кого назвали и с каких сайтов он собран. У каждого домена определяем владельца — конкурент, смежный сервис, агентство, каталог, форум, официальная страница. Без этой разметки список доменов ничего не объясняет.</p></div></li>
     <li><span class="no">03</span><div class="stack-s"><h3>Закрываем его</h3>
-      <p class="body">Готовим то, чего моделям не хватает, чтобы вас назвать: страницы с проверяемыми утверждениями, где имя продукта стоит рядом с фактом, согласованные данные в каталогах, работа с цитируемыми источниками. Через месяц — повторный замер той же методикой.</p></div></li>
+      <p class="body">Готовим то, чего моделям не хватает: страницы, где имя продукта стоит рядом с проверяемым фактом, согласованные данные в каталогах, работа с цитируемыми источниками. Через месяц — повторный замер той же методикой.</p></div></li>
   </ol>
 </div></div></section>
 
-<section id="sources"><div class="wrap"><div class="stack">
-  <p class="label">Наши замеры</p>
-  <h2>Половину того, что читает ИИ, пишут ваши конкуренты.</h2>
-  <p class="body">Мы сами прогнали вопросы по нескольким категориям и посчитали не позиции, а владельцев: кому принадлежит каждая страница, которую модель прочитала, прежде чем ответить.</p>
-  <div class="ch">
-    <div class="ch-row"><span class="ch-lab">Наша собственная категория</span><span class="ch-bar"><i class="us" style="width:76%"></i></span><span class="ch-num">76%</span></div>
-    <div class="ch-row"><span class="ch-lab">Продавцы на маркетплейсах</span><span class="ch-bar"><i style="width:56%"></i></span><span class="ch-num">56%</span></div>
-    <div class="ch-row"><span class="ch-lab">Интернет-магазины</span><span class="ch-bar"><i style="width:51%"></i></span><span class="ch-num">51%</span></div>
-    <div class="ch-row"><span class="ch-lab">Email-рассылки</span><span class="ch-bar"><i style="width:41%"></i></span><span class="ch-num">41%</span></div>
-    <div class="ch-row"><span class="ch-lab">CRM-системы</span><span class="ch-bar"><i style="width:36%"></i></span><span class="ch-num">36%</span></div>
-  </div>
-  <p class="cap">Доля источников в ответе, принадлежащих компаниям и агентствам, которые продают то же самое. База на 1 сентября 2026 года: 34 из 45, 14 из 25, 52 из 102, 11 из 27 и 35 из 98 цитирований. Верхняя строка — наша собственная категория: там доля выше, чем у любого клиента, и мы в ней пока не названы.</p>
-  <p class="body"><a href="/kakie-istochniki-citiruet-ii/">Как посмотреть, какие источники цитирует ИИ в вашей категории →</a></p>
-</div></div></section>
-
-<section id="honest"><div class="wrap"><div class="two">
-  <div class="stack">
-    <p class="label">Чего мы не делаем</p>
-    <h2>Только настоящие сигналы.</h2>
+<section id="honest"><div class="wrap"><div class="stack">
+  <p class="label">Метод</p>
+  <h2>Только настоящие сигналы.</h2>
+  <div class="two">
     <ul class="yn no">
       <li><span class="m">✕</span> покупные отзывы</li>
       <li><span class="m">✕</span> фальшивые аккаунты и комментарии</li>
@@ -330,45 +406,32 @@ footer a:hover{color:var(--ink)}
       <li><span class="m">✕</span> накрутка упоминаний</li>
       <li><span class="m">✕</span> обещание места в ответе</li>
     </ul>
-  </div>
-  <div class="stack">
-    <p class="label">Что делаем вместо</p>
     <ul class="yn yes">
-      <li><span class="m">✓</span> замер, который вы можете воспроизвести сами</li>
+      <li><span class="m">✓</span> замер, который вы воспроизведёте сами</li>
       <li><span class="m">✓</span> разбор владельцев каждого источника</li>
       <li><span class="m">✓</span> страницы с проверяемыми фактами</li>
-      <li><span class="m">✓</span> согласованные данные о компании во всех каталогах</li>
+      <li><span class="m">✓</span> согласованные данные во всех каталогах</li>
       <li><span class="m">✓</span> повторный замер по той же формуле</li>
     </ul>
   </div>
-</div></div></section>
-
-<section id="nopromise"><div class="wrap"><div class="stack">
-  <p class="label">Прямо</p>
-  <h2>Первое место в ответах ИИ мы не обещаем.</h2>
-  <p class="body">Ответ модели собирается заново при каждом запросе. Один и тот же вопрос, заданный дважды, даёт разные ответы — это нормальное поведение, а не сбой. Никто снаружи этим не управляет, и обещание позиции — обещание чужим имуществом.</p>
-  <p class="body">Мы отвечаем за другое: измерение → разбор → работа → повторное измерение. У каждой цифры в отчёте стоят поверхность ответа, дата замера и знаменатель, а любую строку вы можете перепроверить сами.</p>
-  <p class="body"><a href="/mozhno-li-garantirovat-mesto-v-otvetah-ii/">Почему гарантию не может дать никто →</a></p>
+  <p class="body"><b>Первое место в ответах ИИ мы не обещаем.</b> Ответ собирается заново при каждом запросе, никто снаружи этим не управляет, и обещание позиции — обещание чужим имуществом. <a href="/mozhno-li-garantirovat-mesto-v-otvetah-ii/">Почему гарантию не может дать никто →</a></p>
 </div></div></section>
 
 <section id="price"><div class="wrap"><div class="stack">
   <p class="label">Цена</p>
   <h2>Первый замер бесплатный.</h2>
-  <div class="two">
-    <div class="card">
-      <p class="label">Замер</p>
-      <p class="kpi"><span class="n">0 ₽</span></p>
-      <p class="body">Пятнадцать вопросов ваших покупателей, реальные ответы ИИ, список источников с разметкой владельцев и первые шаги. Срок 48 часов. Без карты и без обязательного звонка.</p>
-      <div><a class="pill ghost" href="#request">Получить замер</a></div>
-    </div>
-    <div class="card">
-      <p class="label">Работа под ключ · в месяц</p>
-      <p class="kpi"><span class="n">45 000 ₽</span></p>
-      <p class="body">Ежемесячная перепроверка тех же вопросов, подготовка недостающих материалов, работа с цитируемыми источниками и карточками в каталогах, отчёт с двумя замерами рядом.</p>
-      <p class="cap">В одной категории работаем только с одной компанией: усиливать двух прямых конкурентов одновременно нечестно.</p>
-    </div>
-  </div>
-  <p class="body"><a href="/skolko-stoit-prodvizhenie-v-otvetah-ii/">Из чего складывается цена такой работы →</a></p>
+  <div class="tw"><table class="dense">
+    <tr><th></th><th>замер</th><th>работа под ключ</th></tr>
+    <tr><td><b>Цена</b></td><td class="num">0 ₽</td><td class="num">45 000 ₽ / мес</td></tr>
+    <tr><td>Вопросов покупателей</td><td class="num">15</td><td class="num">15</td></tr>
+    <tr><td>Реальные ответы ИИ с источниками</td><td><span class="state good">да</span></td><td><span class="state good">да</span></td></tr>
+    <tr><td>Разметка владельцев источников</td><td><span class="state good">да</span></td><td><span class="state good">да</span></td></tr>
+    <tr><td>Подготовка недостающих материалов</td><td><span class="state flat">нет</span></td><td><span class="state good">да</span></td></tr>
+    <tr><td>Карточки в каталогах</td><td><span class="state flat">нет</span></td><td><span class="state good">да</span></td></tr>
+    <tr><td>Повторный замер той же формулой</td><td><span class="state flat">нет</span></td><td><span class="state good">ежемесячно</span></td></tr>
+    <tr><td>Срок</td><td>48 часов</td><td>помесячно</td></tr>
+  </table></div>
+  <p class="cap">В одной категории работаем только с одной компанией: усиливать двух прямых конкурентов одновременно нечестно. <a href="/skolko-stoit-prodvizhenie-v-otvetah-ii/">Из чего складывается цена →</a></p>
 </div></div></section>
 
 <section id="faq"><div class="wrap"><div class="stack">
@@ -378,15 +441,15 @@ footer a:hover{color:var(--ink)}
     <details><summary>Гарантируете, что ИИ начнёт нас рекомендовать?</summary>
       <p class="body">Нет. Ответ модели собирается заново при каждом запросе, и никто снаружи этим не управляет. Мы отвечаем за измерение, разбор источников, работу с материалами и повторный замер той же методикой. Любой, кто продаёт гарантированную позицию в ответе ИИ, продаёт то, чем не владеет.</p></details>
     <details><summary>Как считается AI Visibility Score?</summary>
-      <p class="body">Методика v1.0, веса открыты: названность 40, первая тройка 20, средняя позиция 15, доля голоса 15, свои источники 10. Пока формула не меняется, замеры сравнимы; при изменении растёт номер версии, и замеры разных версий сравнивать нельзя.</p></details>
+      <p class="body">Методика v1.0, веса открыты: названность 40, первая тройка 20, средняя позиция 15, доля голоса 15, свои источники 10. Пока формула не меняется, замеры сравнимы; при изменении растёт номер версии.</p></details>
     <details><summary>Чем это отличается от SEO?</summary>
       <p class="body">SEO даёт позицию в списке ссылок, видимость в ИИ — упоминание внутри ответа. Можно быть первым в поиске и не быть названным ни разу. <a href="/chem-otlichaetsya-ot-seo/">Разбор с цифрами</a>.</p></details>
     <details><summary>На каких поверхностях вы меряете?</summary>
-      <p class="body">Ответ из поиска и ответ из памяти модели — разные вещи, и мы никогда их не складываем. В отчёте у каждой цифры указано, с какой поверхности она снята. <a href="/poverhnosti-otveta/">Чем они отличаются</a>.</p></details>
+      <p class="body">Ответ из поиска и ответ из памяти модели — разные вещи, и мы их не складываем. У каждой цифры в отчёте указано, с какой поверхности она снята. <a href="/poverhnosti-otveta/">Чем они отличаются</a>.</p></details>
     <details><summary>Сколько времени занимает результат?</summary>
-      <p class="body">На поисковой поверхности изменения появляются за недели, по мере попадания новых страниц в поиск. В памяти модели счёт идёт на месяцы и зависит от переобучения: опубликованная сегодня страница на память не влияет.</p></details>
+      <p class="body">На поисковой поверхности изменения появляются за недели, по мере попадания новых страниц в поиск. В памяти модели счёт идёт на месяцы и зависит от переобучения.</p></details>
     <details><summary>Можно ли сделать это самому?</summary>
-      <p class="body">Да, и первый шаг стоит сделать самому. Пятнадцать вопросов, каждый отдельным чистым чатом, две колонки — кого назвали и что процитировано. <a href="/kak-proverit-upominaniya/">Как проверить самому</a>.</p></details>
+      <p class="body">Да, и первый шаг стоит сделать самому: 15 вопросов, каждый отдельным чистым чатом, две колонки — кого назвали и что процитировано. <a href="/kak-proverit-upominaniya/">Как проверить самому</a>.</p></details>
   </div>
 </div></div></section>
 
