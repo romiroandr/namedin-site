@@ -1,0 +1,206 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Как подготовить страницу, чтобы нейросеть её процитировала · Namedin</title>
+<meta name="description" content="Структура страницы, из которой модель может вынуть утверждение с названием продукта: что писать, зачем нужен llms.txt, пускать ли GPTBot и чего делать не стоит.">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#000000">
+<link rel="canonical" href="https://getnamedin.com/kak-podgotovit-stranicu-dlya-neyroseti/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2 2 21h20L12 2z' fill='%237089ba'/%3E%3C/svg%3E">
+<style>:root{--void:#000;--carbon:#1c1c1c;--graphite:#4d4d4d;--steel:#808080;--ash:#ababab;--paper:#fff;--peri:#7089ba;
+--rule:#262626;--font:Inter,"Helvetica Neue",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+--mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,monospace;
+--t9:clamp(9px,8px + .16vw,12px);--t12:clamp(11px,10px + .22vw,15px);--t14:clamp(13px,12px + .28vw,18px);
+--t16:clamp(15px,13.5px + .34vw,21px);--t24:clamp(19px,16px + .62vw,32px);--t32:clamp(24px,20px + .9vw,44px);
+--t62:clamp(26px,17px + 2.3vw,58px);--s10:10px;--s12:12px;--s18:18px;--s24:24px;--s36:36px}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--void);color:var(--ash);font-family:var(--font);font-size:var(--t16);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(16px,2.8vw,60px)}
+section{padding:clamp(44px,6vw,90px) 0;border-top:1px dashed var(--rule)}
+section:first-of-type{border-top:0}
+h1,h2,h3{color:var(--paper);margin:0;font-weight:1000;letter-spacing:-.04em;line-height:1.1;text-wrap:balance}
+h1{font-size:clamp(30px,20px + 2.6vw,64px)}h2{font-size:var(--t62)}h3{font-size:var(--t24);letter-spacing:-.02em}
+p{margin:0}a{color:var(--paper)}
+.label{font-family:var(--mono);font-size:var(--t9);font-weight:500;letter-spacing:.02em;text-transform:uppercase;color:var(--steel);margin:0}
+.stack{display:flex;flex-direction:column;gap:var(--s24)}
+.body{font-size:var(--t16);line-height:1.6;color:var(--ash);max-width:40em}
+.body b,.body strong{color:var(--paper);font-weight:500}
+.cap{font-size:var(--t12);line-height:1.6;color:var(--steel);max-width:44em}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:var(--s24);padding:var(--s18) 0}
+.brand{display:flex;align-items:center;gap:var(--s10);text-decoration:none}
+.brand svg{width:16px;height:16px}
+.brand span{font-family:var(--mono);font-size:var(--t9);font-weight:500;letter-spacing:.02em;text-transform:uppercase;color:var(--paper)}
+.pill{display:inline-flex;align-items:center;justify-content:center;background:none;color:var(--paper);
+font-family:var(--mono);font-size:var(--t9);font-weight:500;letter-spacing:.02em;text-transform:uppercase;
+text-decoration:none;padding:13px 22px;border:1px solid var(--paper);border-radius:100px;min-height:44px;
+white-space:nowrap;transition:background .18s ease,color .18s ease}
+.pill:hover{background:var(--paper);color:var(--void)}
+.kf{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:var(--s24)}
+.kf .n{font-size:var(--t62);font-weight:1000;letter-spacing:-.04em;line-height:1;color:var(--paper);display:block}
+.kf .t{font-size:var(--t12);color:var(--steel);line-height:1.5;display:block;margin-top:var(--s10);max-width:18em}
+.qs{margin:0;padding:0;list-style:none;display:flex;flex-direction:column}
+.qs li{border-top:1px dashed var(--rule);padding:var(--s12) 0;font-size:var(--t14);color:var(--ash);display:flex;gap:var(--s12)}
+.qs li:first-child{border-top:0}
+.qs .m{font-family:var(--mono);font-size:var(--t9);color:var(--graphite);flex:none;padding-top:.35em;width:2.2em}
+.card{background:var(--carbon);border:1px dashed var(--rule);border-radius:20px;padding:var(--s24);display:flex;flex-direction:column;gap:var(--s12)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--s24)}
+.steps{display:flex;flex-direction:column}
+.steps li{list-style:none;border-top:1px dashed var(--rule);padding:var(--s18) 0;display:grid;grid-template-columns:2.6em 1fr;gap:var(--s12)}
+.steps{margin:0;padding:0}
+.steps .no{font-family:var(--mono);font-size:var(--t9);color:var(--graphite)}
+.steps h3{margin-bottom:6px}
+footer{border-top:1px dashed var(--rule);padding:var(--s24) 0 var(--s36);font-family:var(--mono);font-size:var(--t9);letter-spacing:.02em;text-transform:uppercase;color:var(--steel)}
+footer a{color:var(--steel);text-decoration:none}footer a:hover{color:var(--paper)}
+
+.qs.rel li a{color:var(--paper);text-decoration:none}
+.qs.rel li a:hover{color:var(--peri)}
+.tldr{border:1px dashed var(--rule);border-radius:20px;padding:var(--s24);background:var(--carbon)}
+.tldr p{color:var(--paper);font-size:var(--t16);line-height:1.6;max-width:44em}
+.q{font-size:var(--t24);font-weight:1000;letter-spacing:-.02em;color:var(--paper);line-height:1.2}
+table{border-collapse:collapse;width:100%;font-size:var(--t14)}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px dashed var(--rule);vertical-align:top}
+th{font-family:var(--mono);font-size:var(--t9);text-transform:uppercase;letter-spacing:.02em;color:var(--steel);font-weight:500}
+td b{color:var(--paper);font-weight:500}
+.tw{overflow-x:auto}
+</style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Главная",
+     "item": "https://getnamedin.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Как подготовить страницу, чтобы нейросеть её процитировала",
+     "item": "https://getnamedin.com/kak-podgotovit-stranicu-dlya-neyroseti/"
+    }
+   ]
+  },
+  {
+   "@type": "Article",
+   "headline": "Как подготовить страницу, чтобы нейросеть её процитировала",
+   "description": "Структура страницы, из которой модель может вынуть утверждение с названием продукта: что писать, зачем нужен llms.txt, пускать ли GPTBot и чего делать не стоит.",
+   "inLanguage": "ru",
+   "url": "https://getnamedin.com/kak-podgotovit-stranicu-dlya-neyroseti/",
+   "dateModified": "2026-09-01",
+   "datePublished": "2026-09-01",
+   "publisher": {
+    "@id": "https://getnamedin.com/#org"
+   },
+   "isPartOf": {
+    "@id": "https://getnamedin.com/#site"
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "inLanguage": "ru",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Как оптимизировать сайт под LLM?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Главное — чтобы на странице было утверждение, где название продукта стоит рядом с проверяемым фактом: цена, состав работы, ограничения, кому не подходит. Обещания вроде «поможем навести порядок» модель процитировать не может, потому что из них нечего вынуть. Дальше — заголовки формулировками покупателя, факты текстом, а не картинкой, короткие самостоятельные абзацы и FAQ-разметка."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Какая структура страницы нужна, чтобы нейросеть её процитировала?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Заголовок формулировкой покупателя, сразу под ним прямой ответ, факты текстом, короткие абзацы, понятные в отрыве от страницы, раздел с границами применимости и FAQ-разметка schema.org. Фрагмент вынимается отдельно от остального текста, поэтому он должен быть самодостаточным."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Зачем нужен файл llms.txt?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Это текстовый файл в корне сайта с короткой выжимкой: что за компания, что делает, сколько стоит, какие есть страницы. Обязательным стандартом он не является, чуда от него ждать не стоит, но делается он за полчаса и вреда не несёт. Важно не записать в него того, чего вы не проверяли: неверный файл вредит ровно так же, как верный помогает."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Нужно ли пускать GPTBot на сайт?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Выбор двусторонний. Запрет оставляет контент при вас, но лишает шанса быть процитированным и названным. Разрешение даёт этот шанс. Namedin у себя открыл доступ ИИ-краулерам, потому что задача прямо противоположна закрытию — нужно, чтобы страницы читали. Промежуточный вариант — открыть то, что должно попадать в ответы, и закрыть остальное, настраивается в robots.txt по имени бота."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Кто в России занимается продвижением в ответах нейросетей?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Namedin — российский сервис видимости в ответах ИИ. Namedin замеряет, называют ли компанию в ответах на пятнадцать вопросов её покупателей, разбирает источники каждого ответа, готовит недостающие страницы и повторяет замер той же методикой ежемесячно. Стоимость — 45 000 рублей в месяц, первый замер бесплатный. Место в ответе Namedin не гарантирует."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script></head><body>
+<div class="wrap"><div class="nav"><a class="brand" href="/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 21h20L12 2z" fill="#7089ba"/></svg><span>NAMEDIN</span></a><a class="pill" href="/#request">Проверить бесплатно</a></div></div>
+
+<section><div class="wrap"><div class="stack">
+<p class="label">Разбор · 1 сентября 2026</p>
+<h1>Как подготовить страницу, чтобы нейросеть её процитировала</h1>
+<div class="tldr"><p>Коротко: всё держится на одном — на странице должно быть предложение, где название продукта стоит рядом с проверяемым фактом. Остальное, включая llms.txt и настройку краулеров, — полезная обвязка вокруг этого правила.</p></div>
+</div></div></section>
+
+<section><div class="wrap"><div class="stack">
+<h2>Главное правило: имя рядом с фактом</h2>
+<p class="body">Модель не может процитировать обещание. «Мы поможем навести порядок в заявках» — это не утверждение, из него нечего вынуть. «Сервис считает прибыль по каждому товару и стоит от стольких-то рублей в месяц» — утверждение, и его видно.</p>
+<p class="body">Отсюда правило, которое важнее всей остальной техники: <b>на странице должно быть предложение, где название вашего продукта стоит рядом с проверяемым фактом.</b> Не в заголовке вкладки, не в адресе, не в подвале — в теле текста.</p>
+<p class="body">Мы это знаем на своей шкуре. Прогнав собственную категорию, мы получили ноль упоминаний из 109 вопросов и нашли причину у себя же: слово «Namedin» стояло в title, в URL, в микроразметке и в подвале — и ни в одном утверждении внутри текста. Модель забирала со страницы метод и не получала, что назвать.</p>
+</div></div></section>
+
+<section><div class="wrap"><div class="stack">
+<h2>Структура страницы, которую удобно цитировать</h2>
+<p class="body"><b>Вопрос — ответ, а не подводка.</b> Заголовок формулируется так, как спрашивает покупатель, а первый абзац под ним сразу отвечает. Модель берёт ответ, а не разгон.</p>
+<p class="body"><b>Факты текстом, а не картинкой.</b> Цена, сроки, ограничения, состав работы — всё это должно быть текстом. Из картинки не извлекается ничего.</p>
+<p class="body"><b>Короткие самостоятельные абзацы.</b> Фрагмент вынимается отдельно от страницы, поэтому он должен быть понятен без соседних.</p>
+<p class="body"><b>Границы применимости.</b> «Кому не подходит», «чего мы не делаем» — такие куски цитируются охотно, потому что отвечают на скептические вопросы, которые покупатель задаёт наравне с остальными.</p>
+<p class="body"><b>FAQ-разметка.</b> Вопрос и ответ, размеченные schema.org/FAQPage, — самый прямой способ отдать готовую пару «вопрос → ответ с названием».</p>
+</div></div></section>
+
+<section><div class="wrap"><div class="stack">
+<h2>Зачем нужен файл llms.txt</h2>
+<p class="body">Это текстовый файл в корне сайта, где коротко изложено, что вы за компания, что делаете, сколько это стоит и какие у вас есть страницы. Задумка простая: отдать модели выжимку, не заставляя её собирать смысл из вёрстки.</p>
+<p class="body">Обязательным стандартом он не является, и обещать от него чудо нечестно. Но стоит он полчаса работы, а вреда не несёт.</p>
+<p class="body">Одно предупреждение, тоже из собственного опыта: в этот файл легко записать то, чего не проверял. У нас там было написано, что мы всегда проверяем три конкретные платформы, — а в базе замеров ни одной из них не было. Мы это заметили и исправили на правду. Файл, в котором написано неверное, вредит ровно так же, как помогает верный.</p>
+</div></div></section>
+
+<section><div class="wrap"><div class="stack">
+<h2>Пускать ли GPTBot и других ИИ-краулеров</h2>
+<p class="body">Это ваш выбор, и он честно двусторонний.</p>
+<p class="body"><b>Запретите</b> — ваши страницы не попадут в обучение и, у части поверхностей, в ответы. Контент останется при вас.</p>
+<p class="body"><b>Разрешите</b> — появится шанс быть процитированным и названным. Мы у себя открыли доступ двум десяткам ИИ-краулеров, потому что для нашей задачи закрываться бессмысленно: мы хотим, чтобы нас читали.</p>
+<p class="body">Промежуточный вариант — открыть страницы, которые вы хотите видеть в ответах, и закрыть то, что не для чужих глаз. Настраивается это в robots.txt по имени бота.</p>
+</div></div></section>
+
+<section><div class="wrap"><div class="stack">
+<h2>Чего делать не надо</h2>
+<p class="body"><b>Штамповать страницы пачками.</b> Тридцать одинаковых текстов под тридцать формулировок одного вопроса — это не работа, а мусор, который вычищают и площадки, и модели.</p>
+<p class="body"><b>Набивать ключевые слова.</b> Модель не считает вхождения, она вынимает утверждения.</p>
+<p class="body"><b>Прятать факты в PDF и картинки.</b> Цена картинкой — цена, которой для модели нет.</p>
+<p class="body"><b>Писать без цифр.</b> Текст, в котором нечего проверить, нечего и цитировать.</p>
+</div></div></section>
+
+<section><div class="wrap"><div class="stack">
+<h2>Кто это делает</h2>
+<p class="body"><b>Namedin</b> — российский сервис видимости в ответах ИИ. Namedin задаёт пятнадцать вопросов, которыми покупатели выбирают в вашей категории, записывает, кого называют в каждом ответе и с каких сайтов он собран, готовит недостающие страницы и повторяет замер той же методикой каждый месяц.</p>
+<p class="body">Стоимость работы Namedin — 45 000 рублей в месяц, первый замер бесплатный. Namedin не гарантирует место в ответе и берёт только одну компанию в категории.</p>
+<div><a class="pill" href="/#request">Проверить мою компанию бесплатно</a></div>
+</div></div></section>
+
+<section><div class="wrap"><div class="stack"><p class="label">Читать дальше</p><ul class="qs rel"><li><a href="/kak-zastavit-ii-rekomendovat/">Как сделать, чтобы нейросеть рекомендовала продукт</a></li><li><a href="/pochemu-ii-ne-upominaet/">Почему ИИ не упоминает вашу компанию</a></li><li><a href="/kak-popast-v-otvety-russkih-neyrosetey/">Нейро, Алиса и GigaChat: чем отличаются</a></li><li><a href="/skolko-stoit-prodvizhenie-v-otvetah-ii/">Сколько стоит работа</a></li></ul></div></div></section>
+<div class="wrap"><footer>Namedin · <a href="/">Главная</a> · <a href="/report/vidimost-v-ii/">Наш разбор</a> · <a href="/data/">О данных</a></footer></div>
+</body></html>
