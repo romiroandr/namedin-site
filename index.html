@@ -244,6 +244,7 @@ table.dense td.num{text-align:right}
   <a class="brand" href="/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 21h20L12 2z" fill="#3a5ba0"/></svg><span>Namedin</span></a>
   <div class="navlinks">
     <a href="#answer">Замер</a>
+    <a href="#engines">Где проверяем</a>
     <a href="#sources">Данные</a>
     <a href="#score">Метрика</a>
     <a href="#price">Цена</a>
@@ -366,6 +367,29 @@ table.dense td.num{text-align:right}
     <tr><td>Ответ нейросети</td><td>вас не назвали, назвали конкурента</td><td><span class="state bad">не видно нигде</span></td></tr>
   </table></div>
   <p class="body">Можно быть первым в поиске и не быть названным ни разу: модель читает вашу страницу, пересказывает её смысл и рекомендует другого — потому что имя взять было неоткуда.</p>
+</div></div></section>
+
+<section id="engines"><div class="wrap"><div class="stack">
+  <p class="label">Где проверяем</p>
+  <h2>Одиннадцать поверхностей ответа.</h2>
+  <p class="body">Не логотипы, а список того, чем снимается замер. У каждой строки указана поверхность: ответ из поиска и ответ из памяти модели — разные величины, и складывать их в одну цифру нельзя.</p>
+  <div class="tw"><table class="dense">
+    <tr><th>платформа</th><th>поверхность</th><th>как снимаем</th><th>статус</th></tr>
+    <tr><td><b>Алиса AI</b></td><td>поиск</td><td>ответ с источниками в выдаче</td><td><span class="state good">меряем</span></td></tr>
+    <tr><td><b>Яндекс Нейро</b></td><td>поиск</td><td>вручную: API не существует</td><td><span class="state good">меряем</span></td></tr>
+    <tr><td><b>YandexGPT</b></td><td>память</td><td>API</td><td><span class="state good">меряем</span></td></tr>
+    <tr><td><b>GigaChat</b></td><td>память</td><td>API</td><td><span class="state good">меряем</span></td></tr>
+    <tr><td><b>ChatGPT</b></td><td>поиск</td><td>API с веб-поиском</td><td><span class="state flat">подключаем</span></td></tr>
+    <tr><td><b>Perplexity</b></td><td>поиск</td><td>API, цитаты отдельным полем</td><td><span class="state flat">подключаем</span></td></tr>
+    <tr><td><b>Claude</b></td><td>поиск</td><td>API, инструмент web_search</td><td><span class="state flat">подключаем</span></td></tr>
+    <tr><td><b>Gemini</b></td><td>поиск</td><td>API с grounding</td><td><span class="state flat">подключаем</span></td></tr>
+    <tr><td><b>Grok</b></td><td>поиск</td><td>API, инструмент web_search</td><td><span class="state flat">подключаем</span></td></tr>
+    <tr><td><b>DeepSeek</b></td><td>память</td><td>API; поиск — только веб-чат</td><td><span class="state flat">подключаем</span></td></tr>
+    <tr><td><b>Google AI Overviews</b></td><td>поиск</td><td>вручную: публичного API нет</td><td><span class="state good">меряем</span></td></tr>
+    <tr><td><b>Copilot</b></td><td>поиск</td><td>вручную: публичного API нет</td><td><span class="state good">меряем</span></td></tr>
+  </table></div>
+  <p class="cap">Статус на 2 сентября 2026 года. «Подключаем» — адаптер написан и проверен, ждём ключ доступа. У Google AI Overviews и Copilot публичного API нет ни у кого, поэтому эти две поверхности снимаются руками — и у нас, и у любого другого, кто говорит, что их меряет.</p>
+  <p class="body"><a href="/poverhnosti-otveta/">Чем ответ из поиска отличается от ответа из памяти →</a></p>
 </div></div></section>
 
 <section id="score"><div class="wrap"><div class="two">
