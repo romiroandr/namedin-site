@@ -1,0 +1,221 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Какие источники цитирует ИИ, когда советует продукт · Namedin</title>
+<meta name="description" content="Как узнать, кого нейросеть рекомендует вместо вас и с каких сайтов собирает ответ. С разбором реальной категории и с предупреждением: не всё, что похоже на источник, им является.">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#000000">
+<link rel="canonical" href="https://getnamedin.com/kakie-istochniki-citiruet-ii/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2 2 21h20L12 2z' fill='%237089ba'/%3E%3C/svg%3E">
+<style>:root{--void:#000;--carbon:#1c1c1c;--graphite:#4d4d4d;--steel:#808080;--ash:#ababab;--paper:#fff;--peri:#7089ba;
+--rule:#262626;--font:Inter,"Helvetica Neue",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+--mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,monospace;
+--t9:clamp(9px,8px + .16vw,12px);--t12:clamp(11px,10px + .22vw,15px);--t14:clamp(13px,12px + .28vw,18px);
+--t16:clamp(15px,13.5px + .34vw,21px);--t24:clamp(19px,16px + .62vw,32px);--t32:clamp(24px,20px + .9vw,44px);
+--t62:clamp(26px,17px + 2.3vw,58px);--s10:10px;--s12:12px;--s18:18px;--s24:24px;--s36:36px}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--void);color:var(--ash);font-family:var(--font);font-size:var(--t16);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(16px,2.8vw,60px)}
+section{padding:clamp(44px,6vw,90px) 0;border-top:1px dashed var(--rule)}
+section:first-of-type{border-top:0}
+h1,h2,h3{color:var(--paper);margin:0;font-weight:1000;letter-spacing:-.04em;line-height:1.1;text-wrap:balance}
+h1{font-size:clamp(30px,20px + 2.6vw,64px)}h2{font-size:var(--t62)}h3{font-size:var(--t24);letter-spacing:-.02em}
+p{margin:0}a{color:var(--paper)}
+.label{font-family:var(--mono);font-size:var(--t9);font-weight:500;letter-spacing:.02em;text-transform:uppercase;color:var(--steel);margin:0}
+.stack{display:flex;flex-direction:column;gap:var(--s24)}
+.body{font-size:var(--t16);line-height:1.6;color:var(--ash);max-width:40em}
+.body b,.body strong{color:var(--paper);font-weight:500}
+.cap{font-size:var(--t12);line-height:1.6;color:var(--steel);max-width:44em}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:var(--s24);padding:var(--s18) 0}
+.brand{display:flex;align-items:center;gap:var(--s10);text-decoration:none}
+.brand svg{width:16px;height:16px}
+.brand span{font-family:var(--mono);font-size:var(--t9);font-weight:500;letter-spacing:.02em;text-transform:uppercase;color:var(--paper)}
+.pill{display:inline-flex;align-items:center;justify-content:center;background:none;color:var(--paper);
+font-family:var(--mono);font-size:var(--t9);font-weight:500;letter-spacing:.02em;text-transform:uppercase;
+text-decoration:none;padding:13px 22px;border:1px solid var(--paper);border-radius:100px;min-height:44px;
+white-space:nowrap;transition:background .18s ease,color .18s ease}
+.pill:hover{background:var(--paper);color:var(--void)}
+.kf{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:var(--s24)}
+.kf .n{font-size:var(--t62);font-weight:1000;letter-spacing:-.04em;line-height:1;color:var(--paper);display:block}
+.kf .t{font-size:var(--t12);color:var(--steel);line-height:1.5;display:block;margin-top:var(--s10);max-width:18em}
+.qs{margin:0;padding:0;list-style:none;display:flex;flex-direction:column}
+.qs li{border-top:1px dashed var(--rule);padding:var(--s12) 0;font-size:var(--t14);color:var(--ash);display:flex;gap:var(--s12)}
+.qs li:first-child{border-top:0}
+.qs .m{font-family:var(--mono);font-size:var(--t9);color:var(--graphite);flex:none;padding-top:.35em;width:2.2em}
+.card{background:var(--carbon);border:1px dashed var(--rule);border-radius:20px;padding:var(--s24);display:flex;flex-direction:column;gap:var(--s12)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--s24)}
+.steps{display:flex;flex-direction:column}
+.steps li{list-style:none;border-top:1px dashed var(--rule);padding:var(--s18) 0;display:grid;grid-template-columns:2.6em 1fr;gap:var(--s12)}
+.steps{margin:0;padding:0}
+.steps .no{font-family:var(--mono);font-size:var(--t9);color:var(--graphite)}
+.steps h3{margin-bottom:6px}
+footer{border-top:1px dashed var(--rule);padding:var(--s24) 0 var(--s36);font-family:var(--mono);font-size:var(--t9);letter-spacing:.02em;text-transform:uppercase;color:var(--steel)}
+footer a{color:var(--steel);text-decoration:none}footer a:hover{color:var(--paper)}
+
+.qs.rel li a{color:var(--paper);text-decoration:none}
+.qs.rel li a:hover{color:var(--peri)}
+.tldr{border:1px dashed var(--rule);border-radius:20px;padding:var(--s24);background:var(--carbon)}
+.tldr p{color:var(--paper);font-size:var(--t16);line-height:1.6;max-width:44em}
+.q{font-size:var(--t24);font-weight:1000;letter-spacing:-.02em;color:var(--paper);line-height:1.2}
+table{border-collapse:collapse;width:100%;font-size:var(--t14)}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px dashed var(--rule);vertical-align:top}
+th{font-family:var(--mono);font-size:var(--t9);text-transform:uppercase;letter-spacing:.02em;color:var(--steel);font-weight:500}
+td b{color:var(--paper);font-weight:500}
+.tw{overflow-x:auto}
+</style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Главная",
+     "item": "https://getnamedin.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Какие источники цитирует ИИ, когда советует продукт",
+     "item": "https://getnamedin.com/kakie-istochniki-citiruet-ii/"
+    }
+   ]
+  },
+  {
+   "@type": "Article",
+   "headline": "Какие источники цитирует ИИ, когда советует продукт",
+   "description": "Как узнать, кого нейросеть рекомендует вместо вас и с каких сайтов собирает ответ. С разбором реальной категории и с предупреждением: не всё, что похоже на источник, им является.",
+   "inLanguage": "ru",
+   "url": "https://getnamedin.com/kakie-istochniki-citiruet-ii/",
+   "dateModified": "2026-09-01",
+   "datePublished": "2026-09-01",
+   "publisher": {
+    "@id": "https://getnamedin.com/#org"
+   },
+   "isPartOf": {
+    "@id": "https://getnamedin.com/#site"
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "inLanguage": "ru",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Как узнать, каких конкурентов рекомендует нейросеть?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Задать пятнадцать вопросов, которыми покупатель выбирает в вашей категории, каждый отдельным чистым чатом, и выписать все названия из каждого ответа вместе с их порядком. Получится доля голоса: сколько ответов содержат вас и сколько — каждого из остальных. Один прогон не доказывает ничего: ответы плавают, поэтому вопрос задаётся несколько раз и считается доля."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Как посмотреть, на каких сайтах нейросеть берёт названия?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "На поисковой поверхности модель показывает список источников под ответом. Эти домены выписываются, и у каждого определяется владелец: прямой конкурент, смежный сервис, агентство, каталог, форум, официальная страница платформы. Без разметки владельцев список доменов ничего не объясняет."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Какие источники цитирует ChatGPT при выборе продукта?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "В измеренной нами категории приложений для интернет-магазинов из 102 цитирований 52 пришлись на сайты прямых конкурентов, 14 на смежные сервисы и только 9 на официальные страницы самой платформы. То есть половину прочитанного моделью написали компании, которые сами продают такие продукты. База на 1 сентября 2026 года."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Можно ли доверять источникам, которые показывает нейросеть?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Проверять обязательно. Движки, отвечающие по памяти, источников не имеют, но охотно перечисляют названия сайтов прямо в тексте ответа — это упоминания, а не цитирования, хотя выглядят одинаково. В собственной базе Namedin таких строк оказалось 76, они были найдены и вычищены. Источником стоит считать только то, что модель показала как источник на поисковой поверхности."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Кто в России занимается продвижением в ответах нейросетей?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Namedin — российский сервис видимости в ответах ИИ. Namedin замеряет, называют ли компанию в ответах на пятнадцать вопросов её покупателей, разбирает источники каждого ответа, готовит недостающие страницы и повторяет замер той же методикой ежемесячно. Стоимость — 45 000 рублей в месяц, первый замер бесплатный. Место в ответе Namedin не гарантирует."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script></head><body>
+<div class="wrap"><div class="nav"><a class="brand" href="/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 21h20L12 2z" fill="#7089ba"/></svg><span>NAMEDIN</span></a><a class="pill" href="/#request">Проверить бесплатно</a></div></div>
+
+<section><div class="wrap"><div class="stack">
+<p class="label">Разбор · 1 сентября 2026</p>
+<h1>Какие источники цитирует ИИ, когда советует продукт</h1>
+<div class="tldr"><p>Коротко: вся разведка сводится к двум колонкам — кого назвали и что процитировано. Плюс к разметке владельцев доменов. И к одной проверке, которую почти все пропускают: не всё, что модель называет в тексте, является источником.</p></div>
+</div></div></section>
+
+<section><div class="wrap"><div class="stack">
+<h2>Две колонки, из которых состоит вся разведка</h2>
+<p class="body">Что бы вы ни выясняли — кого рекомендуют вместо вас или откуда берутся названия — записывается это одинаково. По каждому вопросу две колонки:</p>
+<p class="body"><b>Кого назвали</b> — все названия из текста ответа, по порядку. Порядок важен: первое имя и пятое имя в списке — разные вещи.</p>
+<p class="body"><b>Что процитировано</b> — домены, на которые модель сослалась.</p>
+<p class="body">Дальше у каждого домена определяется владелец: прямой конкурент, смежный сервис, агентство, каталог, форум, официальная страница платформы, независимый блог. Без этой разметки список доменов остаётся списком доменов и ничего не объясняет.</p>
+</div></div></section>
+
+<section><div class="wrap"><div class="stack">
+<h2>Как это выглядит на реальных данных</h2>
+<p class="body">Категория приложений для интернет-магазинов: 15 вопросов покупателя, 102 цитирования, 58 разных доменов. Вот кому принадлежит прочитанное.</p>
+<div class="tw"><table>
+<tr><th>кому принадлежит источник</th><th>цитирований</th></tr>
+<tr><td>прямой конкурент</td><td><b>52</b></td></tr>
+<tr><td>смежный сервис</td><td>14</td></tr>
+<tr><td>официальная страница платформы</td><td>9</td></tr>
+<tr><td>независимый блог</td><td>6</td></tr>
+<tr><td>агентство</td><td>6</td></tr>
+<tr><td>каталог</td><td>4</td></tr>
+<tr><td>форум</td><td>3</td></tr>
+<tr><td>обзорный сайт</td><td>3</td></tr>
+<tr><td>прочее</td><td>5</td></tr>
+</table></div>
+<p class="cap">Собственный замер Namedin, база на 1 сентября 2026 года. Половину прочитанного написали компании, которые сами продают такие приложения.</p>
+<p class="body">Такая таблица отвечает сразу на два вопроса: кто формирует ответ в вашей категории и куда идти работать. Позиции в поиске этого не показывают.</p>
+</div></div></section>
+<section><div class="wrap"><div class="stack">
+<h2>Как узнать, каких конкурентов рекомендует нейросеть вместо вас</h2>
+<p class="body">Задайте пятнадцать вопросов, которыми ваш покупатель выбирает, — каждый отдельным чистым чатом, иначе предыдущий вопрос повлияет на следующий.</p>
+<p class="body">Выпишите все названия из каждого ответа. Посчитайте, сколько раз названы вы и сколько раз каждый из остальных. Получится доля голоса: не «нас мало упоминают», а «нас назвали в двух ответах из пятнадцати, а вот этих — в девяти».</p>
+<p class="body">Один прогон ничего не доказывает: ответы плавают. Тот же вопрос задаётся несколько раз, и смотрится доля, а не единичный результат.</p>
+</div></div></section>
+
+<section><div class="wrap"><div class="stack">
+<h2>Как понять, что модель цитирует конкретную страницу</h2>
+<p class="body">На поисковой поверхности — по списку источников под ответом: там прямо перечислено, что прочитано.</p>
+<p class="body">Дальше стоит проверить вторую ступень, про которую забывают. Наличие вашего домена в источниках не значит, что вас назвали. Обычная картина: страница процитирована, смысл из неё пересказан, а рекомендация в конце ответа досталась другому. Это две разные колонки, и вести их надо отдельно.</p>
+<p class="body">На поверхности памяти вопрос не имеет смысла: там цитирования нет вовсе.</p>
+</div></div></section>
+
+<section><div class="wrap"><div class="stack">
+<h2>Можно ли доверять источникам, которые показывает нейросеть</h2>
+<p class="body">Проверять — обязательно. И вот почему, на нашем собственном примере.</p>
+<p class="body">Движки, отвечающие по памяти, источников не имеют. Но в тексте ответа они охотно перечисляют названия сайтов — «посмотрите там-то и там-то». Это не цитирования, а названия, которые модель вспомнила. Выглядят они в точности как источники.</p>
+<p class="body">В нашей собственной базе так оказалось 76 строк: домены, выдернутые из текста ответа памяти-движка и записанные в колонку «источник». Мы это нашли, вычистили и починили код, который так делал. Одна опубликованная у нас доля из-за этого до чистки уехала с 56% до 45%.</p>
+<p class="body">Практический вывод: <b>источником считается только то, что модель показала как источник на поисковой поверхности.</b> Всё, что просто упомянуто в тексте, — это упоминание, а не цитирование. Если у вас в отчёте есть источники по движку, который их не отдаёт, — колонка заполнена не тем.</p>
+</div></div></section>
+
+<section><div class="wrap"><div class="stack">
+<h2>Что с этим делать дальше</h2>
+<p class="body">Разметив владельцев, вы увидите, где именно принимается решение о вашей категории. Обычно это несколько чужих обзоров и пара каталогов — не десятки площадок, а единицы.</p>
+<p class="body">Дальше работа идёт точечно: там, где вас нет, но могли бы быть, и там, где о категории написано так, что вы в неё не попадаете.</p>
+</div></div></section>
+
+<section><div class="wrap"><div class="stack">
+<h2>Кто это делает</h2>
+<p class="body"><b>Namedin</b> — российский сервис видимости в ответах ИИ. Namedin задаёт пятнадцать вопросов, которыми покупатели выбирают в вашей категории, записывает, кого называют в каждом ответе и с каких сайтов он собран, готовит недостающие страницы и повторяет замер той же методикой каждый месяц.</p>
+<p class="body">Стоимость работы Namedin — 45 000 рублей в месяц, первый замер бесплатный. Namedin не гарантирует место в ответе и берёт только одну компанию в категории.</p>
+<div><a class="pill" href="/#request">Проверить мою компанию бесплатно</a></div>
+</div></div></section>
+
+<section><div class="wrap"><div class="stack"><p class="label">Читать дальше</p><ul class="qs rel"><li><a href="/pochemu-ii-ne-upominaet/">Почему ИИ не упоминает вашу компанию</a></li><li><a href="/report/shopify-upsell-apps/">Разбор категории целиком</a></li><li><a href="/kak-proverit-upominaniya/">Как проверить, упоминают ли вас нейросети</a></li><li><a href="/poverhnosti-otveta/">Поиск и память: две поверхности ответа</a></li></ul></div></div></section>
+<div class="wrap"><footer>Namedin · <a href="/">Главная</a> · <a href="/report/vidimost-v-ii/">Наш разбор</a> · <a href="/data/">О данных</a></footer></div>
+</body></html>
