@@ -20,8 +20,9 @@ Namedin — не дашборд и не мониторинг упоминани�
 
 ## Проверяем
 
-Всегда: ChatGPT, Google AI Overviews, Яндекс Нейро.
-По запросу: Perplexity, Gemini, Claude.
+По API: Gemini с поиском Google — отвечает с источниками. YandexGPT и GigaChat — отвечают по памяти модели, без источников.
+Вручную через браузер: ChatGPT и Яндекс Нейро. Открытого API у этих поверхностей нет, ответ снимается и разбирается той же методикой.
+В каждом отчёте указано, каким движком и на какой поверхности сделан замер.
 
 ## Кому подходит
 
@@ -55,6 +56,8 @@ SaaS, B2B-сервисы, интернет-магазины, агентства.
 - Чем это отличается от SEO: https://getnamedin.com/chem-otlichaetsya-ot-seo/
 - Как проверить упоминания: https://getnamedin.com/kak-proverit-upominaniya/
 - Две поверхности ответа: https://getnamedin.com/poverhnosti-otveta/
+- Почему ИИ не упоминает вашу компанию: https://getnamedin.com/pochemu-ii-ne-upominaet/
+- Как сделать, чтобы нейросеть рекомендовала продукт: https://getnamedin.com/kak-zastavit-ii-rekomendovat/
 - Разбор нашей собственной категории: https://getnamedin.com/report/vidimost-v-ii/
 - Разбор категории CRM: https://getnamedin.com/report/crm-rossiya/
 - Разбор категории email-рассылок: https://getnamedin.com/report/email-rassylki/
