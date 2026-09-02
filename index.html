@@ -29,7 +29,7 @@
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--paper);color:var(--graphite);font-family:var(--font);
   font-size:var(--t16);line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-.wrap{max-width:1140px;margin:0 auto;padding:0 clamp(16px,3vw,48px)}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(16px,3vw,48px)}
 h1,h2,h3{color:var(--ink);margin:0;font-weight:700;letter-spacing:-.025em;line-height:1.15;text-wrap:balance}
 h1{font-size:var(--t44);font-weight:700}
 h2{font-size:var(--t28)}
@@ -218,6 +218,35 @@ details p{margin-top:10px;max-width:44em;font-size:var(--t14)}
   .fcols{grid-template-columns:1fr;gap:22px}
   .fbot{flex-direction:column;gap:8px}
 }
+
+/* Клавиатурная навигация: фокус должен быть виден, это требование ТЗ и просто
+   правило приличия. :focus-visible, чтобы мышь не рисовала рамки зря. */
+a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
+  outline:3px solid var(--blue);outline-offset:2px;border-radius:8px}
+.band.navy a:focus-visible,.band.navy button:focus-visible,.band.navy input:focus-visible{
+  outline-color:#fff}
+
+/* Полоса Score */
+.scorewrap{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.scorenum{font-size:var(--t44);font-weight:700;letter-spacing:-.03em;color:var(--ink);line-height:1}
+.scoremax{font-size:var(--t20);color:var(--steel)}
+.scoretrack{height:10px;background:var(--mist);border-radius:5px;overflow:hidden;margin-top:14px}
+.scoretrack i{display:block;height:100%;background:var(--blue);border-radius:5px;
+  width:0;transition:width 1.1s cubic-bezier(.2,.7,.2,1)}
+.scoretrack.in i{width:var(--w,0)}
+
+/* Приоритеты работ */
+.ops{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--s24)}
+.op{border:1px solid var(--line);border-radius:18px;padding:var(--s24);background:#fff;
+  display:flex;flex-direction:column;gap:10px}
+.op .tag{font-family:var(--mono);font-size:var(--t9);letter-spacing:.06em;text-transform:uppercase;
+  padding:4px 9px;border-radius:6px;align-self:flex-start}
+.op .tag.p1{background:#fdeceb;color:var(--down)}
+.op .tag.p2{background:#fff4e5;color:#9a5b00}
+.op .tag.p3{background:var(--sky);color:var(--blue)}
+.op .meta{display:flex;gap:var(--s16);font-size:var(--t12);color:var(--steel);margin-top:auto;padding-top:8px}
+.op .meta b{color:var(--ink)}
+.ctaline{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:8px}
 </style>
 <script type="application/ld+json">
 {
@@ -282,10 +311,11 @@ details p{margin-top:10px;max-width:44em;font-size:var(--t14)}
 <div class="topbar"><div class="wrap"><div class="nav">
   <a class="brand" href="/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 21h20L12 2z" fill="#2f4cf5"/></svg><span>Namedin</span></a>
   <div class="navlinks">
-    <a href="#answer">Замер</a>
+    <a href="#answer">Как работает</a>
+    <a href="#score">Метрика</a>
     <a href="#engines">Где проверяем</a>
-    <a href="#data">Данные</a>
-    <a href="#price">Цена</a>
+    <a href="#data">Исследования</a>
+    <a href="#price">Тарифы</a>
     <a class="btn white" href="#request">Проверить бесплатно</a>
   </div>
 </div></div></div>
@@ -389,6 +419,33 @@ details p{margin-top:10px;max-width:44em;font-size:var(--t14)}
   <p class="cap" style="color:#8f9dff">База на 2 сентября 2026 года. Любую строку клиент может воспроизвести сам — на этом держится весь метод.</p>
 </div></div></section>
 
+<section class="band" id="score"><div class="wrap"><div class="row">
+  <div class="rtext stack">
+    <p class="eyebrow">Метрика</p>
+    <h2>Одна цифра, чтобы понять, насколько вас видит ИИ</h2>
+    <p class="body">AI Visibility Score — число от 0 до 100 из пяти измеримых частей. Методика открыта, веса опубликованы, оценка воспроизводима: никакой «магии», иначе ей нельзя пользоваться как доказательством.</p>
+    <p class="body">Пока формула не меняется, замеры сравнимы между собой. Меняется — растёт номер версии, и замеры разных версий сравнивать нельзя.</p>
+    <div class="ctaline"><a class="btn" href="#request">Узнать свой Score</a>
+      <a class="btn ghost" href="/kak-proverit-upominaniya/">Как считаем</a></div>
+  </div>
+  <div class="shot"><div class="shot-h"><span>AI Visibility Score · методика v1.0</span><span>наш собственный</span></div>
+    <div class="shot-b">
+      <div class="scorewrap"><span class="scorenum">0</span><span class="scoremax">/ 100</span>
+        <span class="state bad">нас не называют</span></div>
+      <div class="scoretrack" data-w="4%"><i></i></div>
+      <div class="tw"><table>
+        <tr><th>компонент</th><th>вес</th><th>у нас</th></tr>
+        <tr><td>Названность — доля ответов с именем</td><td class="num">40</td><td class="num">0%</td></tr>
+        <tr><td>Первая тройка</td><td class="num">20</td><td class="num">0%</td></tr>
+        <tr><td>Средняя позиция</td><td class="num">15</td><td class="num">—</td></tr>
+        <tr><td>Доля голоса среди конкурентов</td><td class="num">15</td><td class="num">0%</td></tr>
+        <tr><td>Свои источники в ответе</td><td class="num">10</td><td class="num">0%</td></tr>
+      </table></div>
+      <p class="cap">Наш собственный Score на 1 сентября 2026. Мы публикуем его таким, какой он есть.</p>
+    </div>
+  </div>
+</div></div></section>
+
 <section class="band" id="engines"><div class="wrap"><div class="stack">
   <p class="eyebrow">Где проверяем</p>
   <h2>Одиннадцать поверхностей ответа</h2>
@@ -408,7 +465,29 @@ details p{margin-top:10px;max-width:44em;font-size:var(--t14)}
     <tr><td><b>Grok</b></td><td>поиск</td><td>API, инструмент web_search</td><td><span class="state flat">подключаем</span></td></tr>
     <tr><td><b>DeepSeek</b></td><td>память</td><td>API; поиск — только веб-чат</td><td><span class="state flat">подключаем</span></td></tr>
   </table></div>
-  <p class="cap">Статус на 2 сентября 2026 года. «Подключаем» — адаптер написан и проверен, ждём ключ доступа. <a href="/poverhnosti-otveta/">Чем поиск отличается от памяти →</a></p>
+  <p class="cap">Статус на 2 сентября 2026 года. «Подключаем» — адаптер написан и проверен, ждём ключ доступа.</p>
+  <div class="ctaline"><a class="btn" href="#request">Проверить свою компанию</a><a class="btn ghost" href="/poverhnosti-otveta/">Поиск и память — в чём разница</a></div>
+</div></div></section>
+
+<section class="band" id="ops"><div class="wrap"><div class="stack">
+  <p class="eyebrow">Приоритеты</p>
+  <h2>Что исправить в первую очередь</h2>
+  <p class="body">После замера вы получаете не список из сорока пунктов, а три-пять действий, отсортированных по тому, сколько они дают и сколько стоят. Ниже — те, что чаще всего оказываются первыми.</p>
+  <div class="ops">
+    <div class="op"><span class="tag p1">Приоритет 1</span>
+      <h3>Утверждение с именем на своих страницах</h3>
+      <p class="cap">Модель не может процитировать обещание. Нужны предложения, где название продукта стоит рядом с проверяемым фактом: цена, состав работы, ограничения.</p>
+      <div class="meta"><span>Эффект <b>высокий</b></span><span>Сложность <b>низкая</b></span></div></div>
+    <div class="op"><span class="tag p2">Приоритет 2</span>
+      <h3>Разбор своей категории там, откуда ИИ уже цитирует</h3>
+      <p class="cap">Половину ответа собирают страницы участников рынка. Пока такого материала нет у вас, его читают у конкурента.</p>
+      <div class="meta"><span>Эффект <b>высокий</b></span><span>Сложность <b>средняя</b></span></div></div>
+    <div class="op"><span class="tag p3">Приоритет 3</span>
+      <h3>Согласованные факты во всех источниках</h3>
+      <p class="cap">На сайте одна цена, в каталоге другая, в статье третья — модель не выбирает вас вовсе, потому что подтверждения нет.</p>
+      <div class="meta"><span>Эффект <b>средний</b></span><span>Сложность <b>низкая</b></span></div></div>
+  </div>
+  <div class="ctaline"><a class="btn" href="#request">Получить свой список</a></div>
 </div></div></section>
 
 <section class="band mist" id="data"><div class="wrap"><div class="stack">
@@ -423,7 +502,8 @@ details p{margin-top:10px;max-width:44em;font-size:var(--t14)}
     <tr><td><b>Email-рассылки</b></td><td><span class="bar"><i style="width:41%"></i></span></td><td class="num">41%</td><td class="num">11 / 27</td><td>поиск</td></tr>
     <tr><td><b>CRM-системы</b></td><td><span class="bar"><i style="width:36%"></i></span></td><td class="num">36%</td><td class="num">35 / 98</td><td>поиск</td></tr>
   </table></div>
-  <p class="cap">Доля цитирований, приходящихся на сайты компаний и агентств, которые продают то же самое. Красная строка — наша собственная категория: в ней доля выше, чем у любого клиента. <a href="/kakie-istochniki-citiruet-ii/">Как посмотреть это по своей →</a></p>
+  <p class="cap">Доля цитирований, приходящихся на сайты компаний и агентств, которые продают то же самое. Красная строка — наша собственная категория: в ней доля выше, чем у любого клиента.</p>
+  <div class="ctaline"><a class="btn" href="#request">Посчитать по моей категории</a><a class="btn ghost" href="/kakie-istochniki-citiruet-ii/">Как мы это считаем</a></div>
 </div></div></section>
 
 <section class="band"><div class="wrap"><div class="panel">
@@ -447,7 +527,7 @@ details p{margin-top:10px;max-width:44em;font-size:var(--t14)}
   <div class="rtext stack">
     <p class="eyebrow">Метод</p>
     <h2>Только настоящие сигналы</h2>
-    <p class="body"><b>Первое место в ответах ИИ мы не обещаем.</b> Ответ собирается заново при каждом запросе, никто снаружи этим не управляет, и обещание позиции — обещание чужим имуществом.</p>
+    <p class="body"><b>Мы не контролируем ответы ИИ-систем.</b> Мы измеряем их, находим закономерности и системно улучшаем присутствие бренда в источниках и контенте. Конкретного места в ответе не обещает никто, кто понимает, как это устроено: ответ собирается заново при каждом запросе.</p>
     <p class="body"><a href="/mozhno-li-garantirovat-mesto-v-otvetah-ii/">Почему гарантию не может дать никто →</a></p>
   </div>
   <div class="shot"><div class="shot-b" style="gap:20px">
@@ -596,6 +676,17 @@ details p{margin-top:10px;max-width:44em;font-size:var(--t14)}
   // человек попросил меньше движения — просто показываем всё сразу.
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var targets = document.querySelectorAll('section .wrap > .stack, .row > *, .panel, .shot');
+
+  // Полоса Score заполняется, когда доезжает до экрана: показатель должен
+  // появляться, а не стоять готовым — это и есть «микроанимация показателей».
+  document.querySelectorAll('.scoretrack').forEach(function (t) {
+    t.style.setProperty('--w', t.getAttribute('data-w') || '0%');
+    if (reduce || !('IntersectionObserver' in window)) { t.classList.add('in'); return; }
+    var o = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); o.unobserve(e.target); } });
+    }, {threshold: 0.4});
+    o.observe(t);
+  });
   if (!reduce && 'IntersectionObserver' in window) {
     targets.forEach(function (n) { n.classList.add('rise'); });
     var io = new IntersectionObserver(function (entries) {
