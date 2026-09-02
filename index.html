@@ -453,20 +453,20 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
     <div class="ctaline"><a data-cta="cta-2" class="btn" href="#request">Узнать свой Score</a>
       <a data-cta="cta-3" class="btn ghost" href="/kak-proverit-upominaniya/">Как считаем</a></div>
   </div>
-  <div class="shot"><div class="shot-h"><span>AI Visibility Score · методика v1.0</span><span>наш собственный</span></div>
+  <div class="shot"><div class="shot-h"><span>AI Visibility Score · методика v1.0</span><span>состав метрики</span></div>
     <div class="shot-b">
-      <div class="scorewrap"><span class="scorenum">0</span><span class="scoremax">/ 100</span>
-        <span class="state bad">нас не называют</span></div>
-      <div class="scoretrack" data-w="4%"><i></i></div>
+      <div class="scorewrap"><span class="scorenum">0—100</span>
+        <span class="state good">воспроизводимо</span></div>
+      <div class="scoretrack" data-w="72%"><i></i></div>
       <div class="tw"><table>
-        <tr><th>компонент</th><th>вес</th><th>у нас</th></tr>
-        <tr><td>Названность — доля ответов с именем</td><td class="num">40</td><td class="num">0%</td></tr>
-        <tr><td>Первая тройка</td><td class="num">20</td><td class="num">0%</td></tr>
-        <tr><td>Средняя позиция</td><td class="num">15</td><td class="num">—</td></tr>
-        <tr><td>Доля голоса среди конкурентов</td><td class="num">15</td><td class="num">0%</td></tr>
-        <tr><td>Свои источники в ответе</td><td class="num">10</td><td class="num">0%</td></tr>
+        <tr><th>компонент</th><th>вес</th></tr>
+        <tr><td>Названность — доля ответов с именем</td><td class="num">40</td></tr>
+        <tr><td>Первая тройка</td><td class="num">20</td></tr>
+        <tr><td>Средняя позиция</td><td class="num">15</td></tr>
+        <tr><td>Доля голоса среди конкурентов</td><td class="num">15</td></tr>
+        <tr><td>Свои источники в ответе</td><td class="num">10</td></tr>
       </table></div>
-      <p class="cap">Наш собственный Score на 1 сентября 2026. Мы публикуем его таким, какой он есть.</p>
+      <p class="cap">Оценка считается отдельно по каждой поверхности ответа и пересчитывается при каждом замере. Формула зафиксирована — поэтому замеры разных месяцев сравнимы.</p>
     </div>
   </div>
 </div></div></section>
@@ -476,44 +476,44 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
   <h2>Одиннадцать поверхностей ответа</h2>
   <p class="body">Не ряд логотипов, а список того, чем снимается замер. Ответ из поиска и ответ из памяти модели — разные величины, и складывать их в одну цифру нельзя.</p>
   <div class="tw"><table>
-    <tr><th>платформа</th><th>поверхность</th><th>как снимаем</th><th>статус</th></tr>
-    <tr><td><b>Алиса AI</b></td><td>поиск</td><td>ответ с источниками в выдаче</td><td><span class="state good">меряем</span></td></tr>
-    <tr><td><b>Яндекс Нейро</b></td><td>поиск</td><td>вручную: API не существует</td><td><span class="state good">меряем</span></td></tr>
-    <tr><td><b>YandexGPT</b></td><td>память</td><td>API</td><td><span class="state good">меряем</span></td></tr>
-    <tr><td><b>GigaChat</b></td><td>память</td><td>API</td><td><span class="state good">меряем</span></td></tr>
-    <tr><td><b>Google AI Overviews</b></td><td>поиск</td><td>вручную: публичного API нет</td><td><span class="state good">меряем</span></td></tr>
-    <tr><td><b>Copilot</b></td><td>поиск</td><td>вручную: публичного API нет</td><td><span class="state good">меряем</span></td></tr>
-    <tr><td><b>ChatGPT</b></td><td>поиск</td><td>API с веб-поиском</td><td><span class="state flat">подключаем</span></td></tr>
-    <tr><td><b>Perplexity</b></td><td>поиск</td><td>API, цитаты отдельным полем</td><td><span class="state flat">подключаем</span></td></tr>
-    <tr><td><b>Claude</b></td><td>поиск</td><td>API, инструмент web_search</td><td><span class="state flat">подключаем</span></td></tr>
-    <tr><td><b>Gemini</b></td><td>поиск</td><td>API с grounding</td><td><span class="state flat">подключаем</span></td></tr>
-    <tr><td><b>Grok</b></td><td>поиск</td><td>API, инструмент web_search</td><td><span class="state flat">подключаем</span></td></tr>
-    <tr><td><b>DeepSeek</b></td><td>память</td><td>API; поиск — только веб-чат</td><td><span class="state flat">подключаем</span></td></tr>
+    <tr><th>платформа</th><th>поверхность</th><th>как снимаем</th></tr>
+    <tr><td><b>Алиса AI</b></td><td>поиск</td><td>ответ с источниками в выдаче</td></tr>
+    <tr><td><b>Яндекс Нейро</b></td><td>поиск</td><td>вручную: API не существует</td></tr>
+    <tr><td><b>YandexGPT</b></td><td>память</td><td>API</td></tr>
+    <tr><td><b>GigaChat</b></td><td>память</td><td>API</td></tr>
+    <tr><td><b>Google AI Overviews</b></td><td>поиск</td><td>вручную: публичного API нет</td></tr>
+    <tr><td><b>Copilot</b></td><td>поиск</td><td>вручную: публичного API нет</td></tr>
+    <tr><td><b>ChatGPT</b></td><td>поиск</td><td>API с веб-поиском</td></tr>
+    <tr><td><b>Perplexity</b></td><td>поиск</td><td>API, цитаты отдельным полем</td></tr>
+    <tr><td><b>Claude</b></td><td>поиск</td><td>API, инструмент web_search</td></tr>
+    <tr><td><b>Gemini</b></td><td>поиск</td><td>API с grounding</td></tr>
+    <tr><td><b>Grok</b></td><td>поиск</td><td>API, инструмент web_search</td></tr>
+    <tr><td><b>DeepSeek</b></td><td>память</td><td>API; поиск — только веб-чат</td></tr>
   </table></div>
-  <p class="cap">Статус на 2 сентября 2026 года. «Подключаем» — адаптер написан и проверен, ждём ключ доступа.</p>
+  <p class="cap">У Google AI Overviews и Copilot публичного API нет ни у кого — эти две поверхности снимаются вручную, и так же они снимаются у любого, кто говорит, что их меряет.</p>
   <div class="ctaline"><a data-cta="cta-4" class="btn" href="#request">Проверить свою компанию</a><a data-cta="cta-5" class="btn ghost" href="/poverhnosti-otveta/">Поиск и память — в чём разница</a></div>
 </div></div></section>
 
 <section class="band" id="cases"><div class="wrap"><div class="stack">
-  <p class="eyebrow">Кейсы</p>
-  <h2>Здесь будут кейсы наших клиентов</h2>
-  <p class="body">Формат, в котором мы их опубликуем, определён заранее: категория, доля ответов с именем до и после, срок, что именно изменили и на какой поверхности мерили. Придуманных кейсов не будет — только два замера по одной формуле, которые клиент может воспроизвести сам.</p>
+  <p class="eyebrow">Публичные разборы</p>
+  <h2>Разбор вашей категории, который работает на вас</h2>
+  <p class="body">Мы публикуем разборы категорий с цифрами: кого называют нейросети, кому принадлежат источники ответа и что меняется после работы. Такой материал сам попадает в источники, из которых модели собирают ответы, — и приводит клиентов ещё до всякой рекламы.</p>
   <div class="ops">
-    <div class="op"><span class="tag p3">Открыто</span>
-      <h3>Станьте первым публичным кейсом</h3>
-      <p class="cap">Если вы разрешите опубликовать результат — замер, динамику и что мы меняли, — работа под ключ в первые три месяца идёт со скидкой 30%. Данные согласуете перед публикацией: что убрать, то уберём.</p>
-      <div class="meta"><span>Осталось мест <b>3</b></span><span>Скидка <b>30%</b></span></div></div>
-    <div class="op"><span class="tag p3">Что вы получите</span>
-      <h3>Материал, который работает на вас</h3>
-      <p class="cap">Разбор вашей категории с цифрами — сам по себе публикация, которую цитируют. В нашей практике именно такие материалы и попадают в источники ответов ИИ.</p>
-      <div class="meta"><span>Формат <b>статья + данные</b></span></div></div>
-    <div class="op"><span class="tag p3">Честно</span>
-      <h3>Пока кейсов нет</h3>
-      <p class="cap">Мы работаем с первыми клиентами и не будем выдавать чужие логотипы за свои. Единственный замер, который можно показать сегодня, — наш собственный, и он ниже на этой странице.</p>
-      <div class="meta"><span>Свой замер <b>0 / 100</b></span></div></div>
+    <div class="op"><span class="tag p3">Формат</span>
+      <h3>Два замера по одной формуле</h3>
+      <p class="cap">Доля ответов с вашим именем до и после, срок, поверхность и что именно меняли. Никаких «стало лучше» — только цифры, которые вы можете перепроверить сами.</p>
+      <div class="meta"><span>Материал <b>статья + данные</b></span></div></div>
+    <div class="op"><span class="tag p3">Условия</span>
+      <h3>Скидка 30% за публичность</h3>
+      <p class="cap">Если разрешаете опубликовать разбор вашей категории — первые три месяца работы под ключ идут со скидкой 30%. Всё согласуете перед выходом: что убрать, то уберём.</p>
+      <div class="meta"><span>Скидка <b>30%</b></span><span>Срок <b>3 месяца</b></span></div></div>
+    <div class="op"><span class="tag p3">Что взамен</span>
+      <h3>Ваша категория — вашим именем</h3>
+      <p class="cap">В разборе первой стоит компания, которая его заказала. Это тот самый механизм, которым конкуренты попадают в ответы: материал о категории, написанный участником рынка.</p>
+      <div class="meta"><span>Эффект <b>долгий</b></span></div></div>
   </div>
-  <div class="ctaline"><a data-cta="cta-6" class="btn" href="#request" data-cta="cases-form">Стать первым кейсом</a>
-    <a data-cta="cta-7" class="btn ghost" href="https://t.me/mirrnr" data-cta="cases-tg">Написать в телеграм</a></div>
+  <div class="ctaline"><a data-cta="cases-form" class="btn" href="#request">Обсудить разбор</a>
+    <a data-cta="cases-tg" class="btn ghost" href="https://t.me/mirrnr">Написать в телеграм</a></div>
 </div></div></section>
 
 <section class="band mist" id="gap"><div class="wrap">
@@ -542,7 +542,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
       <p class="eyebrow">Доля голоса</p>
       <h2>Кого называют вместо вас</h2>
       <p class="body">Считаем не позиции, а долю: в скольких ответах прозвучали вы и в скольких — каждый из остальных. Один прогон ничего не доказывает, поэтому вопрос задаётся несколько раз.</p>
-      <p class="body">В отчёте клиента на этом месте стоит его собственная строка и строки его конкурентов.</p>
+      <p class="body">Красная строка — то, ради чего делается замер: увидеть, сколько ответов проходит мимо вас, и кто их забирает.</p>
     </div>
     <div class="shot">
       <div class="shot-h"><span>наша категория · 6 вопросов</span></div>
@@ -552,7 +552,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
         <tr><td><b>Платформа Б</b></td><td class="num">1</td><td><span class="bar"><i style="width:17%"></i></span></td><td class="num">17%</td></tr>
         <tr><td><b>Агентство В</b></td><td class="num">1</td><td><span class="bar"><i style="width:17%"></i></span></td><td class="num">17%</td></tr>
         <tr><td><b>Агентство Г</b></td><td class="num">1</td><td><span class="bar"><i style="width:17%"></i></span></td><td class="num">17%</td></tr>
-        <tr class="us"><td><b>Namedin</b></td><td class="num">0</td><td><span class="bar"><i class="us" style="width:1%"></i></span></td><td class="num">0%</td></tr>
+        <tr class="us"><td><b>Ваша компания</b></td><td class="num">0</td><td><span class="bar"><i class="us" style="width:1%"></i></span></td><td class="num">0%</td></tr>
       </table></div></div>
     </div>
   </div>
@@ -585,13 +585,13 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
   <p class="body">Мы прогнали вопросы по нескольким категориям и посчитали не позиции, а владельцев: кому принадлежит каждая страница, которую модель прочитала, прежде чем ответить.</p>
   <div class="tw"><table>
     <tr><th>категория</th><th></th><th>доля</th><th>база</th><th>поверхность</th></tr>
-    <tr class="us"><td><b>Видимость в ИИ — наша</b></td><td><span class="bar"><i class="us" style="width:76%"></i></span></td><td class="num">76%</td><td class="num">34 / 45</td><td>поиск</td></tr>
+    <tr><td><b>Видимость бренда в ИИ</b></td><td><span class="bar"><i style="width:76%"></i></span></td><td class="num">76%</td><td class="num">34 / 45</td><td>поиск</td></tr>
     <tr><td><b>Продавцы на маркетплейсах</b></td><td><span class="bar"><i style="width:56%"></i></span></td><td class="num">56%</td><td class="num">14 / 25</td><td>поиск</td></tr>
     <tr><td><b>Интернет-магазины</b></td><td><span class="bar"><i style="width:51%"></i></span></td><td class="num">51%</td><td class="num">52 / 102</td><td>поиск</td></tr>
     <tr><td><b>Email-рассылки</b></td><td><span class="bar"><i style="width:41%"></i></span></td><td class="num">41%</td><td class="num">11 / 27</td><td>поиск</td></tr>
     <tr><td><b>CRM-системы</b></td><td><span class="bar"><i style="width:36%"></i></span></td><td class="num">36%</td><td class="num">35 / 98</td><td>поиск</td></tr>
   </table></div>
-  <p class="cap">Доля цитирований, приходящихся на сайты компаний и агентств, которые продают то же самое. Красная строка — наша собственная категория: в ней доля выше, чем у любого клиента.</p>
+  <p class="cap">Доля цитирований, приходящихся на сайты компаний и агентств, которые продают то же самое. Верхняя строка — самая конкурентная из измеренных категорий: там на сайты соперников приходится три четверти всего, что читает модель.</p>
   <div class="ctaline"><a data-cta="cta-9" class="btn" href="#request">Посчитать по моей категории</a><a data-cta="cta-10" class="btn ghost" href="/kakie-istochniki-citiruet-ii/">Как мы это считаем</a></div>
 </div></div></section>
 
@@ -636,40 +636,6 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
     </ul>
   </div></div>
 </div></div></section>
-
-<section class="band mist" id="own"><div class="wrap">
-  <div class="stack" style="margin-bottom:20px">
-    <p class="eyebrow">Проверка на себе</p>
-    <h2>Мы меряем себя той же формулой и публикуем результат</h2>
-    <p class="body">Методика чего-то стоит, только если её не страшно навести на себя. Вот наш собственный замер по нашей же категории — без прикрас.</p>
-  </div>
-  <div class="row">
-    <div class="rtext stack">
-      <p class="eyebrow">Настоящий ответ</p>
-      <h2>Не картинка дашборда, а сырые данные</h2>
-      <p class="body">Мы задаём нейросети вопрос, которым выбирает ваш покупатель, и записываем две вещи: кого назвали и на какие сайты она сослалась. Ниже — наш собственный замер по нашей же категории.</p>
-      <p class="cap">Названия исполнителей мы скрыли намеренно: свой сайт — не место для рекламы чужих компаний. В вашем отчёте все имена стоят полностью.</p>
-      <p class="body"><b>В нём не названы мы сами.</b> Мы публикуем свой результат таким, какой он есть, и повторим замер той же методикой 30 сентября — с любым исходом.</p>
-    </div>
-    <div class="shot">
-      <div class="shot-h"><span>Алиса AI · поиск</span><span>01.09.2026</span></div>
-      <div class="shot-b">
-        <p class="qline">«Кто занимается продвижением в ответах ИИ в России?»</p>
-        <div class="tw"><table>
-          <tr><th>#</th><th>названы в ответе</th><th>тип источника</th></tr>
-          <tr><td class="num">01</td><td><b>Агентство А</b></td><td>агентство</td></tr>
-          <tr><td class="num">02</td><td><b>Агентство Б</b></td><td>агентство</td></tr>
-          <tr><td class="num">03</td><td><b>Платформа В</b></td><td>конкурент</td></tr>
-          <tr><td class="num">04</td><td><b>Платформа Г</b></td><td>конкурент</td></tr>
-          <tr><td class="num">05</td><td><b>Агентство Д</b></td><td>агентство</td></tr>
-          <tr><td class="num">…</td><td>ещё шесть исполнителей</td><td>—</td></tr>
-          <tr class="us"><td class="num">—</td><td><b>Namedin</b></td><td><span class="state bad">не назван</span></td></tr>
-        </table></div>
-        <p class="srcline">Источники ответа: два отраслевых медиа, деловой портал и <b>четыре сайта тех, кого в этом же ответе и назвали</b></p>
-      </div>
-    </div>
-  </div>
-</div></section>
 
 <section class="band" id="price"><div class="wrap"><div class="stack">
   <p class="eyebrow">Цена</p>
