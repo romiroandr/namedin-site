@@ -247,6 +247,24 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
 .op .meta{display:flex;gap:var(--s16);font-size:var(--t12);color:var(--steel);margin-top:auto;padding-top:8px}
 .op .meta b{color:var(--ink)}
 .ctaline{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:8px}
+
+/* Вкладки. Пять секций, которые никто не долистывал, свёрнуты в один экран.
+   Роли и стрелки — чтобы блок работал с клавиатуры, а не только мышью. */
+.tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;margin-bottom:24px;
+  scrollbar-width:none;-ms-overflow-style:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;background:#fff;border:1px solid var(--line);border-radius:12px;
+  padding:11px 18px;font-family:var(--font);font-size:var(--t14);font-weight:600;
+  color:var(--graphite);cursor:pointer;white-space:nowrap;
+  transition:background .16s ease,color .16s ease,border-color .16s ease}
+.tab:hover{border-color:var(--blue);color:var(--blue)}
+.tab[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.pan{animation:panin .22s ease}
+@keyframes panin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){.pan{animation:none}}
+.pan .row{padding:0}
+.pan .stack{gap:var(--s16)}
+@media(max-width:640px){.tabs{margin:0 -12px 18px;padding:0 12px 4px}.tab{padding:10px 14px;font-size:13px}}
 </style>
 <script type="application/ld+json">
 {
@@ -396,11 +414,10 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
 <div class="topbar"><div class="wrap"><div class="nav">
   <a class="brand" href="/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 21h20L12 2z" fill="#2f4cf5"/></svg><span>Namedin</span></a>
   <div class="navlinks">
-    <a href="#answer">Как работает</a>
-    <a href="#score">Метрика</a>
-    <a href="#engines">Где проверяем</a>
-    <a href="#data">Исследования</a>
-    <a href="#price">Тарифы</a>
+    <a href="#explore">Что вы увидите</a>
+    <a href="#how">Как работает</a>
+    <a href="#price">Цена</a>
+    <a href="#faq">Вопросы</a>
     <a data-cta="cta-1" class="btn white" href="#request">Проверить бесплатно</a>
   </div>
 </div></div></div>
@@ -437,7 +454,60 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
   <p class="cap" style="color:#8f9dff">База на 2 сентября 2026 года. Любую строку клиент может воспроизвести сам — на этом держится весь метод.</p>
 </div></div></section>
 
-<section class="band" id="score"><div class="wrap"><div class="row">
+
+
+
+
+<section class="band mist" id="explore"><div class="wrap">
+  <div class="stack" style="margin-bottom:26px">
+    <p class="eyebrow">Что вы увидите</p>
+    <h2>Отчёт целиком — на одном экране</h2>
+    <p class="body">Пять частей замера. Переключайте, чтобы посмотреть каждую.</p>
+  </div>
+
+  <div class="tabs" role="tablist" aria-label="Части отчёта">
+    <button class="tab" role="tab" id="t-1" aria-controls="pan-1" aria-selected="true">Кого называют</button>
+    <button class="tab" role="tab" id="t-2" aria-controls="pan-2" aria-selected="false">Источники</button>
+    <button class="tab" role="tab" id="t-3" aria-controls="pan-3" aria-selected="false">Метрика</button>
+    <button class="tab" role="tab" id="t-4" aria-controls="pan-4" aria-selected="false">Что чинить</button>
+    <button class="tab" role="tab" id="t-5" aria-controls="pan-5" aria-selected="false">Где проверяем</button>
+  </div>
+
+  <div class="pan" role="tabpanel" id="pan-1" aria-labelledby="t-1"><div class="row">
+    <div class="rtext stack">
+      <p class="eyebrow">Доля голоса</p>
+      <h2>Кого называют вместо вас</h2>
+      <p class="body">Считаем не позиции, а долю: в скольких ответах прозвучали вы и в скольких — каждый из остальных. Один прогон ничего не доказывает, поэтому вопрос задаётся несколько раз.</p>
+      <p class="body">Красная строка — то, ради чего делается замер: увидеть, сколько ответов проходит мимо вас, и кто их забирает.</p>
+    </div>
+    <div class="shot">
+      <div class="shot-h"><span>наша категория · 6 вопросов</span></div>
+      <div class="shot-b"><div class="tw"><table>
+        <tr><th>компания</th><th>из 6</th><th></th><th>доля</th></tr>
+        <tr><td><b>Платформа А</b></td><td class="num">2</td><td><span class="bar"><i style="width:33%"></i></span></td><td class="num">33%</td></tr>
+        <tr><td><b>Платформа Б</b></td><td class="num">1</td><td><span class="bar"><i style="width:17%"></i></span></td><td class="num">17%</td></tr>
+        <tr><td><b>Агентство В</b></td><td class="num">1</td><td><span class="bar"><i style="width:17%"></i></span></td><td class="num">17%</td></tr>
+        <tr><td><b>Агентство Г</b></td><td class="num">1</td><td><span class="bar"><i style="width:17%"></i></span></td><td class="num">17%</td></tr>
+        <tr class="us"><td><b>Ваша компания</b></td><td class="num">0</td><td><span class="bar"><i class="us" style="width:1%"></i></span></td><td class="num">0%</td></tr>
+      </table></div></div>
+    </div>
+  </div></div>
+  <div class="pan" role="tabpanel" id="pan-2" aria-labelledby="t-2" hidden><div class="stack">
+  <p class="eyebrow">Наши замеры</p>
+  <h2>Половину того, что читает ИИ, пишут ваши конкуренты</h2>
+  <p class="body">Мы прогнали вопросы по нескольким категориям и посчитали не позиции, а владельцев: кому принадлежит каждая страница, которую модель прочитала, прежде чем ответить.</p>
+  <div class="tw"><table>
+    <tr><th>категория</th><th></th><th>доля</th><th>база</th><th>поверхность</th></tr>
+    <tr><td><b>Видимость бренда в ИИ</b></td><td><span class="bar"><i style="width:76%"></i></span></td><td class="num">76%</td><td class="num">34 / 45</td><td>поиск</td></tr>
+    <tr><td><b>Продавцы на маркетплейсах</b></td><td><span class="bar"><i style="width:56%"></i></span></td><td class="num">56%</td><td class="num">14 / 25</td><td>поиск</td></tr>
+    <tr><td><b>Интернет-магазины</b></td><td><span class="bar"><i style="width:51%"></i></span></td><td class="num">51%</td><td class="num">52 / 102</td><td>поиск</td></tr>
+    <tr><td><b>Email-рассылки</b></td><td><span class="bar"><i style="width:41%"></i></span></td><td class="num">41%</td><td class="num">11 / 27</td><td>поиск</td></tr>
+    <tr><td><b>CRM-системы</b></td><td><span class="bar"><i style="width:36%"></i></span></td><td class="num">36%</td><td class="num">35 / 98</td><td>поиск</td></tr>
+  </table></div>
+  <p class="cap">Доля цитирований, приходящихся на сайты компаний и агентств, которые продают то же самое. Верхняя строка — самая конкурентная из измеренных категорий: там на сайты соперников приходится три четверти всего, что читает модель.</p>
+  <div class="ctaline"><a data-cta="cta-9" class="btn" href="#request">Посчитать по моей категории</a><a data-cta="cta-10" class="btn ghost" href="/kakie-istochniki-citiruet-ii/">Как мы это считаем</a></div>
+</div></div>
+  <div class="pan" role="tabpanel" id="pan-3" aria-labelledby="t-3" hidden><div class="row">
   <div class="rtext stack">
     <p class="eyebrow">Метрика</p>
     <h2>Одна цифра, чтобы понять, насколько вас видит ИИ</h2>
@@ -462,9 +532,28 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
       <p class="cap">Оценка считается отдельно по каждой поверхности ответа и пересчитывается при каждом замере. Формула зафиксирована — поэтому замеры разных месяцев сравнимы.</p>
     </div>
   </div>
-</div></div></section>
-
-<section class="band" id="engines"><div class="wrap"><div class="stack">
+</div></div>
+  <div class="pan" role="tabpanel" id="pan-4" aria-labelledby="t-4" hidden><div class="stack">
+  <p class="eyebrow">Приоритеты</p>
+  <h2>Что исправить в первую очередь</h2>
+  <p class="body">После замера вы получаете не список из сорока пунктов, а три-пять действий, отсортированных по тому, сколько они дают и сколько стоят. Ниже — те, что чаще всего оказываются первыми.</p>
+  <div class="ops">
+    <div class="op"><span class="tag p1">Приоритет 1</span>
+      <h3>Утверждение с именем на своих страницах</h3>
+      <p class="cap">Модель не может процитировать обещание. Нужны предложения, где название продукта стоит рядом с проверяемым фактом: цена, состав работы, ограничения.</p>
+      <div class="meta"><span>Эффект <b>высокий</b></span><span>Сложность <b>низкая</b></span></div></div>
+    <div class="op"><span class="tag p2">Приоритет 2</span>
+      <h3>Разбор своей категории там, откуда ИИ уже цитирует</h3>
+      <p class="cap">Половину ответа собирают страницы участников рынка. Пока такого материала нет у вас, его читают у конкурента.</p>
+      <div class="meta"><span>Эффект <b>высокий</b></span><span>Сложность <b>средняя</b></span></div></div>
+    <div class="op"><span class="tag p3">Приоритет 3</span>
+      <h3>Согласованные факты во всех источниках</h3>
+      <p class="cap">На сайте одна цена, в каталоге другая, в статье третья — модель не выбирает вас вовсе, потому что подтверждения нет.</p>
+      <div class="meta"><span>Эффект <b>средний</b></span><span>Сложность <b>низкая</b></span></div></div>
+  </div>
+  <div class="ctaline"><a data-cta="cta-8" class="btn" href="#request">Получить свой список</a></div>
+</div></div>
+  <div class="pan" role="tabpanel" id="pan-5" aria-labelledby="t-5" hidden><div class="stack">
   <p class="eyebrow">Где проверяем</p>
   <h2>Одиннадцать поверхностей ответа</h2>
   <p class="body">Не ряд логотипов, а список того, чем снимается замер. Ответ из поиска и ответ из памяти модели — разные величины, и складывать их в одну цифру нельзя.</p>
@@ -485,7 +574,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
   </table></div>
   <p class="cap">У Google AI Overviews и Copilot публичного API нет ни у кого — эти две поверхности снимаются вручную, и так же они снимаются у любого, кто говорит, что их меряет.</p>
   <div class="ctaline"><a data-cta="cta-4" class="btn" href="#request">Проверить свою компанию</a><a data-cta="cta-5" class="btn ghost" href="/poverhnosti-otveta/">Поиск и память — в чём разница</a></div>
-</div></div></section>
+</div></div>
+</div></section>
 
 <section class="band" id="cases"><div class="wrap"><div class="stack">
   <p class="eyebrow">Публичные разборы</p>
@@ -529,66 +619,13 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
   </div>
 </div></section>
 
-<section class="band mist" id="share"><div class="wrap">
-  <div class="row">
-    <div class="rtext stack">
-      <p class="eyebrow">Доля голоса</p>
-      <h2>Кого называют вместо вас</h2>
-      <p class="body">Считаем не позиции, а долю: в скольких ответах прозвучали вы и в скольких — каждый из остальных. Один прогон ничего не доказывает, поэтому вопрос задаётся несколько раз.</p>
-      <p class="body">Красная строка — то, ради чего делается замер: увидеть, сколько ответов проходит мимо вас, и кто их забирает.</p>
-    </div>
-    <div class="shot">
-      <div class="shot-h"><span>наша категория · 6 вопросов</span></div>
-      <div class="shot-b"><div class="tw"><table>
-        <tr><th>компания</th><th>из 6</th><th></th><th>доля</th></tr>
-        <tr><td><b>Платформа А</b></td><td class="num">2</td><td><span class="bar"><i style="width:33%"></i></span></td><td class="num">33%</td></tr>
-        <tr><td><b>Платформа Б</b></td><td class="num">1</td><td><span class="bar"><i style="width:17%"></i></span></td><td class="num">17%</td></tr>
-        <tr><td><b>Агентство В</b></td><td class="num">1</td><td><span class="bar"><i style="width:17%"></i></span></td><td class="num">17%</td></tr>
-        <tr><td><b>Агентство Г</b></td><td class="num">1</td><td><span class="bar"><i style="width:17%"></i></span></td><td class="num">17%</td></tr>
-        <tr class="us"><td><b>Ваша компания</b></td><td class="num">0</td><td><span class="bar"><i class="us" style="width:1%"></i></span></td><td class="num">0%</td></tr>
-      </table></div></div>
-    </div>
-  </div>
-</div></section>
 
-<section class="band" id="ops"><div class="wrap"><div class="stack">
-  <p class="eyebrow">Приоритеты</p>
-  <h2>Что исправить в первую очередь</h2>
-  <p class="body">После замера вы получаете не список из сорока пунктов, а три-пять действий, отсортированных по тому, сколько они дают и сколько стоят. Ниже — те, что чаще всего оказываются первыми.</p>
-  <div class="ops">
-    <div class="op"><span class="tag p1">Приоритет 1</span>
-      <h3>Утверждение с именем на своих страницах</h3>
-      <p class="cap">Модель не может процитировать обещание. Нужны предложения, где название продукта стоит рядом с проверяемым фактом: цена, состав работы, ограничения.</p>
-      <div class="meta"><span>Эффект <b>высокий</b></span><span>Сложность <b>низкая</b></span></div></div>
-    <div class="op"><span class="tag p2">Приоритет 2</span>
-      <h3>Разбор своей категории там, откуда ИИ уже цитирует</h3>
-      <p class="cap">Половину ответа собирают страницы участников рынка. Пока такого материала нет у вас, его читают у конкурента.</p>
-      <div class="meta"><span>Эффект <b>высокий</b></span><span>Сложность <b>средняя</b></span></div></div>
-    <div class="op"><span class="tag p3">Приоритет 3</span>
-      <h3>Согласованные факты во всех источниках</h3>
-      <p class="cap">На сайте одна цена, в каталоге другая, в статье третья — модель не выбирает вас вовсе, потому что подтверждения нет.</p>
-      <div class="meta"><span>Эффект <b>средний</b></span><span>Сложность <b>низкая</b></span></div></div>
-  </div>
-  <div class="ctaline"><a data-cta="cta-8" class="btn" href="#request">Получить свой список</a></div>
-</div></div></section>
 
-<section class="band mist" id="data"><div class="wrap"><div class="stack">
-  <p class="eyebrow">Наши замеры</p>
-  <h2>Половину того, что читает ИИ, пишут ваши конкуренты</h2>
-  <p class="body">Мы прогнали вопросы по нескольким категориям и посчитали не позиции, а владельцев: кому принадлежит каждая страница, которую модель прочитала, прежде чем ответить.</p>
-  <div class="tw"><table>
-    <tr><th>категория</th><th></th><th>доля</th><th>база</th><th>поверхность</th></tr>
-    <tr><td><b>Видимость бренда в ИИ</b></td><td><span class="bar"><i style="width:76%"></i></span></td><td class="num">76%</td><td class="num">34 / 45</td><td>поиск</td></tr>
-    <tr><td><b>Продавцы на маркетплейсах</b></td><td><span class="bar"><i style="width:56%"></i></span></td><td class="num">56%</td><td class="num">14 / 25</td><td>поиск</td></tr>
-    <tr><td><b>Интернет-магазины</b></td><td><span class="bar"><i style="width:51%"></i></span></td><td class="num">51%</td><td class="num">52 / 102</td><td>поиск</td></tr>
-    <tr><td><b>Email-рассылки</b></td><td><span class="bar"><i style="width:41%"></i></span></td><td class="num">41%</td><td class="num">11 / 27</td><td>поиск</td></tr>
-    <tr><td><b>CRM-системы</b></td><td><span class="bar"><i style="width:36%"></i></span></td><td class="num">36%</td><td class="num">35 / 98</td><td>поиск</td></tr>
-  </table></div>
-  <p class="cap">Доля цитирований, приходящихся на сайты компаний и агентств, которые продают то же самое. Верхняя строка — самая конкурентная из измеренных категорий: там на сайты соперников приходится три четверти всего, что читает модель.</p>
-  <div class="ctaline"><a data-cta="cta-9" class="btn" href="#request">Посчитать по моей категории</a><a data-cta="cta-10" class="btn ghost" href="/kakie-istochniki-citiruet-ii/">Как мы это считаем</a></div>
-</div></div></section>
 
-<section class="band"><div class="wrap"><div class="panel">
+
+
+
+<section class="band" id="how"><div class="wrap"><div class="panel">
   <div class="stack center" style="margin-bottom:32px">
     <h2>Что входит в работу</h2>
     <p class="body">Спросить → найти разрыв → закрыть. Каждый месяц заново, по той же формуле.</p>
@@ -643,21 +680,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
     <a data-cta="price-tg" class="btn ghost" href="https://t.me/mirrnr">Обсудить в телеграме</a></div>
 </div></div></section>
 
-<section class="band mist" id="compare"><div class="wrap"><div class="stack">
-  <p class="eyebrow">Как выбирать</p>
-  <h2>Сравните нас с любой альтернативой по четырём вопросам</h2>
-  <p class="body">Мы не называем конкурентов: своя страница — не место для чужой рекламы. Вместо этого — критерии, по которым вы сами сравните любое предложение на рынке, включая наше.</p>
-  <div class="tw"><table>
-    <tr><th>вопрос к подрядчику</th><th>как бывает на рынке</th><th>у нас</th></tr>
-    <tr><td><b>Минимальный бюджет входа</b></td><td>от 150 000 до 300 000 ₽ в месяц у агентств; 12 000–55 000 ₽ у платформ-подписок</td><td><span class="state good">0 ₽ за замер, работа от 29 500 ₽</span></td></tr>
-    <tr><td><b>Даёте гарантию места в ответе?</b></td><td>кто-то обещает «будете лучшим ответом» с возвратом денег</td><td><span class="state good">нет, и объясняем почему</span></td></tr>
-    <tr><td><b>Методика открыта?</b></td><td>обычно проценты в презентации без формулы и знаменателя</td><td><span class="state good">веса опубликованы</span></td></tr>
-    <tr><td><b>Могу я воспроизвести цифру сам?</b></td><td>чаще всего нет: данные внутри платформы</td><td><span class="state good">да, любую строку</span></td></tr>
-    <tr><td><b>Срок первого результата</b></td><td>от двух недель до месяца</td><td><span class="state good">48 часов</span></td></tr>
-    <tr><td><b>Разделяют поиск и память модели?</b></td><td>обычно смешивают в одну цифру</td><td><span class="state good">всегда раздельно</span></td></tr>
-  </table></div>
-  <p class="cap">Если подрядчик обещает гарантированное место в ответе — попросите объяснить, как он управляет ответом, который пересобирается при каждом запросе. <a href="/mozhno-li-garantirovat-mesto-v-otvetah-ii/">Почему 100%-гарантия невозможна →</a></p>
-</div></div></section>
+
 
 <section class="band mist" id="faq"><div class="wrap"><div class="stack">
   <p class="eyebrow">Вопросы</p>
@@ -673,6 +696,18 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
       <p class="body">Ответ из поиска и ответ из памяти модели — разные вещи, и мы их не складываем. У каждой цифры в отчёте указано, с какой поверхности она снята. <a href="/poverhnosti-otveta/">Чем они отличаются</a>.</p></details>
     <details><summary>Сколько времени занимает результат?</summary>
       <p class="body">На поисковой поверхности изменения появляются за недели, по мере попадания новых страниц в поиск. В памяти модели счёт идёт на месяцы и зависит от переобучения.</p></details>
+    <details><summary>Чем вы отличаетесь от других на рынке?</summary>
+      <p class="body">Мы не называем конкурентов: своя страница — не место для чужой рекламы. Вот критерии, по которым вы сами сравните любое предложение, включая наше.</p>
+      <div class="tw" style="margin-top:12px"><table>
+    <tr><th>вопрос к подрядчику</th><th>как бывает на рынке</th><th>у нас</th></tr>
+    <tr><td><b>Минимальный бюджет входа</b></td><td>от 150 000 до 300 000 ₽ в месяц у агентств; 12 000–55 000 ₽ у платформ-подписок</td><td><span class="state good">0 ₽ за замер, работа от 29 500 ₽</span></td></tr>
+    <tr><td><b>Даёте гарантию места в ответе?</b></td><td>кто-то обещает «будете лучшим ответом» с возвратом денег</td><td><span class="state good">нет, и объясняем почему</span></td></tr>
+    <tr><td><b>Методика открыта?</b></td><td>обычно проценты в презентации без формулы и знаменателя</td><td><span class="state good">веса опубликованы</span></td></tr>
+    <tr><td><b>Могу я воспроизвести цифру сам?</b></td><td>чаще всего нет: данные внутри платформы</td><td><span class="state good">да, любую строку</span></td></tr>
+    <tr><td><b>Срок первого результата</b></td><td>от двух недель до месяца</td><td><span class="state good">48 часов</span></td></tr>
+    <tr><td><b>Разделяют поиск и память модели?</b></td><td>обычно смешивают в одну цифру</td><td><span class="state good">всегда раздельно</span></td></tr>
+  </table></div>
+      <p class="cap" style="margin-top:10px">Если подрядчик обещает гарантированное место в ответе — попросите объяснить, как он управляет ответом, который пересобирается при каждом запросе. <a href="/mozhno-li-garantirovat-mesto-v-otvetah-ii/">Почему 100%-гарантия невозможна →</a></p></details>
     <details><summary>Почему вы не даёте 100%-гарантию, как некоторые на рынке?</summary>
       <p class="body">Потому что ответ модели пересобирается при каждом запросе, и им никто не управляет снаружи. Гарантировать можно только то, чем управляешь. Мы готовы отвечать за измеримую дельту: если за три месяца доля ответов с вашим именем не выросла по сравнению с первым замером — работаем дальше бесплатно, пока роста не будет. <a href="/mozhno-li-garantirovat-mesto-v-otvetah-ii/">Подробный разбор</a>.</p></details>
     <details><summary>Что значит «одна компания в категории»?</summary>
@@ -796,6 +831,32 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
     targets.forEach(function (n) { io.observe(n); });
   }
 
+
+
+  // Вкладки: клик и стрелки. Панели скрываются атрибутом hidden, поэтому
+  // без JS видна первая — контент не пропадает, а не работает только переключение.
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+  function show(idx) {
+    tabs.forEach(function (t, k) {
+      var pan = document.getElementById(t.getAttribute('aria-controls'));
+      t.setAttribute('aria-selected', k === idx ? 'true' : 'false');
+      t.tabIndex = k === idx ? 0 : -1;
+      if (pan) pan.hidden = k !== idx;
+    });
+  }
+  if (tabs.length) {
+    show(0);
+    tabs.forEach(function (t, k) {
+      t.addEventListener('click', function () { show(k); });
+      t.addEventListener('keydown', function (e) {
+        var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        if (!d) return;
+        e.preventDefault();
+        var n = (k + d + tabs.length) % tabs.length;
+        show(n); tabs[n].focus();
+      });
+    });
+  }
 
   var quick = document.getElementById('quick');
   if (quick) quick.addEventListener('submit', function (e) {
