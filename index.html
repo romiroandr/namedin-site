@@ -265,6 +265,22 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
 .pan .row{padding:0}
 .pan .stack{gap:var(--s16)}
 @media(max-width:640px){.tabs{margin:0 -12px 18px;padding:0 12px 4px}.tab{padding:10px 14px;font-size:13px}}
+
+/* Верхние переключатели: страница — это первый экран и выбранный раздел.
+   Липкая строка, чтобы переключаться, не возвращаясь наверх. */
+.tabs.top{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);
+  backdrop-filter:blur(8px);padding:12px 0;margin:0 0 28px;border-bottom:1px solid var(--rule)}
+.tabs.top .tab{border-radius:100px}
+.tabs.sub{margin-bottom:20px}
+.tabs.sub .tab{font-size:var(--t12);padding:9px 15px}
+.sep{height:1px;background:var(--rule);margin:36px 0}
+.hero-logos{margin-top:8px;gap:10px 22px}
+.hero-logos span{font-size:var(--t14);font-weight:600;color:#8f9dff}
+@media(max-width:640px){
+  .tabs.top{margin-bottom:20px;padding:10px 0}
+  .hero-logos span{font-size:12px}
+  .sep{margin:26px 0}
+}
 </style>
 <script type="application/ld+json">
 {
@@ -414,10 +430,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
 <div class="topbar"><div class="wrap"><div class="nav">
   <a class="brand" href="/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 21h20L12 2z" fill="#2f4cf5"/></svg><span>Namedin</span></a>
   <div class="navlinks">
-    <a href="#explore">Что вы увидите</a>
-    <a href="#how">Как работает</a>
-    <a href="#price">Цена</a>
-    <a href="#faq">Вопросы</a>
+    <a href="#explore">Разделы</a>
     <a data-cta="cta-1" class="btn white" href="#request">Проверить бесплатно</a>
   </div>
 </div></div></div>
@@ -430,19 +443,72 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
     <button class="btn white" type="submit">Проверить бесплатно</button>
   </form>
   <p class="cap" style="color:#8f9dff">Без карты и без обязательного звонка · отчёт за 48 часов · реальные ответы ИИ и список источников</p>
-</div></div></section>
-
-<section class="band"><div class="wrap"><div class="stack center">
-  <h2>Проверяем в тех нейросетях,<br>где ваши покупатели спрашивают</h2>
-  <div class="logos">
+  <div class="logos hero-logos" aria-label="Поверхности, где мы проверяем">
     <span>ChatGPT</span><span>Алиса AI</span><span>Яндекс Нейро</span><span>Gemini</span>
     <span>Perplexity</span><span>Claude</span><span>GigaChat</span><span>DeepSeek</span>
     <span>Copilot</span><span>Grok</span><span>AI Overviews</span>
   </div>
-  <p class="cap">Одиннадцать поверхностей ответа. Ниже — таблица, где у каждой указано, поиск это или память модели и как именно снимается замер.</p>
 </div></div></section>
 
-<section class="band navy"><div class="wrap"><div class="stack center">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="band" id="explore"><div class="wrap">
+  <div class="tabs top" role="tablist" aria-label="Разделы">
+    <button class="tab" role="tab" id="T-1" aria-controls="P-1" aria-selected="true">Зачем это</button>
+    <button class="tab" role="tab" id="T-2" aria-controls="P-2" aria-selected="false">Что вы увидите</button>
+    <button class="tab" role="tab" id="T-3" aria-controls="P-3" aria-selected="false">Как работает</button>
+    <button class="tab" role="tab" id="T-4" aria-controls="P-4" aria-selected="false">Цена</button>
+    <button class="tab" role="tab" id="T-5" aria-controls="P-5" aria-selected="false">Вопросы</button>
+  </div>
+
+  <div class="pan" role="tabpanel" id="P-1" aria-labelledby="T-1">
+    <div class="row flip">
+    <div class="rtext stack">
+      <p class="eyebrow">Слепая зона</p>
+      <h2>Ваша SEO-панель этого не показывает</h2>
+      <p class="body">Можно быть первым в поиске и не быть названным ни разу: модель читает вашу страницу, пересказывает её смысл и рекомендует другого — потому что имя взять было неоткуда.</p>
+      <p class="body">Выбор заканчивается до того, как человек откроет поисковую выдачу. В отчётах этого не видно вообще.</p>
+    </div>
+    <div class="shot">
+      <div class="shot-h"><span>что видно и чего нет</span></div>
+      <div class="shot-b"><div class="tw"><table>
+        <tr><th>вы смотрите</th><th>что видно</th><th>состояние</th></tr>
+        <tr><td>Позиция в поиске</td><td>сайт находится, растёт</td><td><span class="state good">норма</span></td></tr>
+        <tr><td>Трафик и визиты</td><td>заходы идут</td><td><span class="state good">норма</span></td></tr>
+        <tr class="us"><td><b>Ответ нейросети</b></td><td>назвали конкурента</td><td><span class="state bad">не видно нигде</span></td></tr>
+      </table></div></div>
+    </div>
+  </div>
+    <div class="sep"></div>
+    <div class="stack center">
   <p class="eyebrow">База замеров</p>
   <h2>Каждая цифра пересчитывается из базы</h2>
   <div class="kpis" style="margin-top:8px">
@@ -452,28 +518,23 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
     <div><span class="n">207</span><span class="t">доменов размечено по владельцу</span></div>
   </div>
   <p class="cap" style="color:#8f9dff">База на 2 сентября 2026 года. Любую строку клиент может воспроизвести сам — на этом держится весь метод.</p>
-</div></div></section>
-
-
-
-
-
-<section class="band mist" id="explore"><div class="wrap">
-  <div class="stack" style="margin-bottom:26px">
+</div>
+  </div>
+  <div class="pan" role="tabpanel" id="P-2" aria-labelledby="T-2" hidden><div class="stack" style="margin-bottom:26px">
     <p class="eyebrow">Что вы увидите</p>
     <h2>Отчёт целиком — на одном экране</h2>
     <p class="body">Пять частей замера. Переключайте, чтобы посмотреть каждую.</p>
   </div>
 
-  <div class="tabs" role="tablist" aria-label="Части отчёта">
-    <button class="tab" role="tab" id="t-1" aria-controls="pan-1" aria-selected="true">Кого называют</button>
-    <button class="tab" role="tab" id="t-2" aria-controls="pan-2" aria-selected="false">Источники</button>
-    <button class="tab" role="tab" id="t-3" aria-controls="pan-3" aria-selected="false">Метрика</button>
-    <button class="tab" role="tab" id="t-4" aria-controls="pan-4" aria-selected="false">Что чинить</button>
-    <button class="tab" role="tab" id="t-5" aria-controls="pan-5" aria-selected="false">Где проверяем</button>
+  <div class="tabs sub" role="tablist" aria-label="Части отчёта">
+    <button class="tab" role="tab" id="st-1" aria-controls="span-1" aria-selected="true">Кого называют</button>
+    <button class="tab" role="tab" id="st-2" aria-controls="span-2" aria-selected="false">Источники</button>
+    <button class="tab" role="tab" id="st-3" aria-controls="span-3" aria-selected="false">Метрика</button>
+    <button class="tab" role="tab" id="st-4" aria-controls="span-4" aria-selected="false">Что чинить</button>
+    <button class="tab" role="tab" id="st-5" aria-controls="span-5" aria-selected="false">Где проверяем</button>
   </div>
 
-  <div class="pan" role="tabpanel" id="pan-1" aria-labelledby="t-1"><div class="row">
+  <div class="pan" role="tabpanel" id="span-1" aria-labelledby="st-1"><div class="row">
     <div class="rtext stack">
       <p class="eyebrow">Доля голоса</p>
       <h2>Кого называют вместо вас</h2>
@@ -492,7 +553,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
       </table></div></div>
     </div>
   </div></div>
-  <div class="pan" role="tabpanel" id="pan-2" aria-labelledby="t-2" hidden><div class="stack">
+  <div class="pan" role="tabpanel" id="span-2" aria-labelledby="st-2" hidden><div class="stack">
   <p class="eyebrow">Наши замеры</p>
   <h2>Половину того, что читает ИИ, пишут ваши конкуренты</h2>
   <p class="body">Мы прогнали вопросы по нескольким категориям и посчитали не позиции, а владельцев: кому принадлежит каждая страница, которую модель прочитала, прежде чем ответить.</p>
@@ -507,7 +568,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
   <p class="cap">Доля цитирований, приходящихся на сайты компаний и агентств, которые продают то же самое. Верхняя строка — самая конкурентная из измеренных категорий: там на сайты соперников приходится три четверти всего, что читает модель.</p>
   <div class="ctaline"><a data-cta="cta-9" class="btn" href="#request">Посчитать по моей категории</a><a data-cta="cta-10" class="btn ghost" href="/kakie-istochniki-citiruet-ii/">Как мы это считаем</a></div>
 </div></div>
-  <div class="pan" role="tabpanel" id="pan-3" aria-labelledby="t-3" hidden><div class="row">
+  <div class="pan" role="tabpanel" id="span-3" aria-labelledby="st-3" hidden><div class="row">
   <div class="rtext stack">
     <p class="eyebrow">Метрика</p>
     <h2>Одна цифра, чтобы понять, насколько вас видит ИИ</h2>
@@ -533,7 +594,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
     </div>
   </div>
 </div></div>
-  <div class="pan" role="tabpanel" id="pan-4" aria-labelledby="t-4" hidden><div class="stack">
+  <div class="pan" role="tabpanel" id="span-4" aria-labelledby="st-4" hidden><div class="stack">
   <p class="eyebrow">Приоритеты</p>
   <h2>Что исправить в первую очередь</h2>
   <p class="body">После замера вы получаете не список из сорока пунктов, а три-пять действий, отсортированных по тому, сколько они дают и сколько стоят. Ниже — те, что чаще всего оказываются первыми.</p>
@@ -553,7 +614,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
   </div>
   <div class="ctaline"><a data-cta="cta-8" class="btn" href="#request">Получить свой список</a></div>
 </div></div>
-  <div class="pan" role="tabpanel" id="pan-5" aria-labelledby="t-5" hidden><div class="stack">
+  <div class="pan" role="tabpanel" id="span-5" aria-labelledby="st-5" hidden><div class="stack">
   <p class="eyebrow">Где проверяем</p>
   <h2>Одиннадцать поверхностей ответа</h2>
   <p class="body">Не ряд логотипов, а список того, чем снимается замер. Ответ из поиска и ответ из памяти модели — разные величины, и складывать их в одну цифру нельзя.</p>
@@ -574,58 +635,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
   </table></div>
   <p class="cap">У Google AI Overviews и Copilot публичного API нет ни у кого — эти две поверхности снимаются вручную, и так же они снимаются у любого, кто говорит, что их меряет.</p>
   <div class="ctaline"><a data-cta="cta-4" class="btn" href="#request">Проверить свою компанию</a><a data-cta="cta-5" class="btn ghost" href="/poverhnosti-otveta/">Поиск и память — в чём разница</a></div>
-</div></div>
-</div></section>
-
-<section class="band" id="cases"><div class="wrap"><div class="stack">
-  <p class="eyebrow">Публичные разборы</p>
-  <h2>Разбор вашей категории, который работает на вас</h2>
-  <p class="body">Мы публикуем разборы категорий с цифрами: кого называют нейросети, кому принадлежат источники ответа и что меняется после работы. Такой материал сам попадает в источники, из которых модели собирают ответы, — и приводит клиентов ещё до всякой рекламы.</p>
-  <div class="ops">
-    <div class="op"><span class="tag p3">Формат</span>
-      <h3>Два замера по одной формуле</h3>
-      <p class="cap">Доля ответов с вашим именем до и после, срок, поверхность и что именно меняли. Никаких «стало лучше» — только цифры, которые вы можете перепроверить сами.</p>
-      <div class="meta"><span>Материал <b>статья + данные</b></span></div></div>
-    <div class="op"><span class="tag p3">Условия</span>
-      <h3>Скидка 30% за публичность</h3>
-      <p class="cap">Если разрешаете опубликовать разбор вашей категории — первые три месяца работы под ключ идут со скидкой 30%. Всё согласуете перед выходом: что убрать, то уберём.</p>
-      <div class="meta"><span>Скидка <b>30%</b></span><span>Срок <b>3 месяца</b></span></div></div>
-    <div class="op"><span class="tag p3">Что взамен</span>
-      <h3>Ваша категория — вашим именем</h3>
-      <p class="cap">В разборе первой стоит компания, которая его заказала. Это тот самый механизм, которым конкуренты попадают в ответы: материал о категории, написанный участником рынка.</p>
-      <div class="meta"><span>Эффект <b>долгий</b></span></div></div>
-  </div>
-  <div class="ctaline"><a data-cta="cases-form" class="btn" href="#request">Обсудить разбор</a>
-    <a data-cta="cases-tg" class="btn ghost" href="https://t.me/mirrnr">Написать в телеграм</a></div>
-</div></div></section>
-
-<section class="band mist" id="gap"><div class="wrap">
-  <div class="row flip">
-    <div class="rtext stack">
-      <p class="eyebrow">Слепая зона</p>
-      <h2>Ваша SEO-панель этого не показывает</h2>
-      <p class="body">Можно быть первым в поиске и не быть названным ни разу: модель читает вашу страницу, пересказывает её смысл и рекомендует другого — потому что имя взять было неоткуда.</p>
-      <p class="body">Выбор заканчивается до того, как человек откроет поисковую выдачу. В отчётах этого не видно вообще.</p>
-    </div>
-    <div class="shot">
-      <div class="shot-h"><span>что видно и чего нет</span></div>
-      <div class="shot-b"><div class="tw"><table>
-        <tr><th>вы смотрите</th><th>что видно</th><th>состояние</th></tr>
-        <tr><td>Позиция в поиске</td><td>сайт находится, растёт</td><td><span class="state good">норма</span></td></tr>
-        <tr><td>Трафик и визиты</td><td>заходы идут</td><td><span class="state good">норма</span></td></tr>
-        <tr class="us"><td><b>Ответ нейросети</b></td><td>назвали конкурента</td><td><span class="state bad">не видно нигде</span></td></tr>
-      </table></div></div>
-    </div>
-  </div>
-</div></section>
-
-
-
-
-
-
-
-<section class="band" id="how"><div class="wrap"><div class="panel">
+</div></div></div>
+  <div class="pan" role="tabpanel" id="P-3" aria-labelledby="T-3" hidden>
+    <div class="panel">
   <div class="stack center" style="margin-bottom:32px">
     <h2>Что входит в работу</h2>
     <p class="body">Спросить → найти разрыв → закрыть. Каждый месяц заново, по той же формуле.</p>
@@ -640,9 +652,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
     <div class="item"><span class="ic">04</span><div><h3>Повторный замер</h3>
       <p>Те же вопросы, та же поверхность, та же формула. «Было ноль из пятнадцати, стало три, вот они» — а не «стало лучше».</p></div></div>
   </div>
-</div></div></section>
-
-<section class="band mist"><div class="wrap"><div class="row">
+</div>
+    <div class="sep"></div>
+    <div class="row">
   <div class="rtext stack">
     <p class="eyebrow">Метод</p>
     <h2>Только настоящие сигналы</h2>
@@ -665,9 +677,10 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
       <li><span class="m">✓</span> повторный замер по той же формуле</li>
     </ul>
   </div></div>
-</div></div></section>
-
-<section class="band" id="price"><div class="wrap"><div class="stack">
+</div>
+  </div>
+  <div class="pan" role="tabpanel" id="P-4" aria-labelledby="T-4" hidden>
+    <div class="stack">
   <p class="eyebrow">Цена</p>
   <h2>Что мы делаем и сколько это стоит</h2>
   <p class="lead">Каждый месяц задаём нейросетям вопросы ваших покупателей, разбираем, кого называют вместо вас и с каких сайтов собран ответ, готовим недостающие материалы и повторяем замер по той же формуле.</p>
@@ -678,11 +691,31 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
   <p class="body">Первый замер — бесплатно.</p>
   <div class="ctaline"><a data-cta="price-form" class="btn" href="#request">Получить бесплатный замер</a>
     <a data-cta="price-tg" class="btn ghost" href="https://t.me/mirrnr">Обсудить в телеграме</a></div>
-</div></div></section>
-
-
-
-<section class="band mist" id="faq"><div class="wrap"><div class="stack">
+</div>
+    <div class="sep"></div>
+    <div class="stack">
+  <p class="eyebrow">Публичные разборы</p>
+  <h2>Разбор вашей категории, который работает на вас</h2>
+  <p class="body">Мы публикуем разборы категорий с цифрами: кого называют нейросети, кому принадлежат источники ответа и что меняется после работы. Такой материал сам попадает в источники, из которых модели собирают ответы, — и приводит клиентов ещё до всякой рекламы.</p>
+  <div class="ops">
+    <div class="op"><span class="tag p3">Формат</span>
+      <h3>Два замера по одной формуле</h3>
+      <p class="cap">Доля ответов с вашим именем до и после, срок, поверхность и что именно меняли. Никаких «стало лучше» — только цифры, которые вы можете перепроверить сами.</p>
+      <div class="meta"><span>Материал <b>статья + данные</b></span></div></div>
+    <div class="op"><span class="tag p3">Условия</span>
+      <h3>Скидка 30% за публичность</h3>
+      <p class="cap">Если разрешаете опубликовать разбор вашей категории — первые три месяца работы под ключ идут со скидкой 30%. Всё согласуете перед выходом: что убрать, то уберём.</p>
+      <div class="meta"><span>Скидка <b>30%</b></span><span>Срок <b>3 месяца</b></span></div></div>
+    <div class="op"><span class="tag p3">Что взамен</span>
+      <h3>Ваша категория — вашим именем</h3>
+      <p class="cap">В разборе первой стоит компания, которая его заказала. Это тот самый механизм, которым конкуренты попадают в ответы: материал о категории, написанный участником рынка.</p>
+      <div class="meta"><span>Эффект <b>долгий</b></span></div></div>
+  </div>
+  <div class="ctaline"><a data-cta="cases-form" class="btn" href="#request">Обсудить разбор</a>
+    <a data-cta="cases-tg" class="btn ghost" href="https://t.me/mirrnr">Написать в телеграм</a></div>
+</div>
+  </div>
+  <div class="pan" role="tabpanel" id="P-5" aria-labelledby="T-5" hidden><div class="stack">
   <p class="eyebrow">Вопросы</p>
   <h2>Коротко о главном</h2>
   <div>
@@ -715,7 +748,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
     <details><summary>Можно ли сделать это самому?</summary>
       <p class="body">Да, и первый шаг стоит сделать самому: 15 вопросов, каждый отдельным чистым чатом, две колонки — кого назвали и что процитировано. <a href="/kak-proverit-upominaniya/">Как проверить самому</a>.</p></details>
   </div>
-</div></div></section>
+</div></div>
+</div></section>
 
 <section class="band navy" id="request"><div class="wrap"><div class="row">
   <div class="rtext stack">
@@ -775,9 +809,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
       <p class="cap">Измеряем, называет ли ИИ вашу компанию в ответах на вопросы ваших покупателей, и делаем работу, чтобы называл.</p>
     </div>
     <div class="fcol"><h4>Продукт</h4>
-      <a href="#price">Цена</a>
-      <a href="#explore">Что вы увидите</a>
-      <a href="#how">Как работает</a>
+      <a href="#explore">Цена и разделы</a>
+      <a href="#explore">Разделы</a>
+      <a href="#request">Бесплатный замер</a>
       <a href="/report/vidimost-v-ii/">Разбор своей категории</a>
     </div>
     <div class="fcol"><h4>Разобраться</h4>
@@ -833,18 +867,20 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
 
 
 
-  // Вкладки: клик и стрелки. Панели скрываются атрибутом hidden, поэтому
-  // без JS видна первая — контент не пропадает, а не работает только переключение.
-  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
-  function show(idx) {
-    tabs.forEach(function (t, k) {
-      var pan = document.getElementById(t.getAttribute('aria-controls'));
-      t.setAttribute('aria-selected', k === idx ? 'true' : 'false');
-      t.tabIndex = k === idx ? 0 : -1;
-      if (pan) pan.hidden = k !== idx;
-    });
-  }
-  if (tabs.length) {
+  // Вкладки двух уровней: верхние разделы и вкладки внутри отчёта.
+  // Панели скрываются атрибутом hidden — без скрипта видна первая, и текст
+  // не пропадает, просто не переключается.
+  function wire(list) {
+    var tabs = Array.prototype.slice.call(list);
+    if (!tabs.length) return;
+    function show(idx) {
+      tabs.forEach(function (t, k) {
+        var pan = document.getElementById(t.getAttribute('aria-controls'));
+        t.setAttribute('aria-selected', k === idx ? 'true' : 'false');
+        t.tabIndex = k === idx ? 0 : -1;
+        if (pan) pan.hidden = k !== idx;
+      });
+    }
     show(0);
     tabs.forEach(function (t, k) {
       t.addEventListener('click', function () { show(k); });
@@ -857,6 +893,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
       });
     });
   }
+  wire(document.querySelectorAll('.tabs.top .tab'));
+  wire(document.querySelectorAll('.tabs.sub .tab'));
 
   var quick = document.getElementById('quick');
   if (quick) quick.addEventListener('submit', function (e) {
