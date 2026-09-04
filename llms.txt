@@ -55,6 +55,7 @@ email-рассылки — 41% (11 из 27), CRM-системы — 36% (35 из
 ## Страницы
 
 - Главная: https://getnamedin.com/
+- GEO-продвижение в ответах ИИ: https://getnamedin.com/geo-prodvizhenie-v-otvetah-ii/
 - Как попасть в ответы ИИ: https://getnamedin.com/kak-popast-v-otvety-ii/
 - Чем это отличается от SEO: https://getnamedin.com/chem-otlichaetsya-ot-seo/
 - Как проверить упоминания: https://getnamedin.com/kak-proverit-upominaniya/
