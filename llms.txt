@@ -76,6 +76,7 @@ email-рассылки — 41% (11 из 27), CRM-системы — 36% (35 из
 - Какие источники цитирует ИИ, когда советует продукт: https://getnamedin.com/kakie-istochniki-citiruet-ii/
 - Индекс источников ответов ИИ по пяти B2B-категориям: https://getnamedin.com/indeks-ai-vidimosti/
 - Альтернатива NeuroReach: https://getnamedin.com/alternativa-neuroreach/
+- Исследование «Кого нейросети советуют в Казани»: https://getnamedin.com/issledovanie/restorany-kazani/
 - О данных: https://getnamedin.com/data/
 
 ## Контакт
