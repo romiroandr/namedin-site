@@ -2,284 +2,313 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Продвижение в ответах нейросетей — Namedin</title>
 <meta name="description" content="Продвигаем компании в ответах нейросетей: делаем так, чтобы ИИ называл вас на вопросы ваших покупателей. GEO-продвижение с измеримым результатом. Первый замер бесплатно.">
-<meta name="color-scheme" content="light">
-<meta name="theme-color" content="#0f1a7a">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0a0a0c">
 <link rel="canonical" href="https://getnamedin.com/">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2 2 21h20L12 2z' fill='%232f4cf5'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2 2 21h20L12 2z' fill='%23ff7a1a'/%3E%3C/svg%3E">
 <meta property="og:title" content="Продвижение в ответах нейросетей — Namedin">
 <meta property="og:description" content="Делаем так, чтобы нейросети называли вашу компанию. GEO-продвижение с измеримым результатом.">
 <meta property="og:url" content="https://getnamedin.com/">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://getnamedin.com/og.png">
 <style>
+/* Namedin · публичный сайт. Одна тёмная тема в айдентике продукта:
+   глубокий чёрный, графитовые поверхности, серебряный текст и один сдержанный
+   оранжевый акцент. Без веб-шрифтов, без библиотек: страница должна
+   открываться мгновенно и на телефоне. */
 :root{
-  --navy:#0f1a7a; --navy-d:#0a1252; --blue:#2f4cf5; --blue-d:#1f39d0;
-  --sky:#eef2ff; --mist:#f6f7fb; --line:#e2e6f0; --rule:#eceef5;
-  --paper:#fff; --ink:#0d1330; --graphite:#464d68; --steel:#767d95;
-  --up:#0f7a4a; --down:#c0342a;
-  --font:Inter,"Helvetica Neue",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  --bg:#0a0a0c; --s1:#0f0f12; --s2:#141418; --s3:#1b1b20;
+  --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.14); --edge:rgba(214,218,226,.30);
+  --silver:#eceef2; --text:#b8bcc5; --muted:#8c909a;
+  --accent:#ff7a1a; --accent-h:#ff9447; --accent-a:rgba(255,122,26,.14); --accent-l:rgba(255,122,26,.5);
+  --font:Inter,"SF Pro Text","Helvetica Neue",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
   --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,monospace;
-  --t9:clamp(9px,8px + .16vw,12px);--t12:clamp(11px,10px + .22vw,15px);--t14:clamp(13px,12px + .28vw,17px);
-  --t16:clamp(15px,13.5px + .3vw,19px);--t20:clamp(17px,15px + .4vw,23px);
-  --t28:clamp(21px,17px + .8vw,34px);--t44:clamp(27px,20px + 1.7vw,50px);
-  --s8:8px;--s12:12px;--s16:16px;--s24:24px;--s32:32px;--s48:48px;
+  --t12:clamp(12px,11px + .2vw,14px); --t14:clamp(14px,13px + .25vw,16px);
+  --t16:clamp(15.5px,14px + .3vw,18px); --t20:clamp(18px,16px + .4vw,22px);
+  --t32:clamp(26px,19px + 1.5vw,44px); --t64:clamp(38px,24px + 3.2vw,66px);
+  --r:18px;
 }
 *{box-sizing:border-box}
 [hidden]{display:none!important}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--paper);color:var(--graphite);font-family:var(--font);
-  font-size:var(--t16);line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(16px,3vw,48px)}
-h1,h2,h3{color:var(--ink);margin:0;font-weight:700;letter-spacing:-.025em;line-height:1.15;text-wrap:balance}
-h1{font-size:var(--t44);font-weight:700}
-h2{font-size:var(--t28)}
-h3{font-size:var(--t20)}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);font-size:var(--t16);
+  line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(16px,3.4vw,48px)}
+h1,h2,h3{color:var(--silver);margin:0;font-weight:650;letter-spacing:-.03em;line-height:1.08;text-wrap:balance}
+h2{font-size:var(--t32)}
+h3{font-size:var(--t20);letter-spacing:-.015em;line-height:1.25}
 p{margin:0}
-a{color:var(--blue);text-underline-offset:3px}
-.stack{display:flex;flex-direction:column;gap:var(--s16)}
-.body{font-size:var(--t16);color:var(--graphite);max-width:36em}
-.body b{color:var(--ink);font-weight:600}
-.cap{font-size:var(--t12);color:var(--steel);max-width:44em}
-.eyebrow{font-family:var(--mono);font-size:var(--t9);letter-spacing:.1em;text-transform:uppercase;color:var(--steel)}
-.center{text-align:center}
-.center .body,.center .cap{margin-left:auto;margin-right:auto}
+a{color:var(--silver);text-decoration-color:var(--accent-l);text-underline-offset:3px}
+a:hover{color:var(--accent-h)}
+b{color:var(--silver);font-weight:600}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.eyebrow i{font-style:normal;color:var(--accent)}
+.lead{font-size:var(--t20);color:var(--text);max-width:34em;line-height:1.55}
+.body{max-width:38em}
+.cap{font-size:var(--t12);color:var(--muted);max-width:52em}
+.stack{display:flex;flex-direction:column;gap:16px}
+.head{display:flex;flex-direction:column;gap:14px;max-width:760px;margin-bottom:clamp(28px,4vw,48px)}
 
-/* полосы */
-.band{padding:clamp(56px,7vw,96px) 0}
-.band.navy{background:var(--navy);color:#c9d2ff}
-.band.navy h1,.band.navy h2,.band.navy h3{color:#fff}
-.band.navy .eyebrow{color:#8f9dff}
-.band.navy .body{color:#c9d2ff}
-.band.sky{background:var(--sky)}
-.band.mist{background:var(--mist)}
-
-/* навигация */
-.topbar{background:var(--navy)}
-.nav{display:flex;align-items:center;justify-content:space-between;gap:var(--s24);padding:16px 0}
-.brand{display:flex;align-items:center;gap:9px;text-decoration:none}
-.brand svg{width:18px;height:18px}
-.brand span{font-size:var(--t16);font-weight:700;letter-spacing:-.02em;color:#fff}
-.navlinks{display:flex;gap:var(--s24);align-items:center}
-.navlinks a{font-size:var(--t14);color:#c9d2ff;text-decoration:none}
-.navlinks a:hover{color:#fff}
-@media(max-width:820px){.navlinks a:not(.btn){display:none}}
-
-.btn{display:inline-flex;align-items:center;justify-content:center;background:var(--blue);color:#fff;
-  font-size:var(--t14);font-weight:600;text-decoration:none;padding:14px 26px;border:1px solid var(--blue);
-  border-radius:14px;min-height:50px;white-space:nowrap;cursor:pointer;
-  box-shadow:0 2px 10px rgba(47,76,245,.22);
-  transition:background .18s ease,transform .12s ease,box-shadow .18s ease}
-.btn:hover{background:var(--blue-d);border-color:var(--blue-d);color:#fff;
-  transform:translateY(-1px);box-shadow:0 6px 18px rgba(47,76,245,.28)}
-.btn:active{transform:translateY(0);box-shadow:0 1px 6px rgba(47,76,245,.2)}
-.btn.white{background:#fff;color:var(--navy);border-color:#fff}
-.btn.white{box-shadow:0 2px 12px rgba(5,10,60,.18)}
-.btn.white:hover{background:#eef1ff;color:var(--navy)}
-.btn.ghost{background:transparent;color:var(--blue)}
-.btn.ghost:hover{background:var(--sky);color:var(--blue-d)}
+/* Кнопки — «жидкое стекло». Основная — тёмное стекло с оранжевым оттенком,
+   второстепенная — графитовое стекло с серебряной кромкой. Блик — одна
+   внутренняя тень, без свечения вокруг. */
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:48px;padding:12px 22px;border-radius:14px;font:600 var(--t14)/1.1 var(--font);
+  text-decoration:none;white-space:nowrap;cursor:pointer;color:#fff;
+  background:linear-gradient(180deg,rgba(255,122,26,.34),rgba(255,122,26,.16) 55%,rgba(255,122,26,.22));
+  border:1px solid rgba(255,140,60,.62);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.22),inset 0 -1px 0 rgba(0,0,0,.35),0 6px 18px -8px rgba(255,122,26,.45);
+  -webkit-backdrop-filter:blur(10px) saturate(140%);backdrop-filter:blur(10px) saturate(140%);
+  transition:background .18s ease,border-color .18s ease,transform .12s ease}
+.btn:hover{color:#fff;border-color:rgba(255,160,90,.85);
+  background:linear-gradient(180deg,rgba(255,122,26,.46),rgba(255,122,26,.24) 55%,rgba(255,122,26,.3));transform:translateY(-1px)}
+.btn:active{transform:none}
+.btn.glass{color:var(--silver);background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.03));
+  border-color:var(--edge);box-shadow:inset 0 1px 0 rgba(255,255,255,.16),inset 0 -1px 0 rgba(0,0,0,.4)}
+.btn.glass:hover{color:#fff;border-color:rgba(230,233,240,.5);background:linear-gradient(180deg,rgba(255,255,255,.13),rgba(255,255,255,.05))}
+.btn.sm{min-height:40px;padding:9px 16px;border-radius:12px}
 .btn.wide{width:100%}
+.btn .ar{transition:transform .18s ease}
+.btn:hover .ar{transform:translateX(2px)}
+.ctaline{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
 
-/* герой */
-.hero-in{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:var(--s24);align-items:center;text-align:center}
-.checkbar{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;width:100%;max-width:520px}
-.checkbar input{flex:1 1 240px;min-height:50px;padding:0 18px;border:1px solid transparent;border-radius:14px;
-  background:#fff;color:var(--ink);font-family:var(--font);font-size:var(--t14)}
-.checkbar input:focus{outline:2px solid var(--blue);outline-offset:1px}
+/* Навигация */
+.top{position:sticky;top:0;z-index:30;background:rgba(10,10,12,.78);border-bottom:1px solid var(--line);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:64px}
+.brand{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--silver)}
+.brand svg{width:17px;height:17px}
+.brand span{font-size:17px;font-weight:700;letter-spacing:-.02em}
+.navlinks{display:flex;gap:26px;align-items:center}
+.navlinks a{font-size:14px;color:var(--text);text-decoration:none;padding:10px 0}
+.navlinks a:hover{color:var(--silver)}
+.navact{display:flex;gap:10px;align-items:center}
+@media(max-width:960px){.navlinks{display:none}}
 
-/* ряд платформ */
-.logos{display:flex;flex-wrap:wrap;gap:var(--s16) var(--s32);justify-content:center;align-items:center}
-.logos span{font-size:var(--t20);font-weight:700;letter-spacing:-.02em;color:#9aa2bd}
+/* Герой */
+.hero{position:relative;padding:clamp(48px,7vw,104px) 0 clamp(56px,7vw,96px);overflow:hidden;
+  background:radial-gradient(900px 480px at 78% 30%,rgba(255,122,26,.07),transparent 70%),
+             radial-gradient(700px 500px at 10% 0%,rgba(255,255,255,.035),transparent 70%)}
+.hero-g{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(32px,5vw,72px);align-items:center}
+@media(max-width:980px){.hero-g{grid-template-columns:1fr}}
+.hero h1{font-size:var(--t64);font-weight:650;letter-spacing:-.045em;line-height:1.02;
+  background:linear-gradient(180deg,#f7f8fa 20%,#a7abb4);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero h1 .ac{background:linear-gradient(180deg,#ffb27a,#ff7a1a);-webkit-background-clip:text;background-clip:text}
+.hero-t{display:flex;flex-direction:column;gap:24px}
+.checkbar{display:flex;gap:10px;flex-wrap:wrap;max-width:540px;padding:6px;border-radius:18px;
+  background:rgba(255,255,255,.04);border:1px solid var(--line2)}
+.checkbar input{flex:1 1 220px;min-height:48px;padding:0 14px;border:0;border-radius:12px;background:transparent;
+  color:var(--silver);font:var(--t14) var(--font)}
+.checkbar input::placeholder{color:var(--muted)}
+.checkbar input:focus{outline:2px solid var(--accent-l);outline-offset:0}
+.assure{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:var(--t12);color:var(--muted)}
+.assure span::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--accent);
+  margin-right:8px;vertical-align:middle;opacity:.8}
 
-/* чередующиеся ряды */
-.row{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(24px,5vw,72px);align-items:center;
-  padding:clamp(32px,5vw,64px) 0}
-.row.flip .rtext{order:2}
-@media(max-width:880px){.row{grid-template-columns:1fr}.row.flip .rtext{order:0}}
+/* Превью продукта: статичный SVG и пара CSS-анимаций на transform/opacity.
+   Без WebGL и без библиотек: на первом экране ничего тяжелее 6 КБ. */
+.pv{position:relative;border-radius:22px;background:linear-gradient(180deg,#131317,#0d0d10);
+  border:1px solid var(--line2);box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 40px 80px -40px rgba(0,0,0,.8);overflow:hidden}
+.pv-h{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line);
+  font:12px/1 var(--mono);color:var(--muted);letter-spacing:.04em}
+.pv-h .dots{display:flex;gap:6px}
+.pv-h .dots i{width:9px;height:9px;border-radius:50%;background:#2a2a30}
+.pv-h .url{margin-left:auto;padding:5px 10px;border-radius:8px;background:rgba(255,255,255,.04);color:var(--text)}
+.pv-b{display:grid;grid-template-columns:1fr 190px;min-height:330px}
+.pv-map{position:relative;border-right:1px solid var(--line);overflow:hidden}
+.pv-map svg{display:block;width:100%;height:100%}
+.pv-map .beam{position:absolute;top:0;bottom:0;left:0;width:22%;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(255,122,26,.10) 70%,rgba(255,122,26,.35) 99%,transparent);
+  transform:translateX(-100%);will-change:transform}
+.pv-tag{position:absolute;left:14px;bottom:12px;font:11px/1 var(--mono);color:var(--muted);letter-spacing:.06em}
+.pv-steps{position:relative;list-style:none;margin:0;padding:14px 12px;display:flex;flex-direction:column;gap:4px;counter-reset:s}
+.pv-steps li{position:relative;z-index:1;display:flex;align-items:center;gap:10px;height:38px;padding:0 10px;border-radius:10px;
+  font-size:13px;color:var(--text);counter-increment:s}
+.pv-steps li::before{content:"0" counter(s);font:11px var(--mono);color:var(--muted)}
+.pv-hl{position:absolute;left:12px;right:12px;top:14px;height:38px;border-radius:10px;border:1px solid rgba(255,122,26,.45);
+  background:rgba(255,122,26,.08);will-change:transform}
+.pv-foot{display:flex;gap:16px;align-items:center;padding:11px 16px;border-top:1px solid var(--line);
+  font:11px/1.3 var(--mono);color:var(--muted)}
+.pv-foot .lg{display:flex;align-items:center;gap:6px}
+.pv-foot .lg i{width:8px;height:8px;border-radius:50%;background:#5d616b}
+.pv-foot .lg i.a{background:var(--accent)}
+.pv-foot .lg i.s{background:#d9dce3}
+@media(max-width:560px){.pv-b{grid-template-columns:1fr}.pv-map{border-right:0;border-bottom:1px solid var(--line);height:210px}
+  .pv-steps{display:grid;grid-template-columns:1fr 1fr;padding:10px}.pv-hl{left:10px;right:auto;top:10px;width:calc(50% - 12px)}}
+.pv.on .beam{animation:beam 6s cubic-bezier(.45,.05,.4,1) infinite}
+@media(min-width:561px){.pv.on .pv-hl{animation:hl 12s cubic-bezier(.6,0,.3,1) infinite}}
+@keyframes beam{0%{transform:translateX(-100%)}70%,100%{transform:translateX(560%)}}
+@keyframes hl{0%,13%{transform:none}17%,30%{transform:translateY(42px)}34%,46%{transform:translateY(84px)}
+  50%,63%{transform:translateY(126px)}67%,80%{transform:translateY(168px)}84%,96%{transform:translateY(210px)}100%{transform:none}}
 
-/* карточка данных вместо скриншота */
-.shot{border:1px solid var(--line);border-radius:18px;background:#fff;overflow:hidden;
-  box-shadow:0 12px 32px rgba(15,26,122,.08)}
-.shot-h{display:flex;justify-content:space-between;gap:var(--s12);padding:11px 16px;background:var(--mist);
-  border-bottom:1px solid var(--line);font-family:var(--mono);font-size:var(--t9);letter-spacing:.06em;
-  text-transform:uppercase;color:var(--steel);flex-wrap:wrap}
-.shot-b{padding:var(--s16);display:flex;flex-direction:column;gap:10px}
-.qline{font-size:var(--t14);color:var(--ink);font-weight:600}
+/* Полосы */
+.band{scroll-margin-top:40px;padding:clamp(64px,8vw,120px) 0;border-top:1px solid var(--line)}
+.band.alt{background:linear-gradient(180deg,var(--s1),var(--bg))}
+.surf{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.surf span{font-size:13px;color:var(--text);padding:6px 11px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.02)}
 
-table{border-collapse:collapse;width:100%;font-size:var(--t14)}
-th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:middle}
-th{font-family:var(--mono);font-size:var(--t9);text-transform:uppercase;letter-spacing:.06em;color:var(--steel);font-weight:600}
-td b{color:var(--ink);font-weight:600}
-td.num{font-family:var(--mono);text-align:right;white-space:nowrap}
-tr.us td{background:#fdefee}
-tr.us td b{color:var(--down)}
+/* Карточки и сетки */
+.card{border:1px solid var(--line);border-radius:var(--r);background:linear-gradient(180deg,var(--s2),var(--s1));
+  padding:clamp(20px,2.4vw,30px);box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2vw,24px)}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,24px)}
+.split{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(28px,5vw,72px);align-items:center}
+@media(max-width:980px){.g3{grid-template-columns:1fr 1fr}.g3>:nth-child(3):last-child{grid-column:1/-1}.split{grid-template-columns:1fr}}
+@media(max-width:680px){.g2,.g3{grid-template-columns:1fr}}
+
+/* Таблицы данных */
 .tw{overflow-x:auto}
-.bar{display:block;height:6px;background:var(--mist);border-radius:3px;overflow:hidden;min-width:56px}
-.bar i{display:block;height:100%;background:var(--blue)}
-.bar i.us{background:var(--down)}
-.state{font-family:var(--mono);font-size:var(--t9);letter-spacing:.04em;padding:3px 7px;border-radius:4px;white-space:nowrap}
-.state.bad{background:#fdeceb;color:var(--down)}
-.state.good{background:#e9f5ee;color:var(--up)}
-.state.flat{background:var(--mist);color:var(--steel)}
-.srcline{font-family:var(--mono);font-size:var(--t12);color:var(--steel);line-height:1.8;word-break:break-all}
-.srcline b{color:var(--ink)}
+table{border-collapse:collapse;width:100%;font-size:var(--t14)}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:middle}
+th{font:600 11px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+td b{color:var(--silver)}
+td.num{font-family:var(--mono);text-align:right;white-space:nowrap;color:var(--silver)}
+tr.us td{background:rgba(255,122,26,.07)}
+tr.us td b{color:var(--accent-h)}
+.bar{display:block;height:6px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;min-width:56px}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,#8d919b,#d8dbe2)}
+.st{font:11px var(--mono);letter-spacing:.04em;padding:4px 8px;border-radius:6px;white-space:nowrap;border:1px solid var(--line2);color:var(--text)}
+.st.bad{border-color:rgba(255,122,26,.5);color:var(--accent-h);background:var(--accent-a)}
 
-/* числа */
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--s24)}
-.kpis .n{display:block;font-size:var(--t44);font-weight:700;letter-spacing:-.03em;line-height:1;color:var(--ink)}
-.kpis .n.bad{color:var(--down)}
-.band.navy .kpis .n{color:#fff}
-.kpis .t{display:block;margin-top:8px;font-size:var(--t12);color:var(--steel)}
-.band.navy .kpis .t{color:#8f9dff}
+/* Числа базы */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.kpis div{background:var(--s1);padding:clamp(20px,2.6vw,32px)}
+.kpis .n{display:block;font-size:var(--t32);font-weight:650;letter-spacing:-.03em;line-height:1;color:var(--silver);font-variant-numeric:tabular-nums}
+.kpis .t{display:block;margin-top:10px;font-size:var(--t12);color:var(--muted)}
+@media(max-width:760px){.kpis{grid-template-columns:1fr 1fr}}
 
-/* карточка преимуществ */
-.panel{background:var(--sky);border-radius:20px;padding:clamp(28px,4vw,56px)}
-.feat{display:grid;grid-template-columns:1fr 1fr;gap:var(--s32)}
-@media(max-width:760px){.feat{grid-template-columns:1fr}}
-.feat .item{display:grid;grid-template-columns:34px 1fr;gap:14px;align-items:start}
-.feat .ic{width:36px;height:36px;border-radius:12px;background:var(--blue);display:flex;
-  align-items:center;justify-content:center;color:#fff;font-family:var(--mono);font-size:var(--t12);font-weight:600}
-.feat p{font-size:var(--t14)}
+/* Путь клиента */
+.path{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,24px);counter-reset:p}
+.path li{counter-increment:p;position:relative}
+.path .num{display:flex;align-items:center;gap:12px;margin-bottom:16px;font:12px var(--mono);color:var(--muted);letter-spacing:.08em}
+.path .num::before{content:"0" counter(p);display:grid;place-items:center;width:34px;height:34px;border-radius:10px;
+  border:1px solid var(--accent-l);background:var(--accent-a);color:var(--accent-h);font-weight:600}
+.path h3{margin-bottom:10px}
+.path p{font-size:var(--t14)}
+.path .out{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line2);font-size:var(--t12);color:var(--muted)}
+.path .out b{color:var(--text);font-weight:600}
+@media(max-width:980px){.path{grid-template-columns:1fr 1fr}}
+@media(max-width:680px){.path{grid-template-columns:1fr}}
 
-.yn{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:7px}
-.yn li{font-size:var(--t14);display:flex;gap:10px;align-items:baseline}
-.yn .m{font-family:var(--mono);font-size:var(--t12);flex:none}
-.yn.no .m{color:var(--down)}
-.yn.yes .m{color:var(--up)}
+/* SEO и GEO */
+.vs .card h3{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.vs .k{font:11px var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:4px 8px;border-radius:6px;border:1px solid var(--line2);color:var(--muted)}
+.vs .card.geo{border-color:rgba(255,122,26,.32);background:linear-gradient(180deg,rgba(255,122,26,.07),var(--s1) 60%)}
+.vs .card.geo .k{border-color:var(--accent-l);color:var(--accent-h)}
+.dl{display:grid;grid-template-columns:auto 1fr;gap:10px 18px;margin:0;font-size:var(--t14)}
+.dl dt{color:var(--muted)}
+.dl dd{margin:0;color:var(--text)}
 
-details{border-top:1px solid var(--rule);padding:var(--s16) 0}
-details summary{cursor:pointer;color:var(--ink);font-size:var(--t16);font-weight:600;list-style:none;
-  display:flex;justify-content:space-between;gap:var(--s12)}
-details summary::-webkit-details-marker{display:none}
-details summary::after{content:"+";font-family:var(--mono);color:var(--steel)}
-details[open] summary::after{content:"\2013"}
-details p{margin-top:10px;max-width:44em;font-size:var(--t14)}
-
-/* форма */
-.form-card{border:1px solid var(--line);border-radius:20px;padding:var(--s24);display:flex;
-  flex-direction:column;gap:var(--s12);background:#fff}
-.field{display:flex;flex-direction:column;gap:6px}
-.field label{font-size:var(--t12);color:var(--steel);font-weight:500}
-.field input{min-height:48px;padding:0 15px;border:1px solid var(--line);border-radius:12px;background:#fff;
-  color:var(--ink);font-family:var(--font);font-size:var(--t14)}
-.field input:focus{outline:2px solid var(--blue);outline-offset:1px;border-color:transparent}
-.agree{display:flex;gap:10px;align-items:flex-start;font-size:var(--t12);color:var(--steel)}
-.agree input{margin-top:3px}
-.trap{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
-.form-err{color:var(--down);font-size:var(--t12);min-height:1em}
-.form-note{font-size:var(--t12);color:var(--steel)}
-.sent{border:1px solid var(--up);border-radius:12px;padding:var(--s12)}
-.pill{display:none}
-
-/* футер */
-.foot{background:var(--mist);padding:clamp(40px,5vw,64px) 0 var(--s32);border-top:1px solid var(--rule)}
-.fcols{display:grid;grid-template-columns:1.2fr repeat(3,1fr);gap:var(--s32)}
-@media(max-width:820px){.fcols{grid-template-columns:1fr 1fr}}
-.fcol h4{font-size:var(--t12);color:var(--ink);margin:0 0 12px;font-weight:600}
-.fcol a{display:block;font-size:var(--t14);color:var(--graphite);text-decoration:none;padding:4px 0}
-.fcol a:hover{color:var(--blue)}
-.fbot{margin-top:var(--s32);padding-top:var(--s16);border-top:1px solid var(--line);
-  display:flex;flex-wrap:wrap;gap:var(--s16);justify-content:space-between;font-size:var(--t12);color:var(--steel)}
-
-/* Появление при прокрутке. Сдержанное и одно на всех: сайт должен читаться
-   как инструмент, а не как презентация. Кто выключил анимации в системе —
-   получает статичную страницу, это не украшение, без которого текст ломается. */
-.rise{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
-.rise.in{opacity:1;transform:none}
-.shot{transition:transform .25s ease,box-shadow .25s ease}
-.shot:hover{transform:translateY(-3px);box-shadow:0 18px 44px rgba(15,26,122,.12)}
-.logos span{transition:color .2s ease}
-.logos span:hover{color:var(--blue)}
-.fcol a{transition:color .16s ease,transform .16s ease}
-.fcol a:hover{transform:translateX(2px)}
-@media (prefers-reduced-motion: reduce){
-  .rise{opacity:1;transform:none;transition:none}
-  .shot:hover{transform:none}
-  html{scroll-behavior:auto}
-}
-
-/* Телефон: другой ритм, а не сжатый десктоп. Полосы короче, карточки во всю
-   ширину, кнопка проверки — во всю строку, таблицы листаются вбок сами. */
-@media(max-width:640px){
-  .band{padding:40px 0}
-  .row{padding:22px 0;gap:22px}
-  .hero-in{gap:18px}
-  h1{font-size:clamp(26px,7.4vw,36px)}
-  h2{font-size:clamp(20px,5.6vw,27px)}
-  .checkbar{flex-direction:column;max-width:none}
-  .checkbar input,.checkbar .btn{width:100%}
-  .logos{gap:10px 18px}
-  .logos span{font-size:15px}
-  .kpis{grid-template-columns:1fr 1fr;gap:18px}
-  .panel{padding:22px;border-radius:16px}
-  .feat{gap:20px}
-  .shot-b{padding:12px}
-  th,td{padding:7px 8px;font-size:13px}
-  .tw{margin:0 -12px;padding:0 12px}
-  .fcols{grid-template-columns:1fr;gap:22px}
-  .fbot{flex-direction:column;gap:8px}
-}
-
-/* Клавиатурная навигация: фокус должен быть виден, это требование ТЗ и просто
-   правило приличия. :focus-visible, чтобы мышь не рисовала рамки зря. */
-a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
-  outline:3px solid var(--blue);outline-offset:2px;border-radius:8px}
-.band.navy a:focus-visible,.band.navy button:focus-visible,.band.navy input:focus-visible{
-  outline-color:#fff}
-
-/* Полоса Score */
-.scorewrap{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
-.scorenum{font-size:var(--t44);font-weight:700;letter-spacing:-.03em;color:var(--ink);line-height:1}
-.scoremax{font-size:var(--t20);color:var(--steel)}
-.scoretrack{height:10px;background:var(--mist);border-radius:5px;overflow:hidden;margin-top:14px}
-.scoretrack i{display:block;height:100%;background:var(--blue);border-radius:5px;
-  width:0;transition:width 1.1s cubic-bezier(.2,.7,.2,1)}
+/* Возможности */
+.cap-c h3{margin:10px 0 10px}
+.cap-c p{font-size:var(--t14)}
+.cap-c p.eyebrow{font-size:12px}
+.cap-c .more{display:inline-block;margin-top:6px;padding:12px 0;font-size:var(--t12)}
+.ic{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;border:1px solid var(--line2);
+  background:rgba(255,255,255,.03);color:var(--silver)}
+.ic svg{width:18px;height:18px}
+.score{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.score .n{font-size:var(--t32);font-weight:650;color:var(--silver);letter-spacing:-.03em;line-height:1}
+.scoretrack{height:8px;background:rgba(255,255,255,.06);border-radius:4px;overflow:hidden;margin:14px 0 6px}
+.scoretrack i{display:block;height:100%;width:0;border-radius:4px;background:linear-gradient(90deg,rgba(255,122,26,.55),var(--accent));
+  transition:width 1.1s cubic-bezier(.2,.7,.2,1)}
 .scoretrack.in i{width:var(--w,0)}
 
-/* Приоритеты работ */
-.ops{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--s24)}
-.op{border:1px solid var(--line);border-radius:18px;padding:var(--s24);background:#fff;
-  display:flex;flex-direction:column;gap:10px}
-.op .tag{font-family:var(--mono);font-size:var(--t9);letter-spacing:.06em;text-transform:uppercase;
-  padding:4px 9px;border-radius:6px;align-self:flex-start}
-.op .tag.p1{background:#fdeceb;color:var(--down)}
-.op .tag.p2{background:#fff4e5;color:#9a5b00}
-.op .tag.p3{background:var(--sky);color:var(--blue)}
-.op .meta{display:flex;gap:var(--s16);font-size:var(--t12);color:var(--steel);margin-top:auto;padding-top:8px}
-.op .meta b{color:var(--ink)}
-.ctaline{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:8px}
+.yn{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+.yn li{font-size:var(--t14);display:flex;gap:10px;align-items:baseline}
+.yn .m{font-family:var(--mono);font-size:12px;flex:none;width:14px}
+.yn.no .m{color:var(--accent)}
+.yn.yes .m{color:var(--silver)}
 
-/* Вкладки. Пять секций, которые никто не долистывал, свёрнуты в один экран.
-   Роли и стрелки — чтобы блок работал с клавиатуры, а не только мышью. */
-.tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;margin-bottom:24px;
-  scrollbar-width:none;-ms-overflow-style:none}
-.tabs::-webkit-scrollbar{display:none}
-.tab{flex:none;background:#fff;border:1px solid var(--line);border-radius:12px;
-  padding:11px 18px;font-family:var(--font);font-size:var(--t14);font-weight:600;
-  color:var(--graphite);cursor:pointer;white-space:nowrap;
-  transition:background .16s ease,color .16s ease,border-color .16s ease}
-.tab:hover{border-color:var(--blue);color:var(--blue)}
-.tab[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
-.pan{animation:panin .22s ease}
-@keyframes panin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-@media (prefers-reduced-motion: reduce){.pan{animation:none}}
-.pan .row{padding:0}
-.pan .stack{gap:var(--s16)}
-@media(max-width:640px){.tabs{margin:0 -12px 18px;padding:0 12px 4px}.tab{padding:10px 14px;font-size:13px}}
+/* Тарифы */
+.plans{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,1.6vw,20px);align-items:stretch}
+@media(max-width:1100px){.plans{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.plans{grid-template-columns:1fr}}
+.plan{display:flex;flex-direction:column;gap:14px}
+.plan .tag{align-self:flex-start;font:11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
+  padding:4px 9px;border-radius:6px;border:1px solid var(--line2)}
+.plan .price{font-size:clamp(26px,20px + 1vw,36px);font-weight:650;color:var(--silver);letter-spacing:-.03em;line-height:1}
+.plan .price small{font-size:var(--t14);font-weight:500;color:var(--muted);letter-spacing:0}
+.plan ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;font-size:var(--t14)}
+.plan li{display:flex;gap:10px}
+.plan li::before{content:"—";color:var(--muted);flex:none}
+.plan .btn{margin-top:auto}
+.plan.main{border-color:rgba(255,122,26,.42);background:linear-gradient(180deg,rgba(255,122,26,.09),var(--s1) 55%)}
+.plan.main .tag{border-color:var(--accent-l);color:var(--accent-h)}
 
-/* Верхние переключатели: страница — это первый экран и выбранный раздел.
-   Липкая строка, чтобы переключаться, не возвращаясь наверх. */
-.tabs.top{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);
-  backdrop-filter:blur(8px);padding:12px 0;margin:0 0 28px;border-bottom:1px solid var(--rule)}
-.tabs.top .tab{border-radius:100px}
-.tabs.sub{margin-bottom:20px}
-.tabs.sub .tab{font-size:var(--t12);padding:9px 15px}
-.sep{height:1px;background:var(--rule);margin:36px 0}
-.hero-logos{margin-top:8px;gap:10px 22px}
-.hero-logos span{font-size:var(--t14);font-weight:600;color:#8f9dff}
+/* Вопросы */
+.faq{max-width:900px}
+details{border-top:1px solid var(--line);padding:18px 0}
+details:last-child{border-bottom:1px solid var(--line)}
+details summary{cursor:pointer;color:var(--silver);font-size:var(--t16);font-weight:600;list-style:none;
+  display:flex;justify-content:space-between;gap:16px}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"+";font-family:var(--mono);color:var(--accent);flex:none}
+details[open] summary::after{content:"\2013"}
+details p{margin-top:12px;max-width:46em;font-size:var(--t14)}
+
+/* Форма */
+.req{background:radial-gradient(700px 400px at 85% 20%,rgba(255,122,26,.06),transparent 70%),var(--bg)}
+.form-card{border:1px solid var(--line2);border-radius:22px;padding:clamp(20px,2.4vw,28px);display:flex;flex-direction:column;gap:12px;
+  background:linear-gradient(180deg,var(--s2),var(--s1));box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:var(--t12);color:var(--muted);font-weight:500}
+.field input{min-height:48px;padding:0 14px;border:1px solid var(--line2);border-radius:12px;background:rgba(0,0,0,.25);
+  color:var(--silver);font:var(--t14) var(--font)}
+.field input::placeholder{color:#6d717b}
+.field input:focus{outline:2px solid var(--accent-l);outline-offset:1px;border-color:transparent}
+.agree{display:flex;gap:10px;align-items:flex-start;font-size:var(--t12);color:var(--muted)}
+.agree input{margin-top:3px;accent-color:var(--accent)}
+.trap{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.form-err{color:var(--accent-h);font-size:var(--t12);min-height:1em}
+.form-note{font-size:var(--t12);color:var(--muted)}
+.sent{border:1px solid var(--edge);border-radius:12px;padding:12px}
+
+/* Футер */
+.foot{border-top:1px solid var(--line);padding:clamp(44px,5vw,72px) 0 28px;background:var(--s1)}
+.fcols{display:grid;grid-template-columns:1.3fr repeat(3,1fr);gap:32px}
+@media(max-width:860px){.fcols{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.fcols{grid-template-columns:1fr}}
+.fcol .fh{font-size:12px;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 12px;font-weight:600}
+.fcol a{display:block;font-size:var(--t14);color:var(--text);text-decoration:none;padding:4px 0}
+.fcol a:hover{color:var(--silver)}
+.fbot{margin-top:36px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:12px;
+  justify-content:space-between;font-size:var(--t12);color:var(--muted)}
+.fbot a{color:var(--text);display:inline-block;padding:8px 0}
+
+/* Появление при прокрутке — без JS, на scroll-driven animations: анимация идёт
+   на композиторе и не трогает основной поток. Где не поддерживается — всё
+   просто видно сразу. Первый экран не анимируется: это LCP. */
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion: no-preference){
+    .band .head,.band .card,.band .split>*,.kpis{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 40%}
+  }
+}
+@keyframes rise{from{transform:translateY(28px)}to{transform:none}}
+@media print{*{animation:none!important}}
+
+a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:8px}
+
 @media(max-width:640px){
-  .tabs.top{margin-bottom:20px;padding:10px 0}
-  .hero-logos span{font-size:12px}
-  .sep{margin:26px 0}
+  .hero-t{gap:20px}
+  .checkbar{flex-direction:column}
+  .checkbar input,.checkbar .btn{width:100%;flex:0 0 auto}
+  th,td{padding:8px;font-size:13px}
+  .hs{display:none}
+  .bar{min-width:40px}
+  .cmp tr:first-child{display:none}
+  .cmp tr{display:block;padding:12px 0;border-bottom:1px solid var(--line)}
+  .cmp td{display:block;border:0;padding:3px 0}
+  .cmp td:nth-child(2)::before{content:"На рынке: ";color:var(--muted)}
+  .cmp td:nth-child(3)::before{content:"У нас: ";color:var(--muted)}
+  .cmp .st{white-space:normal;display:inline-block}
+  .tw{margin:0 -16px;padding:0 16px}
+  .fbot{flex-direction:column}
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .pv.on .beam,.pv.on .pv-hl{animation:none}
+  .btn,.btn:hover{transform:none}
 }
 </style>
 <script type="application/ld+json">{
@@ -440,310 +469,319 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
       ]
     }
   ]
-}</script></head><body>
+}</script>
+</head><body>
 
-<div class="topbar"><div class="wrap"><div class="nav">
-  <a class="brand" href="/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 21h20L12 2z" fill="#2f4cf5"/></svg><span>Namedin</span></a>
-  <div class="navlinks">
-    <a href="#explore">Разделы</a>
-    <a data-cta="cta-1" class="btn white" href="#request">Проверить бесплатно</a>
+<header class="top"><div class="wrap"><div class="nav">
+  <a class="brand" href="/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 21h20L12 2z" fill="#ff7a1a"/></svg><span>Namedin</span></a>
+  <nav class="navlinks" aria-label="Разделы">
+    <a href="#how">Как работает</a>
+    <a href="#seo-geo">SEO и GEO</a>
+    <a href="#capabilities">Возможности</a>
+    <a href="#pricing">Цены</a>
+    <a href="#faq">Вопросы</a>
+  </nav>
+  <div class="navact">
+    <a class="btn sm" data-cta="cta-1" href="#request">Проверить бесплатно</a>
   </div>
-</div></div></div>
+</div></div></header>
 
-<section class="band navy"><div class="wrap"><div class="hero-in">
-  <p class="eyebrow" style="color:#8f9dff;margin-bottom:-8px">Продвижение в ответах нейросетей · GEO</p>
-  <h1>Сделаем так, чтобы нейросети называли вас</h1>
-  <p class="body">Покупатель спрашивает нейросеть, что выбрать, получает два-три названия и на этом заканчивает выбор. Мы показываем, есть ли среди них вы, кого назвали вместо вас и с каких сайтов собран ответ.</p>
-  <form class="checkbar" id="quick" novalidate>
-    <input id="q-dom" type="text" inputmode="url" autocomplete="url" placeholder="ваш-сайт.ru" aria-label="Ваш сайт">
-    <button class="btn white" type="submit">Проверить бесплатно</button>
-  </form>
-  <p class="cap" style="color:#8f9dff">Без карты и без обязательного звонка · отчёт за 48 часов · реальные ответы ИИ и список источников</p>
-  <div class="logos hero-logos" aria-label="Поверхности, где мы проверяем">
-    <span>ChatGPT</span><span>Алиса AI</span><span>Яндекс Нейро</span><span>Gemini</span>
-    <span>Perplexity</span><span>Claude</span><span>GigaChat</span><span>DeepSeek</span>
-    <span>Copilot</span><span>Grok</span><span>AI Overviews</span>
+<main>
+<section class="hero"><div class="wrap"><div class="hero-g">
+  <div class="hero-t">
+    <p class="eyebrow"><i>●</i> Продвижение в ответах нейросетей · GEO</p>
+    <h1>Ваш сайт. Понят. Улучшен. <span class="ac">Развивается.</span></h1>
+    <p class="lead"><b>Сделаем так, чтобы нейросети называли вас.</b> Покупатель спрашивает ИИ, что выбрать, получает два-три названия и на этом заканчивает выбор. Мы показываем, есть ли среди них вы и с каких сайтов собран ответ, — и делаем работу, чтобы называли вас.</p>
+    <form class="checkbar" id="quick" novalidate>
+      <input id="q-dom" type="text" inputmode="url" autocomplete="url" placeholder="ваш-сайт.ru" aria-label="Ваш сайт">
+      <button class="btn" type="submit">Проверить бесплатно <span class="ar" aria-hidden="true">→</span></button>
+    </form>
+    <div class="assure"><span>Первый замер бесплатно</span><span>Отчёт за 48 часов</span><span>Без карты и обязательного звонка</span></div>
   </div>
-</div></div></section>
 
+  <figure class="pv" id="pv" role="img" aria-label="Иллюстрация кабинета Namedin: карта страниц сайта и шесть шагов проекта — проект, обход, анализ, оптимизация, проверка, история" style="margin:0">
+    <div class="pv-h"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span>namedin · проект</span><span class="url">ваш-сайт.ru</span></div>
+    <div class="pv-b">
+      <div class="pv-map">
+        <svg viewBox="0 0 400 330" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          <g stroke="rgba(255,255,255,.13)" stroke-width="1" fill="none">
+            <path d="M60 165 150 80M60 165H150M60 165 150 250M150 80 240 50M150 80 240 110M150 165 240 150M150 165 240 200M150 250 240 250M150 250 240 295M240 50 330 40M240 110 330 85M240 110 330 130M240 150 330 175M240 200 330 220M240 250 330 265M240 295 330 305"/>
+          </g>
+          <g stroke="rgba(255,122,26,.55)" stroke-width="1.2" fill="none">
+            <path d="M60 165 150 80 240 110 330 130M60 165H150L240 200"/>
+          </g>
+          <g fill="#5d616b">
+            <circle cx="330" cy="40" r="4"/><circle cx="330" cy="85" r="4"/><circle cx="330" cy="175" r="4"/>
+            <circle cx="330" cy="220" r="4"/><circle cx="330" cy="265" r="4"/><circle cx="330" cy="305" r="4"/>
+            <circle cx="240" cy="295" r="5"/><circle cx="240" cy="250" r="5"/>
+          </g>
+          <g fill="#d9dce3">
+            <circle cx="60" cy="165" r="8"/><circle cx="150" cy="250" r="6"/><circle cx="240" cy="50" r="5"/><circle cx="240" cy="150" r="5"/>
+          </g>
+          <g fill="#ff7a1a">
+            <circle cx="150" cy="80" r="6"/><circle cx="150" cy="165" r="6"/><circle cx="240" cy="110" r="5"/><circle cx="240" cy="200" r="5"/><circle cx="330" cy="130" r="4"/>
+          </g>
+          <g fill="none" stroke="rgba(255,122,26,.35)"><circle cx="150" cy="80" r="11"/><circle cx="150" cy="165" r="11"/></g>
+          <g font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#8c909a">
+            <text x="44" y="190">/</text><text x="160" y="76">/ceny</text><text x="160" y="161">/produkt</text>
+            <text x="160" y="246">/blog</text><text x="250" y="114">/sravnenie</text><text x="250" y="204">/faq</text>
+          </g>
+        </svg>
+        <div class="beam" aria-hidden="true"></div>
+        <span class="pv-tag">карта сайта · иллюстрация</span>
+      </div>
+      <ol class="pv-steps">
+        <span class="pv-hl" aria-hidden="true"></span>
+        <li><span>Проект</span></li>
+        <li><span>Обход сайта</span></li>
+        <li><span>Анализ</span></li>
+        <li><span>Оптимизация</span></li>
+        <li><span>Проверка</span></li>
+        <li><span>История</span></li>
+      </ol>
+    </div>
+    <div class="pv-foot"><span class="lg"><i></i>найдена</span><span class="lg"><i class="s"></i>разобрана</span><span class="lg"><i class="a"></i>есть правка</span></div>
+  </figure>
+</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <div class="surf" aria-label="Поверхности, где мы проверяем" style="margin-top:clamp(36px,5vw,64px)">
+    <span>ChatGPT</span><span>Алиса AI</span><span>Яндекс Нейро</span><span>Gemini</span><span>Perplexity</span><span>Claude</span>
+    <span>GigaChat</span><span>DeepSeek</span><span>Copilot</span><span>Grok</span><span>AI Overviews</span>
+  </div>
+</div></section>
 
 <section class="band" id="explore"><div class="wrap">
-  <div class="tabs top" role="tablist" aria-label="Разделы">
-    <button class="tab" role="tab" id="T-1" aria-controls="P-1" aria-selected="true">Зачем это</button>
-    <button class="tab" role="tab" id="T-2" aria-controls="P-2" aria-selected="false">Что вы увидите</button>
-    <button class="tab" role="tab" id="T-3" aria-controls="P-3" aria-selected="false">Как работает</button>
-    <button class="tab" role="tab" id="T-4" aria-controls="P-4" aria-selected="false">Цена</button>
-    <button class="tab" role="tab" id="T-5" aria-controls="P-5" aria-selected="false">Вопросы</button>
-  </div>
-
-  <div class="pan" role="tabpanel" id="P-1" aria-labelledby="T-1">
-    <div class="row flip">
-    <div class="rtext stack">
+  <div class="split">
+    <div class="stack">
       <p class="eyebrow">Слепая зона</p>
       <h2>Ваша SEO-панель этого не показывает</h2>
       <p class="body">Можно быть первым в поиске и не быть названным ни разу: модель читает вашу страницу, пересказывает её смысл и рекомендует другого — потому что имя взять было неоткуда.</p>
       <p class="body">Выбор заканчивается до того, как человек откроет поисковую выдачу. В отчётах этого не видно вообще.</p>
     </div>
-    <div class="shot">
-      <div class="shot-h"><span>что видно и чего нет</span></div>
-      <div class="shot-b"><div class="tw"><table>
-        <tr><th>вы смотрите</th><th>что видно</th><th>состояние</th></tr>
-        <tr><td>Позиция в поиске</td><td>сайт находится, растёт</td><td><span class="state good">норма</span></td></tr>
-        <tr><td>Трафик и визиты</td><td>заходы идут</td><td><span class="state good">норма</span></td></tr>
-        <tr class="us"><td><b>Ответ нейросети</b></td><td>назвали конкурента</td><td><span class="state bad">не видно нигде</span></td></tr>
-      </table></div></div>
+    <div class="card"><div class="tw"><table>
+      <tr><th>вы смотрите</th><th>что видно</th><th>состояние</th></tr>
+      <tr><td>Позиция в поиске</td><td>сайт находится, растёт</td><td><span class="st">норма</span></td></tr>
+      <tr><td>Трафик и визиты</td><td>заходы идут</td><td><span class="st">норма</span></td></tr>
+      <tr class="us"><td><b>Ответ нейросети</b></td><td>назвали конкурента</td><td><span class="st bad">не видно нигде</span></td></tr>
+    </table></div></div>
+  </div>
+
+  <div class="stack" style="margin-top:clamp(56px,7vw,96px)">
+    <p class="eyebrow">База замеров</p>
+    <h2>Каждая цифра пересчитывается из базы</h2>
+    <div class="kpis" style="margin-top:10px">
+      <div><span class="n">1 127</span><span class="t">строк в базе замеров</span></div>
+      <div><span class="n">173</span><span class="t">вопроса покупателей прогнано</span></div>
+      <div><span class="n">603</span><span class="t">цитирования разобрано</span></div>
+      <div><span class="n">207</span><span class="t">доменов размечено по владельцу</span></div>
     </div>
+    <p class="cap">База на 2 сентября 2026 года. Любую строку клиент может воспроизвести сам — на этом держится весь метод.</p>
   </div>
-    <div class="sep"></div>
-    <div class="stack center">
-  <p class="eyebrow">База замеров</p>
-  <h2>Каждая цифра пересчитывается из базы</h2>
-  <div class="kpis" style="margin-top:8px">
-    <div><span class="n">1 127</span><span class="t">строк в базе замеров</span></div>
-    <div><span class="n">173</span><span class="t">вопроса покупателей прогнано</span></div>
-    <div><span class="n">603</span><span class="t">цитирования разобрано</span></div>
-    <div><span class="n">207</span><span class="t">доменов размечено по владельцу</span></div>
+</div></section>
+
+<section class="band alt" id="how"><div class="wrap">
+  <div class="head">
+    <p class="eyebrow">Как это работает</p>
+    <h2>Шесть шагов от сайта до ответа нейросети</h2>
+    <p class="body">Найти, откуда модель берёт названия → поставить туда вас → проверить замером. Каждый месяц заново, по той же формуле.</p>
   </div>
-  <p class="cap" style="color:#8f9dff">База на 2 сентября 2026 года. Любую строку клиент может воспроизвести сам — на этом держится весь метод.</p>
-</div>
+  <ol class="path">
+    <li class="card"><p class="num">Проект</p><h3>Категория и вопросы ваших покупателей</h3>
+      <p>15 вопросов из реальных сценариев выбора: широкие, с условием, про деньги, сравнения, от проблемы, скептические. Плюс конкуренты, с которыми вас сравнивают.</p>
+      <p class="out">На выходе: <b>набор вопросов и список конкурентов</b></p></li>
+    <li class="card"><p class="num">Обход сайта</p><h3>Что модель может прочитать у вас</h3>
+      <p>Проходим страницы сайта и смотрим, где стоит название продукта рядом с проверяемым фактом — ценой, составом работы, ограничениями, — а где его нет.</p>
+      <p class="out">На выходе: <b>карта страниц и пробелы в фактах</b></p></li>
+    <li class="card"><p class="num">Анализ</p><h3>Кого называют и откуда берут</h3>
+      <p>Каждый вопрос — отдельным чистым запросом. По каждому ответу: кого назвали и с каких сайтов он собран. У каждого домена определяем владельца — конкурент, агентство, каталог, форум, официальная страница.</p>
+      <p class="out">На выходе: <b>доля голоса, источники, AI Visibility Score</b></p></li>
+    <li class="card"><p class="num">Оптимизация</p><h3>Недостающие материалы</h3>
+      <p>Страницы, где имя продукта стоит рядом с проверяемым фактом, согласованные данные в каталогах, работа с цитируемыми источниками. Три-пять действий по приоритету, а не список из сорока пунктов.</p>
+      <p class="out">На выходе: <b>материалы и правки по согласованному плану</b></p></li>
+    <li class="card"><p class="num">Проверка</p><h3>Повторный замер</h3>
+      <p>Те же вопросы, та же поверхность, та же формула. «Было ноль из пятнадцати, стало три, вот они» — а не «стало лучше».</p>
+      <p class="out">На выходе: <b>два среза в одном отчёте</b></p></li>
+    <li class="card"><p class="num">История</p><h3>Всё, что сдвинулось, — с датой</h3>
+      <p>Замеры копятся по месяцам. Пока формула не меняется, они сравнимы между собой; меняется — растёт номер версии, и это видно в отчёте.</p>
+      <p class="out">На выходе: <b>динамика по месяцам, которую можно перепроверить</b></p></li>
+  </ol>
+  <div class="ctaline" style="margin-top:32px"><a data-cta="how-form" class="btn" href="#request">Начать с бесплатного замера <span class="ar" aria-hidden="true">→</span></a></div>
+</div></section>
+
+<section class="band" id="seo-geo"><div class="wrap">
+  <div class="head">
+    <p class="eyebrow">SEO и GEO</p>
+    <h2>Позиция в ссылках и имя внутри ответа — разные вещи</h2>
+    <p class="body">GEO — продвижение в ответах нейросетей. Модель не выбирает сама: она цитирует страницы, найденные поиском, и пересказывает их. Задача — попасть на эти страницы с проверяемыми фактами о вас.</p>
   </div>
-  <div class="pan" role="tabpanel" id="P-2" aria-labelledby="T-2" hidden><div class="stack" style="margin-bottom:26px">
-    <p class="eyebrow">Что вы увидите</p>
-    <h2>Отчёт целиком — на одном экране</h2>
-    <p class="body">Пять частей замера. Переключайте, чтобы посмотреть каждую.</p>
+  <div class="g2 vs">
+    <div class="card"><h3><span class="k">SEO</span>Список ссылок</h3>
+      <dl class="dl">
+        <dt>Результат</dt><dd>позиция в выдаче</dd>
+        <dt>Что меряют</dt><dd>позиции, трафик, визиты</dd>
+        <dt>Риск</dt><dd>первое место в поиске — и ни одного упоминания в ответе ИИ</dd>
+      </dl></div>
+    <div class="card geo"><h3><span class="k">GEO</span>Упоминание в ответе</h3>
+      <dl class="dl">
+        <dt>Результат</dt><dd>ваше название среди двух-трёх, которые назвала модель</dd>
+        <dt>Что меряем</dt><dd>долю ответов с вашим именем и владельцев источников</dd>
+        <dt>Как</dt><dd>отдельно поиск и память модели — складывать их в одну цифру нельзя</dd>
+      </dl></div>
+  </div>
+  <div class="g2" style="margin-top:clamp(16px,2vw,24px)">
+    <div class="card stack"><p class="eyebrow">Поисковая поверхность</p><p class="body">Модель обращается к поиску и приводит источники. Изменения появляются за недели, по мере попадания новых страниц в поиск.</p></div>
+    <div class="card stack"><p class="eyebrow">Память модели</p><p class="body">Источников нет. Счёт идёт на месяцы и зависит от переобучения. У каждой цифры в отчёте указано, с какой поверхности она снята.</p></div>
+  </div>
+  <div class="ctaline" style="margin-top:28px"><a class="btn glass" href="/chem-otlichaetsya-ot-seo/">Чем GEO отличается от SEO</a><a class="btn glass" href="/poverhnosti-otveta/">Поиск и память — в чём разница</a></div>
+</div></section>
+
+<section class="band alt" id="capabilities"><div class="wrap">
+  <div class="head">
+    <p class="eyebrow">Возможности</p>
+    <h2>Что вы видите и что мы делаем</h2>
   </div>
 
-  <div class="tabs sub" role="tablist" aria-label="Части отчёта">
-    <button class="tab" role="tab" id="st-1" aria-controls="span-1" aria-selected="true">Кого называют</button>
-    <button class="tab" role="tab" id="st-2" aria-controls="span-2" aria-selected="false">Источники</button>
-    <button class="tab" role="tab" id="st-3" aria-controls="span-3" aria-selected="false">Метрика</button>
-    <button class="tab" role="tab" id="st-4" aria-controls="span-4" aria-selected="false">Что чинить</button>
-    <button class="tab" role="tab" id="st-5" aria-controls="span-5" aria-selected="false">Где проверяем</button>
-  </div>
-
-  <div class="pan" role="tabpanel" id="span-1" aria-labelledby="st-1"><div class="row">
-    <div class="rtext stack">
+  <div class="split">
+    <div class="stack">
       <p class="eyebrow">Доля голоса</p>
-      <h2>Кого называют вместо вас</h2>
+      <h3>Кого называют вместо вас</h3>
       <p class="body">Считаем не позиции, а долю: в скольких ответах прозвучали вы и в скольких — каждый из остальных. Один прогон ничего не доказывает, поэтому вопрос задаётся несколько раз.</p>
-      <p class="body">Красная строка — то, ради чего делается замер: увидеть, сколько ответов проходит мимо вас, и кто их забирает.</p>
+      <p class="body">Выделенная строка — то, ради чего делается замер: увидеть, сколько ответов проходит мимо вас, и кто их забирает.</p>
     </div>
-    <div class="shot">
-      <div class="shot-h"><span>наша категория · 6 вопросов</span></div>
-      <div class="shot-b"><div class="tw"><table>
-        <tr><th>компания</th><th>из 6</th><th></th><th>доля</th></tr>
-        <tr><td><b>Платформа А</b></td><td class="num">2</td><td><span class="bar"><i style="width:33%"></i></span></td><td class="num">33%</td></tr>
-        <tr><td><b>Платформа Б</b></td><td class="num">1</td><td><span class="bar"><i style="width:17%"></i></span></td><td class="num">17%</td></tr>
-        <tr><td><b>Агентство В</b></td><td class="num">1</td><td><span class="bar"><i style="width:17%"></i></span></td><td class="num">17%</td></tr>
-        <tr><td><b>Агентство Г</b></td><td class="num">1</td><td><span class="bar"><i style="width:17%"></i></span></td><td class="num">17%</td></tr>
-        <tr class="us"><td><b>Ваша компания</b></td><td class="num">0</td><td><span class="bar"><i class="us" style="width:1%"></i></span></td><td class="num">0%</td></tr>
-      </table></div></div>
-    </div>
-  </div></div>
-  <div class="pan" role="tabpanel" id="span-2" aria-labelledby="st-2" hidden><div class="stack">
-  <p class="eyebrow">Наши замеры</p>
-  <h2>Продвигать нужно туда, откуда модель берёт имена</h2>
-  <p class="body">Мы прогнали вопросы по нескольким категориям и посчитали не позиции, а владельцев: кому принадлежит каждая страница, которую модель прочитала, прежде чем ответить.</p>
-  <div class="tw"><table>
-    <tr><th>категория</th><th></th><th>доля</th><th>база</th><th>поверхность</th></tr>
-    <tr><td><b>Видимость бренда в ИИ</b></td><td><span class="bar"><i style="width:76%"></i></span></td><td class="num">76%</td><td class="num">34 / 45</td><td>поиск</td></tr>
-    <tr><td><b>Продавцы на маркетплейсах</b></td><td><span class="bar"><i style="width:56%"></i></span></td><td class="num">56%</td><td class="num">14 / 25</td><td>поиск</td></tr>
-    <tr><td><b>Интернет-магазины</b></td><td><span class="bar"><i style="width:51%"></i></span></td><td class="num">51%</td><td class="num">52 / 102</td><td>поиск</td></tr>
-    <tr><td><b>Email-рассылки</b></td><td><span class="bar"><i style="width:41%"></i></span></td><td class="num">41%</td><td class="num">11 / 27</td><td>поиск</td></tr>
-    <tr><td><b>CRM-системы</b></td><td><span class="bar"><i style="width:36%"></i></span></td><td class="num">36%</td><td class="num">35 / 98</td><td>поиск</td></tr>
-  </table></div>
-  <p class="cap">Доля цитирований, приходящихся на сайты компаний и агентств, которые продают то же самое. Верхняя строка — самая конкурентная из измеренных категорий: там на сайты соперников приходится три четверти всего, что читает модель.</p>
-  <div class="ctaline"><a data-cta="cta-9" class="btn" href="#request">Посчитать по моей категории</a><a data-cta="cta-10" class="btn ghost" href="/kakie-istochniki-citiruet-ii/">Как мы это считаем</a></div>
-</div></div>
-  <div class="pan" role="tabpanel" id="span-3" aria-labelledby="st-3" hidden><div class="row">
-  <div class="rtext stack">
-    <p class="eyebrow">Метрика</p>
-    <h2>Одна цифра, чтобы понять, насколько вас видит ИИ</h2>
-    <p class="body">AI Visibility Score — число от 0 до 100 из пяти измеримых частей. Методика открыта, веса опубликованы, оценка воспроизводима: никакой «магии», иначе ей нельзя пользоваться как доказательством.</p>
-    <p class="body">Пока формула не меняется, замеры сравнимы между собой. Меняется — растёт номер версии, и замеры разных версий сравнивать нельзя.</p>
-    <div class="ctaline"><a data-cta="cta-2" class="btn" href="#request">Узнать свой Score</a>
-      <a data-cta="cta-3" class="btn ghost" href="/kak-proverit-upominaniya/">Как считаем</a></div>
+    <div class="card"><p class="eyebrow" style="margin-bottom:10px">пример отчёта · 6 вопросов</p><div class="tw"><table>
+      <tr><th>компания</th><th>из 6</th><th></th><th>доля</th></tr>
+      <tr><td><b>Платформа А</b></td><td class="num">2</td><td><span class="bar"><i style="width:33%"></i></span></td><td class="num">33%</td></tr>
+      <tr><td><b>Платформа Б</b></td><td class="num">1</td><td><span class="bar"><i style="width:17%"></i></span></td><td class="num">17%</td></tr>
+      <tr><td><b>Агентство В</b></td><td class="num">1</td><td><span class="bar"><i style="width:17%"></i></span></td><td class="num">17%</td></tr>
+      <tr><td><b>Агентство Г</b></td><td class="num">1</td><td><span class="bar"><i style="width:17%"></i></span></td><td class="num">17%</td></tr>
+      <tr class="us"><td><b>Ваша компания</b></td><td class="num">0</td><td><span class="bar"><i style="width:1%"></i></span></td><td class="num">0%</td></tr>
+    </table></div></div>
   </div>
-  <div class="shot"><div class="shot-h"><span>AI Visibility Score · методика v1.0</span><span>состав метрики</span></div>
-    <div class="shot-b">
-      <div class="scorewrap"><span class="scorenum">0—100</span>
-        <span class="state good">воспроизводимо</span></div>
+
+  <div class="stack" style="margin-top:clamp(48px,6vw,80px)">
+    <p class="eyebrow">Наши замеры</p>
+    <h3>Продвигать нужно туда, откуда модель берёт имена</h3>
+    <p class="body">Мы прогнали вопросы по нескольким категориям и посчитали не позиции, а владельцев: кому принадлежит каждая страница, которую модель прочитала, прежде чем ответить.</p>
+    <div class="card" style="margin-top:6px"><div class="tw"><table>
+      <tr><th>категория</th><th></th><th>доля</th><th>база</th><th class="hs">поверхность</th></tr>
+      <tr><td><b>Видимость бренда в ИИ</b></td><td><span class="bar"><i style="width:76%"></i></span></td><td class="num">76%</td><td class="num">34 / 45</td><td class="hs">поиск</td></tr>
+      <tr><td><b>Продавцы на маркетплейсах</b></td><td><span class="bar"><i style="width:56%"></i></span></td><td class="num">56%</td><td class="num">14 / 25</td><td class="hs">поиск</td></tr>
+      <tr><td><b>Интернет-магазины</b></td><td><span class="bar"><i style="width:51%"></i></span></td><td class="num">51%</td><td class="num">52 / 102</td><td class="hs">поиск</td></tr>
+      <tr><td><b>Email-рассылки</b></td><td><span class="bar"><i style="width:41%"></i></span></td><td class="num">41%</td><td class="num">11 / 27</td><td class="hs">поиск</td></tr>
+      <tr><td><b>CRM-системы</b></td><td><span class="bar"><i style="width:36%"></i></span></td><td class="num">36%</td><td class="num">35 / 98</td><td class="hs">поиск</td></tr>
+    </table></div></div>
+    <p class="cap">Все строки сняты с поисковой поверхности. Доля цитирований, приходящихся на сайты компаний и агентств, которые продают то же самое. Верхняя строка — самая конкурентная из измеренных категорий: там на сайты соперников приходится три четверти всего, что читает модель.</p>
+    <div class="ctaline"><a data-cta="cta-9" class="btn" href="#request">Посчитать по моей категории</a><a data-cta="cta-10" class="btn glass" href="/kakie-istochniki-citiruet-ii/">Как мы это считаем</a></div>
+  </div>
+
+  <div class="g3" style="margin-top:clamp(48px,6vw,80px)">
+    <div class="card cap-c">
+      <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span>
+      <h3>AI Visibility Score</h3>
+      <p>Число от 0 до 100 из пяти измеримых частей. Методика v1.0 открыта, веса опубликованы:</p>
       <div class="scoretrack" data-w="72%"><i></i></div>
       <div class="tw"><table>
-        <tr><th>компонент</th><th>вес</th></tr>
         <tr><td>Названность — доля ответов с именем</td><td class="num">40</td></tr>
         <tr><td>Первая тройка</td><td class="num">20</td></tr>
         <tr><td>Средняя позиция</td><td class="num">15</td></tr>
         <tr><td>Доля голоса среди конкурентов</td><td class="num">15</td></tr>
         <tr><td>Свои источники в ответе</td><td class="num">10</td></tr>
       </table></div>
-      <p class="cap">Оценка считается отдельно по каждой поверхности ответа и пересчитывается при каждом замере. Формула зафиксирована — поэтому замеры разных месяцев сравнимы.</p>
+      <a class="more" data-cta="cta-3" href="/kak-proverit-upominaniya/">Как считаем →</a>
+    </div>
+    <div class="card cap-c">
+      <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h16M4 12h10M4 18h6"/><circle cx="18" cy="16" r="3"/></svg></span>
+      <h3>Что исправить в первую очередь</h3>
+      <p>После замера — три-пять действий, отсортированных по тому, сколько они дают и сколько стоят. Чаще всего первыми оказываются:</p>
+      <ul class="yn yes" style="margin-top:14px">
+        <li><span class="m">1</span> Утверждение с именем на своих страницах: название продукта рядом с ценой, составом работы, ограничениями.</li>
+        <li><span class="m">2</span> Разбор своей категории там, откуда ИИ уже цитирует.</li>
+        <li><span class="m">3</span> Согласованные факты во всех источниках: одна цена на сайте, в каталоге и в статье.</li>
+      </ul>
+      <a class="more" data-cta="cta-8" href="#request">Получить свой список →</a>
+    </div>
+    <div class="card cap-c">
+      <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></span>
+      <h3>Одиннадцать поверхностей ответа</h3>
+      <p>Не ряд логотипов, а список того, чем снимается замер. Ответ из поиска и ответ из памяти модели — разные величины.</p>
+      <div class="tw" style="margin-top:10px"><table>
+        <tr><th>платформа</th><th>поверхность</th></tr>
+        <tr><td>Алиса AI, Яндекс Нейро</td><td>поиск</td></tr>
+        <tr><td>ChatGPT, Perplexity, Claude, Gemini, Grok</td><td>поиск</td></tr>
+        <tr><td>Google AI Overviews, Copilot</td><td>поиск, вручную</td></tr>
+        <tr><td>YandexGPT, GigaChat, DeepSeek</td><td>память</td></tr>
+      </table></div>
+      <a class="more" data-cta="cta-5" href="/poverhnosti-otveta/">Как снимаем каждую →</a>
     </div>
   </div>
-</div></div>
-  <div class="pan" role="tabpanel" id="span-4" aria-labelledby="st-4" hidden><div class="stack">
-  <p class="eyebrow">Приоритеты</p>
-  <h2>Что исправить в первую очередь</h2>
-  <p class="body">После замера вы получаете не список из сорока пунктов, а три-пять действий, отсортированных по тому, сколько они дают и сколько стоят. Ниже — те, что чаще всего оказываются первыми.</p>
-  <div class="ops">
-    <div class="op"><span class="tag p1">Приоритет 1</span>
-      <h3>Утверждение с именем на своих страницах</h3>
-      <p class="cap">Модель не может процитировать обещание. Нужны предложения, где название продукта стоит рядом с проверяемым фактом: цена, состав работы, ограничения.</p>
-      <div class="meta"><span>Эффект <b>высокий</b></span><span>Сложность <b>низкая</b></span></div></div>
-    <div class="op"><span class="tag p2">Приоритет 2</span>
-      <h3>Разбор своей категории там, откуда ИИ уже цитирует</h3>
-      <p class="cap">Половину ответа собирают страницы участников рынка. Пока такого материала нет у вас, его читают у конкурента.</p>
-      <div class="meta"><span>Эффект <b>высокий</b></span><span>Сложность <b>средняя</b></span></div></div>
-    <div class="op"><span class="tag p3">Приоритет 3</span>
-      <h3>Согласованные факты во всех источниках</h3>
-      <p class="cap">На сайте одна цена, в каталоге другая, в статье третья — модель не выбирает вас вовсе, потому что подтверждения нет.</p>
-      <div class="meta"><span>Эффект <b>средний</b></span><span>Сложность <b>низкая</b></span></div></div>
-  </div>
-  <div class="ctaline"><a data-cta="cta-8" class="btn" href="#request">Получить свой список</a></div>
-</div></div>
-  <div class="pan" role="tabpanel" id="span-5" aria-labelledby="st-5" hidden><div class="stack">
-  <p class="eyebrow">Где проверяем</p>
-  <h2>Одиннадцать поверхностей ответа</h2>
-  <p class="body">Не ряд логотипов, а список того, чем снимается замер. Ответ из поиска и ответ из памяти модели — разные величины, и складывать их в одну цифру нельзя.</p>
-  <div class="tw"><table>
-    <tr><th>платформа</th><th>поверхность</th><th>как снимаем</th></tr>
-    <tr><td><b>Алиса AI</b></td><td>поиск</td><td>ответ с источниками в выдаче</td></tr>
-    <tr><td><b>Яндекс Нейро</b></td><td>поиск</td><td>вручную: API не существует</td></tr>
-    <tr><td><b>YandexGPT</b></td><td>память</td><td>API</td></tr>
-    <tr><td><b>GigaChat</b></td><td>память</td><td>API</td></tr>
-    <tr><td><b>Google AI Overviews</b></td><td>поиск</td><td>вручную: публичного API нет</td></tr>
-    <tr><td><b>Copilot</b></td><td>поиск</td><td>вручную: публичного API нет</td></tr>
-    <tr><td><b>ChatGPT</b></td><td>поиск</td><td>API с веб-поиском</td></tr>
-    <tr><td><b>Perplexity</b></td><td>поиск</td><td>API, цитаты отдельным полем</td></tr>
-    <tr><td><b>Claude</b></td><td>поиск</td><td>API, инструмент web_search</td></tr>
-    <tr><td><b>Gemini</b></td><td>поиск</td><td>API с grounding</td></tr>
-    <tr><td><b>Grok</b></td><td>поиск</td><td>API, инструмент web_search</td></tr>
-    <tr><td><b>DeepSeek</b></td><td>память</td><td>API; поиск — только веб-чат</td></tr>
-  </table></div>
-  <p class="cap">У Google AI Overviews и Copilot публичного API нет ни у кого — эти две поверхности снимаются вручную, и так же они снимаются у любого, кто говорит, что их меряет.</p>
-  <div class="ctaline"><a data-cta="cta-4" class="btn" href="#request">Проверить свою компанию</a><a data-cta="cta-5" class="btn ghost" href="/poverhnosti-otveta/">Поиск и память — в чём разница</a></div>
-</div></div></div>
-  <div class="pan" role="tabpanel" id="P-3" aria-labelledby="T-3" hidden>
-    <div class="panel">
-  <div class="stack center" style="margin-bottom:32px">
-    <h2>Из чего состоит продвижение</h2>
-    <p class="body">Найти, откуда модель берёт названия → поставить туда вас → проверить замером. Каждый месяц заново, по той же формуле.</p>
-  </div>
-  <div class="feat">
-    <div class="item"><span class="ic">01</span><div><h3>Вопросы ваших покупателей</h3>
-      <p>15 вопросов из реальных сценариев выбора: широкие, с условием, про деньги, сравнения, от проблемы, скептические. Каждый — отдельным чистым запросом.</p></div></div>
-    <div class="item"><span class="ic">02</span><div><h3>Разбор источников</h3>
-      <p>По каждому ответу: кого назвали и с каких сайтов он собран. У каждого домена определяем владельца — конкурент, агентство, каталог, форум, официальная страница.</p></div></div>
-    <div class="item"><span class="ic">03</span><div><h3>Недостающие материалы</h3>
-      <p>Страницы, где имя продукта стоит рядом с проверяемым фактом, согласованные данные в каталогах, работа с цитируемыми источниками.</p></div></div>
-    <div class="item"><span class="ic">04</span><div><h3>Повторный замер</h3>
-      <p>Те же вопросы, та же поверхность, та же формула. «Было ноль из пятнадцати, стало три, вот они» — а не «стало лучше».</p></div></div>
-  </div>
-</div>
-    <div class="sep"></div>
-    <div class="row">
-  <div class="rtext stack">
-    <p class="eyebrow">Метод</p>
-    <h2>Что мы гарантируем</h2>
-    <p class="body"><b>Мы отвечаем за измеримый сдвиг.</b> Фиксируем три показателя: долю ответов с вашим названием, долю ответов, где источником указан ваш сайт и AI Visibility Score. Если после трёх оплаченных месяцев ни один не станет выше первого замера, четвёртый месяц работы проведём бесплатно — при условии, что согласованные материалы опубликованы в срок.</p>
-    <p class="body">Конкретную позицию в каждом ответе обещать нельзя: ИИ пересобирает ответ при каждом запросе. <a href="/mozhno-li-garantirovat-mesto-v-otvetah-ii/">Условия гарантии →</a></p>
-  </div>
-  <div class="shot"><div class="shot-b" style="gap:20px">
-    <ul class="yn no">
-      <li><span class="m">✕</span> покупные отзывы</li>
-      <li><span class="m">✕</span> фальшивые аккаунты и комментарии</li>
-      <li><span class="m">✕</span> страницы, сгенерированные пачками</li>
-      <li><span class="m">✕</span> накрутка упоминаний</li>
-      <li><span class="m">✕</span> обещание места в ответе</li>
-    </ul>
-    <ul class="yn yes">
-      <li><span class="m">✓</span> замер, который вы воспроизведёте сами</li>
-      <li><span class="m">✓</span> разбор владельцев каждого источника</li>
-      <li><span class="m">✓</span> страницы с проверяемыми фактами</li>
-      <li><span class="m">✓</span> согласованные данные во всех каталогах</li>
-      <li><span class="m">✓</span> повторный замер по той же формуле</li>
-    </ul>
-  </div></div>
-</div>
-  </div>
-  <div class="pan" role="tabpanel" id="P-4" aria-labelledby="T-4" hidden>
+
+  <div class="split" style="margin-top:clamp(48px,6vw,80px)">
     <div class="stack">
-  <p class="eyebrow">Цена</p>
-  <h2>Продвижение в ответах нейросетей</h2>
-  <p class="lead">Готовим материалы, из которых модель может взять ваше имя, работаем с источниками, которые она цитирует, и приводим в порядок факты о компании во всех местах, откуда она их читает. Каждый месяц — замер по одной и той же формуле, чтобы видеть, что сдвинулось.</p>
-  <p class="lead"><b>Наша главная цель — чтобы вас показывали в ответах у ИИ.</b></p>
-  <div class="scorewrap" style="margin-top:8px">
-    <span class="scorenum">от 29 500 ₽</span><span class="scoremax">тарифы / месяц</span>
+      <p class="eyebrow">Метод</p>
+      <h3>Что мы гарантируем</h3>
+      <p class="body"><b>Мы отвечаем за измеримый сдвиг.</b> Фиксируем три показателя: долю ответов с вашим названием, долю ответов, где источником указан ваш сайт и AI Visibility Score. Если после трёх оплаченных месяцев ни один не станет выше первого замера, четвёртый месяц работы проведём бесплатно — при условии, что согласованные материалы опубликованы в срок.</p>
+      <p class="body">Конкретную позицию в каждом ответе обещать нельзя: ИИ пересобирает ответ при каждом запросе. <a href="/mozhno-li-garantirovat-mesto-v-otvetah-ii/">Условия гарантии →</a></p>
+    </div>
+    <div class="card g2" style="gap:24px">
+      <ul class="yn no">
+        <li><span class="m">✕</span> покупные отзывы</li>
+        <li><span class="m">✕</span> фальшивые аккаунты и комментарии</li>
+        <li><span class="m">✕</span> страницы, сгенерированные пачками</li>
+        <li><span class="m">✕</span> накрутка упоминаний</li>
+        <li><span class="m">✕</span> обещание места в ответе</li>
+      </ul>
+      <ul class="yn yes">
+        <li><span class="m">✓</span> замер, который вы воспроизведёте сами</li>
+        <li><span class="m">✓</span> разбор владельцев каждого источника</li>
+        <li><span class="m">✓</span> страницы с проверяемыми фактами</li>
+        <li><span class="m">✓</span> согласованные данные во всех каталогах</li>
+        <li><span class="m">✓</span> повторный замер по той же формуле</li>
+      </ul>
+    </div>
   </div>
-  <div class="ops" aria-label="Тарифы Namedin">
-    <div class="op"><span class="tag p3">Своя контент-команда</span><h3>Контроль · 29 500 ₽/мес.</h3><p class="cap">Одна категория, 15 вопросов, два среза, конкуренты, источники и рекомендации для вашей команды. Без подготовки и публикации материалов.</p></div>
-    <div class="op"><span class="tag p1">Основной формат</span><h3>Продвижение · 89 000 ₽/мес.</h3><p class="cap">Одна категория, 15 вопросов. Два новых материала и обновление страницы, внедрение согласованных изменений, работа по двум внешним площадкам и два среза.</p></div>
-    <div class="op"><span class="tag p2">Две связанные категории</span><h3>Расширение · 149 000 ₽/мес.</h3><p class="cap">Один бренд, 30 вопросов. Три новых материала и обновление страницы, работа по четырём внешним площадкам и два среза.</p></div>
+
+  <div class="stack" style="margin-top:clamp(48px,6vw,80px)">
+    <p class="eyebrow">Публичные разборы</p>
+    <h3>Разбор вашей категории, который работает на вас</h3>
+    <p class="body">Мы публикуем разборы категорий с цифрами: кого называют нейросети, кому принадлежат источники ответа и что меняется после работы. Такой материал сам попадает в источники, из которых модели собирают ответы.</p>
+    <div class="g3" style="margin-top:6px">
+      <a class="card cap-c" href="/indeks-ai-vidimosti/" style="text-decoration:none"><p class="eyebrow"><i>●</i> Новое исследование</p><h3>49% источников принадлежат участникам рынка</h3><p>297 цитирований в пяти B2B-категориях: открытые данные, владельцы источников и методика без скрытой формулы.</p><span class="more">Открыть индекс →</span></a>
+      <a class="card cap-c" href="/issledovanie/restorany-kazani/" style="text-decoration:none"><p class="eyebrow">Исследование</p><h3>Кого нейросети советуют в Казани</h3><p>Разбор 45 сценариев выбора: кого называют и с каких сайтов собраны ответы.</p><span class="more">Читать →</span></a>
+      <div class="card cap-c"><p class="eyebrow">Условия</p><h3>Публикация по согласованию</h3><p>Перед выходом вы проверяете факты и разрешаете публикацию; конфиденциальные данные не раскрываем. В разборе открыто указываем автора и заказчика — публикация не выдаётся за независимый рейтинг.</p><a class="more" data-cta="cases-form" href="#request">Обсудить разбор →</a></div>
+    </div>
   </div>
-  <p class="cap">Первый Signal Scan — бесплатно: 15 вопросов в одной категории. Продвижение и Расширение — план на три месяца с ежемесячной оплатой. Платные размещения — отдельный согласованный бюджет. Перечень ИИ и доступы проверяем до начала оплачиваемого цикла. <a href="/skolko-stoit-prodvizhenie-v-otvetah-ii/">Полный состав и границы тарифов →</a></p>
-  <div class="ctaline"><a data-cta="price-form" class="btn" href="#request">Получить бесплатный замер</a>
-    <a data-cta="price-tg" class="btn ghost" href="https://t.me/mirrnr">Обсудить в телеграме</a></div>
-</div>
-    <div class="sep"></div>
-    <div class="stack">
-  <p class="eyebrow">Публичные разборы</p>
-  <h2>Разбор вашей категории, который работает на вас</h2>
-  <p class="body">Мы публикуем разборы категорий с цифрами: кого называют нейросети, кому принадлежат источники ответа и что меняется после работы. Такой материал сам попадает в источники, из которых модели собирают ответы, — и приводит клиентов ещё до всякой рекламы.</p>
-  <div class="ops">
-    <div class="op"><span class="tag p3">Новое исследование</span>
-      <h3>49% источников принадлежат участникам рынка</h3>
-      <p class="cap">297 цитирований в пяти B2B-категориях: открытые данные, владельцы источников и методика без скрытой формулы.</p>
-      <div class="meta"><span><a href="/indeks-ai-vidimosti/"><b>Открыть индекс →</b></a></span></div></div>
-    <div class="op"><span class="tag p3">Формат</span>
-      <h3>Два замера по одной формуле</h3>
-      <p class="cap">Доля ответов с вашим именем до и после, срок, поверхность и что именно меняли. Никаких «стало лучше» — только цифры, которые вы можете перепроверить сами.</p>
-      <div class="meta"><span>Материал <b>статья + данные</b></span></div></div>
-    <div class="op"><span class="tag p3">Условия</span>
-      <h3>Публикация по согласованию</h3>
-      <p class="cap">Публичный разбор включаем в согласованный план материалов. Перед выходом вы проверяете факты и разрешаете публикацию; конфиденциальные данные не раскрываем.</p>
-      <div class="meta"><span>Условия <b>до публикации</b></span></div></div>
-    <div class="op"><span class="tag p3">Что взамен</span>
-      <h3>Ваша категория — вашим именем</h3>
-      <p class="cap">В разборе открыто указываем автора и заказчика, связываем название компании с проверяемыми фактами. Публикация не выдаётся за независимый рейтинг.</p>
-      <div class="meta"><span>Эффект <b>долгий</b></span></div></div>
+</div></section>
+
+<section class="band" id="pricing"><div class="wrap">
+  <div class="head">
+    <p class="eyebrow">Цены</p>
+    <h2>Продвижение в ответах нейросетей</h2>
+    <p class="body">Готовим материалы, из которых модель может взять ваше имя, работаем с источниками, которые она цитирует, и приводим в порядок факты о компании во всех местах, откуда она их читает. Каждый месяц — замер по одной и той же формуле.</p>
   </div>
-  <div class="ctaline"><a data-cta="cases-form" class="btn" href="#request">Обсудить разбор</a>
-    <a data-cta="cases-tg" class="btn ghost" href="https://t.me/mirrnr">Написать в телеграм</a></div>
-</div>
+  <div class="plans" aria-label="Тарифы Namedin">
+    <div class="card plan"><span class="tag">Первый шаг</span><h3>Signal Scan</h3><p class="price">0 ₽</p>
+      <ul><li>Однократный замер: 15 вопросов в одной категории</li><li>Реальные ответы ИИ и список источников</li><li>Отчёт за 48 часов, без карты</li></ul>
+      <a data-cta="price-form" class="btn glass wide" href="#request">Получить бесплатно</a></div>
+    <div class="card plan"><span class="tag">Своя контент-команда</span><h3>Контроль</h3><p class="price">29 500 ₽ <small>/ мес.</small></p>
+      <ul><li>Одна категория, 15 вопросов, два среза</li><li>Конкуренты, источники и рекомендации для вашей команды</li><li>Без подготовки и публикации материалов</li></ul>
+      <a data-cta="price-control" class="btn glass wide" href="#request">Обсудить</a></div>
+    <div class="card plan main"><span class="tag">Основной формат</span><h3>Продвижение</h3><p class="price">89 000 ₽ <small>/ мес.</small></p>
+      <ul><li>Одна категория, 15 вопросов</li><li>Два новых материала и обновление страницы, внедрение согласованных изменений</li><li>Работа по двум внешним площадкам и два среза</li></ul>
+      <a data-cta="price-main" class="btn wide" href="#request">Начать с замера</a></div>
+    <div class="card plan"><span class="tag">Две связанные категории</span><h3>Расширение</h3><p class="price">149 000 ₽ <small>/ мес.</small></p>
+      <ul><li>Один бренд, 30 вопросов</li><li>Три новых материала и обновление страницы</li><li>Работа по четырём внешним площадкам и два среза</li></ul>
+      <a data-cta="price-ext" class="btn glass wide" href="#request">Обсудить</a></div>
   </div>
-  <div class="pan" role="tabpanel" id="P-5" aria-labelledby="T-5" hidden><div class="stack">
-  <p class="eyebrow">Вопросы</p>
-  <h2>Коротко о главном</h2>
-  <div>
+  <p class="cap" style="margin-top:22px">Продвижение и Расширение — план на три месяца с ежемесячной оплатой. Платные размещения — отдельный согласованный бюджет. Перечень ИИ и доступы проверяем до начала оплачиваемого цикла. <a href="/skolko-stoit-prodvizhenie-v-otvetah-ii/">Полный состав и границы тарифов →</a></p>
+  <div class="ctaline" style="margin-top:18px"><a data-cta="price-tg" class="btn glass" href="https://t.me/mirrnr">Обсудить в телеграме</a></div>
+</div></section>
+
+<section class="band alt" id="faq"><div class="wrap">
+  <div class="head">
+    <p class="eyebrow">Вопросы</p>
+    <h2>Коротко о главном</h2>
+  </div>
+  <div class="faq">
     <details><summary>Что именно вы гарантируете?</summary>
       <p class="body">Если после трёх оплаченных месяцев не улучшится ни один из трёх показателей — доля ответов с вашим названием, доля ответов, где источником указан ваш сайт или AI Visibility Score — четвёртый месяц работы проведём бесплатно. Условие действует, если согласованные материалы опубликованы в срок. Конкретную позицию в каждом ответе мы не обещаем.</p></details>
     <details><summary>Как считается AI Visibility Score?</summary>
@@ -758,14 +796,14 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
       <p class="body">NeuroReach — российский GEO/AEO-подрядчик. Namedin занимает более узкий и проверяемый формат для B2B-компаний: 15 вопросов покупателей, разбор ответов по строкам, материалы для страниц и повторный замер той же методикой. Основной формат работы — 89 000 ₽/мес., первый Signal Scan бесплатный. Если за три месяца не вырос ни один согласованный показатель, четвёртый спринт делаем бесплатно. <a href="/alternativa-neuroreach/">Сравнение с NeuroReach</a>.</p></details>
     <details><summary>Чем вы отличаетесь от других на рынке?</summary>
       <p class="body">Мы сравниваем рынок по проверяемым вещам: цена входа, открытая методика, воспроизводимость строк отчёта, срок первого замера и действие при отсутствии результата.</p>
-      <div class="tw" style="margin-top:12px"><table>
+      <div class="tw" style="margin-top:12px"><table class="cmp">
     <tr><th>вопрос к подрядчику</th><th>как бывает на рынке</th><th>у нас</th></tr>
-    <tr><td><b>Минимальный бюджет входа</b></td><td>40 000–300 000 ₽ в месяц у агентств; медиана открытых цен — 96 500 ₽; платформы — от 11 900 ₽</td><td><span class="state good">0 ₽ за замер; продвижение — 89 000 ₽/мес.</span></td></tr>
-    <tr><td><b>Что гарантируете?</b></td><td>встречаются обещания первого места или возврата денег</td><td><span class="state good">измеримый сдвиг или 1 месяц работы бесплатно</span></td></tr>
-    <tr><td><b>Методика открыта?</b></td><td>обычно проценты в презентации без формулы и знаменателя</td><td><span class="state good">веса опубликованы</span></td></tr>
-    <tr><td><b>Могу я воспроизвести цифру сам?</b></td><td>чаще всего нет: данные внутри платформы</td><td><span class="state good">да, любую строку</span></td></tr>
-    <tr><td><b>Срок первого замера</b></td><td>от двух недель до месяца</td><td><span class="state good">48 часов</span></td></tr>
-    <tr><td><b>Разделяют поиск и память модели?</b></td><td>обычно смешивают в одну цифру</td><td><span class="state good">всегда раздельно</span></td></tr>
+    <tr><td><b>Минимальный бюджет входа</b></td><td>40 000–300 000 ₽ в месяц у агентств; медиана открытых цен — 96 500 ₽; платформы — от 11 900 ₽</td><td><span class="st">0 ₽ за замер; продвижение — 89 000 ₽/мес.</span></td></tr>
+    <tr><td><b>Что гарантируете?</b></td><td>встречаются обещания первого места или возврата денег</td><td><span class="st">измеримый сдвиг или 1 месяц работы бесплатно</span></td></tr>
+    <tr><td><b>Методика открыта?</b></td><td>обычно проценты в презентации без формулы и знаменателя</td><td><span class="st">веса опубликованы</span></td></tr>
+    <tr><td><b>Могу я воспроизвести цифру сам?</b></td><td>чаще всего нет: данные внутри платформы</td><td><span class="st">да, любую строку</span></td></tr>
+    <tr><td><b>Срок первого замера</b></td><td>от двух недель до месяца</td><td><span class="st">48 часов</span></td></tr>
+    <tr><td><b>Разделяют поиск и память модели?</b></td><td>обычно смешивают в одну цифру</td><td><span class="st">всегда раздельно</span></td></tr>
   </table></div>
       <p class="cap" style="margin-top:10px">Попросите любого подрядчика записать в договоре показатель, первый замер, срок и действие при отсутствии результата. <a href="/mozhno-li-garantirovat-mesto-v-otvetah-ii/">Как устроена наша гарантия →</a></p></details>
     <details><summary>Как работает гарантия результата?</summary>
@@ -775,14 +813,14 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
     <details><summary>Можно ли сделать это самому?</summary>
       <p class="body">Да, и первый шаг стоит сделать самому: 15 вопросов, каждый отдельным чистым чатом, две колонки — кого назвали и что процитировано. <a href="/kak-proverit-upominaniya/">Как проверить самому</a>.</p></details>
   </div>
-</div></div>
 </div></section>
 
-<section class="band navy" id="request"><div class="wrap"><div class="row">
-  <div class="rtext stack">
+<section class="band req" id="request"><div class="wrap"><div class="split">
+  <div class="stack">
+    <p class="eyebrow"><i>●</i> Бесплатный замер</p>
     <h2>Узнайте, называет ли ИИ вашу компанию</h2>
     <p class="body">Ваши покупатели уже задают нейросетям вопросы о вашей категории. Проверьте, появляетесь ли вы в этих ответах — и кто появляется вместо вас.</p>
-    <p class="cap" style="color:#8f9dff">Без карты и без обязательного звонка. Отчёт придёт за 48 часов независимо от того, будем ли мы работать дальше.</p>
+    <p class="cap">Без карты и без обязательного звонка. Отчёт придёт за 48 часов независимо от того, будем ли мы работать дальше.</p>
   </div>
 
   <form class="form-card" id="req" novalidate>
@@ -814,8 +852,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
 
         <label class="agree">
           <input id="f-ok" name="ok" type="checkbox" required>
-          
-          Согласен, что мои контакты используют, чтобы прислать аудит и ответить, — и ни для чего больше. <a href="/data/" target="_blank">Что происходит с данными</a>.
+          <span>Согласен, что мои контакты используют, чтобы прислать аудит и ответить, — и ни для чего больше. <a href="/data/" target="_blank">Что происходит с данными</a>.</span>
         </label>
 
         <p class="form-err" id="f-err" role="alert"></p>
@@ -828,20 +865,22 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
         </div>
       </form>
 </div></div></section>
+</main>
 
 <footer class="foot"><div class="wrap">
   <div class="fcols">
     <div class="fcol">
-      <a class="brand" href="/" style="margin-bottom:12px"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 21h20L12 2z" fill="#2f4cf5"/></svg><span style="color:var(--ink)">Namedin</span></a>
+      <a class="brand" href="/" style="margin-bottom:12px"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 21h20L12 2z" fill="#ff7a1a"/></svg><span>Namedin</span></a>
       <p class="cap">Измеряем, называет ли ИИ вашу компанию в ответах на вопросы ваших покупателей, и делаем работу, чтобы называл.</p>
     </div>
-    <div class="fcol"><h4>Продукт</h4>
-      <a href="#explore">Цена и разделы</a>
+    <div class="fcol"><p class="fh">Продукт</p>
+      <a href="#how">Как работает</a>
+      <a href="#pricing">Цены</a>
       <a href="/indeks-ai-vidimosti/">Индекс рынка</a>
       <a href="#request">Бесплатный замер</a>
       <a href="/kakie-istochniki-citiruet-ii/">Исследования источников</a>
     </div>
-    <div class="fcol"><h4>Разобраться</h4>
+    <div class="fcol"><p class="fh">Разобраться</p>
       <a href="/geo-prodvizhenie-v-otvetah-ii/">GEO-продвижение</a>
       <a href="/issledovanie/restorany-kazani/">Исследование: Казань</a>
       <a href="/kak-popast-v-otvety-ii/">Как попасть в ответы ИИ</a>
@@ -850,7 +889,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
       <a href="/kak-proverit-upominaniya/">Как проверить самому</a>
       <a href="/kak-podgotovit-stranicu-dlya-neyroseti/">Страница под цитирование</a>
     </div>
-    <div class="fcol"><h4>Ответы</h4>
+    <div class="fcol"><p class="fh">Ответы</p>
       <a href="/pochemu-ii-ne-upominaet/">Почему ИИ вас не упоминает</a>
       <a href="/kakie-istochniki-citiruet-ii/">Какие источники цитирует ИИ</a>
       <a href="/podryadchik-po-ai-vidimosti/">Выбор подрядчика</a>
@@ -869,62 +908,30 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
 (function () {
   'use strict';
   var ENDPOINT = 'https://namedin-leads.marywjgkmpjennings.workers.dev';
-
-  // Появление блоков при прокрутке. Если IntersectionObserver недоступен или
-  // человек попросил меньше движения — просто показываем всё сразу.
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var targets = document.querySelectorAll('section .wrap > .stack, .row > *, .panel, .shot');
+  var hasIO = 'IntersectionObserver' in window;
 
-  // Полоса Score заполняется, когда доезжает до экрана: показатель должен
-  // появляться, а не стоять готовым — это и есть «микроанимация показателей».
+  // Полоса Score заполняется, когда доезжает до экрана.
   document.querySelectorAll('.scoretrack').forEach(function (t) {
     t.style.setProperty('--w', t.getAttribute('data-w') || '0%');
-    if (reduce || !('IntersectionObserver' in window)) { t.classList.add('in'); return; }
+    if (reduce || !hasIO) { t.classList.add('in'); return; }
     var o = new IntersectionObserver(function (es) {
       es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); o.unobserve(e.target); } });
     }, {threshold: 0.4});
     o.observe(t);
   });
-  if (!reduce && 'IntersectionObserver' in window) {
-    targets.forEach(function (n) { n.classList.add('rise'); });
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-      });
-    }, {rootMargin: '0px 0px -8% 0px', threshold: 0.06});
-    targets.forEach(function (n) { io.observe(n); });
-  }
 
-
-
-  // Вкладки двух уровней: верхние разделы и вкладки внутри отчёта.
-  // Панели скрываются атрибутом hidden — без скрипта видна первая, и текст
-  // не пропадает, просто не переключается.
-  function wire(list) {
-    var tabs = Array.prototype.slice.call(list);
-    if (!tabs.length) return;
-    function show(idx) {
-      tabs.forEach(function (t, k) {
-        var pan = document.getElementById(t.getAttribute('aria-controls'));
-        t.setAttribute('aria-selected', k === idx ? 'true' : 'false');
-        t.tabIndex = k === idx ? 0 : -1;
-        if (pan) pan.hidden = k !== idx;
-      });
-    }
-    show(0);
-    tabs.forEach(function (t, k) {
-      t.addEventListener('click', function () { show(k); });
-      t.addEventListener('keydown', function (e) {
-        var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
-        if (!d) return;
-        e.preventDefault();
-        var n = (k + d + tabs.length) % tabs.length;
-        show(n); tabs[n].focus();
-      });
+  // Превью: анимация включается после загрузки и только пока превью на экране.
+  var pv = document.getElementById('pv');
+  if (pv && !reduce && hasIO) {
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        new IntersectionObserver(function (es) {
+          es.forEach(function (e) { pv.classList.toggle('on', e.isIntersecting); });
+        }).observe(pv);
+      }, 600);
     });
   }
-  wire(document.querySelectorAll('.tabs.top .tab'));
-  wire(document.querySelectorAll('.tabs.sub .tab'));
 
   var quick = document.getElementById('quick');
   if (quick) quick.addEventListener('submit', function (e) {
@@ -932,7 +939,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
     var v = (document.getElementById('q-dom').value || '').trim();
     var target = document.getElementById('f-dom');
     if (v && target) target.value = v;
-    document.getElementById('request').scrollIntoView({behavior: 'smooth'});
+    document.getElementById('request').scrollIntoView({behavior: reduce ? 'auto' : 'smooth'});
     setTimeout(function () { (v ? document.getElementById('f-name') : target).focus(); }, 400);
   });
 
