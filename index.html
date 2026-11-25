@@ -80,7 +80,7 @@ b{color:var(--silver);font-weight:600}
 .brand svg{width:17px;height:17px}
 .brand span{font-size:17px;font-weight:700;letter-spacing:-.02em}
 .navlinks{display:flex;gap:26px;align-items:center}
-.navlinks a{font-size:14px;color:var(--text);text-decoration:none}
+.navlinks a{font-size:14px;color:var(--text);text-decoration:none;padding:10px 0}
 .navlinks a:hover{color:var(--silver)}
 .navact{display:flex;gap:10px;align-items:center}
 @media(max-width:960px){.navlinks{display:none}}
@@ -104,7 +104,6 @@ b{color:var(--silver);font-weight:600}
 .assure{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:var(--t12);color:var(--muted)}
 .assure span::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--accent);
   margin-right:8px;vertical-align:middle;opacity:.8}
-.applinks{font-size:var(--t12);color:var(--muted)}
 
 /* Превью продукта: статичный SVG и пара CSS-анимаций на transform/opacity.
    Без WebGL и без библиотек: на первом экране ничего тяжелее 6 КБ. */
@@ -143,7 +142,7 @@ b{color:var(--silver);font-weight:600}
   50%,63%{transform:translateY(126px)}67%,80%{transform:translateY(168px)}84%,96%{transform:translateY(210px)}100%{transform:none}}
 
 /* Полосы */
-.band{padding:clamp(64px,8vw,120px) 0;border-top:1px solid var(--line);content-visibility:auto;contain-intrinsic-size:auto 900px}
+.band{scroll-margin-top:40px;padding:clamp(64px,8vw,120px) 0;border-top:1px solid var(--line)}
 .band.alt{background:linear-gradient(180deg,var(--s1),var(--bg))}
 .surf{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
 .surf span{font-size:13px;color:var(--text);padding:6px 11px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.02)}
@@ -154,7 +153,7 @@ b{color:var(--silver);font-weight:600}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2vw,24px)}
 .g3{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,24px)}
 .split{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(28px,5vw,72px);align-items:center}
-@media(max-width:980px){.g3{grid-template-columns:1fr 1fr}.split{grid-template-columns:1fr}}
+@media(max-width:980px){.g3{grid-template-columns:1fr 1fr}.g3>:nth-child(3):last-child{grid-column:1/-1}.split{grid-template-columns:1fr}}
 @media(max-width:680px){.g2,.g3{grid-template-columns:1fr}}
 
 /* Таблицы данных */
@@ -204,7 +203,7 @@ tr.us td b{color:var(--accent-h)}
 .cap-c h3{margin:10px 0 10px}
 .cap-c p{font-size:var(--t14)}
 .cap-c p.eyebrow{font-size:12px}
-.cap-c .more{display:inline-block;margin-top:14px;font-size:var(--t12)}
+.cap-c .more{display:inline-block;margin-top:6px;padding:12px 0;font-size:var(--t12)}
 .ic{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;border:1px solid var(--line2);
   background:rgba(255,255,255,.03);color:var(--silver)}
 .ic svg{width:18px;height:18px}
@@ -275,7 +274,7 @@ details p{margin-top:12px;max-width:46em;font-size:var(--t14)}
 .fcol a:hover{color:var(--silver)}
 .fbot{margin-top:36px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:12px;
   justify-content:space-between;font-size:var(--t12);color:var(--muted)}
-.fbot a{color:var(--text)}
+.fbot a{color:var(--text);display:inline-block;padding:8px 0}
 
 /* Появление при прокрутке — без JS, на scroll-driven animations: анимация идёт
    на композиторе и не трогает основной поток. Где не поддерживается — всё
@@ -285,7 +284,8 @@ details p{margin-top:12px;max-width:46em;font-size:var(--t14)}
     .band .head,.band .card,.band .split>*,.kpis{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 40%}
   }
 }
-@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes rise{from{transform:translateY(28px)}to{transform:none}}
+@media print{*{animation:none!important}}
 
 a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:8px}
 
@@ -294,8 +294,15 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{o
   .checkbar{flex-direction:column}
   .checkbar input,.checkbar .btn{width:100%;flex:0 0 auto}
   th,td{padding:8px;font-size:13px}
+  .hs{display:none}
+  .bar{min-width:40px}
+  .cmp tr:first-child{display:none}
+  .cmp tr{display:block;padding:12px 0;border-bottom:1px solid var(--line)}
+  .cmp td{display:block;border:0;padding:3px 0}
+  .cmp td:nth-child(2)::before{content:"На рынке: ";color:var(--muted)}
+  .cmp td:nth-child(3)::before{content:"У нас: ";color:var(--muted)}
+  .cmp .st{white-space:normal;display:inline-block}
   .tw{margin:0 -16px;padding:0 16px}
-  .navact .glass{display:none}
   .fbot{flex-direction:column}
 }
 @media (prefers-reduced-motion: reduce){
@@ -475,7 +482,6 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{o
     <a href="#faq">Вопросы</a>
   </nav>
   <div class="navact">
-    <a class="btn glass sm" data-app="login" href="https://app.getnamedin.com/login">Войти</a>
     <a class="btn sm" data-cta="cta-1" href="#request">Проверить бесплатно</a>
   </div>
 </div></div></header>
@@ -491,7 +497,6 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{o
       <button class="btn" type="submit">Проверить бесплатно <span class="ar" aria-hidden="true">→</span></button>
     </form>
     <div class="assure"><span>Первый замер бесплатно</span><span>Отчёт за 48 часов</span><span>Без карты и обязательного звонка</span></div>
-    <p class="applinks">Уже работаем вместе? <a data-app="login" href="https://app.getnamedin.com/login">Войти в кабинет</a> · <a data-app="register" href="https://app.getnamedin.com/register">Создать аккаунт</a></p>
   </div>
 
   <figure class="pv" id="pv" role="img" aria-label="Иллюстрация кабинета Namedin: карта страниц сайта и шесть шагов проекта — проект, обход, анализ, оптимизация, проверка, история" style="margin:0">
@@ -658,14 +663,14 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{o
     <h3>Продвигать нужно туда, откуда модель берёт имена</h3>
     <p class="body">Мы прогнали вопросы по нескольким категориям и посчитали не позиции, а владельцев: кому принадлежит каждая страница, которую модель прочитала, прежде чем ответить.</p>
     <div class="card" style="margin-top:6px"><div class="tw"><table>
-      <tr><th>категория</th><th></th><th>доля</th><th>база</th><th>поверхность</th></tr>
-      <tr><td><b>Видимость бренда в ИИ</b></td><td><span class="bar"><i style="width:76%"></i></span></td><td class="num">76%</td><td class="num">34 / 45</td><td>поиск</td></tr>
-      <tr><td><b>Продавцы на маркетплейсах</b></td><td><span class="bar"><i style="width:56%"></i></span></td><td class="num">56%</td><td class="num">14 / 25</td><td>поиск</td></tr>
-      <tr><td><b>Интернет-магазины</b></td><td><span class="bar"><i style="width:51%"></i></span></td><td class="num">51%</td><td class="num">52 / 102</td><td>поиск</td></tr>
-      <tr><td><b>Email-рассылки</b></td><td><span class="bar"><i style="width:41%"></i></span></td><td class="num">41%</td><td class="num">11 / 27</td><td>поиск</td></tr>
-      <tr><td><b>CRM-системы</b></td><td><span class="bar"><i style="width:36%"></i></span></td><td class="num">36%</td><td class="num">35 / 98</td><td>поиск</td></tr>
+      <tr><th>категория</th><th></th><th>доля</th><th>база</th><th class="hs">поверхность</th></tr>
+      <tr><td><b>Видимость бренда в ИИ</b></td><td><span class="bar"><i style="width:76%"></i></span></td><td class="num">76%</td><td class="num">34 / 45</td><td class="hs">поиск</td></tr>
+      <tr><td><b>Продавцы на маркетплейсах</b></td><td><span class="bar"><i style="width:56%"></i></span></td><td class="num">56%</td><td class="num">14 / 25</td><td class="hs">поиск</td></tr>
+      <tr><td><b>Интернет-магазины</b></td><td><span class="bar"><i style="width:51%"></i></span></td><td class="num">51%</td><td class="num">52 / 102</td><td class="hs">поиск</td></tr>
+      <tr><td><b>Email-рассылки</b></td><td><span class="bar"><i style="width:41%"></i></span></td><td class="num">41%</td><td class="num">11 / 27</td><td class="hs">поиск</td></tr>
+      <tr><td><b>CRM-системы</b></td><td><span class="bar"><i style="width:36%"></i></span></td><td class="num">36%</td><td class="num">35 / 98</td><td class="hs">поиск</td></tr>
     </table></div></div>
-    <p class="cap">Доля цитирований, приходящихся на сайты компаний и агентств, которые продают то же самое. Верхняя строка — самая конкурентная из измеренных категорий: там на сайты соперников приходится три четверти всего, что читает модель.</p>
+    <p class="cap">Все строки сняты с поисковой поверхности. Доля цитирований, приходящихся на сайты компаний и агентств, которые продают то же самое. Верхняя строка — самая конкурентная из измеренных категорий: там на сайты соперников приходится три четверти всего, что читает модель.</p>
     <div class="ctaline"><a data-cta="cta-9" class="btn" href="#request">Посчитать по моей категории</a><a data-cta="cta-10" class="btn glass" href="/kakie-istochniki-citiruet-ii/">Как мы это считаем</a></div>
   </div>
 
@@ -791,7 +796,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{o
       <p class="body">NeuroReach — российский GEO/AEO-подрядчик. Namedin занимает более узкий и проверяемый формат для B2B-компаний: 15 вопросов покупателей, разбор ответов по строкам, материалы для страниц и повторный замер той же методикой. Основной формат работы — 89 000 ₽/мес., первый Signal Scan бесплатный. Если за три месяца не вырос ни один согласованный показатель, четвёртый спринт делаем бесплатно. <a href="/alternativa-neuroreach/">Сравнение с NeuroReach</a>.</p></details>
     <details><summary>Чем вы отличаетесь от других на рынке?</summary>
       <p class="body">Мы сравниваем рынок по проверяемым вещам: цена входа, открытая методика, воспроизводимость строк отчёта, срок первого замера и действие при отсутствии результата.</p>
-      <div class="tw" style="margin-top:12px"><table>
+      <div class="tw" style="margin-top:12px"><table class="cmp">
     <tr><th>вопрос к подрядчику</th><th>как бывает на рынке</th><th>у нас</th></tr>
     <tr><td><b>Минимальный бюджет входа</b></td><td>40 000–300 000 ₽ в месяц у агентств; медиана открытых цен — 96 500 ₽; платформы — от 11 900 ₽</td><td><span class="st">0 ₽ за замер; продвижение — 89 000 ₽/мес.</span></td></tr>
     <tr><td><b>Что гарантируете?</b></td><td>встречаются обещания первого места или возврата денег</td><td><span class="st">измеримый сдвиг или 1 месяц работы бесплатно</span></td></tr>
@@ -816,7 +821,6 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{o
     <h2>Узнайте, называет ли ИИ вашу компанию</h2>
     <p class="body">Ваши покупатели уже задают нейросетям вопросы о вашей категории. Проверьте, появляетесь ли вы в этих ответах — и кто появляется вместо вас.</p>
     <p class="cap">Без карты и без обязательного звонка. Отчёт придёт за 48 часов независимо от того, будем ли мы работать дальше.</p>
-    <p class="applinks">Есть доступ к кабинету? <a data-app="login" href="https://app.getnamedin.com/login">Войти</a> · <a data-app="register" href="https://app.getnamedin.com/register">Регистрация</a></p>
   </div>
 
   <form class="form-card" id="req" novalidate>
@@ -875,7 +879,6 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{o
       <a href="/indeks-ai-vidimosti/">Индекс рынка</a>
       <a href="#request">Бесплатный замер</a>
       <a href="/kakie-istochniki-citiruet-ii/">Исследования источников</a>
-      <a data-app="login" href="https://app.getnamedin.com/login">Вход в кабинет</a>
     </div>
     <div class="fcol"><p class="fh">Разобраться</p>
       <a href="/geo-prodvizhenie-v-otvetah-ii/">GEO-продвижение</a>
