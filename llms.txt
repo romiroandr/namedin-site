@@ -56,29 +56,29 @@ email-рассылки — 41% (11 из 27), CRM-системы — 36% (35 из
 
 ## Страницы
 
-- Главная: https://getnamedin.com/
-- GEO-продвижение в ответах ИИ: https://getnamedin.com/geo-prodvizhenie-v-otvetah-ii/
-- Как попасть в ответы ИИ: https://getnamedin.com/kak-popast-v-otvety-ii/
-- Чем это отличается от SEO: https://getnamedin.com/chem-otlichaetsya-ot-seo/
-- Как проверить упоминания: https://getnamedin.com/kak-proverit-upominaniya/
-- Две поверхности ответа: https://getnamedin.com/poverhnosti-otveta/
-- Почему ИИ не упоминает вашу компанию: https://getnamedin.com/pochemu-ii-ne-upominaet/
-- Как сделать, чтобы нейросеть рекомендовала продукт: https://getnamedin.com/kak-zastavit-ii-rekomendovat/
-- Разбор категории CRM: https://getnamedin.com/report/crm-rossiya/
-- Разбор категории email-рассылок: https://getnamedin.com/report/email-rassylki/
-- Разбор категории приложений для интернет-магазинов: https://getnamedin.com/report/shopify-upsell-apps/
-- Сколько стоит продвижение в ответах нейросетей: https://getnamedin.com/skolko-stoit-prodvizhenie-v-otvetah-ii/
-- Подрядчик по видимости в ИИ: кому заказать: https://getnamedin.com/podryadchik-po-ai-vidimosti/
-- Можно ли гарантировать место в ответах ИИ: https://getnamedin.com/mozhno-li-garantirovat-mesto-v-otvetah-ii/
-- Как попасть в ответы Яндекс Нейро, Алисы и GigaChat: https://getnamedin.com/kak-popast-v-otvety-russkih-neyrosetey/
-- Как подготовить страницу, чтобы нейросеть её процитировала: https://getnamedin.com/kak-podgotovit-stranicu-dlya-neyroseti/
-- Нейросеть пишет о компании неправду: что делать: https://getnamedin.com/reputaciya-kompanii-v-otvetah-ii/
-- Какие источники цитирует ИИ, когда советует продукт: https://getnamedin.com/kakie-istochniki-citiruet-ii/
-- Индекс источников ответов ИИ по пяти B2B-категориям: https://getnamedin.com/indeks-ai-vidimosti/
-- Альтернатива NeuroReach: https://getnamedin.com/alternativa-neuroreach/
-- Исследование «Кого нейросети советуют в Казани»: https://getnamedin.com/issledovanie/restorany-kazani/
-- О данных: https://getnamedin.com/data/
+- [Главная](https://getnamedin.com/)
+- [GEO-продвижение в ответах ИИ](https://getnamedin.com/geo-prodvizhenie-v-otvetah-ii/)
+- [Как попасть в ответы ИИ](https://getnamedin.com/kak-popast-v-otvety-ii/)
+- [Чем это отличается от SEO](https://getnamedin.com/chem-otlichaetsya-ot-seo/)
+- [Как проверить упоминания](https://getnamedin.com/kak-proverit-upominaniya/)
+- [Две поверхности ответа](https://getnamedin.com/poverhnosti-otveta/)
+- [Почему ИИ не упоминает вашу компанию](https://getnamedin.com/pochemu-ii-ne-upominaet/)
+- [Как сделать, чтобы нейросеть рекомендовала продукт](https://getnamedin.com/kak-zastavit-ii-rekomendovat/)
+- [Разбор категории CRM](https://getnamedin.com/report/crm-rossiya/)
+- [Разбор категории email-рассылок](https://getnamedin.com/report/email-rassylki/)
+- [Разбор категории приложений для интернет-магазинов](https://getnamedin.com/report/shopify-upsell-apps/)
+- [Сколько стоит продвижение в ответах нейросетей](https://getnamedin.com/skolko-stoit-prodvizhenie-v-otvetah-ii/)
+- [Подрядчик по видимости в ИИ: кому заказать](https://getnamedin.com/podryadchik-po-ai-vidimosti/)
+- [Можно ли гарантировать место в ответах ИИ](https://getnamedin.com/mozhno-li-garantirovat-mesto-v-otvetah-ii/)
+- [Как попасть в ответы Яндекс Нейро, Алисы и GigaChat](https://getnamedin.com/kak-popast-v-otvety-russkih-neyrosetey/)
+- [Как подготовить страницу, чтобы нейросеть её процитировала](https://getnamedin.com/kak-podgotovit-stranicu-dlya-neyroseti/)
+- [Нейросеть пишет о компании неправду: что делать](https://getnamedin.com/reputaciya-kompanii-v-otvetah-ii/)
+- [Какие источники цитирует ИИ, когда советует продукт](https://getnamedin.com/kakie-istochniki-citiruet-ii/)
+- [Индекс источников ответов ИИ по пяти B2B-категориям](https://getnamedin.com/indeks-ai-vidimosti/)
+- [Альтернатива NeuroReach](https://getnamedin.com/alternativa-neuroreach/)
+- [Исследование «Кого нейросети советуют в Казани»](https://getnamedin.com/issledovanie/restorany-kazani/)
+- [О данных](https://getnamedin.com/data/)
 
 ## Контакт
 
-Телеграм: https://t.me/mirrnr
+- [Телеграм](https://t.me/mirrnr)
